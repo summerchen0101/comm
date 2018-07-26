@@ -1,0 +1,23 @@
+{
+  "type": "package",
+  "name": "PKG_USER/PKG_NAME",
+  "version": "1.0.1",
+  "authors": [
+    {
+      "name": "PKG_USER",
+      "email": "PKG_USER@mail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "/"
+    ]
+  },
+  "require": {
+    "PKG_USER/FPKG-10000-Config": "1.*"
+  },
+  "scripts": {
+    "post-update-cmd": [
+    ]
+  }
+}

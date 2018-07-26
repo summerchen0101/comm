@@ -1,0 +1,52 @@
+<template>
+  <div id="PersonalProfile">
+    <!-- <MenuComponent></MenuComponent>
+    <MobileMenu></MobileMenu> -->
+    <div id="main">
+      <Breadcrumb :path="breadcrumbPath"></Breadcrumb>
+      <div class="main-container">
+        <h2>個人資料</h2>
+        <div v-if="userInfo.account" class="mt-4">
+          <p>帳號：{{userInfo.account.p5_ant_account}}</p>
+          <p>站台：{{userInfo.branch.p3_bch_name}}</p>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</template>
+
+<script>
+import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
+import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
+import { USER_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+
+export default {
+  components: {
+    MenuComponent: Menu,
+    MobileMenu: MobileMenu,
+  },
+  data() {
+    return {
+      breadcrumbPath: [
+        {link: "/", title: "首頁"},
+        {link: null, title: "個人資料"},
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      userInfo: USER_INFO
+    })
+  },
+  
+
+  mounted() {
+  }
+}
+</script>
+
+<style lang="stylus">
+</style>
