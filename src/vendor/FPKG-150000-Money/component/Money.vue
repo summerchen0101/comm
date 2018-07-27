@@ -29,7 +29,7 @@ export default {
   
 
   mounted() {
-    this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    // this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
   }
 }
 </script>

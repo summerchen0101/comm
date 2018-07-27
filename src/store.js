@@ -7,6 +7,7 @@ import Theme from './vendor/FPKG-100000-Theme/store'
 import Widget from './vendor/FPKG-110000-Widget/store'
 import Config from './vendor/FPKG-10000-Config/store'
 import Announce from './vendor/FPKG-140000-Announce/store'
+import Money from './vendor/FPKG-150000-Money/store'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ const store = {
     Account,
     Theme,
     Announce,
+    Money,
   },
   state: {
     version: '1.0.0'
