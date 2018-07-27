@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapState({
       branchList: state => state.Branch.branchList,
-      createDialogVisible: state => state.Branch.createDialogVisible,
+      dialogVisible: state => state.Branch.dialogVisible,
     }),
   },
   methods: {

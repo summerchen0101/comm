@@ -3,7 +3,7 @@ const state = {
   auth: "",
   userInfo: {},
 
-  createDialogVisible: false,
+  dialogVisible: false,
   accountList: [],
   accountListPaginator: {},
   account: {}

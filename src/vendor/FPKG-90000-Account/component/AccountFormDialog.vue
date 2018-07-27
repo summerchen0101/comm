@@ -2,7 +2,7 @@
   <el-dialog
     :title="form.guid ? '編輯帳號' : '新增帳號'"
     :before-close="() => SWITCH_ACCOUNT_DIALOG(false)"
-    :visible.sync="createDialogVisible"
+    :visible.sync="dialogVisible"
     width="50%">
     <el-form 
       label-width="80px" 
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     ...mapState({
-      createDialogVisible: state => state.Account.createDialogVisible,
+      dialogVisible: state => state.Account.dialogVisible,
     }),
   },
   methods: {
@@ -87,7 +87,7 @@ export default {
   
   mounted() {
     this.$hub.$on("account:clearAccountForm", () => {
-      this.form = initForm
+      this.form = Object.assign({}, initForm)
       this.$nextTick(() => {
         this.$refs.accountForm.resetFields();
       })

@@ -65,7 +65,7 @@ const mutations = {
     }
   },
   [SWITCH_BRANCH_DIALOG](state, status) {
-    state.createDialogVisible = status
+    state.dialogVisible = status
     EventsHub.$emit("branch:clearBranchForm")
   },
 }

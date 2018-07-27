@@ -1,5 +1,5 @@
 const state = {
-  createDialogVisible: false,
+  dialogVisible: false,
   themeList: [],
   themeListPaginator: {},
   theme: {}

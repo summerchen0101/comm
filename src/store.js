@@ -6,6 +6,7 @@ import Account from './vendor/FPKG-90000-Account/store'
 import Theme from './vendor/FPKG-100000-Theme/store'
 import Widget from './vendor/FPKG-110000-Widget/store'
 import Config from './vendor/FPKG-10000-Config/store'
+import Announce from './vendor/FPKG-140000-Announce/store'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ const store = {
     Branch,
     Account,
     Theme,
+    Announce,
   },
   state: {
     version: '1.0.0'

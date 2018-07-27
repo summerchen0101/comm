@@ -1,7 +1,7 @@
 
 const state = {
   bchInfo: null,
-  createDialogVisible: false,
+  dialogVisible: false,
   branchList: [],
   branchListPaginator: {},
   branch: {}

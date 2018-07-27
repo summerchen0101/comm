@@ -22,6 +22,7 @@ import {
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { Vcode } from '@/vendor/FPKG-10000-Config/customValidate';
 import Router from '@/router'
+import storage from 'store2'
 
 const actions = {
   async [GET_USER_INFO]({ commit }) {
@@ -39,7 +40,8 @@ const actions = {
     }
     let res = await apiHub("post", `api/v1/user/login/${_d.captchaUuid}`, data)
     if(res.code === 200001) {
-      commit(SET_USER_AUTH, res.result.token)
+      storage.session("auth", res.result.token)
+      commit(SET_USER_AUTH)
       await dispatch(GET_USER_INFO)
       console.log("登入成功")
       Router.push({name: 'Announce'})

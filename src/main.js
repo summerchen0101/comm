@@ -18,6 +18,7 @@ import '@/vendor/FPKG-30000-Plugin/fontawesome'
 import '@/vendor/FPKG-30000-Plugin/eventsHub'
 import '@/vendor/FPKG-30000-Plugin/lodash'
 import '@/vendor/FPKG-30000-Plugin/vulidate'
+import '@/vendor/FPKG-30000-Plugin/storage'
 
 // widget
 import Breadcrumb from '@/vendor/FPKG-110000-Widget/component/Breadcrumb.vue'

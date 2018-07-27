@@ -3,7 +3,7 @@
     id="BranchFormDialog"
     :title="form.guid ? '編輯站台' : '新增站台'"
     :before-close="() => SWITCH_BRANCH_DIALOG(false)"
-    :visible.sync="createDialogVisible"
+    :visible.sync="dialogVisible"
     width="70%">
     <el-form 
       label-width="120px" 
@@ -146,7 +146,7 @@ export default {
   },
   computed: {
     ...mapState({
-      createDialogVisible: state => state.Branch.createDialogVisible,
+      dialogVisible: state => state.Branch.dialogVisible,
     }),
   },
   methods: {
@@ -190,7 +190,7 @@ export default {
   
   mounted() {
     this.$hub.$on("branch:clearBranchForm", () => {
-      this.form = initForm
+      this.form = Object.assign({}, initForm)
       this.$nextTick(() => {
         this.$refs.branchForm.resetFields();
       })

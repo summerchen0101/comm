@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapState({
       accountList: state => state.Account.accountList,
-      createDialogVisible: state => state.Account.createDialogVisible,
+      dialogVisible: state => state.Account.dialogVisible,
     }),
   },
   methods: {

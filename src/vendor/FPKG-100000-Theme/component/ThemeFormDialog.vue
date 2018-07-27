@@ -2,7 +2,7 @@
   <el-dialog
     :title="form.guid ? '編輯版型' : '新增版型'"
     :before-close="() => SWITCH_THEME_DIALOG(false)"
-    :visible.sync="createDialogVisible"
+    :visible.sync="dialogVisible"
     width="50%">
     <el-form 
       label-width="80px" 
@@ -76,7 +76,7 @@ export default {
   },
   computed: {
     ...mapState({
-      createDialogVisible: state => state.Theme.createDialogVisible,
+      dialogVisible: state => state.Theme.dialogVisible,
     }),
   },
   methods: {
@@ -112,7 +112,7 @@ export default {
   
   mounted() {
     this.$hub.$on("theme:clearThemeForm", () => {
-      this.form = initForm
+      this.form = Object.assing({}, initForm)
       this.$hub.$emit("imgUpload:resetActiveImg")
       this.$nextTick(() => {
         this.$refs.themeForm.resetFields();

@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapState({
       themeList: state => state.Theme.themeList,
-      createDialogVisible: state => state.Theme.createDialogVisible,
+      dialogVisible: state => state.Theme.dialogVisible,
     }),
   },
   methods: {

@@ -28,7 +28,7 @@ const mutations = {
     }
   },
   [SWITCH_THEME_DIALOG](state, status) {
-    state.createDialogVisible = status
+    state.dialogVisible = status
     EventsHub.$emit("theme:clearThemeForm")
     
   },

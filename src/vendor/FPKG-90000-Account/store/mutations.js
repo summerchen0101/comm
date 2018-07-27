@@ -10,6 +10,7 @@ import {
   SET_USER_AUTH,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
+import storage from 'store2'
 
 const mutations = {
   [CHANGE_LOGIN_STATUS](state, status) {
@@ -18,8 +19,8 @@ const mutations = {
   [SET_USER_INFO](state, userInfo) {
     state.userInfo = userInfo
   },
-  [SET_USER_AUTH](state, auth) {
-    state.auth = auth
+  [SET_USER_AUTH](state) {
+    state.auth = storage.session("auth")
   },
   [CLEAR_USER_INFO](state, userInfo) {
     state.userInfo = {}
@@ -53,7 +54,7 @@ const mutations = {
     }
   },
   [SWITCH_ACCOUNT_DIALOG](state, status) {
-    state.createDialogVisible = status
+    state.dialogVisible = status
     EventsHub.$emit("account:clearAccountForm")
   },
 }

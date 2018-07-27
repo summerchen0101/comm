@@ -4,7 +4,8 @@ import {
   GET_USER_INFO, 
   SWITCH_WEB_SYS_MENU, 
   BRANCH_INFO,
-  GET_BRANCH_INFO
+  GET_BRANCH_INFO,
+  SET_USER_AUTH,
  } from '@/vendor/FPKG-40000-VuexStore/constants'
 import Dashboard from '@/vendor/FPKG-70000-Dashboard/router'
 import { Login, Logout } from '@/vendor/FPKG-90000-Account/router'
@@ -29,6 +30,11 @@ RouterSetting.beforeEach(async (to, from, next) => {
   // if(!Store.getters.BRANCH_INFO) {
   //   await Store.dispatch(GET_BRANCH_INFO)
   // }
+
+  // 若無Auth 
+  if(!Store.state.Account.auth) {
+    Store.commit(SET_USER_AUTH)
+  }
 
   // 進入內頁時若未登入 Y-> 獲取使用者資訊
   if(Store.getters.IS_LOGIN !== true && to.name !== 'Login') {

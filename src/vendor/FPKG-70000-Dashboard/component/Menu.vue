@@ -78,6 +78,7 @@ export default {
   },
 
   mounted() {
+    // console.log()
     this.targetMenu = this.menu.find(m => m.name === this.$route.name) || null
     console.log(this.targetMenu)
   }

@@ -100,5 +100,21 @@ export const GOT_CAPTCH = "GOT_CAPTCH"
 export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
 
+/*
+  FPKG-140000-Announce
+*/
+
+// getters
+
+// actions
+export const GET_MARQUEE_LIST = "GET_MARQUEE_LIST"
+export const DEL_MARQUEE = "DEL_MARQUEE"
+export const ADD_MARQUEE = "ADD_MARQUEE"
+export const EDIT_MARQUEE = "EDIT_MARQUEE"
+
+// mutations
+export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
+export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
+
 
 
