@@ -6,7 +6,8 @@ import {
   CLEAR_USER_INFO,
   GOT_ACCOUNT_LIST, 
   GOT_ACCOUNT, 
-  SWITCH_ACCOUNT_DIALOG 
+  SWITCH_ACCOUNT_DIALOG,
+  SET_USER_AUTH,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
@@ -16,6 +17,9 @@ const mutations = {
   },
   [SET_USER_INFO](state, userInfo) {
     state.userInfo = userInfo
+  },
+  [SET_USER_AUTH](state, auth) {
+    state.auth = auth
   },
   [CLEAR_USER_INFO](state, userInfo) {
     state.userInfo = {}

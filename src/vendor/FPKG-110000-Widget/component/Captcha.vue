@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { GET_CAPTCH } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { GET_CAPTCH, CLEAR_CAPTCH } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   props: {
@@ -16,8 +16,16 @@ export default {
     })
   },
   methods: {
-    async getCaptch() {
-      await this.$store.dispatch(GET_CAPTCH)
+    getCaptch() {
+      this.$store.dispatch(GET_CAPTCH)
+    },
+    onClickCaptcha() {
+      this.$store.commit(CLEAR_CAPTCH)
+      setTimeout(() => {
+        this.getCaptch()
+      })
+      
+      
     }
   },
   mounted() {
@@ -32,4 +40,5 @@ export default {
 .captcha 
   img 
     max-width: 100%
+    // cursor: pointer
 </style>

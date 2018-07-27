@@ -62,6 +62,7 @@ export const CLEAR_SESSION = "CLEAR_SESSION"
 export const GOT_ACCOUNT_LIST = "GOT_ACCOUNT_LIST"
 export const GOT_ACCOUNT = "GOT_ACCOUNT"
 export const SWITCH_ACCOUNT_DIALOG = "SWITCH_ACCOUNT_DIALOG"
+export const SET_USER_AUTH = "SET_USER_AUTH"
 
 
 /*
@@ -77,6 +78,7 @@ export const EDIT_THEME = "EDIT_THEME"
 export const GET_THEME = "GET_THEME"
 export const DEL_THEME = "DEL_THEME"
 export const UPLOAD_THEME_FILE = "UPLOAD_THEME_FILE"
+export const EDIT_USER_PASSWORD = "EDIT_USER_PASSWORD"
 
 // mutations
 export const GOT_THEME_LIST = "GOT_THEME_LIST"
@@ -91,8 +93,11 @@ export const SWITCH_THEME_DIALOG = "SWITCH_THEME_DIALOG"
 // getters
 
 // actions
+export const GET_CAPTCH = "GET_CAPTCH"
 
 // mutations
+export const GOT_CAPTCH = "GOT_CAPTCH"
+export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
 
 

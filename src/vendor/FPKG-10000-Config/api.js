@@ -13,6 +13,9 @@ export async function apiHub(method, url, data, params) {
       url,
       data,
       params,
+      headers: {
+        Authorization: `Bearer ${Store.state.Account.auth}`
+      }
     })
     Store.commit(SWITCH_LOADING_COVER, false)
     if(!(_response.status >= 200 && _response.status < 300)) {

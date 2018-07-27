@@ -17,7 +17,7 @@
       </el-dropdown-menu>
     </el-dropdown> -->
     <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
-      <span class="username">{{userInfo.account && userInfo.account.p5_ant_account}}</span>
+      <span class="username">{{userInfo.name}}</span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="PersonalProfile">個人資訊</el-dropdown-item>
         <el-dropdown-item command="Logout">登出</el-dropdown-item>

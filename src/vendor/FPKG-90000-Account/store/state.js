@@ -1,5 +1,6 @@
 const state = {
   isLogin: false,
+  auth: "",
   userInfo: {},
 
   createDialogVisible: false,

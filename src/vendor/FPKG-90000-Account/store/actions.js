@@ -7,6 +7,8 @@ import {
   DO_LOGOUT, 
   DO_LOGIN, 
   CLEAR_SESSION,
+  EDIT_USER_PASSWORD,
+  SET_USER_AUTH,
 
   GET_ACCOUNT_LIST, 
   GOT_ACCOUNT_LIST, 
@@ -23,32 +25,47 @@ import Router from '@/router'
 
 const actions = {
   async [GET_USER_INFO]({ commit }) {
-    let res = await apiHub("get", "account/polling-basic/info")
-    if(res.code === 0) {
+    let res = await apiHub("get", "api/v1/auth_user")
+    if(res.code === 200001) {
       commit(CHANGE_LOGIN_STATUS, true)
-      commit(SET_USER_INFO, res.response)
-      commit(SET_THEME, res.response.theme)
+      commit(SET_USER_INFO, res.result)
     }
   },
-  async [DO_LOGIN]({ commit, dispatch }, data) {
-    let res = await apiHub("put", "account/common/login", data)
-    if(res.code === 0) {
+  async [DO_LOGIN]({ commit, dispatch }, _d) {
+    let data = {
+      account: _d.account,
+      password: _d.password,
+      captcha: _d.captcha,
+    }
+    let res = await apiHub("post", `api/v1/user/login/${_d.captchaUuid}`, data)
+    if(res.code === 200001) {
+      commit(SET_USER_AUTH, res.result.token)
       await dispatch(GET_USER_INFO)
       console.log("登入成功")
-      Router.push({name: 'Branch'})
+      Router.push({name: 'Announce'})
     }else {
       console.log("登入失敗")
     }
   },
   async [DO_LOGOUT]({ commit }, data) {
     console.log(DO_LOGOUT)
-    let res = await apiHub("put", "account/common/logout", data)
-    if(res.code === 0) {
+    let res = await apiHub("post", "api/v1/user/logout", data)
+    if(res.code === 200001) {
       commit(CLEAR_USER_INFO)
       commit(CLEAR_SESSION)
       Router.push({name: "Login"})
       console.log("登出成功")
     }
+  },
+  async [EDIT_USER_PASSWORD]({ commit }, _d) {
+    let data = {
+      old_password: _d.oldPassword,
+      password: _d.newPassword,
+      password_confirmation: _d.confirmPassword
+    }
+    let res = await apiHub("put", "api/v1/auth_user", data)
+    // if(res.code === 200001) {
+    // }
   },
 
   // 帳號列表

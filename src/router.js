@@ -25,10 +25,10 @@ RouterSetting.beforeEach(async (to, from, next) => {
 
   Store.commit(SWITCH_WEB_SYS_MENU, false)
 
-  // 若無站台資料 Y-> 獲取站台資訊
-  if(!Store.getters.BRANCH_INFO) {
-    await Store.dispatch(GET_BRANCH_INFO)
-  }
+  // // 若無站台資料 Y-> 獲取站台資訊
+  // if(!Store.getters.BRANCH_INFO) {
+  //   await Store.dispatch(GET_BRANCH_INFO)
+  // }
 
   // 進入內頁時若未登入 Y-> 獲取使用者資訊
   if(Store.getters.IS_LOGIN !== true && to.name !== 'Login') {
