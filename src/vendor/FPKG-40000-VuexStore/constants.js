@@ -99,6 +99,7 @@ export const GET_CAPTCH = "GET_CAPTCH"
 export const GOT_CAPTCH = "GOT_CAPTCH"
 export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
+export const SET_BREADCRUMB = "SET_BREADCRUMB"
 
 /*
   FPKG-140000-Announce

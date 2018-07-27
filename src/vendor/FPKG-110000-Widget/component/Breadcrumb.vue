@@ -11,7 +11,7 @@
         <el-breadcrumb-item v-if="item.link" :to="{ path: item.link }">{{item.title}}</el-breadcrumb-item>
         <el-breadcrumb-item v-else>{{item.title}}</el-breadcrumb-item>
       </template> -->
-      <el-breadcrumb-item v-for="(item, i) in path" :key="i" :to="item.link ? { path: item.link } : undefined">
+      <el-breadcrumb-item v-for="(item, i) in breadcrumbPath" :key="i" :to="item.link ? { path: item.link } : undefined">
         {{item.title}}
       </el-breadcrumb-item>
     </el-breadcrumb>
@@ -19,8 +19,15 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
-  props: ['path']
+  props: ['path'],
+  computed: {
+    ...mapState({
+      breadcrumbPath: state => state.Widget.breadcrumb
+    })
+  }
+
 }
 
 </script>

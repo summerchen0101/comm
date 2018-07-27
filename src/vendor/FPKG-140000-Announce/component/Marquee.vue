@@ -1,66 +1,58 @@
 <template>
   <div id="Marquee">
-    <MenuComponent></MenuComponent>
-    <MobileMenu></MobileMenu>
-    <div id="main">
-      <Breadcrumb :path="breadcrumbPath"></Breadcrumb>
-      <div class="main-container">
-        <PageTitle title="跑馬燈管理">
-          <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
-            <font-awesome-icon icon="plus" />
+    <PageTitle title="跑馬燈管理">
+      <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
+        <font-awesome-icon icon="plus" />
+      </el-button>
+    </PageTitle>
+
+    <!-- 跑馬燈列表 -->
+    <el-table
+      :data="marqueeList"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="title"
+        label="標題">
+      </el-table-column>
+      <el-table-column
+        width="180px"
+        prop="startAt"
+        label="開始時間">
+      </el-table-column>
+      <el-table-column
+        width="180px"
+        prop="endAt"
+        label="結束時間">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="200">
+        <template slot-scope="scope">
+          <el-button size="mini" type="info" @click="onGetItem(scope.row)">修改</el-button>
+          <el-button size="mini" type="danger" @click="onDelItem(scope.row.id)">刪除</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="歷程"
+        width="200">
+        <template slot-scope="scope">
+          <el-button size="mini">
+            <font-awesome-icon icon="file-alt" />
           </el-button>
-        </PageTitle>
-
-        <!-- 跑馬燈列表 -->
-        <el-table
-          :data="marqueeList"
-          stripe
-          style="width: 100%">
-          <el-table-column
-            prop="title"
-            label="標題">
-          </el-table-column>
-          <el-table-column
-            width="180px"
-            prop="startAt"
-            label="開始時間">
-          </el-table-column>
-          <el-table-column
-            width="180px"
-            prop="endAt"
-            label="結束時間">
-          </el-table-column>
-          <el-table-column
-            fixed="right"
-            label="操作"
-            width="200">
-            <template slot-scope="scope">
-              <el-button size="mini" type="info" @click="onGetItem(scope.row)">修改</el-button>
-              <el-button size="mini" type="danger" @click="onDelItem(scope.row.id)">刪除</el-button>
-            </template>
-          </el-table-column>
-          <el-table-column
-            fixed="right"
-            label="歷程"
-            width="200">
-            <template slot-scope="scope">
-              <el-button size="mini">
-                <font-awesome-icon icon="file-alt" />
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-        <Paginator v-if="marqueePager"
-                  :on-page-changed="onPageChanged"
-                  :count="marqueePager.count"
-                  :perpage="marqueePager.perpage"></Paginator>
+        </template>
+      </el-table-column>
+    </el-table>
+    <Paginator v-if="marqueePager"
+              :on-page-changed="onPageChanged"
+              :count="marqueePager.count"
+              :perpage="marqueePager.perpage"></Paginator>
 
 
-        <!-- 新增跑馬燈 -->
-        <MarqueeFormDialog ref="MarqueeFormDialog"></MarqueeFormDialog>
-
-      </div>
-    </div>
+    <!-- 新增跑馬燈 -->
+    <MarqueeFormDialog ref="MarqueeFormDialog"></MarqueeFormDialog>
 
   </div>
 </template>
@@ -76,6 +68,7 @@ import {
   GET_MARQUEE_LIST, 
   SWITCH_MARQUEE_DIALOG,
   DEL_MARQUEE,
+  SET_BREADCRUMB,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
@@ -91,6 +84,7 @@ export default {
     return {
       breadcrumbPath: [
         {link: "/", title: "首頁"},
+        {link: null, title: "公告管理"},
         {link: null, title: "跑馬燈管理"},
       ]
     }
@@ -122,6 +116,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_MARQUEE_LIST)
   },
 }

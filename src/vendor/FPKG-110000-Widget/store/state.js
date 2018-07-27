@@ -1,7 +1,8 @@
 
 const state = {
   displayLoadingCover: false,
-  captcha: null
+  captcha: null,
+  breadcrumb: []
 };
 
 

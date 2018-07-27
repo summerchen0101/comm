@@ -54,6 +54,12 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import { USER_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 export default {
+  props: {
+    parent: {
+      default: "",
+      type: String,
+    }
+  },
   data() {
     return {
       targetMenu: null
@@ -79,7 +85,7 @@ export default {
 
   mounted() {
     // console.log()
-    this.targetMenu = this.menu.find(m => m.name === this.$route.name) || null
+    this.targetMenu = this.menu.find(m => m.name === this.parent) || null
     console.log(this.targetMenu)
   }
 }
