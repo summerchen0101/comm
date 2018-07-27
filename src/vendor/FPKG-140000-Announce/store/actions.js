@@ -14,8 +14,15 @@ import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
 import Router from '@/router'
 
 const actions = {
-  async [GET_MARQUEE_LIST]({commit}) {
-    let res = await apiHub('get', 'api/v1/marquee')
+  async [GET_MARQUEE_LIST]({commit}, _d) {
+    let data = null
+    if(_d) {
+      data = {
+        page: _d.page
+      }
+    }
+    
+    let res = await apiHub('get', 'api/v1/marquee', null, data)
     if(res.code === 200001) {
       commit(GOT_MARQUEE_LIST, res.result)
     }

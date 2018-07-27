@@ -5,8 +5,10 @@
     <div id="main">
       <Breadcrumb :path="breadcrumbPath"></Breadcrumb>
       <div class="main-container">
-        <PageTitle>
-          <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">新增跑馬燈</el-button>
+        <PageTitle title="跑馬燈管理">
+          <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
+            <font-awesome-icon icon="plus" />
+          </el-button>
         </PageTitle>
 
         <!-- 跑馬燈列表 -->
@@ -48,12 +50,10 @@
             </template>
           </el-table-column>
         </el-table>
-        <el-pagination
-          v-if="marqueePager && marqueePager.count"
-          layout="prev, pager, next"
-          :page-size="marqueePager.perpage"
-          :total="marqueePager.count">
-        </el-pagination>
+        <Paginator v-if="marqueePager"
+                  :on-page-changed="onPageChanged"
+                  :count="marqueePager.count"
+                  :perpage="marqueePager.perpage"></Paginator>
 
 
         <!-- 新增跑馬燈 -->
@@ -70,6 +70,7 @@ import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
 import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
 import Validation from '@/vendor/FPKG-110000-Widget/component/Validation.vue';
 import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
+import Paginator from '@/vendor/FPKG-110000-Widget/component/Paginator.vue';
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
 import { 
   GET_MARQUEE_LIST, 
@@ -84,6 +85,7 @@ export default {
     MobileMenu,
     PageTitle,
     MarqueeFormDialog,
+    Paginator,
   },
   data() {
     return {
@@ -114,6 +116,9 @@ export default {
     },
     async onDelItem(id) {
       await this.$store.dispatch(DEL_MARQUEE, id)
+    },
+    onPageChanged(page) {
+      this.$store.dispatch(GET_MARQUEE_LIST, {page})
     }
   },
   mounted() {
