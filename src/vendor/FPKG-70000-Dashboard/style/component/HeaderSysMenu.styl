@@ -1,0 +1,53 @@
+#HeaderSysMenu
+  animation-duration: 0.3s;
+  position: fixed 
+  top: 0 
+  right: 0
+  margin-top: $headerH
+  color: $web-sys-menu-text-color
+  .sys-container 
+    // height: 320px 
+    background-color: $web-sys-menu-bg-color 
+    width: 300px
+    position: relative
+    box-shadow: 0 0 10px rgba(#000, 0.2)
+    margin-right: 20px
+    &:before 
+      content: ""
+      display: block 
+      position: absolute 
+      top: 0 
+      right: 0
+      margin-right: 65px 
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 8px solid $web-sys-menu-bg-color; 
+      margin-top: -8px
+    .sys-content 
+      // height: 320px 
+      max-height: 'calc(100vh - (%s + %s))' % ($headerH $footerH)
+      overflow-y auto
+      padding-bottom: 10px
+      a.sys-item
+        @extend .sgs4
+        text-decoration: none
+        color: $web-sys-menu-text-color
+        display flex 
+        flex-direction column
+        line-height: 20px
+        justify-content center 
+        align-items center
+        padding: 10px 0
+        &:hover 
+          color: $TME-100-second-color
+          background-color: $web-sys-menu-hover-bg-color
+          .sys-icon 
+            color: $TME-100-second-color
+        .sys-icon
+          font-size: 35px
+          padding: 10px 0
+          color: $web-sys-menu-icon-color
+        .sys-txt 
+          font-size: 13px

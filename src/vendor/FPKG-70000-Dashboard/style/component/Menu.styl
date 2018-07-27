@@ -1,0 +1,27 @@
+#web-aside
+  color: #333
+  background-color: $menu-bg-color
+  width: 200px
+  float: left
+  height: 'calc(100vh - (%s + %s))' % ($headerH $footerH)
+  @media screen and (max-width: 900px)
+    width: 100%
+    height: auto
+    display: none
+  .el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover
+    background-color: $menu-bg-color
+  .el-submenu__title,
+  .el-menu-item
+    color: $menu-text-color
+    i
+      color: $menu-icon-color
+  .el-menu-item.is-active
+    color: lighten($TME-100-second-color, 10%)
+  .el-submenu__title:hover,
+  .el-menu-item:focus, 
+  .el-menu-item:hover
+    background-color: $menu-hover-bg-color
+  .fixed-container
+    position: fixed 
+    left: 0
+    z-index 999
