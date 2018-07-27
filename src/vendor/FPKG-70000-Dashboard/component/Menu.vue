@@ -1,8 +1,5 @@
 <template>
   <div id="web-aside">
-    <div class="fixed-container">
-
-    </div>
     <el-menu
       @open="handleOpen"
       @close="handleClose">
@@ -40,8 +37,10 @@
           
         </el-submenu>
         <el-menu-item v-else :index="`${i1+1}`" :key="m1.path">
-          <i class="el-icon-menu"></i>
-          <span slot="title">{{m1.title}}</span>
+          <router-link :to="{name: m1.name}">
+            <i class="el-icon-menu"></i>
+            <span>{{m1.title}}</span>
+          </router-link>
         </el-menu-item>
       </template>
     </el-menu>

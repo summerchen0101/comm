@@ -15,6 +15,11 @@
     color: $menu-text-color
     i
       color: $menu-icon-color
+    a 
+      display: block
+      text-decoration: none
+      &:hover 
+        color: lighten($TME-100-second-color, 10%)
   .el-menu-item.is-active
     color: lighten($TME-100-second-color, 10%)
   .el-submenu__title:hover,
