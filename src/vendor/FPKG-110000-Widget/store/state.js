@@ -1,6 +1,7 @@
 
 const state = {
-  displayLoadingCover: false
+  displayLoadingCover: false,
+  captcha: null
 };
 
 
