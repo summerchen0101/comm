@@ -1,30 +1,24 @@
 <template>
-  <div id="Money">
-    <MenuComponent></MenuComponent>
-    <MobileMenu></MobileMenu>
-    <div id="main">
-      <Breadcrumb :path="breadcrumbPath"></Breadcrumb>
-      <div class="main-container">
-      </div>
-    </div>
-    
+  <div id="Deposit">
+    <PageTitle title="存款管理">
+      <!-- <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
+        <font-awesome-icon icon="plus" />
+      </el-button> -->
+    </PageTitle>
   </div>
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
-// import { } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu: MobileMenu,
   },
   data() {
     return {
       breadcrumbPath: [
         {link: "/", title: "首頁"},
+        {link: null, title: "存提管理"},
         {link: null, title: "存款管理"},
       ]
     }
@@ -32,6 +26,8 @@ export default {
   
 
   mounted() {
+    this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    // this.$store.dispatch(GET_MARQUEE_LIST)
   }
 }
 </script>

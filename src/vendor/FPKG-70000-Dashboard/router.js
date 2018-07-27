@@ -15,6 +15,5 @@ export default {
     Theme,
     Announce,
     Money,
-    Deposit,
   ]
 }

@@ -13,14 +13,10 @@
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
 import { SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu: MobileMenu,
   },
   data() {
     return {

@@ -18,15 +18,11 @@
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
 import { USER_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu: MobileMenu,
   },
   data() {
     return {

@@ -51,11 +51,6 @@
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
-import Validation from '@/vendor/FPKG-110000-Widget/component/Validation.vue';
-import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
-import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue';
 import BranchFormDialog from '@/vendor/FPKG-80000-Branch/component/BranchFormDialog.vue';
 import { SWITCH_BRANCH_DIALOG, GET_BRANCH_LIST, GET_BRANCH, ADD_BRANCH, DEL_BRANCH } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
@@ -63,12 +58,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu,
-    Validation,
-    PageTitle,
     BranchFormDialog,
-    LoadingCover,
   },
   data() {
     return {

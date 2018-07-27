@@ -22,8 +22,18 @@ import '@/vendor/FPKG-30000-Plugin/storage'
 
 // widget
 import Breadcrumb from '@/vendor/FPKG-110000-Widget/component/Breadcrumb.vue'
+import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
+import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
+import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
+import Paginator from '@/vendor/FPKG-110000-Widget/component/Paginator.vue';
+import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue'
 
 Vue.component("Breadcrumb", Breadcrumb)
+Vue.component("MenuComponent", Menu)
+Vue.component("MobileMenu", MobileMenu)
+Vue.component("PageTitle", PageTitle)
+Vue.component("Paginator", Paginator)
+Vue.component("LoadingCover", LoadingCover)
 Vue.config.productionTip = false
 
 new Vue({

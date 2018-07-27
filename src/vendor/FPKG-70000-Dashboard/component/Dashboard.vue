@@ -31,7 +31,6 @@ import MobileHeaderMenuInfo from './MobileHeaderMenuInfo.vue'
 import Logo from './Logo.vue'
 import FooterInfo from './FooterInfo.vue'
 import HeaderSysMenu from './HeaderSysMenu.vue'
-import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue'
 import { SET_THEME } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 export default {
@@ -41,7 +40,6 @@ export default {
     FooterInfo,
     HeaderSysMenu,
     Logo,
-    LoadingCover
   }
 }
 </script>

@@ -58,11 +58,6 @@
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
-import Validation from '@/vendor/FPKG-110000-Widget/component/Validation.vue';
-import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
-import Paginator from '@/vendor/FPKG-110000-Widget/component/Paginator.vue';
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
 import { 
   GET_MARQUEE_LIST, 
@@ -74,11 +69,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu,
-    PageTitle,
     MarqueeFormDialog,
-    Paginator,
   },
   data() {
     return {

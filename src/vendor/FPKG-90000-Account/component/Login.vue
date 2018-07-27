@@ -42,6 +42,7 @@
         </b-form>
       </div>
     </div>
+    <LoadingCover :show="$store.state.Widget.displayLoadingCover"></LoadingCover>
   </div>
 </template>
 

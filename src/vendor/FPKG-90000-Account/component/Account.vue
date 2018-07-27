@@ -51,11 +51,6 @@
 </template>
 
 <script>
-import Menu from '@/vendor/FPKG-70000-Dashboard/component/Menu.vue';
-import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
-import Validation from '@/vendor/FPKG-110000-Widget/component/Validation.vue';
-import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
-import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue';
 import AccountFormDialog from '@/vendor/FPKG-90000-Account/component/AccountFormDialog.vue';
 import { SWITCH_ACCOUNT_DIALOG, GET_ACCOUNT_LIST, GET_ACCOUNT, ADD_ACCOUNT, DEL_ACCOUNT } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
@@ -63,12 +58,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
-    MenuComponent: Menu,
-    MobileMenu,
-    Validation,
-    PageTitle,
     AccountFormDialog,
-    LoadingCover,
   },
   data() {
     return {
