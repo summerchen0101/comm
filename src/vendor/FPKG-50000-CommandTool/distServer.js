@@ -6,7 +6,7 @@ var proxy = require('express-http-proxy');
 var port = process.env.DIST_PORT;
 var distPath = process.cwd() + '/dist'
 
-app.use('/api', proxy('118.232.237.16:33199'));
+app.use('/api', proxy('platformapi.thoth-dev.com'));
 app.use('/static', express.static(distPath + '/static'))
 
 

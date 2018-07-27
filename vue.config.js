@@ -10,7 +10,7 @@ module.exports = {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://118.232.237.16:33199',
+        target: 'http://platformapi.thoth-dev.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
