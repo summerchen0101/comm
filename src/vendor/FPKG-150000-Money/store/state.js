@@ -4,8 +4,8 @@
 const state = {
   depositStatusList: [],
   depositInfo: {
-    count: 0,
-    total: 0,
+    count: 312,
+    total: 314124124,
   },
 };
 

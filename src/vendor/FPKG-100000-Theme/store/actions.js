@@ -11,7 +11,7 @@ import {
   UPLOAD_THEME_FILE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-import { Vcode } from '@/vendor/FPKG-10000-Config/customValidate';
+import { Vcode } from '@/vendor/FPKG-120000-Util/customValidate';
 
 
 import Router from '@/router'

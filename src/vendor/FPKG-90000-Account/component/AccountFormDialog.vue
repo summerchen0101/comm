@@ -39,7 +39,7 @@ import {
   EDIT_ACCOUNT,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { codeValidator } from '@/vendor/FPKG-10000-Config/customValidate';
+import { codeValidator } from '@/vendor/FPKG-120000-Util/customValidate';
 
 let initForm = {
         guid: "",

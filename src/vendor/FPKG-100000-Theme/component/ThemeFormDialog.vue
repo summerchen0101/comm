@@ -49,7 +49,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { branchDomain, fakeDomain } from '@/vendor/FPKG-10000-Config/branch'
 import MultiImgUpload from '@/vendor/FPKG-110000-Widget/component/MultiImgUpload.vue';
-import { codeValidator } from '@/vendor/FPKG-10000-Config/customValidate';
+import { codeValidator } from '@/vendor/FPKG-120000-Util/customValidate';
 
 let initForm = {
         guid: "",

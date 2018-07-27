@@ -6,7 +6,6 @@ export const Vcode = {
 
 export const codeValidator = (rules, value, cb) => {
   if(!Vcode.test(value)) {
-    console.log("codeValidator")
     cb(Vcode.msg)
   }
 }

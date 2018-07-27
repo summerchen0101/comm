@@ -51,7 +51,7 @@ import {
   EDIT_MARQUEE,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { codeValidator } from '@/vendor/FPKG-10000-Config/customValidate';
+import { codeValidator } from '@/vendor/FPKG-120000-Util/customValidate';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 
 let initForm = {

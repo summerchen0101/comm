@@ -8,14 +8,14 @@
             <b-form-input type="text"
                           v-model="form.account"
                           required
-                          placeholder="請輸入帳號">
+                          placeholder="帳號">
             </b-form-input>
           </b-form-group>
           <b-form-group>
             <b-form-input type="text"
                           v-model="form.password"
                           required
-                          placeholder="請輸入密碼">
+                          placeholder="密碼">
             </b-form-input>
           </b-form-group>
           <b-form-group>
@@ -23,7 +23,7 @@
               <b-form-input type="text"
                           v-model="form.captcha"
                           required
-                          placeholder="請輸入右方驗證碼">
+                          placeholder="驗證碼">
               </b-form-input>
             </el-col>
             <el-col :span="11" :offset="2">
