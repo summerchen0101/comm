@@ -1,21 +1,19 @@
 <template>
   <div id="HeaderMenuInfo">
-    <i class="el-icon-menu" style="margin-right: 15px" @click="$store.commit('SWITCH_WEB_SYS_MENU', !showSysMenu)"></i>
+    <!-- <i class="el-icon-menu" style="margin-right: 15px" @click="$store.commit('SWITCH_WEB_SYS_MENU', !showSysMenu)"></i>
     <transition
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
     >
       <HeaderSysMenu v-if="showSysMenu"></HeaderSysMenu>
-    </transition>
+    </transition> -->
     
-    <!-- <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
+    <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
       <i class="el-icon-menu" style="margin-right: 15px"></i>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="Branch">站台設定</el-dropdown-item>
-        <el-dropdown-item command="Account">帳號設定</el-dropdown-item>
-        <el-dropdown-item command="Theme">版型設定</el-dropdown-item>
+        <el-dropdown-item v-for="m,i in menu" :key="m.name" :command="m.name">{{m.title}}</el-dropdown-item>
       </el-dropdown-menu>
-    </el-dropdown> -->
+    </el-dropdown>
     <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
       <span class="username">{{userInfo.name}}</span>
       <el-dropdown-menu slot="dropdown">
@@ -39,7 +37,8 @@ export default {
   props: [],
   computed: {
     ...mapState({
-      showSysMenu: state => state.Dashboard.isShowWebSysMenu
+      showSysMenu: state => state.Dashboard.isShowWebSysMenu,
+      menu: state => state.Dashboard.menu
     }),
     ...mapGetters({
       userInfo: USER_INFO
