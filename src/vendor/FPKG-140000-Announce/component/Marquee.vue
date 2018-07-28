@@ -28,7 +28,7 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="200">
+        width="150">
         <template slot-scope="scope">
           <el-button size="mini" type="info" @click="onGetItem(scope.row)">修改</el-button>
           <el-button size="mini" type="danger" @click="onDelItem(scope.row.id)">刪除</el-button>
@@ -37,7 +37,7 @@
       <el-table-column
         fixed="right"
         label="歷程"
-        width="200">
+        width="80">
         <template slot-scope="scope">
           <el-button size="mini">
             <font-awesome-icon icon="file-alt" />
