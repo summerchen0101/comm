@@ -2,10 +2,12 @@
 
 
 const state = {
+  depositList: [],
+  depositPager: null,
   depositStatusList: [],
   depositInfo: {
-    count: 312,
-    total: 314124124,
+    count: 0,
+    total: 0,
   },
 };
 

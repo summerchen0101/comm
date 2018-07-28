@@ -24,7 +24,7 @@
         <el-form-item label="會員">
           <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
             <font-awesome-icon icon="search" />
           </el-button>
@@ -32,20 +32,83 @@
       </el-form>
     </SearchBar>
     <div class="CountBox">
-      <div class="total">總點數：{{depositInfo.total}}</div>
-      <div class="count">總筆數：{{depositInfo.count}}</div>
+      <div class="total">總點數：{{toCurrency(depositInfo.total)}}</div>
+      <div class="count">總筆數：{{toCurrency(depositInfo.count)}}</div>
     </div>
+
+    <!-- 訂單列表 -->
+    <el-table
+      :data="depositList"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="number"
+        label="訂單編號">
+      </el-table-column>
+      <el-table-column
+      show-overflow-tooltip
+        label="帳號(暱稱)">
+        <template slot-scope="scope">
+          <span>{{scope.row.account}}</span>
+          <span>({{scope.row.nick}})</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="depositPoint"
+        label="存款點數">
+      </el-table-column>
+      <el-table-column
+        prop="payType"
+        label="付款類型">
+      </el-table-column>
+      <el-table-column
+        label="申請時間">
+         <template slot-scope="scope">
+           <span>{{getDateTime(scope.row.depositAt)}}</span>
+         </template>
+      </el-table-column>
+      <el-table-column
+        label="截止時間">
+        <template slot-scope="scope">
+           <span>{{getDateTime(scope.row.expireAt)}}</span>
+         </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        width="150px"
+        label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" type="success" @click="onCheck(scope.row)">確定</el-button>
+          <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        width="80px"
+        label="歷程">
+        <template slot-scope="scope">
+          <el-button size="mini">
+            <font-awesome-icon icon="file-alt" />
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <Paginator v-if="depositPager"
+              :on-page-changed="onPageChanged"
+              :count="depositPager.count"
+              :perpage="depositPager.perpage"></Paginator>
 
 
   </div>
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_DEPOSIT_STATUS_LIST, GET_DEPOSIT_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_DEPOSIT_STATUS_LIST, GET_DEPOSIT_INFO, GET_DEPOSIT_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-// import {  } from '@/vendor/FPKG-120000-Util/customValidate';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
+  mixins: [commonTool],
   components: {
   },
   data() {
@@ -70,14 +133,28 @@ export default {
   computed: {
     ...mapState({
       statusList: state => state.Money.depositStatusList,
+      depositPager: state => state.Money.depositPager,
       depositInfo: state => state.Money.depositInfo,
+      depositList: state => state.Money.depositList,
     })
   },
   methods: {
+
+    onCheck() {
+
+    },
+    onCancel() {
+
+    },
+    onPageChanged() {
+
+    },
+
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
           this.$store.dispatch(GET_DEPOSIT_INFO, this.searchForm)
+          this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
         }
       });
       
