@@ -1,6 +1,7 @@
 <template>
   <div id="web-aside">
     <el-menu
+      router
       @open="handleOpen"
       @close="handleClose">
       <template v-for="m1, i1 in targetMenu && targetMenu.children">
@@ -36,11 +37,13 @@
           </template>
           
         </el-submenu>
-        <el-menu-item v-else :index="`${i1+1}`" :key="m1.path">
-          <router-link :to="{name: m1.name}">
+        <el-menu-item :class="{'is-active': $route.name === m1.name}" v-else :index="`${i1+1}`" :key="m1.path" :route="{name: m1.name}">
+          <i class="el-icon-menu"></i>
+          <span>{{m1.title}}</span>
+          <!-- <router-link :to="{name: m1.name}">
             <i class="el-icon-menu"></i>
             <span>{{m1.title}}</span>
-          </router-link>
+          </router-link> -->
         </el-menu-item>
       </template>
     </el-menu>
