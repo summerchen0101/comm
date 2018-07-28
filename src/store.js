@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Dashboard from './vendor/FPKG-70000-Dashboard/store'
-import Branch from './vendor/FPKG-80000-Branch/store'
 import Account from './vendor/FPKG-90000-Account/store'
-import Theme from './vendor/FPKG-100000-Theme/store'
 import Widget from './vendor/FPKG-110000-Widget/store'
 import Config from './vendor/FPKG-10000-Config/store'
 import Announce from './vendor/FPKG-140000-Announce/store'
@@ -16,9 +14,7 @@ const store = {
     Config,
     Widget,
     Dashboard,
-    Branch,
     Account,
-    Theme,
     Announce,
     Money,
   },

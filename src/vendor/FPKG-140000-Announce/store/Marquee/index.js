@@ -1,16 +1,18 @@
 
 import state from './state'
+
+
 import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 
-const module = {
+const store = {
   state,
   getters,
   mutations,
   actions
 };
 
-export default module
+export default store
 
 

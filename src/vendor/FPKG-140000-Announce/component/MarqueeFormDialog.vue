@@ -92,7 +92,7 @@ export default {
   },
   computed: {
     ...mapState({
-      dialogVisible: state => state.Announce.dialogVisible,
+      dialogVisible: state => state.Announce.Marquee.dialogVisible,
     }),
   },
   methods: {

@@ -4,13 +4,13 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 
-const account = {
+const store = {
   state,
   getters,
   mutations,
   actions
 };
 
-export default account
+export default store
 
 

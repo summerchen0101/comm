@@ -82,8 +82,8 @@ export default {
   },
   computed: {
     ...mapState({
-      marqueeList: state => state.Announce.marqueeList,
-      marqueePager: state => state.Announce.marqueePager,
+      marqueeList: state => state.Announce.Marquee.marqueeList,
+      marqueePager: state => state.Announce.Marquee.marqueePager,
     }),
   },
   methods: {

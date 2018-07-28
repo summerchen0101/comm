@@ -1,8 +1,11 @@
+
+
+
 const state = {
   dialogVisible: false,
-  themeList: [],
-  themeListPaginator: {},
-  theme: {}
+  marqueeList: [],
+  marqueePager: null,
+  marquee: {}
 };
 
 
