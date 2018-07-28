@@ -141,10 +141,10 @@ export default {
   },
   computed: {
     ...mapState({
-      statusList: state => state.Money.depositStatusList,
-      depositPager: state => state.Money.depositPager,
-      depositInfo: state => state.Money.depositInfo,
-      depositList: state => state.Money.depositList,
+      statusList: state => state.Money.Deposit.depositStatusList,
+      depositPager: state => state.Money.Deposit.depositPager,
+      depositInfo: state => state.Money.Deposit.depositInfo,
+      depositList: state => state.Money.Deposit.depositList,
     })
   },
   methods: {

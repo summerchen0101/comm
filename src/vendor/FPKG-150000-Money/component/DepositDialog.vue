@@ -47,8 +47,8 @@ export default {
   },
   computed: {
     ...mapState({
-      depositForm: state => state.Money.deposit,
-      depositDialogVisible: state => state.Money.depositDialogVisible,
+      depositForm: state => state.Money.Deposit.deposit,
+      depositDialogVisible: state => state.Money.Deposit.depositDialogVisible,
     }),
   },
   methods: {

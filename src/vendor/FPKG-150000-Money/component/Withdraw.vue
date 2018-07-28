@@ -141,10 +141,10 @@ export default {
   },
   computed: {
     ...mapState({
-      statusList: state => state.Money.withdrawStatusList,
-      withdrawPager: state => state.Money.withdrawPager,
-      withdrawInfo: state => state.Money.withdrawInfo,
-      withdrawList: state => state.Money.withdrawList,
+      statusList: state => state.Money.Withdraw.withdrawStatusList,
+      withdrawPager: state => state.Money.Withdraw.withdrawPager,
+      withdrawInfo: state => state.Money.Withdraw.withdrawInfo,
+      withdrawList: state => state.Money.Withdraw.withdrawList,
     })
   },
   methods: {

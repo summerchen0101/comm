@@ -47,8 +47,8 @@ export default {
   },
   computed: {
     ...mapState({
-      withdrawForm: state => state.Money.withdraw,
-      withdrawDialogVisible: state => state.Money.withdrawDialogVisible,
+      withdrawForm: state => state.Money.Withdraw.withdraw,
+      withdrawDialogVisible: state => state.Money.Withdraw.withdrawDialogVisible,
     }),
   },
   methods: {
