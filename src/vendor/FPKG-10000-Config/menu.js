@@ -44,7 +44,7 @@ export default [
         path: "/money/deposit"
       },
       {
-        name: "DepositAccount",
+        name: "DepositAcc",
         title: "存款帳戶管理",
         path: "/money/deposit-account"
       },

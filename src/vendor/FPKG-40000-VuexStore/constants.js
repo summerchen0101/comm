@@ -13,29 +13,6 @@ export const SWITCH_MOBILE_MENU = "SWITCH_MOBILE_MENU"
 export const SWITCH_WEB_SYS_MENU = "SWITCH_WEB_SYS_MENU"
 export const SET_THEME = "SET_THEME"
 
-
-/*
-  FPKG-80000-Branch
-*/
-
-// getters
-export const BRANCH_INFO = "BRANCH_INFO"
-
-// actions
-export const GET_BRANCH_INFO = "GET_BRANCH_INFO"
-export const GET_BRANCH_LIST = "GET_BRANCH_LIST"
-export const ADD_BRANCH = "ADD_BRANCH"
-export const EDIT_BRANCH = "EDIT_BRANCH"
-export const GET_BRANCH = "GET_BRANCH"
-export const DEL_BRANCH = "DEL_BRANCH"
-export const UPLOAD_BRANCH_FILE = "UPLOAD_BRANCH_FILE"
-
-// mutations
-export const GOT_BRANCH_LIST = "GOT_BRANCH_LIST"
-export const GOT_BRANCH = "GOT_BRANCH"
-export const SWITCH_BRANCH_DIALOG = "SWITCH_BRANCH_DIALOG"
-export const SET_BRANCH_INFO = "SET_BRANCH_INFO"
-
 /*
   FPKG-90000-Account
 */
@@ -54,6 +31,7 @@ export const ADD_ACCOUNT = "ADD_ACCOUNT"
 export const EDIT_ACCOUNT = "EDIT_ACCOUNT"
 export const GET_ACCOUNT = "GET_ACCOUNT"
 export const DEL_ACCOUNT = "DEL_ACCOUNT"
+export const EDIT_USER_PASSWORD = "EDIT_USER_PASSWORD"
 
 // mutations
 export const CHANGE_LOGIN_STATUS = "CHANGE_LOGIN_STATUS"
@@ -66,31 +44,8 @@ export const SET_USER_AUTH = "SET_USER_AUTH"
 
 
 /*
-  FPKG-100000-Theme
-*/
-
-// getters
-
-// actions
-export const GET_THEME_LIST = "GET_THEME_LIST"
-export const ADD_THEME = "ADD_THEME"
-export const EDIT_THEME = "EDIT_THEME"
-export const GET_THEME = "GET_THEME"
-export const DEL_THEME = "DEL_THEME"
-export const UPLOAD_THEME_FILE = "UPLOAD_THEME_FILE"
-export const EDIT_USER_PASSWORD = "EDIT_USER_PASSWORD"
-
-// mutations
-export const GOT_THEME_LIST = "GOT_THEME_LIST"
-export const GOT_THEME = "GOT_THEME"
-export const SWITCH_THEME_DIALOG = "SWITCH_THEME_DIALOG"
-
-
-/*
   FPKG-110000-Widget
 */
-
-// getters
 
 // actions
 export const GET_CAPTCH = "GET_CAPTCH"
@@ -101,11 +56,10 @@ export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
 export const SET_BREADCRUMB = "SET_BREADCRUMB"
 
-/*
-  FPKG-140000-Announce
-*/
 
-// getters
+/*
+  FPKG-140000-Announce: Marquee
+*/
 
 // actions
 export const GET_MARQUEE_LIST = "GET_MARQUEE_LIST"
@@ -117,21 +71,30 @@ export const EDIT_MARQUEE = "EDIT_MARQUEE"
 export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
 export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
 
+
 /*
-  FPKG-150000-Money
+  FPKG-150000-Money: DepositAcc
 */
 
-// getters
+// actions
+export const GET_DEPOSIT_ACC_LIST = "GET_DEPOSIT_ACC_LIST"
+export const DEL_DEPOSIT_ACC = "DEL_DEPOSIT_ACC"
+export const ADD_DEPOSIT_ACC = "ADD_DEPOSIT_ACC"
+export const EDIT_DEPOSIT_ACC = "EDIT_DEPOSIT_ACC"
+
+// mutations
+export const SWITCH_DEPOSIT_ACC_DIALOG = "SWITCH_DEPOSIT_ACC_DIALOG"
+export const GOT_DEPOSIT_ACC_LIST = "GOT_DEPOSIT_ACC_LIST"
+
+
+/*
+  FPKG-150000-Money: Deposit
+*/
 
 // actions
 export const GET_DEPOSIT_INFO = "GET_DEPOSIT_INFO"
 export const GET_DEPOSIT_LIST = "GET_DEPOSIT_LIST"
 export const GET_DEPOSIT_STATUS_LIST = "GET_DEPOSIT_STATUS_LIST"
-
-export const GET_WITHDRAW_INFO = "GET_WITHDRAW_INFO"
-export const GET_WITHDRAW_LIST = "GET_WITHDRAW_LIST"
-export const GET_WITHDRAW_STATUS_LIST = "GET_WITHDRAW_STATUS_LIST"
-
 
 // mutations
 export const SET_DEPOSIT = "SET_DEPOSIT"
@@ -140,11 +103,20 @@ export const GOT_DEPOSIT_INFO = "GOT_DEPOSIT_INFO"
 export const GOT_DEPOSIT_STATUS_LIST = "GOT_DEPOSIT_STATUS_LIST"
 export const SWITCH_DEPOSIT_DIALOG = "SWITCH_DEPOSIT_DIALOG"
 
+
+/*
+  FPKG-150000-Money: Withdrqw
+*/
+
+// actions
+export const GET_WITHDRAW_INFO = "GET_WITHDRAW_INFO"
+export const GET_WITHDRAW_LIST = "GET_WITHDRAW_LIST"
+export const GET_WITHDRAW_STATUS_LIST = "GET_WITHDRAW_STATUS_LIST"
+
+
+// mutations
 export const SET_WITHDRAW = "SET_WITHDRAW"
 export const GOT_WITHDRAW_LIST = "GOT_WITHDRAW_LIST"
 export const GOT_WITHDRAW_INFO = "GOT_WITHDRAW_INFO"
 export const GOT_WITHDRAW_STATUS_LIST = "GOT_WITHDRAW_STATUS_LIST"
 export const SWITCH_WITHDRAW_DIALOG = "SWITCH_WITHDRAW_DIALOG"
-
-
-

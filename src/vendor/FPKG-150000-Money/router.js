@@ -6,6 +6,12 @@ export const Deposit = {
   path: "/money/deposit",
   component: () => import('./component/Deposit.vue')
 }
+export const DepositAcc = {
+  name: "DepositAcc",
+  title: "存款帳戶管理",
+  path: "/money/deposit-account",
+  component: () => import('./component/DepositAcc.vue')
+}
 
 export const Withdraw = {
   name: "Withdraw",
@@ -22,6 +28,7 @@ export const Money = {
   redirect: '/money/deposit',
   children: [
     Deposit,
+    DepositAcc,
     Withdraw,
   ]
 }
