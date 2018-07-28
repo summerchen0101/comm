@@ -1,16 +1,10 @@
 
-
+import depositState from './depositState'
+import withdrawState from './withdrawState'
 
 const state = {
-  depositList: [],
-  deposit: {},
-  depositPager: null,
-  depositDialogVisible: false,
-  depositStatusList: [],
-  depositInfo: {
-    count: 0,
-    total: 0,
-  },
+  ...depositState,
+  ...withdrawState,
 };
 
 
