@@ -78,7 +78,7 @@
         width="150px"
         label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="success" @click="onCheck(scope.row)">確定</el-button>
+          <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
           <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
         </template>
       </el-table-column>
@@ -98,18 +98,27 @@
               :count="depositPager.count"
               :perpage="depositPager.perpage"></Paginator>
 
-
+    <DepositDialog></DepositDialog>
   </div>
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_DEPOSIT_STATUS_LIST, GET_DEPOSIT_INFO, GET_DEPOSIT_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { 
+  SET_BREADCRUMB, 
+  GET_DEPOSIT_STATUS_LIST, 
+  GET_DEPOSIT_INFO, 
+  GET_DEPOSIT_LIST,
+  SWITCH_DEPOSIT_DIALOG,
+  SET_DEPOSIT,
+} from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
+import DepositDialog from '@/vendor/FPKG-150000-Money/component/DepositDialog.vue'
 
 export default {
   mixins: [commonTool],
   components: {
+    DepositDialog
   },
   data() {
     return {
@@ -139,11 +148,18 @@ export default {
     })
   },
   methods: {
+    ...mapMutations([
+      SWITCH_DEPOSIT_DIALOG,
+      SET_DEPOSIT,
+    ]),
 
-    onCheck() {
-
+    onConfirm(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'confirm'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
     },
-    onCancel() {
+    onCancel(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'cancel'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
 
     },
     onPageChanged() {

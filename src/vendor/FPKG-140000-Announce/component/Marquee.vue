@@ -84,7 +84,6 @@ export default {
     ...mapState({
       marqueeList: state => state.Announce.marqueeList,
       marqueePager: state => state.Announce.marqueePager,
-      dialogVisible: state => state.Announce.dialogVisible,
     }),
   },
   methods: {
