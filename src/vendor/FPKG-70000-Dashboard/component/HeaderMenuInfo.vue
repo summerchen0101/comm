@@ -11,7 +11,10 @@
     <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
       <i class="el-icon-menu" style="margin-right: 15px"></i>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item v-for="m,i in menu" :key="m.name" :command="m.name">{{m.title}}</el-dropdown-item>
+        <el-dropdown-item v-for="m,i in menu" :key="m.name" :command="m.name">
+          <font-awesome-icon :icon="m.icon || 'th-large'" />
+          <span style="margin-left: 10px">{{m.title}}</span>
+        </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
