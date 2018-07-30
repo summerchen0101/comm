@@ -8,7 +8,7 @@ export async function apiHub(method, url, data, params) {
     var _response = await axios({
       baseURL: process.env.NODE_ENV === 'production' ? 'http://platformapi.thoth-dev.com' : '/api',
       // timeout: 1000,
-      withCredentials: true,
+      // withCredentials: true,
       method,
       url,
       data,
