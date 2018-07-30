@@ -115,7 +115,7 @@
         width="80"
         label="歷程">
         <template slot-scope="scope">
-          <el-button size="mini">
+          <el-button size="mini" @click="onCheckHistory">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
@@ -127,6 +127,7 @@
               :perpage="depositPager.perpage"></Paginator>
 
     <DepositDialog></DepositDialog>
+    <HistoryDialog></HistoryDialog>
   </div>
 </template>
 
@@ -138,15 +139,18 @@ import {
   GET_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
+  SWITCH_HISTORY_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import DepositDialog from '@/vendor/FPKG-150000-Money/component/DepositDialog.vue'
+import DepositHistoryDialog from '@/vendor/FPKG-150000-Money/component/DepositHistoryDialog.vue';
 
 export default {
   mixins: [commonTool],
   components: {
-    DepositDialog
+    DepositDialog,
+    HistoryDialog: DepositHistoryDialog,
   },
   data() {
     return {
@@ -181,7 +185,9 @@ export default {
       SWITCH_DEPOSIT_DIALOG,
       SET_DEPOSIT,
     ]),
-
+    onCheckHistory() {
+      this.$store.commit(SWITCH_HISTORY_DIALOG, true)
+    },
     onConfirm(deposit) {
       this.SET_DEPOSIT({...deposit, type: 'confirm'})
       this.SWITCH_DEPOSIT_DIALOG(true)
