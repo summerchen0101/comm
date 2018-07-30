@@ -10,6 +10,7 @@ export const GET_BANK_LIST = "GET_BANK_LIST"
 
 // mutations
 export const GOT_BANK_LIST = "GOT_BANK_LIST"
+export const SWITCH_HISTORY_DIALOG = "SWITCH_HISTORY_DIALOG"
 
 
 /*

@@ -1,7 +1,8 @@
 
 
 const state = {
-  bankList: []
+  bankList: [],
+  historyDialogVisible: false
 };
 
 
