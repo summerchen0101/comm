@@ -58,7 +58,7 @@
         label="歷程"
         width="80">
         <template slot-scope="scope">
-          <el-button size="mini">
+          <el-button size="mini" @click="onCheckHistory">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
@@ -72,12 +72,14 @@
 
     <!-- 新增存款帳戶 -->
     <DepositAccDialog ref="DepositAccDialog"></DepositAccDialog>
+    <HistoryDialog></HistoryDialog>
 
   </div>
 </template>
 
 <script>
 import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAccDialog.vue';
+import DepositAccHistoryDialog from '@/vendor/FPKG-150000-Money/component/DepositAccHistoryDialog.vue';
 import { 
   GET_DEPOSIT_ACC_LIST, 
   SWITCH_DEPOSIT_ACC_DIALOG,
@@ -86,12 +88,14 @@ import {
   GET_BANK_LIST,
   SET_PRIMARY_DEPOSIT_ACC,
   CLEAR_DEPOSIT_ACC_POINT,
+  SWITCH_HISTORY_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
     DepositAccDialog,
+    HistoryDialog: DepositAccHistoryDialog,
   },
   data() {
     return {
@@ -111,8 +115,11 @@ export default {
   },
   methods: {
     ...mapMutations([
-      SWITCH_DEPOSIT_ACC_DIALOG
+      SWITCH_DEPOSIT_ACC_DIALOG,
     ]),
+    onCheckHistory() {
+      this.$store.commit(SWITCH_HISTORY_DIALOG, true)
+    },
     onPrimaryChanged(t) {
       if(!t.isPrimary) {
         this.$confirm('確定修改此銀行帳號為會員存款帳號', '你確定嗎？', {
