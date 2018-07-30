@@ -88,7 +88,7 @@ export default {
         this.$store.state.Account.account)
     },
     async onDelItem(item) {
-      this.$confirm('是否確定刪除', '提示', {
+      this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
         type: 'warning'

@@ -99,7 +99,7 @@ export default {
       this.$hub.$emit("Announce:marqueeFormUpdate", formData)
     },
     async onDelItem(id) {
-      this.$confirm('是否確定刪除', '提示', {
+      this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
         type: 'warning'
