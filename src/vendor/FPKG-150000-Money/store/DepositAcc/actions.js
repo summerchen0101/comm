@@ -9,6 +9,7 @@ import {
   GET_BANK_LIST,
   GOT_BANK_LIST,
   SET_PRIMARY_DEPOSIT_ACC,
+  CLEAR_DEPOSIT_ACC_POINT,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
@@ -17,6 +18,12 @@ import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
 import Router from '@/router'
 
 const actions = {
+  async [CLEAR_DEPOSIT_ACC_POINT]({commit, dispatch}, id) {
+    let res = await apiHub('put', `api/v1/deposit_account/clear/${id}`)
+    if(res.code === 200001) {
+      dispatch(GET_DEPOSIT_ACC_LIST)
+    }
+  },
   async [SET_PRIMARY_DEPOSIT_ACC]({commit, dispatch}, _d) {
     let res = await apiHub('put', `api/v1/deposit_account/active/${_d.id}`)
     if(res.code === 200001) {

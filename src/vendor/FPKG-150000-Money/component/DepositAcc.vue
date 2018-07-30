@@ -48,7 +48,7 @@
               style="margin-right: 7px"
               :value="scope.row.isPrimary" 
               @click.native="onPrimaryChanged(scope.row)"></el-switch>
-          <el-button size="mini" type="success">清空</el-button>
+          <el-button size="mini" type="success" @click="onClearPoint(scope.row.id)">清空</el-button>
           <el-button size="mini" type="info" @click="onGetItem(scope.row)">修改</el-button>
           <el-button size="mini" type="danger" @click="onDelItem(scope.row.id)">刪除</el-button>
         </template>
@@ -85,6 +85,7 @@ import {
   SET_BREADCRUMB,
   GET_BANK_LIST,
   SET_PRIMARY_DEPOSIT_ACC,
+  CLEAR_DEPOSIT_ACC_POINT,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
@@ -114,8 +115,25 @@ export default {
     ]),
     onPrimaryChanged(t) {
       if(!t.isPrimary) {
-        this.$store.dispatch(SET_PRIMARY_DEPOSIT_ACC, t)
+        this.$confirm('確定修改此銀行帳號為會員存款帳號', '你確定嗎？', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$store.dispatch(SET_PRIMARY_DEPOSIT_ACC, t)
+        }).catch(() => {        
+        });
       }
+    },
+    onClearPoint(id) {
+      this.$confirm('確定清空此銀行帳號之已入帳存點', '你確定嗎？', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch(CLEAR_DEPOSIT_ACC_POINT, id)
+      }).catch(() => {        
+      });
     },
     onGetItem(item) {
       this.SWITCH_DEPOSIT_ACC_DIALOG(true)
@@ -126,9 +144,10 @@ export default {
       this.$hub.$emit("Money:depositAccFormUpdate", formData)
     },
     async onDelItem(id) {
-      this.$confirm('是否確定刪除', '提示', {
-        confirmButtonText: '確定',
+      this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
+        confirmButtonText: '刪除',
         cancelButtonText: '取消',
+        confirmButtonClass: 'el-button--danger',
         type: 'warning'
       }).then(() => {
         this.$store.dispatch(DEL_DEPOSIT_ACC, id)
