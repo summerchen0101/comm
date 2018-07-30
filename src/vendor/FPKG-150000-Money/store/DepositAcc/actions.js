@@ -44,7 +44,7 @@ const actions = {
       }
     }
     
-    let res = await apiHub('get', 'api/v1/dispense_account', null, params)
+    let res = await apiHub('get', 'api/v1/deposit_account', null, params)
     if(res.code === 200001) {
       commit(GOT_DEPOSIT_ACC_LIST, res.result)
     }
@@ -56,7 +56,7 @@ const actions = {
       name: _d.accountName,
       account: _d.bankAccount,
     }
-    let res = await apiHub('post', 'api/v1/dispense_account', data)
+    let res = await apiHub('post', 'api/v1/deposit_account', data)
     if(res.code === 200001) {
       dispatch(GET_DEPOSIT_ACC_LIST)
       commit(SWITCH_DEPOSIT_ACC_DIALOG, false)
@@ -70,7 +70,7 @@ const actions = {
       name: _d.accountName,
       account: _d.bankAccount,
     }
-    let res = await apiHub('put', `api/v1/dispense_account/${_d.id}`, data)
+    let res = await apiHub('put', `api/v1/deposit_account/${_d.id}`, data)
     if(res.code === 200001) {
       dispatch(GET_DEPOSIT_ACC_LIST)
       commit(SWITCH_DEPOSIT_ACC_DIALOG, false)
@@ -78,7 +78,7 @@ const actions = {
     }
   },
   async [DEL_DEPOSIT_ACC]({commit, dispatch}, id) {
-    let res = await apiHub('delete', `api/v1/dispense_account/${id}`)
+    let res = await apiHub('delete', `api/v1/deposit_account/${id}`)
     if(res.code === 200001) {
       dispatch(GET_DEPOSIT_ACC_LIST)
       
