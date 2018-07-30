@@ -75,7 +75,7 @@
       </el-table-column>
       <el-table-column
         fixed="right"
-        width="150px"
+        width="150"
         label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
@@ -84,7 +84,7 @@
       </el-table-column>
       <el-table-column
         fixed="right"
-        width="80px"
+        width="80"
         label="歷程">
         <template slot-scope="scope">
           <el-button size="mini">

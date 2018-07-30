@@ -13,12 +13,12 @@
       style="width: 100%">
       <el-table-column
         prop="bankCode"
-        width="150px"
+        width="150"
         label="銀行代碼">
       </el-table-column>
       <el-table-column
         prop="branchName"
-        width="100px"
+        width="100"
         label="分行名稱">
       </el-table-column>
       <el-table-column
@@ -28,15 +28,17 @@
       <el-table-column
         prop="bankAccount"
         show-overflow-tooltip
-        width="150px"
+        min-width="150"
         label="銀行帳號">
       </el-table-column>
       <el-table-column
         prop="checkingPoint"
+        min-width="120"
         label="審核中存點">
       </el-table-column>
       <el-table-column
         prop="savedPoint"
+        min-width="120"
         label="已入帳存點">
       </el-table-column>
       <el-table-column
@@ -167,6 +169,7 @@ export default {
   },
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.$store.dispatch(GET_BANK_LIST)
     this.$store.dispatch(GET_DEPOSIT_ACC_LIST)
   },
 }

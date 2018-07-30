@@ -16,12 +16,12 @@
         label="標題">
       </el-table-column>
       <el-table-column
-        width="180px"
+        width="180"
         prop="startAt"
         label="開始時間">
       </el-table-column>
       <el-table-column
-        width="180px"
+        width="180"
         prop="endAt"
         label="結束時間">
       </el-table-column>
