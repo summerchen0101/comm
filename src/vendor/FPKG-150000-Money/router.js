@@ -4,20 +4,20 @@ export const Deposit = {
   name: "Deposit",
   title: "存款管理",
   path: "/money/deposit",
-  component: () => import('./component/Deposit.vue')
+  component: () => import('./component/Deposit/Deposit.vue')
 }
 export const DepositAcc = {
   name: "DepositAcc",
   title: "存款帳戶管理",
   path: "/money/deposit-account",
-  component: () => import('./component/DepositAcc.vue')
+  component: () => import('./component/DepositAcc/DepositAcc.vue')
 }
 
 export const Withdraw = {
   name: "Withdraw",
   title: "提款管理",
   path: "/money/withdraw",
-  component: () => import('./component/Withdraw.vue')
+  component: () => import('./component/Withdraw/Withdraw.vue')
 }
 
 export const Money = {

@@ -1,5 +1,5 @@
 <template>
-  <div id="Withdraw">
+  <div id="Deposit">
     <!-- <PageTitle title="存款管理">
       <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
         <font-awesome-icon icon="plus" />
@@ -32,21 +32,23 @@
       </el-form>
     </SearchBar>
     <div class="CountBox">
-      <div class="total">總點數：{{toCurrency(withdrawInfo.total)}}</div>
-      <div class="count">總筆數：{{toCurrency(withdrawInfo.count)}}</div>
+      <div class="total">總點數：{{toCurrency(depositInfo.total)}}</div>
+      <div class="count">總筆數：{{toCurrency(depositInfo.count)}}</div>
     </div>
 
     <!-- 訂單列表 -->
     <el-table
-      :data="withdrawList"
+      :data="depositList"
       stripe
       style="width: 100%">
       <el-table-column
         prop="number"
+        min-width="100"
         label="訂單編號">
       </el-table-column>
       <el-table-column
-      show-overflow-tooltip
+        show-overflow-tooltip
+        min-width="120"
         label="帳號(暱稱)">
         <template slot-scope="scope">
           <span>{{scope.row.account}}</span>
@@ -54,28 +56,45 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="withdrawPoint"
+        prop="depositPoint"
+        min-width="120"
         label="存款點數">
       </el-table-column>
       <el-table-column
         prop="payType"
+        min-width="120"
         label="付款類型">
       </el-table-column>
       <el-table-column
+        v-if="listType == 3"
+        prop="reason"
+        min-width="120"
+        label="原因">
+      </el-table-column>
+      <el-table-column
+        min-width="150"
         label="申請時間">
          <template slot-scope="scope">
-           <span>{{getDateTime(scope.row.withdrawAt)}}</span>
+           <span>{{getDateTime(scope.row.depositAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
+        min-width="150"
         label="截止時間">
         <template slot-scope="scope">
            <span>{{getDateTime(scope.row.expireAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
+        v-if="listType != 1"
+        prop="operator"
+        min-width="120"
+        label="審核人員">
+      </el-table-column>
+      <el-table-column
+        v-if="listType == 1"
         fixed="right"
-        width="150px"
+        width="150"
         label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
@@ -83,42 +102,55 @@
         </template>
       </el-table-column>
       <el-table-column
+        v-else
         fixed="right"
-        width="80px"
+        width="80"
+        label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" type="info" @click="onCheck(scope.row)">資訊</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        width="80"
         label="歷程">
         <template slot-scope="scope">
-          <el-button size="mini">
+          <el-button size="mini" @click="onCheckHistory">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <Paginator v-if="withdrawPager"
+    <Paginator v-if="depositPager"
               :on-page-changed="onPageChanged"
-              :count="withdrawPager.count"
-              :perpage="withdrawPager.perpage"></Paginator>
+              :count="depositPager.count"
+              :perpage="depositPager.perpage"></Paginator>
 
-    <WithdrawDialog></WithdrawDialog>
+    <DepositDialog></DepositDialog>
+    <HistoryDialog></HistoryDialog>
   </div>
 </template>
 
 <script>
 import { 
   SET_BREADCRUMB, 
-  GET_WITHDRAW_STATUS_LIST, 
-  GET_WITHDRAW_INFO, 
-  GET_WITHDRAW_LIST,
-  SWITCH_WITHDRAW_DIALOG,
-  SET_WITHDRAW,
+  GET_DEPOSIT_STATUS_LIST, 
+  GET_DEPOSIT_INFO, 
+  GET_DEPOSIT_LIST,
+  SWITCH_DEPOSIT_DIALOG,
+  SET_DEPOSIT,
+  SWITCH_HISTORY_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
-import WithdrawDialog from '@/vendor/FPKG-150000-Money/component/WithdrawDialog.vue'
+import DepositDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositDialog.vue'
+import DepositHistoryDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositHistoryDialog.vue';
 
 export default {
   mixins: [commonTool],
   components: {
-    WithdrawDialog
+    DepositDialog,
+    HistoryDialog: DepositHistoryDialog,
   },
   data() {
     return {
@@ -141,26 +173,32 @@ export default {
   },
   computed: {
     ...mapState({
-      statusList: state => state.Money.Withdraw.withdrawStatusList,
-      withdrawPager: state => state.Money.Withdraw.withdrawPager,
-      withdrawInfo: state => state.Money.Withdraw.withdrawInfo,
-      withdrawList: state => state.Money.Withdraw.withdrawList,
+      listType: state => state.Money.Deposit.listType,
+      statusList: state => state.Money.Deposit.depositStatusList,
+      depositPager: state => state.Money.Deposit.depositPager,
+      depositInfo: state => state.Money.Deposit.depositInfo,
+      depositList: state => state.Money.Deposit.depositList,
     })
   },
   methods: {
     ...mapMutations([
-      SWITCH_WITHDRAW_DIALOG,
-      SET_WITHDRAW,
+      SWITCH_DEPOSIT_DIALOG,
+      SET_DEPOSIT,
     ]),
-
-    onConfirm(withdraw) {
-      this.SET_WITHDRAW({...withdraw, type: 'confirm'})
-      this.SWITCH_WITHDRAW_DIALOG(true)
+    onCheckHistory() {
+      this.$store.commit(SWITCH_HISTORY_DIALOG, true)
     },
-    onCancel(withdraw) {
-      this.SET_WITHDRAW({...withdraw, type: 'cancel'})
-      this.SWITCH_WITHDRAW_DIALOG(true)
-
+    onConfirm(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'confirm'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
+    },
+    onCancel(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'cancel'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
+    },
+    onCheck(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'check'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
     },
     onPageChanged() {
 
@@ -169,8 +207,8 @@ export default {
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(GET_WITHDRAW_INFO, this.searchForm)
-          this.$store.dispatch(GET_WITHDRAW_LIST, this.searchForm)
+          this.$store.dispatch(GET_DEPOSIT_INFO, this.searchForm)
+          this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
         }
       });
       
@@ -178,7 +216,7 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_WITHDRAW_STATUS_LIST)
+    this.$store.dispatch(GET_DEPOSIT_STATUS_LIST)
   }
 }
 </script>

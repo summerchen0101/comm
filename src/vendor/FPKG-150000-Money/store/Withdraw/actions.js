@@ -26,8 +26,8 @@ const actions = {
     let params = {
       // start_time: _d.startTime,
       // end_time: _d.endTime,
-      no: _d.number,
-      account: _d.account,
+      no: _d.number || undefined,
+      account: _d.account || undefined,
     }
     let res = await apiHub("get", `api/v1/withdrawal/${_d.status}/summary`, null, params)
     if(res.code === 200001) {
@@ -38,9 +38,9 @@ const actions = {
     let params = {
       // start_time: _d.startTime,
       // end_time: _d.endTime,
-      no: _d.number,
-      account: _d.account,
-      page: _d.page
+      no: _d.number || undefined,
+      account: _d.account || undefined,
+      page: _d.page || undefined
     }
     let res = await apiHub("get", `api/v1/withdrawal/${_d.status}/list`, null, params)
     if(res.code === 200001) {

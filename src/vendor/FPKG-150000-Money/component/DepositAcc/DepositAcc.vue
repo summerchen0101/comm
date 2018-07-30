@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAccDialog.vue';
-import DepositAccHistoryDialog from '@/vendor/FPKG-150000-Money/component/DepositAccHistoryDialog.vue';
+import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccDialog.vue';
+import DepositAccHistoryDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccHistoryDialog.vue';
 import { 
   GET_DEPOSIT_ACC_LIST, 
   SWITCH_DEPOSIT_ACC_DIALOG,
