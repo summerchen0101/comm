@@ -12,24 +12,43 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="title"
-        label="標題">
+        prop="bankCode"
+        width="150px"
+        label="銀行代碼">
       </el-table-column>
       <el-table-column
-        width="180px"
-        prop="startAt"
-        label="開始時間">
+        prop="branchName"
+        width="100px"
+        label="分行名稱">
       </el-table-column>
       <el-table-column
-        width="180px"
-        prop="endAt"
-        label="結束時間">
+        prop="accountName"
+        label="戶名">
+      </el-table-column>
+      <el-table-column
+        prop="bankAccount"
+        show-overflow-tooltip
+        width="150px"
+        label="銀行帳號">
+      </el-table-column>
+      <el-table-column
+        prop="checkingPoint"
+        label="審核中存點">
+      </el-table-column>
+      <el-table-column
+        prop="savedPoint"
+        label="已入帳存點">
       </el-table-column>
       <el-table-column
         fixed="right"
         label="操作"
-        width="150">
+        width="250">
         <template slot-scope="scope">
+          <el-switch 
+              style="margin-right: 5px"
+              :value="scope.row.isPrimary" 
+              @click.native="onPrimaryChanged(scope.row)"></el-switch>
+          <el-button size="mini" type="success">清空</el-button>
           <el-button size="mini" type="info" @click="onGetItem(scope.row)">修改</el-button>
           <el-button size="mini" type="danger" @click="onDelItem(scope.row.id)">刪除</el-button>
         </template>
@@ -64,6 +83,8 @@ import {
   SWITCH_DEPOSIT_ACC_DIALOG,
   DEL_DEPOSIT_ACC,
   SET_BREADCRUMB,
+  GET_BANK_LIST,
+  SET_PRIMARY_DEPOSIT_ACC,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
@@ -82,6 +103,7 @@ export default {
   },
   computed: {
     ...mapState({
+      bankList: state => state.Money.DepositAcc.bankList,
       depositAccList: state => state.Money.DepositAcc.depositAccList,
       depositAccPager: state => state.Money.DepositAcc.depositAccPager,
     }),
@@ -90,6 +112,11 @@ export default {
     ...mapMutations([
       SWITCH_DEPOSIT_ACC_DIALOG
     ]),
+    onPrimaryChanged(t) {
+      if(!t.isPrimary) {
+        this.$store.dispatch(SET_PRIMARY_DEPOSIT_ACC, t)
+      }
+    },
     onGetItem(item) {
       this.SWITCH_DEPOSIT_ACC_DIALOG(true)
       let formData = Object.assign({},
@@ -105,8 +132,9 @@ export default {
       this.$store.dispatch(GET_DEPOSIT_ACC_LIST, {page})
     }
   },
-  mounted() {
+  async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    await this.$store.dispatch(GET_BANK_LIST)
     this.$store.dispatch(GET_DEPOSIT_ACC_LIST)
   },
 }

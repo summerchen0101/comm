@@ -4,7 +4,7 @@
     :before-close="() => SWITCH_DEPOSIT_ACC_DIALOG(false)"
     :visible.sync="dialogVisible"
     width="50%">
-    <!-- <el-form 
+    <el-form 
       label-width="80px" 
       label-position="left"
       status-icon 
@@ -12,32 +12,25 @@
       :rules="formRules"
       ref="depositAccForm"
       >
-      <el-form-item label="標題" prop="title">
-        <el-input v-model.trim="form.title"></el-input>
+      <el-form-item label="銀行代碼" prop="bankCode">
+        <el-select v-model="form.bankCode">
+          <el-option v-for="b in bankList" :key="b.code" :value="b.code" :label="b.name"></el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="描述" prop="desc">
-        <el-input type="textarea" v-model.trim="form.desc"></el-input>
+      <el-form-item label="分行名稱" prop="branchName">
+        <el-input v-model.trim="form.branchName"></el-input>
       </el-form-item>
-      <el-form-item label="開始時間" prop="startAt">
-        <el-date-picker
-          v-model="form.startAt"
-          :picker-options="startAtOption"
-          @change="onStartAtChanged"
-          type="datetime">
-        </el-date-picker>
+      <el-form-item label="戶名" prop="accountName">
+        <el-input v-model.trim="form.accountName"></el-input>
       </el-form-item>
-      <el-form-item label="結束時間" prop="endAt">
-        <el-date-picker
-          v-model="form.endAt"
-          :picker-options="endAtOption"
-          type="datetime">
-        </el-date-picker>
+      <el-form-item label="銀行帳號" prop="bankAccount">
+        <el-input v-model.trim="form.bankAccount"></el-input>
       </el-form-item>
-    </el-form> -->
+    </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="SWITCH_DEPOSIT_ACC_DIALOG(false)">取 消</el-button>
-      <!-- <el-button v-if="form.id" type="primary" @click="onEditSubmit">修 改</el-button>
-      <el-button v-else type="primary" @click="onCreateSubmit">新 增</el-button> -->
+      <el-button v-if="form.id" type="primary" @click="onEditSubmit">修 改</el-button>
+      <el-button v-else type="primary" @click="onCreateSubmit">新 增</el-button>
     </span>
   </el-dialog>
 </template>
@@ -56,26 +49,27 @@ import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-12000
 
 let initForm = {
         id: "",
-        title: "",
-        desc: "",
-        startAt: startAtDay(new Date()),
-        endAt: endAtDay(new Date()),
+        bankCode: null,
+        branchName: "",
+        accountName: "",
+        bankAccount: "",
       }
 export default {
   data() {
     return {
       form: Object.assign({}, initForm),
       formRules: {
-        code: [
-          { required: true, message: '代碼為必填', trigger: 'blur' },
-          { validator: codeValidator, trigger: 'blur' },
+        bankCode: [
+          { required: true, message: '銀行代碼為必填', trigger: 'blur' },
         ],
-        title: [
-          { required: true, message: '標題為必填', trigger: 'blur' },
+        branchName: [
+          { required: true, message: '分行名稱為必填', trigger: 'blur' },
         ],
-        desc: [
-          { required: true, message: '內容為必填', trigger: 'blur' },
-          { max: 100, message: '最多為100字', trigger: 'blur' },
+        accountName: [
+          { required: true, message: '戶名為必填', trigger: 'blur' },
+        ],
+        bankAccount: [
+          { required: true, message: '銀行帳戶為必填', trigger: 'blur' },
         ],
       },
       startAtOption: {
@@ -92,6 +86,7 @@ export default {
   },
   computed: {
     ...mapState({
+      bankList: state => state.Money.DepositAcc.bankList,
       dialogVisible: state => state.Money.DepositAcc.dialogVisible,
     }),
   },
@@ -101,6 +96,7 @@ export default {
     ]),
     
     onCreateSubmit() {
+      console.log(this.form)
       this.$refs.depositAccForm.validate((valid) => {
         if (valid) {
           this.$store.dispatch(ADD_DEPOSIT_ACC, this.form)

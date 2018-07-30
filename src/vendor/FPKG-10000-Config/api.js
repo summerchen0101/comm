@@ -15,11 +15,15 @@ export async function apiHub(method, url, data, params) {
       params,
       headers: {
         Authorization: `Bearer ${Store.state.Account.auth}`
-      }
+      },
+      validateStatus: (status) => {
+        return (status >= 200 && status < 300) || status === 422
+      },
     })
     Store.commit(SWITCH_LOADING_COVER, false)
-    if(!(_response.status >= 200 && _response.status < 300)) {
-      alert(`API Error: ${_response.status}`)
+    if(_response.status === 422) {
+      alert(`系統忙碌中: ${_response.status}`)
+      // alert(`API Error: ${_response.status}`)
     }
     return _response.data
   }catch(err) {
