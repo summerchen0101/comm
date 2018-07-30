@@ -99,7 +99,14 @@ export default {
       this.$hub.$emit("Announce:marqueeFormUpdate", formData)
     },
     async onDelItem(id) {
-      await this.$store.dispatch(DEL_MARQUEE, id)
+      this.$confirm('是否確定刪除', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch(DEL_MARQUEE, id)
+      }).catch(() => {        
+      });
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_MARQUEE_LIST, {page})

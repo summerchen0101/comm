@@ -126,7 +126,14 @@ export default {
       this.$hub.$emit("Money:depositAccFormUpdate", formData)
     },
     async onDelItem(id) {
-      await this.$store.dispatch(DEL_DEPOSIT_ACC, id)
+      this.$confirm('是否確定刪除', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch(DEL_DEPOSIT_ACC, id)
+      }).catch(() => {        
+      });
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_DEPOSIT_ACC_LIST, {page})

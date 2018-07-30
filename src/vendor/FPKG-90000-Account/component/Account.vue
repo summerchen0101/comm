@@ -88,7 +88,14 @@ export default {
         this.$store.state.Account.account)
     },
     async onDelItem(item) {
-      await this.$store.dispatch(DEL_ACCOUNT, item)
+      this.$confirm('是否確定刪除', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch(DEL_ACCOUNT, item)
+      }).catch(() => {
+      });
     }
   },
   
