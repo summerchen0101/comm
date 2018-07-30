@@ -1,5 +1,18 @@
 
 /*
+  FPKG-40000-VuexStore
+*/
+
+// getters
+
+// actions
+export const GET_BANK_LIST = "GET_BANK_LIST"
+
+// mutations
+export const GOT_BANK_LIST = "GOT_BANK_LIST"
+
+
+/*
   FPKG-70000-Dashboard
 */
 
@@ -77,7 +90,7 @@ export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
 */
 
 // actions
-export const GET_BANK_LIST = "GET_BANK_LIST"
+export const CLEAR_DEPOSIT_ACC_POINT = "CLEAR_DEPOSIT_ACC_POINT"
 export const GET_DEPOSIT_ACC_LIST = "GET_DEPOSIT_ACC_LIST"
 export const DEL_DEPOSIT_ACC = "DEL_DEPOSIT_ACC"
 export const ADD_DEPOSIT_ACC = "ADD_DEPOSIT_ACC"
@@ -85,7 +98,6 @@ export const EDIT_DEPOSIT_ACC = "EDIT_DEPOSIT_ACC"
 export const SET_PRIMARY_DEPOSIT_ACC = "SET_PRIMARY_DEPOSIT_ACC"
 
 // mutations
-export const GOT_BANK_LIST = "GOT_BANK_LIST"
 export const SWITCH_DEPOSIT_ACC_DIALOG = "SWITCH_DEPOSIT_ACC_DIALOG"
 export const GOT_DEPOSIT_ACC_LIST = "GOT_DEPOSIT_ACC_LIST"
 
