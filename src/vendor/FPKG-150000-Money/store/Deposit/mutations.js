@@ -7,6 +7,7 @@ import {
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
   CHANGED_LIST_TYPE,
+  SWITCH_DEPOSIT_INFO_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { payType } from '@/vendor/FPKG-10000-Config/enum'
 
@@ -20,7 +21,8 @@ const mutations = {
         number: t.no,
         account: t.account,
         nick: t.nickname,
-        payType: payTypeIndex > -1 ? payType[payTypeIndex].label : '-',
+        payTypeName: payTypeIndex > -1 ? payType[payTypeIndex].label : '-',
+        payTypeId: t.payway_id,
         depositPoint: t.credit,
         reason: t.reason,
         operator: t.review_user,
@@ -55,6 +57,9 @@ const mutations = {
   },
   [SWITCH_DEPOSIT_DIALOG](state, status) {
     state.depositDialogVisible = status
+  },
+  [SWITCH_DEPOSIT_INFO_DIALOG](state, status) {
+    state.depositInfoDialogVisible = status
   },
   [CHANGED_LIST_TYPE](state, status) {
     state.listType = status

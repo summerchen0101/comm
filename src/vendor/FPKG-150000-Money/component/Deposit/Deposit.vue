@@ -61,7 +61,7 @@
         label="存款點數">
       </el-table-column>
       <el-table-column
-        prop="payType"
+        prop="payTypeName"
         min-width="120"
         label="付款類型">
       </el-table-column>
@@ -97,7 +97,8 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
+          <!-- 超商付款(1)及信用卡(3)付款時不用顯示「確定」鍵 -->
+          <el-button v-if="[2, 4].indexOf(form.payTypeId) > -1" size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
           <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
         </template>
       </el-table-column>
@@ -107,7 +108,7 @@
         width="80"
         label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="info" @click="onCheck(scope.row)">資訊</el-button>
+          <el-button size="mini" type="info" @click="onCheckInfo(scope.row)">資訊</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -127,6 +128,7 @@
               :perpage="depositPager.perpage"></Paginator>
 
     <DepositDialog></DepositDialog>
+    <DepositInfoDialog></DepositInfoDialog>
     <HistoryDialog></HistoryDialog>
   </div>
 </template>
@@ -140,10 +142,12 @@ import {
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
   SWITCH_HISTORY_DIALOG,
+  SWITCH_DEPOSIT_INFO_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import DepositDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositDialog.vue'
+import DepositInfoDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositInfoDialog.vue'
 import DepositHistoryDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositHistoryDialog.vue';
 
 export default {
@@ -151,6 +155,7 @@ export default {
   components: {
     DepositDialog,
     HistoryDialog: DepositHistoryDialog,
+    DepositInfoDialog: DepositInfoDialog,
   },
   data() {
     return {
@@ -183,6 +188,7 @@ export default {
   methods: {
     ...mapMutations([
       SWITCH_DEPOSIT_DIALOG,
+      SWITCH_DEPOSIT_INFO_DIALOG,
       SET_DEPOSIT,
     ]),
     onCheckHistory() {
@@ -196,9 +202,9 @@ export default {
       this.SET_DEPOSIT({...deposit, type: 'cancel'})
       this.SWITCH_DEPOSIT_DIALOG(true)
     },
-    onCheck(deposit) {
+    onCheckInfo(deposit) {
       this.SET_DEPOSIT({...deposit, type: 'check'})
-      this.SWITCH_DEPOSIT_DIALOG(true)
+      this.SWITCH_DEPOSIT_INFO_DIALOG(true)
     },
     onPageChanged() {
 

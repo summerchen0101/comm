@@ -1,8 +1,8 @@
 <template>
   <el-dialog
-    :title="`${form.number} ${form.type === 'check' ? '查看' : '審核'}`"
-    :before-close="() => SWITCH_DEPOSIT_DIALOG(false)"
-    :visible.sync="depositDialogVisible"
+    :title="`${form.number} 查看`"
+    :before-close="() => SWITCH_DEPOSIT_INFO_DIALOG(false)"
+    :visible.sync="dialogVisible"
     width="500px">
     <el-form label-width="80px" label-position="left">
       <el-form-item label="帳號">
@@ -23,24 +23,16 @@
       <el-form-item label="存款點數">
         <el-input :value="form.depositPoint" disabled></el-input>
       </el-form-item>
-      <el-form-item v-if="form.type === 'cancel'" label="原因">
-        <el-input type="textarea" v-model="form.reason"></el-input>
-      </el-form-item>
     </el-form>
-    <span v-if="form.type === 'check'" slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="SWITCH_DEPOSIT_DIALOG(false)">確 定</el-button>
-    </span>
-    <span v-else slot="footer" class="dialog-footer">
-      <el-button @click="SWITCH_DEPOSIT_DIALOG(false)">取 消</el-button>
-      <el-button v-if="form.type === 'confirm'" type="success" @click="onChangeStatus(true)">通 過</el-button>
-      <el-button v-else-if="form.type === 'cancel'" type="danger" @click="onChangeStatus(false)">未 通 過</el-button>
+    <span slot="footer" class="dialog-footer">
+      <el-button type="primary" @click="SWITCH_DEPOSIT_INFO_DIALOG(false)">確 定</el-button>
     </span>
   </el-dialog>
 </template>
 
 <script>
 import { 
-  SWITCH_DEPOSIT_DIALOG, 
+  SWITCH_DEPOSIT_INFO_DIALOG, 
   GET_DEPOSIT_LIST, 
   SET_DEPOSIT,
   USER_INFO,
@@ -56,12 +48,12 @@ export default {
   computed: {
     ...mapState({
       form: state => state.Money.Deposit.deposit,
-      depositDialogVisible: state => state.Money.Deposit.depositDialogVisible,
+      dialogVisible: state => state.Money.Deposit.depositInfoDialogVisible,
     }),
   },
   methods: {
     ...mapMutations([
-      SWITCH_DEPOSIT_DIALOG
+      SWITCH_DEPOSIT_INFO_DIALOG
     ]),
     onChangeStatus() {
       this.$store.dispatch(SET_DEPOSIT_STATUS, {
