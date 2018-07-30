@@ -6,24 +6,31 @@ import {
   GOT_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
+  CHANGED_LIST_TYPE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { payType } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
   [GOT_DEPOSIT_LIST](state, result) {
     state.depositList = result.data.map(t => {
-      let bank = t.operation_bank_info
+      let bankInfo = t.operation_bank_info
+      let payTypeIndex = payType.findIndex(opt => opt.value == t.payway_id)
       return {
+        id: t.id,
         number: t.no,
         account: t.account,
         nick: t.nickname,
+        payType: payTypeIndex > -1 ? payType[payTypeIndex].label : '-',
         depositPoint: t.credit,
+        reason: t.reason,
+        operator: t.review_user,
         depositAt: t.deposit_at,
         expireAt: t.expire_at,
         bankInfo: {
-          code: "",
-          branch: "",
-          accName: "",
-          account: "",
+          bankCode: `${bankInfo.code}-${bankInfo.bank}`,
+          branchName: bankInfo.branch,
+          accountName: bankInfo.name,
+          bankAccount: bankInfo.account,
         }
       }
     })
@@ -35,7 +42,7 @@ const mutations = {
     }
   },
   [SET_DEPOSIT](state, deposit) {
-    state.deposit = deposit
+    state.deposit = Object.assign({}, state.deposit, deposit)
   },
   [GOT_DEPOSIT_STATUS_LIST](state, statusList) {
     state.depositStatusList = statusList
@@ -48,6 +55,9 @@ const mutations = {
   },
   [SWITCH_DEPOSIT_DIALOG](state, status) {
     state.depositDialogVisible = status
+  },
+  [CHANGED_LIST_TYPE](state, status) {
+    state.listType = status
   },
 }
 

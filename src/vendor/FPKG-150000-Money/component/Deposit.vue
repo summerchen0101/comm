@@ -43,10 +43,12 @@
       style="width: 100%">
       <el-table-column
         prop="number"
+        min-width="100"
         label="訂單編號">
       </el-table-column>
       <el-table-column
-      show-overflow-tooltip
+        show-overflow-tooltip
+        min-width="120"
         label="帳號(暱稱)">
         <template slot-scope="scope">
           <span>{{scope.row.account}}</span>
@@ -55,31 +57,57 @@
       </el-table-column>
       <el-table-column
         prop="depositPoint"
+        min-width="120"
         label="存款點數">
       </el-table-column>
       <el-table-column
         prop="payType"
+        min-width="120"
         label="付款類型">
       </el-table-column>
       <el-table-column
+        v-if="listType == 3"
+        prop="reason"
+        min-width="120"
+        label="原因">
+      </el-table-column>
+      <el-table-column
+        min-width="150"
         label="申請時間">
          <template slot-scope="scope">
            <span>{{getDateTime(scope.row.depositAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
+        min-width="150"
         label="截止時間">
         <template slot-scope="scope">
            <span>{{getDateTime(scope.row.expireAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
+        v-if="listType != 1"
+        prop="operator"
+        min-width="120"
+        label="審核人員">
+      </el-table-column>
+      <el-table-column
+        v-if="listType == 1"
         fixed="right"
         width="150"
         label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
           <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+        v-else
+        fixed="right"
+        width="80"
+        label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" type="info" @click="onCheck(scope.row)">資訊</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -141,6 +169,7 @@ export default {
   },
   computed: {
     ...mapState({
+      listType: state => state.Money.Deposit.listType,
       statusList: state => state.Money.Deposit.depositStatusList,
       depositPager: state => state.Money.Deposit.depositPager,
       depositInfo: state => state.Money.Deposit.depositInfo,
@@ -160,7 +189,10 @@ export default {
     onCancel(deposit) {
       this.SET_DEPOSIT({...deposit, type: 'cancel'})
       this.SWITCH_DEPOSIT_DIALOG(true)
-
+    },
+    onCheck(deposit) {
+      this.SET_DEPOSIT({...deposit, type: 'check'})
+      this.SWITCH_DEPOSIT_DIALOG(true)
     },
     onPageChanged() {
 

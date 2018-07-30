@@ -2,6 +2,7 @@
 
 
 const state = {
+  listType: 1,
   depositList: [],
   deposit: {},
   depositPager: null,
