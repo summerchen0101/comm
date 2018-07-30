@@ -63,7 +63,7 @@ export default [
       },
       {
         name: "PayoutAccount",
-        title: "存款帳戶管理",
+        title: "出款帳戶管理",
         path: "/money/payout-account"
       },
     ]
