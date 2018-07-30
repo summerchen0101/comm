@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     ...mapState({
-      bankList: state => state.Money.DepositAcc.bankList,
+      bankList: state => state.Global.bankList,
       dialogVisible: state => state.Money.DepositAcc.dialogVisible,
     }),
   },

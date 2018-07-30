@@ -1,7 +1,6 @@
 
 const state = {
   dialogVisible: false,
-  bankList: [],
   depositAccList: [],
   depositAccPager: null,
   depositAcc: {}

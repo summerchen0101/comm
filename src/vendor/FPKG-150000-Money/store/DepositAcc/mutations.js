@@ -8,9 +8,6 @@ import {
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
-  [GOT_BANK_LIST](state, list) {
-    state.bankList = list
-  },
   [GOT_DEPOSIT_ACC_LIST](state, result) {
     state.depositAccList = result.data.map(t => ({
       id: t.id,
@@ -20,7 +17,7 @@ const mutations = {
       bankAccount: t.account,
       checkingPoint: t.debit || '-',
       savedPoint: t.credit || '-',
-      isPrimary: t.operation
+      isPrimary: t.active == 1
     }))
     state.depositAccPager = {
       page: result.current_page,

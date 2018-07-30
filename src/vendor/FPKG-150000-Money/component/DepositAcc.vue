@@ -42,10 +42,10 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="250">
+        width="280">
         <template slot-scope="scope">
           <el-switch 
-              style="margin-right: 5px"
+              style="margin-right: 7px"
               :value="scope.row.isPrimary" 
               @click.native="onPrimaryChanged(scope.row)"></el-switch>
           <el-button size="mini" type="success">清空</el-button>
@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     ...mapState({
-      bankList: state => state.Money.DepositAcc.bankList,
+      bankList: state => state.Global.bankList,
       depositAccList: state => state.Money.DepositAcc.depositAccList,
       depositAccPager: state => state.Money.DepositAcc.depositAccPager,
     }),
@@ -141,7 +141,6 @@ export default {
   },
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    await this.$store.dispatch(GET_BANK_LIST)
     this.$store.dispatch(GET_DEPOSIT_ACC_LIST)
   },
 }

@@ -17,19 +17,6 @@ import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
 import Router from '@/router'
 
 const actions = {
-  async [GET_BANK_LIST]({commit}, _d) {
-    let params = null
-    if(_d) {
-      params = {
-        page: _d.page
-      }
-    }
-    
-    let res = await apiHub('get', 'api/v1/dropdown/bank', null, params)
-    if(res.code === 200001) {
-      commit(GOT_BANK_LIST, res.result)
-    }
-  },
   async [SET_PRIMARY_DEPOSIT_ACC]({commit, dispatch}, _d) {
     let res = await apiHub('put', `api/v1/deposit_account/active/${_d.id}`)
     if(res.code === 200001) {
