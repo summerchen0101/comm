@@ -118,7 +118,7 @@
               :count="depositPager.count"
               :perpage="depositPager.perpage"></Paginator>
 
-    <DepositDialog></DepositDialog>
+    <DepositDialog ref="DepositDialog"></DepositDialog>
     <DepositInfoDialog></DepositInfoDialog>
   </div>
 </template>
@@ -179,15 +179,18 @@ export default {
       SET_DEPOSIT,
     ]),
     onConfirm(deposit) {
-      this.SET_DEPOSIT({...deposit, type: 'confirm'})
+      this.$refs.DepositDialog.type = 'confirm'
+      this.SET_DEPOSIT(deposit)
       this.SWITCH_DEPOSIT_DIALOG(true)
     },
     onCancel(deposit) {
-      this.SET_DEPOSIT({...deposit, type: 'cancel'})
+      this.$refs.DepositDialog.type = 'cancel'
+      this.SET_DEPOSIT(deposit)
       this.SWITCH_DEPOSIT_DIALOG(true)
     },
     onCheckInfo(deposit) {
-      this.SET_DEPOSIT({...deposit, type: 'check'})
+      this.$refs.DepositDialog.type = 'check'
+      this.SET_DEPOSIT(deposit)
       this.SWITCH_DEPOSIT_INFO_DIALOG(true)
     },
     onPageChanged() {

@@ -10,6 +10,7 @@ import {
   SWITCH_DEPOSIT_INFO_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { payType } from '@/vendor/FPKG-10000-Config/enum'
+import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
   [GOT_DEPOSIT_LIST](state, result) {
@@ -50,6 +51,7 @@ const mutations = {
   },
   [SET_DEPOSIT](state, deposit) {
     state.deposit = Object.assign({}, state.deposit, deposit)
+    EventsHub.$emit("deposit:bankInfoSettup")
   },
   [GOT_DEPOSIT_STATUS_LIST](state, statusList) {
     state.depositStatusList = statusList
@@ -62,6 +64,7 @@ const mutations = {
   },
   [SWITCH_DEPOSIT_DIALOG](state, status) {
     state.depositDialogVisible = status
+    EventsHub.$emit("deposit:clearForm")
   },
   [SWITCH_DEPOSIT_INFO_DIALOG](state, status) {
     state.depositInfoDialogVisible = status
