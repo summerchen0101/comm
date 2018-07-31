@@ -88,7 +88,6 @@ export default {
   mounted() {
     // console.log()
     this.targetMenu = this.menu.find(m => m.name === this.parent) || null
-    console.log(this.targetMenu)
   }
 }
 </script>
