@@ -1,12 +1,6 @@
 import VueStore from '@/store'
 import { DO_LOGOUT } from '@/vendor/FPKG-40000-VuexStore/constants'
 
-export const Account = {
-  path: '/account',
-  name: 'Account',
-  title: "帳號管理",
-  component: () => import('./component/Account.vue')
-}
 export const PersonalProfile = {
   path: '/profile',
   name: 'PersonalProfile',
