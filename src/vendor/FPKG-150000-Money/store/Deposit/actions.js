@@ -11,6 +11,7 @@ import {
   CHANGED_LIST_TYPE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
+import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 
 import Router from '@/router'
@@ -65,7 +66,7 @@ const actions = {
     let res = await apiHub("put", `api/v1/deposit/${_d.id}`, data)
     if(res.code === 200001) {
       commit(SWITCH_DEPOSIT_DIALOG, false)
-      dispatch(GET_DEPOSIT_LIST)
+      EventsHub.$emit("deposit:UpdateList")
     }
   }
 }

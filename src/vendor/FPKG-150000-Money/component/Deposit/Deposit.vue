@@ -207,6 +207,11 @@ export default {
       
     }
   },
+  created() {
+    this.$hub.$on("deposit:UpdateList", () => {
+      this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
+    })
+  },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_DEPOSIT_STATUS_LIST)
