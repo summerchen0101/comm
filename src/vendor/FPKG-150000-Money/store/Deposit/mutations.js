@@ -24,6 +24,7 @@ const mutations = {
         payTypeName: payTypeIndex > -1 ? payType[payTypeIndex].label : '-',
         payTypeId: t.payway_id,
         depositPoint: t.credit,
+        status: t.status,
         reason: t.reason,
         operator: t.review_user,
         depositAt: t.deposit_at,
@@ -33,6 +34,10 @@ const mutations = {
           branchName: bankInfo.branch,
           accountName: bankInfo.name,
           bankAccount: bankInfo.account,
+          
+          tradeNo: bankInfo.no,
+          paymentNo: bankInfo.payment_no,
+          storeName: bankInfo.from,
         }
       }
     })

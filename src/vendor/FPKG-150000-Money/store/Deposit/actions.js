@@ -38,13 +38,18 @@ const actions = {
     }
   },
   async [GET_DEPOSIT_LIST]({commit}, _d) {
-    let params = {
-      // start_time: _d.startTime,
-      // end_time: _d.endTime,
-      no: _d.number || undefined,
-      account: _d.account || undefined,
-      page: _d.page || undefined
+    let params
+    if(_d) {
+      params = {
+        // start_time: _d.startTime,
+        // end_time: _d.endTime,
+        no: _d.number || undefined,
+        account: _d.account || undefined,
+        page: _d.page || undefined
+      }
+
     }
+    
     let res = await apiHub("get", `api/v1/deposit/${_d.status}/list`, null, params)
     if(res.code === 200001) {
       commit(CHANGED_LIST_TYPE, _d.status)
@@ -55,7 +60,7 @@ const actions = {
     let data = {
       review_user_id: _d.operatorId,
       action: _d.action ? 1 : 2,
-      reason: _d.reason
+      reason: _d.reason || undefined
     }
     let res = await apiHub("put", `api/v1/deposit/${_d.id}`, data)
     if(res.code === 200001) {

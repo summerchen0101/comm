@@ -17,6 +17,9 @@ export async function apiHub(method, url, data, params) {
         Authorization: `Bearer ${Store.state.Account.auth}`
       },
       validateStatus: (status) => {
+        if(status === 500) {
+          alert(`API Error`)
+        }
         return (status >= 200 && status < 300) || status === 422
       },
     })

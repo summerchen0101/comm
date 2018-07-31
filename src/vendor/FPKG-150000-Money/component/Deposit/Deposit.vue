@@ -69,6 +69,7 @@
         v-if="listType == 3"
         prop="reason"
         min-width="120"
+        class-name="red"
         label="原因">
       </el-table-column>
       <el-table-column
@@ -97,9 +98,9 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <!-- 超商付款(1)及信用卡(3)付款時不用顯示「確定」鍵 -->
-          <el-button v-if="[2, 4].indexOf(form.payTypeId) > -1" size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
-          <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
+          <!-- 「銀行大額轉帳」時需顯示「確定」鍵 -->
+          <el-button v-if="[4].indexOf(scope.row.payTypeId) > -1" size="mini" type="success" @click="onConfirm(scope.row)">通過</el-button>
+          <el-button size="mini" type="danger" @click="onCancel(scope.row)">未過</el-button>
         </template>
       </el-table-column>
       <el-table-column
