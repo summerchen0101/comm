@@ -2,7 +2,6 @@ const state = {
   isLogin: false,
   auth: "",
   userInfo: {},
-
   dialogVisible: false,
   accountList: [],
   accountListPaginator: {},

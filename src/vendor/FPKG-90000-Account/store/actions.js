@@ -9,6 +9,7 @@ import {
   CLEAR_SESSION,
   EDIT_USER_PASSWORD,
   SET_USER_AUTH,
+  SET_MENU,
 
   GET_ACCOUNT_LIST, 
   GOT_ACCOUNT_LIST, 
@@ -30,6 +31,7 @@ const actions = {
     if(res.code === 200001) {
       commit(CHANGE_LOGIN_STATUS, true)
       commit(SET_USER_INFO, res.result)
+      commit(SET_MENU, res.result.permission)
     }
   },
   async [DO_LOGIN]({ commit, dispatch }, _d) {

@@ -1,8 +1,6 @@
 
-import defaultMenu from '@/vendor/FPKG-10000-Config/menu.js'
-
 const state = {
-  menu: defaultMenu,
+  menu: [],
   isShowMobileMenu: false,
   isShowWebSysMenu: false,
   themeName: "TME-100"
