@@ -14,6 +14,7 @@ const mutations = {
       desc: t.description,
       startAt: t.start_at,
       endAt: t.end_at,
+      operation: t.operation,
     }))
     state.marqueePager = {
       page: result.current_page,
