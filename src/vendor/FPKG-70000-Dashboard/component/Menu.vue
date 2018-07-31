@@ -37,7 +37,7 @@
           </template>
           
         </el-submenu>
-        <el-menu-item :class="{'is-active': $route.name === m1.name}" v-else :index="`${i1+1}`" :key="m1.path" :route="{name: m1.name}">
+        <el-menu-item :class="{'active': $route.name === m1.name}" v-else :index="`${i1+1}`" :key="m1.path" :route="{name: m1.name}">
           <i class="el-icon-menu"></i>
           <span>{{m1.title}}</span>
           <!-- <router-link :to="{name: m1.name}">
