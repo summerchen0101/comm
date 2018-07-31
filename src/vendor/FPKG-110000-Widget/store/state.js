@@ -2,7 +2,8 @@
 const state = {
   displayLoadingCover: false,
   captcha: null,
-  breadcrumb: []
+  breadcrumb: [],
+  historyDialogVisible: false
 };
 
 

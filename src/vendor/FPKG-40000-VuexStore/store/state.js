@@ -2,7 +2,6 @@
 
 const state = {
   bankList: [],
-  historyDialogVisible: false
 };
 
 

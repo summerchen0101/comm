@@ -10,7 +10,6 @@ export const GET_BANK_LIST = "GET_BANK_LIST"
 
 // mutations
 export const GOT_BANK_LIST = "GOT_BANK_LIST"
-export const SWITCH_HISTORY_DIALOG = "SWITCH_HISTORY_DIALOG"
 
 
 /*
@@ -63,12 +62,14 @@ export const SET_USER_AUTH = "SET_USER_AUTH"
 
 // actions
 export const GET_CAPTCH = "GET_CAPTCH"
+export const GET_HISTORY = "GET_HISTORY"
 
 // mutations
 export const GOT_CAPTCH = "GOT_CAPTCH"
 export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
 export const SET_BREADCRUMB = "SET_BREADCRUMB"
+export const SWITCH_HISTORY_DIALOG = "SWITCH_HISTORY_DIALOG"
 
 
 /*

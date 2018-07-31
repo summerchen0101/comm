@@ -1,6 +1,12 @@
 
 
-import { SWITCH_LOADING_COVER, GOT_CAPTCH, CLEAR_CAPTCH, SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { 
+  SWITCH_LOADING_COVER, 
+  GOT_CAPTCH, 
+  CLEAR_CAPTCH, 
+  SET_BREADCRUMB, 
+  SWITCH_HISTORY_DIALOG 
+} from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
   [SWITCH_LOADING_COVER](state, status) {
@@ -17,6 +23,10 @@ const mutations = {
   [SET_BREADCRUMB](state, breadcrumb) {
     state.breadcrumb = breadcrumb
   },
+
+  [SWITCH_HISTORY_DIALOG](state, status) {
+    state.historyDialogVisible = status
+  }
 }
 
 export default mutations

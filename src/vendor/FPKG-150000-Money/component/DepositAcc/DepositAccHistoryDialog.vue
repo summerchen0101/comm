@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     ...mapState({
-      dialogVisible: state => state.Global.historyDialogVisible
+      dialogVisible: state => state.Widget.historyDialogVisible
     }),
   },
   methods: {
