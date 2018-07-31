@@ -28,7 +28,8 @@ const mutations = {
   [SWITCH_HISTORY_DIALOG](state, status) {
     state.historyDialogVisible = status
   },
-  [GOT_HISTORY](state, {result, lang}) {
+  [GOT_HISTORY](state, {result, lang, title}) {
+    state.historyTitle = title
     state.historyList = result.data.map(t => ({
       id: t.id,
       time: t.updated_at,

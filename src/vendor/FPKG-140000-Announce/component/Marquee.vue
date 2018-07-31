@@ -96,7 +96,8 @@ export default {
     onCheckHistory(id) {
       this.$store.dispatch(GET_HISTORY, {
           funcKey: this.$attrs.funcKey, 
-          id
+          id,
+          title: "跑馬燈修改歷程"
         })
     },
     onGetItem(item) {

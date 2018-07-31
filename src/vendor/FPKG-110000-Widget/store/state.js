@@ -5,7 +5,8 @@ const state = {
   breadcrumb: [],
   historyDialogVisible: false,
   historyList: [],
-  historyPager: null
+  historyPager: null,
+  historyTitle: ""
 };
 
 

@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="歷程資訊"
+    :title="title"
     id="HistoryDialog"
     :visible.sync="dialogVisible"
     width="630px"
@@ -56,6 +56,7 @@ export default {
   },
   computed: {
     ...mapState({
+      title: state => state.Widget.historyTitle,
       historyList: state => state.Widget.historyList,
       dialogVisible: state => state.Widget.historyDialogVisible
     }),

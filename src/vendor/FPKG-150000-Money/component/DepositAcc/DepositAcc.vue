@@ -122,7 +122,8 @@ export default {
     onCheckHistory(id) {
       this.$store.dispatch(GET_HISTORY, {
           funcKey: this.$attrs.funcKey, 
-          id
+          id,
+          title: "存款帳戶修改歷程"
         })
     },
     onPrimaryChanged(t) {
