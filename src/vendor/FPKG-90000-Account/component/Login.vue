@@ -91,28 +91,5 @@ export default {
 </script>
 
 <style lang="stylus">
-#Login
-  background-color: #666
-  height: 100vh
-  display: flex
-  justify-content center 
-  align-items center
-  .login-box 
-    width: 300px 
-    // height: 400px
-    background-color: #333
-    color: #fff
-    padding: 25px
-    border: 1px solid #555
-    border-radius: 10px
-    box-shadow: 0 0 10px rgba(#000, 0.2)
-    .logo 
-      font-size: 50px 
-      line-height 100px
-      text-align center
-      color: $TME-100-second-color
-    .submit-btn-group
-      text-align: center
-      button 
-        margin: 0 5px
+@import '../style/component/Login'
 </style>
