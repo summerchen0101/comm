@@ -112,16 +112,6 @@
           <el-button size="mini" type="info" @click="onCheckInfo(scope.row)">資訊</el-button>
         </template>
       </el-table-column>
-      <el-table-column
-        fixed="right"
-        width="80"
-        label="歷程">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="onCheckHistory">
-            <font-awesome-icon icon="file-alt" />
-          </el-button>
-        </template>
-      </el-table-column>
     </el-table>
     <Paginator v-if="depositPager"
               :on-page-changed="onPageChanged"
@@ -130,7 +120,6 @@
 
     <DepositDialog></DepositDialog>
     <DepositInfoDialog></DepositInfoDialog>
-    <HistoryDialog></HistoryDialog>
   </div>
 </template>
 
@@ -142,20 +131,17 @@ import {
   GET_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
-  SWITCH_HISTORY_DIALOG,
   SWITCH_DEPOSIT_INFO_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import DepositDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositDialog.vue'
 import DepositInfoDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositInfoDialog.vue'
-import DepositHistoryDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositHistoryDialog.vue';
 
 export default {
   mixins: [commonTool],
   components: {
     DepositDialog,
-    HistoryDialog: DepositHistoryDialog,
     DepositInfoDialog: DepositInfoDialog,
   },
   data() {
@@ -192,9 +178,6 @@ export default {
       SWITCH_DEPOSIT_INFO_DIALOG,
       SET_DEPOSIT,
     ]),
-    onCheckHistory() {
-      this.$store.commit(SWITCH_HISTORY_DIALOG, true)
-    },
     onConfirm(deposit) {
       this.SET_DEPOSIT({...deposit, type: 'confirm'})
       this.SWITCH_DEPOSIT_DIALOG(true)

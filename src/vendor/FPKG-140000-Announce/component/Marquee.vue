@@ -39,7 +39,7 @@
         label="歷程"
         width="80">
         <template slot-scope="scope">
-          <el-button size="mini">
+          <el-button size="mini" @click="onCheckHistory">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
@@ -53,23 +53,26 @@
 
     <!-- 新增跑馬燈 -->
     <MarqueeFormDialog ref="MarqueeFormDialog"></MarqueeFormDialog>
-
+    <HistoryDialog ref="HistoryDialog"></HistoryDialog>
   </div>
 </template>
 
 <script>
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
+import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_MARQUEE_LIST, 
   SWITCH_MARQUEE_DIALOG,
   DEL_MARQUEE,
   SET_BREADCRUMB,
+  GET_HISTORY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
     MarqueeFormDialog,
+    HistoryDialog,
   },
   data() {
     return {
@@ -90,6 +93,9 @@ export default {
     ...mapMutations([
       SWITCH_MARQUEE_DIALOG
     ]),
+    onCheckHistory() {
+      this.$store.dispatch(GET_HISTORY)
+    },
     onGetItem(item) {
       this.SWITCH_MARQUEE_DIALOG(true)
       let formData = Object.assign({},

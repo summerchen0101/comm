@@ -81,7 +81,7 @@
 
 <script>
 import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccDialog.vue';
-import DepositAccHistoryDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccHistoryDialog.vue';
+import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_DEPOSIT_ACC_LIST, 
   SWITCH_DEPOSIT_ACC_DIALOG,
@@ -90,14 +90,14 @@ import {
   GET_BANK_LIST,
   SET_PRIMARY_DEPOSIT_ACC,
   CLEAR_DEPOSIT_ACC_POINT,
-  SWITCH_HISTORY_DIALOG,
+  GET_HISTORY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
     DepositAccDialog,
-    HistoryDialog: DepositAccHistoryDialog,
+    HistoryDialog,
   },
   data() {
     return {
@@ -120,7 +120,7 @@ export default {
       SWITCH_DEPOSIT_ACC_DIALOG,
     ]),
     onCheckHistory() {
-      this.$store.commit(SWITCH_HISTORY_DIALOG, true)
+      this.$store.dispatch(GET_HISTORY)
     },
     onPrimaryChanged(t) {
       if(!t.isPrimary) {
