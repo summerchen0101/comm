@@ -1,10 +1,5 @@
 <template>
   <div id="Deposit">
-    <!-- <PageTitle title="存款管理">
-      <el-button slot="btns" type="primary" @click="SWITCH_MARQUEE_DIALOG(true)">
-        <font-awesome-icon icon="plus" />
-      </el-button>
-    </PageTitle> -->
     <el-select v-model="searchForm.status">
       <el-option
         v-for="opt in statusList"
@@ -18,6 +13,24 @@
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
+        <el-form-item label="時間" v-if="searchForm.status !== 1">
+          <el-date-picker
+            v-model="searchForm.startAt"
+            format="yyyy-MM-dd HH:mm"
+            :picker-options="startAtOption"
+            type="datetime"
+            @change="onStartAtChanged"
+            placeholder="開始時間">
+          </el-date-picker>
+          -
+          <el-date-picker
+            v-model="searchForm.endAt"
+            format="yyyy-MM-dd HH:mm"
+            :picker-options="endAtOption"
+            type="datetime"
+            placeholder="結束時間">
+          </el-date-picker>
+        </el-form-item>
         <el-form-item label="編號">
           <el-input v-model="searchForm.number" placeholder="搜尋訂單編號"></el-input>
         </el-form-item>
@@ -137,6 +150,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import DepositDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositDialog.vue'
 import DepositInfoDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositInfoDialog.vue'
+import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 
 export default {
   mixins: [commonTool],
@@ -155,12 +169,14 @@ export default {
         status: 1,
         number: "",
         account: "",
+        startAt: startAtDay(new Date()),
+        endAt: endAtDay(new Date()),
       },
       searchFormRules: {
         account: [
           { min: 4, max: 12, message: '至少需4~12碼英數字', trigger: 'blur' },
         ],
-      }
+      },
     }
   },
   computed: {
@@ -170,7 +186,21 @@ export default {
       depositPager: state => state.Money.Deposit.depositPager,
       depositInfo: state => state.Money.Deposit.depositInfo,
       depositList: state => state.Money.Deposit.depositList,
-    })
+    }),
+    startAtOption() {
+      return {
+        disabledDate: (val) => {
+          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val)
+        }
+      }
+    },
+    endAtOption() {
+      return {
+        disabledDate: (val) => {
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+        }
+      }
+    },
   },
   methods: {
     ...mapMutations([
@@ -192,6 +222,13 @@ export default {
       this.$refs.DepositDialog.type = 'check'
       this.SET_DEPOSIT(deposit)
       this.SWITCH_DEPOSIT_INFO_DIALOG(true)
+    },
+    onStartAtChanged() {
+      // 若結束時間大於開始時間則清空結束時間
+      if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
+        this.searchForm.endAt = ""
+      }
+      
     },
     onPageChanged() {
 
@@ -220,17 +257,5 @@ export default {
 </script>
 
 <style lang="stylus">
-.CountBox
-  display: flex
-  justify-content: flex-end
-  > div 
-    font-size: 12px
-    color: #333
-    padding: 5px 10px
-    margin: 10px 0
-    margin-left: 5px
-    &.count 
-      background-color: #ddd
-    &.total 
-      background-color: #eee
+@import '../../style/component/Deposit'
 </style>

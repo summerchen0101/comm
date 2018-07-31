@@ -184,17 +184,4 @@ export default {
 </script>
 
 <style lang="stylus">
-.CountBox
-  display: flex
-  justify-content: flex-end
-  > div 
-    font-size: 12px
-    color: #333
-    padding: 5px 10px
-    margin: 10px 0
-    margin-left: 5px
-    &.count 
-      background-color: #ddd
-    &.total 
-      background-color: #eee
 </style>

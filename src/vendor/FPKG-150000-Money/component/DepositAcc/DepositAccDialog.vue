@@ -119,10 +119,6 @@ export default {
         this.$refs.depositAccForm.resetFields();
       }
     },
-
-    onStartAtChanged() {
-      this.form.endAt = endAtDay(this.form.startAt)
-    }
   },
   
   created() {
