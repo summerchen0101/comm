@@ -5,7 +5,8 @@ import {
   GOT_CAPTCH, 
   CLEAR_CAPTCH, 
   SET_BREADCRUMB, 
-  SWITCH_HISTORY_DIALOG 
+  SWITCH_HISTORY_DIALOG ,
+  GOT_HISTORY ,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -26,6 +27,22 @@ const mutations = {
 
   [SWITCH_HISTORY_DIALOG](state, status) {
     state.historyDialogVisible = status
+  },
+  [GOT_HISTORY](state, {result, lang}) {
+    state.historyList = result.data.map(t => ({
+      id: t.id,
+      time: t.updated_at,
+      operatorAcc: t.user_account,
+      operatorName: t.user_name,
+      ip: t.ip,
+      content: t.content[lang],
+    }))
+    state.historyPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
   }
 }
 

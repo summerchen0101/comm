@@ -2,6 +2,7 @@
 
 const state = {
   bankList: [],
+  lang: 'zh-TW'
 };
 
 

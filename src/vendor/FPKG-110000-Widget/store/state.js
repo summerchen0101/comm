@@ -3,7 +3,9 @@ const state = {
   displayLoadingCover: false,
   captcha: null,
   breadcrumb: [],
-  historyDialogVisible: false
+  historyDialogVisible: false,
+  historyList: [],
+  historyPager: null
 };
 
 
