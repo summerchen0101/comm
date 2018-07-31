@@ -9,8 +9,8 @@
         <el-input :value="form.account" disabled></el-input>
       </el-form-item>
 
-      <!-- 銀行小額大額 -->
-      <template v-if="[2, 4].indexOf(form.payTypeId) > -1">
+      <!-- 銀行大額(銀行卡) -->
+      <template v-if="form.payTypeId === 4">
         <el-form-item label="銀行代碼">
           <el-input :value="form.bankInfo && form.bankInfo.bankCode" disabled></el-input>
         </el-form-item>
@@ -27,9 +27,9 @@
       
       <!-- 超商 -->
       <template v-if="form.payTypeId === 1">
-        <el-form-item label="繳費超商">
+        <!-- <el-form-item label="繳費超商">
           <el-input :value="form.bankInfo && form.bankInfo.storeName" disabled></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="繳費代碼">
           <el-input :value="form.bankInfo && form.bankInfo.paymentNo" disabled></el-input>
         </el-form-item>
@@ -38,8 +38,8 @@
         </el-form-item>
       </template>
       
-      <!-- 信用卡 -->
-      <template v-if="form.payTypeId === 3">
+      <!-- 小額 -->
+      <template v-if="form.payTypeId === 2">
         <el-form-item label="銀行代碼">
           <el-input :value="form.bankInfo && form.bankInfo.bankCode" disabled></el-input>
         </el-form-item>
@@ -51,6 +51,14 @@
         </el-form-item>
       </template>
 
+      <!-- 信用卡 -->
+      <template v-if="form.payTypeId === 3">
+        <el-form-item label="交易序號">
+          <el-input :value="form.bankInfo && form.bankInfo.tradeNo" disabled></el-input>
+        </el-form-item>
+      </template>
+      
+      <!-- 共用 -->
       <el-form-item label="存款點數">
         <el-input :value="form.depositPoint" disabled></el-input>
       </el-form-item>

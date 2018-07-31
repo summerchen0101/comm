@@ -38,8 +38,8 @@
         </el-form-item>
       </template>
       
-      <!-- 小額, 信用卡 -->
-      <template v-if="[2, 3].indexOf(form.payTypeId) > -1">
+      <!-- 小額 -->
+      <template v-if="form.payTypeId === 2">
         <el-form-item label="銀行代碼">
           <el-input :value="form.bankInfo && form.bankInfo.bankCode" disabled></el-input>
         </el-form-item>
@@ -50,10 +50,20 @@
           <el-input :value="form.bankInfo && form.bankInfo.tradeNo" disabled></el-input>
         </el-form-item>
       </template>
+
+      <!-- 信用卡 -->
+      <template v-if="form.payTypeId === 3">
+        <el-form-item label="交易序號">
+          <el-input :value="form.bankInfo && form.bankInfo.tradeNo" disabled></el-input>
+        </el-form-item>
+      </template>
       
+      <!-- 共用 -->
       <el-form-item label="存款點數">
         <el-input :value="form.depositPoint" disabled></el-input>
       </el-form-item>
+      
+      <!-- 訂單為「取消」狀態時顯示原因 -->
       <el-form-item v-if="form.type === 'cancel'" label="原因">
         <el-input type="textarea" v-model="form.reason"></el-input>
       </el-form-item>
