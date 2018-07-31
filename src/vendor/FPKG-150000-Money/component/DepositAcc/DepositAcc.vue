@@ -60,7 +60,7 @@
         label="歷程"
         width="80">
         <template slot-scope="scope">
-          <el-button size="mini" @click="onCheckHistory">
+          <el-button size="mini" :class="{'history-active': scope.row.operation}" @click="onCheckHistory(scope.row.id)">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
@@ -119,8 +119,11 @@ export default {
     ...mapMutations([
       SWITCH_DEPOSIT_ACC_DIALOG,
     ]),
-    onCheckHistory() {
-      this.$store.dispatch(GET_HISTORY)
+    onCheckHistory(id) {
+      this.$store.dispatch(GET_HISTORY, {
+          funcKey: this.$attrs.funcKey, 
+          id
+        })
     },
     onPrimaryChanged(t) {
       if(!t.isPrimary) {

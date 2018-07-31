@@ -17,7 +17,8 @@ const mutations = {
       bankAccount: t.account,
       checkingPoint: t.debit || '-',
       savedPoint: t.credit || '-',
-      isPrimary: t.active == 1
+      isPrimary: t.active == 1,
+      operation: t.operation,
     }))
     state.depositAccPager = {
       page: result.current_page,
