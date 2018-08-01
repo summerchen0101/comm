@@ -81,8 +81,8 @@ export default [
     ]
   },
   {
-    name: "Betting",
-    title: "注單查詢",
+    name: "BettingInfo",
+    title: "注單資訊",
     path: "/betting",
     icon: "file-alt",
     funcKey: 14,

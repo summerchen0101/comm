@@ -13,7 +13,7 @@ var PKG_NAME = process.argv[2]
 var PKG_TITLE = process.argv[3]
 var PKG_PATH = ""
 fs.readdir(vendorPath, function(err, items) {
-  let PKG_NUMBER = items.length + 1
+  let PKG_NUMBER = items.length + 3
   PKG_PATH = `${vendorPath}/FPKG-${PKG_NUMBER}0000-${PKG_NAME}`
   
   ncp(copySorce, PKG_PATH, function (err) {

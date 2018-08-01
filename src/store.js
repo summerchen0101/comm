@@ -7,6 +7,7 @@ import Widget from './vendor/FPKG-110000-Widget/store'
 import Config from './vendor/FPKG-10000-Config/store'
 import Announce from './vendor/FPKG-140000-Announce/store'
 import Money from './vendor/FPKG-150000-Money/store'
+import BettingInfo from './vendor/FPKG-160000-BettingInfo/store'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ const store = {
     Account,
     Announce,
     Money,
+    BettingInfo,
   },
 };
 

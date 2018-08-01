@@ -12,3 +12,7 @@ export const dispenseTicketStatus = [
   {label: '出款中', value: 4},
   {label: '出款取消', value: 5},
 ]
+export const gameType = [
+  {label: '電子遊藝', value: 1},
+  {label: '彩球', value: 2},
+]
