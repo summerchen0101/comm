@@ -5,25 +5,35 @@ import {
   GOT_WITHDRAW_INFO,
   GOT_WITHDRAW_LIST,
   SWITCH_WITHDRAW_DIALOG,
+  SWITCH_WITHDRAW_INFO_DIALOG,
   SET_WITHDRAW,
+  CHANGED_WITHDRAW_LIST_TYPE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
+import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
   [GOT_WITHDRAW_LIST](state, result) {
     state.withdrawList = result.data.map(t => {
-      let bank = t.operation_bank_info
+      let bankInfo = t.operation_bank_info
       return {
+        id: t.id,
         number: t.no,
         account: t.account,
         nick: t.nickname,
         withdrawPoint: t.credit,
-        withdrawAt: t.withdraw_at,
-        expireAt: t.expire_at,
+        status: t.status,
+        reason: t.reason,
+        operator: t.review_user,
+        withdrawAt: t.created_at,
         bankInfo: {
-          code: "",
-          branch: "",
-          accName: "",
-          account: "",
+          bankCode: `${bankInfo.code}-${bankInfo.bank}`,
+          branchName: bankInfo.branch,
+          accountName: bankInfo.name,
+          bankAccount: bankInfo.account,
+          
+          tradeNo: bankInfo.no,
+          paymentNo: bankInfo.payment_no,
+          storeName: bankInfo.from,
         }
       }
     })
@@ -46,8 +56,15 @@ const mutations = {
       total: info.credit_total,
     })
   },
+  [SWITCH_WITHDRAW_INFO_DIALOG](state, status) {
+    state.withdrawInfoDialogVisible = status
+  },
   [SWITCH_WITHDRAW_DIALOG](state, status) {
     state.withdrawDialogVisible = status
+    EventsHub.$emit("withdraw:clearForm")
+  },
+  [CHANGED_WITHDRAW_LIST_TYPE](state, status) {
+    state.listType = status
   },
 }
 

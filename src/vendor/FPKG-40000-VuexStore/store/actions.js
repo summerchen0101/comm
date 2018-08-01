@@ -2,6 +2,8 @@
 import { 
   GET_BANK_LIST,
   GOT_BANK_LIST,
+  GET_FEE_LIST,
+  GOT_FEE_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -13,6 +15,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/bank')
     if(res.code === 200001) {
       commit(GOT_BANK_LIST, res.result)
+    }
+  },
+  async [GET_FEE_LIST]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/fee')
+    if(res.code === 200001) {
+      commit(GOT_FEE_LIST, res.result)
     }
   },
 }

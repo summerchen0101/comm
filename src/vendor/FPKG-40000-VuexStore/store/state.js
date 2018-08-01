@@ -1,6 +1,7 @@
 
 
 const state = {
+  feeList: [],
   bankList: [],
   lang: 'zh-TW'
 };

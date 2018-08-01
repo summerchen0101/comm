@@ -8,7 +8,7 @@ import {
   GOT_DEPOSIT_STATUS_LIST,
   SET_DEPOSIT_STATUS,
   SWITCH_DEPOSIT_DIALOG,
-  CHANGED_LIST_TYPE,
+  CHANGED_DEPOSIT_LIST_TYPE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
@@ -55,7 +55,7 @@ const actions = {
     
     let res = await apiHub("get", `api/v1/deposit/${_d.status}/list`, null, params)
     if(res.code === 200001) {
-      commit(CHANGED_LIST_TYPE, _d.status)
+      commit(CHANGED_DEPOSIT_LIST_TYPE, _d.status)
       commit(GOT_DEPOSIT_LIST, res.result)
     }
   },

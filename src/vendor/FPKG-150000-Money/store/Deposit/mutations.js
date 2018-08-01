@@ -6,7 +6,7 @@ import {
   GOT_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
-  CHANGED_LIST_TYPE,
+  CHANGED_DEPOSIT_LIST_TYPE,
   SWITCH_DEPOSIT_INFO_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { payType } from '@/vendor/FPKG-10000-Config/enum'
@@ -69,7 +69,7 @@ const mutations = {
   [SWITCH_DEPOSIT_INFO_DIALOG](state, status) {
     state.depositInfoDialogVisible = status
   },
-  [CHANGED_LIST_TYPE](state, status) {
+  [CHANGED_DEPOSIT_LIST_TYPE](state, status) {
     state.listType = status
   },
 }

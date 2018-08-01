@@ -6,8 +6,12 @@ import {
   GOT_WITHDRAW_LIST,
   GET_WITHDRAW_STATUS_LIST,
   GOT_WITHDRAW_STATUS_LIST,
+  CHANGED_WITHDRAW_LIST_TYPE,
+  SWITCH_WITHDRAW_DIALOG,
+  SET_WITHDRAW_STATUS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
+import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 
 import Router from '@/router'
@@ -44,9 +48,25 @@ const actions = {
     }
     let res = await apiHub("get", `api/v1/withdrawal/${_d.status}/list`, null, params)
     if(res.code === 200001) {
+      
+      commit(CHANGED_WITHDRAW_LIST_TYPE, _d.status)
       commit(GOT_WITHDRAW_LIST, res.result)
     }
   },
+  async [SET_WITHDRAW_STATUS]({dispatch, commit}, _d) {
+    console.log(_d)
+    let data = {
+      review_user_id: _d.operatorId,
+      action: _d.action == 'confirm' ? 1 : 2,
+      reason: _d.action == 'cancel' ? _d.reason : undefined,
+      fee: _d.action == 'confirm' ? _d.fee : undefined
+    }
+    let res = await apiHub("put", `api/v1/withdrawal/${_d.id}`, data)
+    if(res.code === 200001) {
+      commit(SWITCH_WITHDRAW_DIALOG, false)
+      EventsHub.$emit("withdraw:UpdateList")
+    }
+  }
 }
 
 export default actions
