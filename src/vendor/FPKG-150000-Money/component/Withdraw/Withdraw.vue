@@ -74,7 +74,7 @@
         label="提款點數">
       </el-table-column>
       <el-table-column
-        v-if="listType == 2"
+        v-if="listType == 3"
         prop="reason"
         min-width="120"
         class-name="red"
@@ -88,7 +88,7 @@
          </template>
       </el-table-column>
       <el-table-column
-        v-if="listType == 2"
+        v-if="listType == 3"
         prop="operator"
         min-width="120"
         label="審核人員">
