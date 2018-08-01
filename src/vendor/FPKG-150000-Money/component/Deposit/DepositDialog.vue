@@ -75,8 +75,8 @@
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="SWITCH_DEPOSIT_DIALOG(false)">取 消</el-button>
-      <el-button v-if="type === 'confirm'" type="success" @click="onChangeStatus(true)">通 過</el-button>
-      <el-button v-else-if="type === 'cancel'" type="danger" @click="onChangeStatus(false)">未 通 過</el-button>
+      <el-button v-if="type === 'confirm'" type="success" @click="onChangeStatus('confirm')">通 過</el-button>
+      <el-button v-else-if="type === 'cancel'" type="danger" @click="onChangeStatus('cancel')">未 通 過</el-button>
     </span>
   </el-dialog>
 </template>
