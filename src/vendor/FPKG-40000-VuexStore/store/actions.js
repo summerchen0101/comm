@@ -4,8 +4,8 @@ import {
   GOT_BANK_LIST,
   GET_FEE_LIST,
   GOT_FEE_LIST,
-  GET_DISPENSE_ACC_LIST,
-  GOT_DISPENSE_ACC_LIST,
+  GET_DISPENSE_ACC_OPTIONS,
+  GOT_DISPENSE_ACC_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -25,10 +25,10 @@ const actions = {
       commit(GOT_FEE_LIST, res.result)
     }
   },
-  async [GET_DISPENSE_ACC_LIST]({commit}) {
+  async [GET_DISPENSE_ACC_OPTIONS]({commit}) {
     let res = await apiHub('get', 'api/v1/dropdown/dispense_account')
     if(res.code === 200001) {
-      commit(GOT_DISPENSE_ACC_LIST, res.result)
+      commit(GOT_DISPENSE_ACC_OPTIONS, res.result)
     }
   },
 }

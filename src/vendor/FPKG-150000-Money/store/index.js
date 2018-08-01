@@ -7,6 +7,7 @@ import Deposit from './Deposit'
 import DepositAcc from './DepositAcc'
 import Withdraw from './Withdraw'
 import Dispense from './Dispense'
+import DispenseAcc from './DispenseAcc'
 
 const store = {
   modules: {
@@ -14,6 +15,7 @@ const store = {
     DepositAcc,
     Withdraw,
     Dispense,
+    DispenseAcc,
   },
   state,
   getters,

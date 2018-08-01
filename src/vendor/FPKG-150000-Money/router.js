@@ -31,6 +31,14 @@ export const Dispense = {
   component: () => import('./component/Dispense/Dispense.vue')
 }
 
+export const DispenseAcc = {
+  name: "DispenseAcc",
+  title: "存款帳戶管理",
+  path: "/money/dispense-account",
+  props: { funcKey: 1305 },
+  component: () => import('./component/DispenseAcc/DispenseAcc.vue')
+}
+
 export const Money = {
   path: '/money',
   name: 'Money',
@@ -43,5 +51,6 @@ export const Money = {
     DepositAcc,
     Withdraw,
     Dispense,
+    DispenseAcc,
   ]
 }

@@ -73,7 +73,7 @@ export default [
         funcKey: 1304,
       },
       {
-        name: "DispenseAccount",
+        name: "DispenseAcc",
         title: "出款帳戶管理",
         path: "/money/dispense-account",
         funcKey: 1305,

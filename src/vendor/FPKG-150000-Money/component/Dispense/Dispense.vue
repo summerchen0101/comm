@@ -137,7 +137,7 @@ import {
   SWITCH_DISPENSE_DIALOG,
   SET_DISPENSE,
   SWITCH_DISPENSE_INFO_DIALOG,
-  GET_DISPENSE_ACC_LIST,
+  GET_DISPENSE_ACC_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
@@ -244,7 +244,7 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_DISPENSE_ACC_LIST)
+    this.$store.dispatch(GET_DISPENSE_ACC_OPTIONS)
     this.$store.dispatch(GET_DISPENSE_STATUS_LIST)
   }
 }

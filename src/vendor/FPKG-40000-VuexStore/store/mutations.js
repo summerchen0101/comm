@@ -3,7 +3,7 @@
 import {
   GOT_BANK_LIST,
   GOT_FEE_LIST,
-  GOT_DISPENSE_ACC_LIST,
+  GOT_DISPENSE_ACC_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
   [GOT_FEE_LIST](state, list) {
     state.feeList = list
   },
-  [GOT_DISPENSE_ACC_LIST](state, list) {
+  [GOT_DISPENSE_ACC_OPTIONS](state, list) {
     state.dispenseAccList = list
   },
 }

@@ -2,25 +2,23 @@
 
 import { 
   GOT_BANK_LIST, 
-  GOT_DEPOSIT_ACC_LIST, 
-  SWITCH_DEPOSIT_ACC_DIALOG 
+  GOT_DISPENSE_ACC_LIST, 
+  SWITCH_DISPENSE_ACC_DIALOG 
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
-  [GOT_DEPOSIT_ACC_LIST](state, result) {
-    state.depositAccList = result.data.map(t => ({
+  [GOT_DISPENSE_ACC_LIST](state, result) {
+    state.dispenseAccList = result.data.map(t => ({
       id: t.id,
       bankCode: t.code,
       branchName: t.branch,
       accountName: t.name,
       bankAccount: t.account,
-      checkingPoint: t.debit || '-',
-      savedPoint: t.credit || '-',
       isPrimary: t.active == 1,
       operation: t.operation,
     }))
-    state.depositAccPager = {
+    state.dispenseAccPager = {
       page: result.current_page,
       count: result.total,
       totalPages: result.last_page,
@@ -28,9 +26,9 @@ const mutations = {
     }
   },
 
-  [SWITCH_DEPOSIT_ACC_DIALOG](state, status) {
+  [SWITCH_DISPENSE_ACC_DIALOG](state, status) {
     state.dialogVisible = status
-    EventsHub.$emit("Money:clearDepositAccForm")
+    EventsHub.$emit("Money:clearDispenseAccForm")
   },
 }
 
