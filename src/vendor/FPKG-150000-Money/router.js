@@ -23,6 +23,14 @@ export const Withdraw = {
   component: () => import('./component/Withdraw/Withdraw.vue')
 }
 
+export const Dispense = {
+  name: "Dispense",
+  title: "出款管理",
+  path: "/money/dispense",
+  props: { funcKey: 1304 },
+  component: () => import('./component/Dispense/Dispense.vue')
+}
+
 export const Money = {
   path: '/money',
   name: 'Money',
@@ -34,5 +42,6 @@ export const Money = {
     Deposit,
     DepositAcc,
     Withdraw,
+    Dispense,
   ]
 }

@@ -67,15 +67,15 @@ export default [
         funcKey: 1303,
       },
       {
-        name: "Payout",
+        name: "Dispense",
         title: "出款管理",
-        path: "/money/payout",
+        path: "/money/dispense",
         funcKey: 1304,
       },
       {
-        name: "PayoutAccount",
+        name: "DispenseAccount",
         title: "出款帳戶管理",
-        path: "/money/payout-account",
+        path: "/money/dispense-account",
         funcKey: 1305,
       },
     ]
