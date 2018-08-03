@@ -11,7 +11,11 @@
         <el-breadcrumb-item v-if="item.link" :to="{ path: item.link }">{{item.title}}</el-breadcrumb-item>
         <el-breadcrumb-item v-else>{{item.title}}</el-breadcrumb-item>
       </template> -->
-      <el-breadcrumb-item v-for="(item, i) in breadcrumbPath" :key="i" :to="item.link ? { path: item.link } : undefined">
+      <el-breadcrumb-item 
+        v-for="(item, i) in breadcrumbPath" 
+        :key="i" 
+        :to="routerGo(item)"
+        >
         {{item.title}}
       </el-breadcrumb-item>
     </el-breadcrumb>
@@ -26,6 +30,18 @@ export default {
     ...mapState({
       breadcrumbPath: state => state.Widget.breadcrumb
     })
+  },
+  methods: {
+    routerGo(item) {
+      item.name ? { name: item.name } : undefined
+      return item.name ? 
+      {
+        name: item.name,
+        params: item.params
+      }
+      : 
+      undefined
+    }
   }
 
 }

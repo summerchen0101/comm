@@ -3,7 +3,19 @@ export const MemberReport = {
   name: 'MemberReport',
   title: "會員報表",
   props: { funcKey: 1501 },
-  component: () => import('./component/MemberReport/MemberReport.vue')
+  component: () => import('./component/MemberReport/MemberReport.vue'),
+  children: [
+    {
+      path: '/report/member/search/:startAt/:endAt/:account',
+      name: 'MemberReportInfo',
+      component: () => import('./component/MemberReport/MemberReportInfo.vue'),
+    },
+    {
+      path: '/report/member/search/:startAt/:endAt/:account/:gameTypeId',
+      name: 'MemberGameReport',
+      component: () => import('./component/MemberReport/MemberGameReport.vue'),
+    },
+  ]
 }
 export const GameReport = {
   path: '/report/game',

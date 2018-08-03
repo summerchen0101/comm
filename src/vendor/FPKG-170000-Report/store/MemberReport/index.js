@@ -6,12 +6,7 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 
-import MemberReport from './MemberReport'
-
 const store = {
-  modules: {
-    MemberReport
-  },
   state,
   getters,
   mutations,

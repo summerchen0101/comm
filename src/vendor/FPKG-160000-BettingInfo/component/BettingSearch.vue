@@ -88,9 +88,9 @@ export default {
     return {
       gameTypeOpts: gameType,
       breadcrumbPath: [
-        {link: "/", title: "首頁"},
-        {link: null, title: "注單資訊"},
-        {link: null, title: "注單查詢"},
+        {name: "Home", title: "首頁"},
+        {name: null, title: "注單資訊"},
+        {name: null, title: "注單查詢"},
       ],
       searchForm: {
         type: 1,

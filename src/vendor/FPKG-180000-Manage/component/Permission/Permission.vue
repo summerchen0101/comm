@@ -13,9 +13,9 @@ export default {
   data() {
     return {
       breadcrumbPath: [
-        {link: "/", title: "首頁"},
-        {link: null, title: "後台管理"},
-        {link: null, title: "權限管理"},
+        {name: "Home", title: "首頁"},
+        {name: null, title: "後台管理"},
+        {name: null, title: "權限管理"},
       ]
     }
   },

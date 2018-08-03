@@ -85,9 +85,9 @@ export default {
   data() {
     return {
       breadcrumbPath: [
-        {link: "/", title: "首頁"},
-        {link: null, title: "存提管理"},
-        {link: null, title: "出款帳戶管理"},
+        {name: "Home", title: "首頁"},
+        {name: null, title: "存提管理"},
+        {name: null, title: "出款帳戶管理"},
       ]
     }
   },
