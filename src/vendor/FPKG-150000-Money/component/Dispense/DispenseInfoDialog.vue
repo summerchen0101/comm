@@ -2,9 +2,11 @@
   <el-dialog
     :before-close="() => SWITCH_DISPENSE_INFO_DIALOG(false)"
     :visible.sync="dialogVisible"
+    :show-close="false"
     width="500px">
     <div slot="title">
       <span class="el-dialog__title">{{dispense.number}} 資訊</span>
+      <!-- <el-button type="info" class="float-right" @click="onCopyText">複製資訊</el-button> -->
     </div>
     <el-form label-width="80px" label-position="left">
       <el-form-item label="帳號">
@@ -54,8 +56,10 @@ import {
   SET_DISPENSE_STATUS,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool'
 
 export default {
+  mixins: [commonTool],
   data() {
     return {
     }
@@ -66,6 +70,16 @@ export default {
       dispense: state => state.Money.Dispense.dispense,
       dialogVisible: state => state.Money.Dispense.dispenseInfoDialogVisible,
     }),
+    copyText() {
+      return [
+        {title: '帳號', content: this.dispense.account},
+        {title: '銀行代碼', content: this.dispense.bankInfo.bankCode},
+        {title: '分行名稱', content: this.dispense.bankInfo.branchName},
+        {title: '戶名', content: this.dispense.bankInfo.accountName},
+        {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
+        {title: '出款點數', content: this.dispense.dispensePoint},
+      ]
+    }
   },
   methods: {
     ...mapMutations([

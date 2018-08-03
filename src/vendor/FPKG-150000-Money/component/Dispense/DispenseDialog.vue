@@ -1,9 +1,12 @@
 <template>
   <el-dialog
-    :title="`${dispense.number} 審核`"
     :before-close="() => SWITCH_DISPENSE_DIALOG(false)"
     :visible.sync="dialogVisible"
     width="500px">
+    <div slot="title">
+      <span class="el-dialog__title">{{dispense.number}} 審核</span>
+      <el-button type="info" class="float-right" @click="onCopyText">複製資訊</el-button>
+    </div>
     <el-form label-width="80px" 
               ref="dispenseForm" 
               :model="form" 
@@ -86,6 +89,16 @@ export default {
           { required: this.type === 'confirm', message: '出款帳戶為必填', trigger: 'blur' },
         ],
       }
+    },
+    copyText() {
+      return [
+        {title: '帳號', content: this.dispense.account},
+        {title: '銀行代碼', content: this.dispense.bankInfo.bankCode},
+        {title: '分行名稱', content: this.dispense.bankInfo.branchName},
+        {title: '戶名', content: this.dispense.bankInfo.accountName},
+        {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
+        {title: '出款點數', content: this.dispense.dispensePoint},
+      ]
     }
   },
   methods: {
