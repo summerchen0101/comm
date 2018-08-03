@@ -117,40 +117,40 @@ export default [
     ]
   },
   {
-    name: "Platform",
+    name: "Manage",
     title: "後台管理",
-    path: "/platform",
+    path: "/manage",
     icon: "users",
     funcKey: 16,
     children: [
       {
-        name: "PlatformAccount",
+        name: "Users",
         title: "帳號管理",
-        path: "/platform/account",
+        path: "/manage/users",
         funcKey: 1601,
       },
       {
         name: "Permission",
         title: "權限管理",
-        path: "/platform/permission",
+        path: "/manage/permission",
         funcKey: 1602,
       },
       {
         name: "IP",
         title: "IP管理",
-        path: "/platform/ip",
+        path: "/manage/ip",
         funcKey: 1603,
       },
       {
-        name: "OperatingRecord",
-        title: "操作記錄",
-        path: "/platform/operating-record",
+        name: "OperatingLog",
+        title: "操作日誌",
+        path: "/manage/operating-log",
         funcKey: 1604,
       },
       {
-        name: "LoginRecord",
-        title: "登入記錄",
-        path: "/platform/login-record",
+        name: "LoginLog",
+        title: "登入日誌",
+        path: "/manage/login-log",
         funcKey: 1605,
       },
     ]

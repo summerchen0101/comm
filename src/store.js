@@ -8,6 +8,8 @@ import Config from './vendor/FPKG-10000-Config/store'
 import Announce from './vendor/FPKG-140000-Announce/store'
 import Money from './vendor/FPKG-150000-Money/store'
 import BettingInfo from './vendor/FPKG-160000-BettingInfo/store'
+import Report from './vendor/FPKG-170000-Report/store'
+import Manage from './vendor/FPKG-180000-Manage/store'
 
 Vue.use(Vuex)
 
@@ -21,6 +23,8 @@ const store = {
     Announce,
     Money,
     BettingInfo,
+    Report,
+    Manage,
   },
 };
 
