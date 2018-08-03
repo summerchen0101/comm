@@ -6,9 +6,11 @@
                 :model="searchForm"
                 :rules="searchFormRules">
         <el-form-item label="類型">
-          <el-input v-model="searchForm.type" placeholder="類型"></el-input>
+          <el-select v-model="searchForm.type" prop="type">
+            <el-option v-for="t in gameTypeOpts" :key="t.value" :label="t.label" :value="t.value"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="注單編號">
+        <el-form-item label="注單編號" prop="number">
           <el-input v-model="searchForm.number" placeholder="搜尋注單編號"></el-input>
         </el-form-item>
         <el-form-item class="float-right mr-0">
@@ -18,48 +20,53 @@
         </el-form-item>
       </el-form>
     </SearchBar>
-    <div class="table-responsive mt-3">
+    <div class="table-responsive mt-3" v-if="bettingInfo">
       <table class="table table-bordered">
         <tbody>
           <tr>
             <th>注單編號</th>
-            <td></td>
+            <td>{{bettingInfo.number || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>下注時間</th>
-            <td></td>
+            <td>{{bettingInfo.betTime || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>IP</th>
-            <td></td>
+            <td>{{bettingInfo.ip || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>帳號(暱稱)</th>
-            <td></td>
+            <td v-if="bettingInfo.account">
+              {{bettingInfo.account}}
+              ({{bettingInfo.nick}})
+            </td>
+            <td v-else>暫無資料</td>
           </tr>
           <tr>
             <th>遊戲</th>
-            <td></td>
+            <td>{{bettingInfo.gameType || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>投注內容</th>
-            <td></td>
+            <td>{{bettingInfo.betTarget || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>投注金額</th>
-            <td></td>
+            <td>{{typeof bettingInfo.betAmount === 'number' ?  bettingInfo.betAmount : "暫無資料"}}</td> 
           </tr>
           <tr>
             <th>有效金額</th>
-            <td></td>
+            <td>{{typeof bettingInfo.realAmount === 'number' ?  bettingInfo.realAmount : "暫無資料"}}</td>            
           </tr>
           <tr>
             <th>中獎金額</th>
-            <td></td>
+            <td>{{typeof bettingInfo.winAmount === 'number' ?  bettingInfo.winAmount : "暫無資料"}}</td>
           </tr>
           <tr>
             <th>會員結果</th>
-            <td></td>
+            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{bettingInfo.betResult}}</td>
+            <td v-else>暫無資料</td>
           </tr>
         </tbody>
       </table>
@@ -69,20 +76,24 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { mapState } from 'vuex';
+
 
 export default {
   components: {
   },
   data() {
     return {
+      gameTypeOpts: gameType,
       breadcrumbPath: [
         {link: "/", title: "首頁"},
         {link: null, title: "注單資訊"},
         {link: null, title: "注單查詢"},
       ],
       searchForm: {
-        type: "",
+        type: 1,
         number: ""
       },
       searchFormRules: {
@@ -95,10 +106,20 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      bettingInfo: state => state.BettingInfo.bettingInfo
+    })
+  },
 
   methods: {
     onSearchSubmit() {
-
+      this.$refs.searchForm.validate((valid) => {
+        console.log(valid)
+        if (valid) {
+          this.$store.dispatch(GET_BETTING_INFO, this.searchForm)
+        }
+      });
     }
   },
   

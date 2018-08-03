@@ -186,3 +186,14 @@ export const SET_PRIMARY_DISPENSE_ACC = "SET_PRIMARY_DISPENSE_ACC"
 // mutations
 export const SWITCH_DISPENSE_ACC_DIALOG = "SWITCH_DISPENSE_ACC_DIALOG"
 export const GOT_DISPENSE_ACC_LIST = "GOT_DISPENSE_ACC_LIST"
+
+/*
+  FPKG-160000-Money: BettingInfo
+*/
+
+// actions
+export const GET_BETTING_INFO = "GET_BETTING_INFO"
+
+// mutations
+export const GOT_BETTING_INFO = "GOT_BETTING_INFO"
+

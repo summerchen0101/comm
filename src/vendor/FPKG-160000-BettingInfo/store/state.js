@@ -2,6 +2,7 @@
 
 
 const state = {
+  bettingInfo: null
 };
 
 
