@@ -7,12 +7,13 @@
     >
       <HeaderSysMenu v-if="showSysMenu"></HeaderSysMenu>
     </transition> -->
-    
     <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
       <i class="el-icon-menu" style="margin-right: 15px"></i>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item v-for="m,i in menu" :key="m.name" :command="m.name">
-          <font-awesome-icon :icon="m.icon || 'th-large'" />
+        <el-dropdown-item v-for="m,i in menu" :key="m.name" :command="m.name" :class="{'sys-menu-active': matchRoute(m.name)}">
+          <span class="sys-menu-icon">
+            <font-awesome-icon :icon="m.icon || 'th-large'" />
+          </span>
           <span style="margin-left: 10px">{{m.title}}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
@@ -50,7 +51,13 @@ export default {
   methods: {
     onClick(target) {
       this.$router.push({name: target})
+    },
+    matchRoute(name) {
+      return this.$route.matched.findIndex(r => r.name === name) > -1
     }
+  },
+  mounted() {
+    console.log(this.$route)
   }
   
   
@@ -58,5 +65,11 @@ export default {
 </script>
 
 <style lang="stylus">
-
+.el-dropdown-menu__item.sys-menu-active,
+.el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus
+  color: $TME-100-second-color
+.sys-menu-icon
+  display: inline-block 
+  width: 14px
+  text-align: center
 </style>
