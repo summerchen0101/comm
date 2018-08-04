@@ -117,11 +117,4 @@ export default {
 </script>
 
 <style lang="stylus">
-#MemberGameReport 
-  table 
-    th, td 
-      font-size: 14px
-      color: #555
-    th 
-      background-color: #eee 
 </style>

@@ -22,7 +22,24 @@ export const GameReport = {
   name: 'GameReport',
   title: "遊戲報表",
   props: { funcKey: 1502 },
-  component: () => import('./component/GameReport/GameReport.vue')
+  component: () => import('./component/GameReport/GameReport.vue'),
+  children: [
+    {
+      path: '/report/game/search/:startAt/:endAt',
+      name: 'GameTotalReport',
+      component: () => import('./component/GameReport/GameTotalReport.vue'),
+    },
+    {
+      path: '/report/game/search/:startAt/:endAt/:gameTypeId',
+      name: 'GameTypeReport',
+      component: () => import('./component/GameReport/GameTypeReport.vue'),
+    },
+    {
+      path: '/report/game/search/:startAt/:endAt/:gameTypeId/:gamePlayId',
+      name: 'GamePlayReport',
+      component: () => import('./component/GameReport/GamePlayReport.vue'),
+    },
+  ]
 }
 
 export const Report = {

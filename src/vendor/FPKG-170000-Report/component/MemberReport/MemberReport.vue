@@ -117,7 +117,7 @@ export default {
     width: 160px
   table 
     th, td 
-      font-size: 14px
+      font-size: 13px
       color: #555
     th 
       background-color: #eee 
