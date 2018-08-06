@@ -30,7 +30,9 @@ const mutations = {
 
   [SWITCH_DEPOSIT_ACC_DIALOG](state, status) {
     state.dialogVisible = status
-    EventsHub.$emit("Money:clearDepositAccForm")
+    if(status) {
+      EventsHub.$emit("Money:clearDepositAccForm")
+    }
   },
 }
 

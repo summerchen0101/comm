@@ -4,6 +4,10 @@ export const payType = [
   {label: '信用卡', value: 3},
   {label: '銀行轉帳(大額)', value: 4},
 ]
+export const status = [
+  {label: '啟用', value: 1},
+  {label: '停用', value: 2},
+]
 export const dispenseTicketStatus = [
   {label: '暫存', value: 0},
   {label: '成功', value: 1},

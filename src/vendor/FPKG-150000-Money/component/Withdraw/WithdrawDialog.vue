@@ -90,10 +90,8 @@ export default {
       SWITCH_WITHDRAW_DIALOG
     ]),
     clearForm() {
+      setTimeout(() => this.$refs.withdrawForm.clearValidate())
       this.form = Object.assign({}, initForm)
-      if(this.$refs.withdrawForm) {
-        this.$refs.withdrawForm.resetFields();
-      }
     },
     onChangeStatus(action) {
       this.$refs.withdrawForm.validate((valid) => {

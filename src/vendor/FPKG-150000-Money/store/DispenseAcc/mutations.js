@@ -28,7 +28,9 @@ const mutations = {
 
   [SWITCH_DISPENSE_ACC_DIALOG](state, status) {
     state.dialogVisible = status
-    EventsHub.$emit("Money:clearDispenseAccForm")
+    if(status) {
+      EventsHub.$emit("Money:clearDispenseAccForm")
+    }
   },
 }
 

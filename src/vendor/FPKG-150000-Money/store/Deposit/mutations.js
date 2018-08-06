@@ -64,7 +64,9 @@ const mutations = {
   },
   [SWITCH_DEPOSIT_DIALOG](state, status) {
     state.depositDialogVisible = status
-    EventsHub.$emit("deposit:clearForm")
+    if(status) {
+      EventsHub.$emit("deposit:clearForm")
+    }
   },
   [SWITCH_DEPOSIT_INFO_DIALOG](state, status) {
     state.depositInfoDialogVisible = status

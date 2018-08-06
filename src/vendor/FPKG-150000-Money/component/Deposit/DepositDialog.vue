@@ -120,10 +120,8 @@ export default {
       SWITCH_DEPOSIT_DIALOG
     ]),
     clearForm() {
+      setTimeout(() => this.$refs.depositForm.clearValidate())
       this.form = Object.assign({}, initForm)
-      if(this.$refs.depositForm) {
-        this.$refs.depositForm.resetFields();
-      }
     },
     onChangeStatus(action) {
       this.$refs.depositForm.validate((valid) => {

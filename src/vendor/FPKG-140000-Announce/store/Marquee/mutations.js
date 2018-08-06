@@ -26,7 +26,9 @@ const mutations = {
 
   [SWITCH_MARQUEE_DIALOG](state, status) {
     state.dialogVisible = status
-    EventsHub.$emit("Announce:clearMarqueeForm")
+    if(status) {
+      EventsHub.$emit("Announce:clearMarqueeForm")
+    }
   },
 }
 

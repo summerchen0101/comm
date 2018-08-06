@@ -42,6 +42,6 @@ export default {
         message: '已複製資訊',
         duration: 2000,
       });
-    }
+    },
   }
 }

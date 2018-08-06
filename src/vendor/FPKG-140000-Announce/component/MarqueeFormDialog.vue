@@ -115,13 +115,12 @@ export default {
       });
     },
     setForm(formData) {
+      setTimeout(() => this.$refs.marqueeForm.clearValidate())
       this.form = Object.assign({}, formData)
     },
     clearForm() {
+      setTimeout(() => this.$refs.marqueeForm.clearValidate())
       this.form = Object.assign({}, initForm)
-      if(this.$refs.marqueeForm) {
-        this.$refs.marqueeForm.resetFields();
-      }
     },
 
     onStartAtChanged() {

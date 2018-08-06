@@ -106,10 +106,7 @@ export default {
       SWITCH_DISPENSE_DIALOG
     ]),
     clearForm() {
-      this.form = Object.assign({}, initForm)
-      if(this.$refs.dispenseForm) {
-        this.$refs.dispenseForm.resetFields();
-      }
+      setTimeout(() => this.$refs.dispenseForm.clearValidate())
     },
     onChangeStatus(action) {
       this.$refs.dispenseForm.validate((valid) => {

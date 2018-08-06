@@ -111,13 +111,12 @@ export default {
       });
     },
     setForm(formData) {
+      setTimeout(() => this.$refs.depositAccForm.clearValidate())
       this.form = Object.assign({}, formData)
     },
     clearForm() {
+      setTimeout(() => this.$refs.depositAccForm.clearValidate())
       this.form = Object.assign({}, initForm)
-      if(this.$refs.depositAccForm) {
-        this.$refs.depositAccForm.resetFields();
-      }
     },
   },
   

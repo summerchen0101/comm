@@ -61,7 +61,9 @@ const mutations = {
   },
   [SWITCH_WITHDRAW_DIALOG](state, status) {
     state.withdrawDialogVisible = status
-    EventsHub.$emit("withdraw:clearForm")
+    if(status) {
+      EventsHub.$emit("withdraw:clearForm")
+    }
   },
   [CHANGED_WITHDRAW_LIST_TYPE](state, status) {
     state.listType = status

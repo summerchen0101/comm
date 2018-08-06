@@ -55,7 +55,9 @@ const mutations = {
   },
   [SWITCH_ACCOUNT_DIALOG](state, status) {
     state.dialogVisible = status
-    EventsHub.$emit("account:clearAccountForm")
+    if(status) {
+      EventsHub.$emit("account:clearAccountForm")
+    }
   },
 }
 

@@ -63,7 +63,9 @@ const mutations = {
   },
   [SWITCH_DISPENSE_DIALOG](state, status) {
     state.dispenseDialogVisible = status
-    EventsHub.$emit("dispense:clearForm")
+    if(status) {
+      EventsHub.$emit("dispense:clearForm")
+    }
   },
   [CHANGED_DISPENSE_LIST_TYPE](state, status) {
     state.listType = status
