@@ -25,7 +25,7 @@
       </el-form-item>
       <el-form-item label="權限" prop="perGroup">
         <el-select v-model="form.perGroup">
-          <el-option v-for="opt in perGroupList" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
+          <el-option v-for="opt in perGroupOpts" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="IP" prop="ip">
@@ -88,7 +88,7 @@ export default {
   computed: {
     ...mapState({
       dialogVisible: state => state.Manage.Users.dialogVisible,
-      perGroupList: state => state.Manage.Users.perGroupList,
+      perGroupOpts: state => state.Manage.Users.perGroupOpts,
     }),
     formRules() {
       let pwConfirmValidator = (rules, value, cb) => {

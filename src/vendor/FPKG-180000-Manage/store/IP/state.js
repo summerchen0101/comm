@@ -4,7 +4,7 @@ const state = {
   ipList: [],
   ipPager: null,
   ip: {},
-  perGroupList: [],
+  perGroupOpts: [],
 };
 
 

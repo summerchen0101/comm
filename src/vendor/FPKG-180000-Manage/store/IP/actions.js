@@ -6,8 +6,8 @@ import {
   EDIT_IP,
   DEL_IP,
   SWITCH_IP_DIALOG,
-  GET_PERMISSION_GROUP_LIST,
-  GOT_PERMISSION_GROUP_LIST,
+  GET_PERMISSION_GROUP_OPTIONS,
+  GOT_PERMISSION_GROUP_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'

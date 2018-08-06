@@ -100,7 +100,7 @@ import UserFormDialog from '@/vendor/FPKG-180000-Manage/component/Users/UserForm
 import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_USER_LIST, 
-  GET_PERMISSION_GROUP_LIST, 
+  GET_PERMISSION_GROUP_OPTIONS, 
   SWITCH_USER_DIALOG,
   DEL_USER,
   SET_BREADCRUMB,
@@ -183,7 +183,7 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_PERMISSION_GROUP_LIST)
+    this.$store.dispatch(GET_PERMISSION_GROUP_OPTIONS)
     this.$store.dispatch(GET_USER_LIST, this.searchForm)
   },
 }

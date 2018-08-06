@@ -68,7 +68,7 @@ import IPFormDialog from '@/vendor/FPKG-180000-Manage/component/IP/IPFormDialog.
 import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_IP_LIST, 
-  GET_PERMISSION_GROUP_LIST, 
+  GET_PERMISSION_GROUP_OPTIONS, 
   SWITCH_IP_DIALOG,
   DEL_IP,
   SET_BREADCRUMB,

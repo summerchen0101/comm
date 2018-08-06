@@ -6,7 +6,9 @@ const state = {
   userList: [],
   userPager: null,
   user: {},
-  perGroupList: [],
+  perGroupOpts: [],
+  ipOpts: [],
+  statusOpts: [],
 };
 
 

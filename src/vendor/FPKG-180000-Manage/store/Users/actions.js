@@ -6,8 +6,12 @@ import {
   EDIT_USER,
   DEL_USER,
   SWITCH_USER_DIALOG,
-  GET_PERMISSION_GROUP_LIST,
-  GOT_PERMISSION_GROUP_LIST,
+  GET_PERMISSION_GROUP_OPTIONS,
+  GOT_PERMISSION_GROUP_OPTIONS,
+  GET_IP_OPTIONS,
+  GOT_IP_OPTIONS,
+  GET_USER_STATUS_OPTIONS,
+  GOT_USER_STATUS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
@@ -16,10 +20,22 @@ import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
 import Router from '@/router'
 
 const actions = {
-  async [GET_PERMISSION_GROUP_LIST]({commit}) {
+  async [GET_IP_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/whitelist')
+    if(res.code === 200001) {
+      commit(GOT_IP_OPTIONS, res.result)
+    }
+  },
+  async [GET_USER_STATUS_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/active')
+    if(res.code === 200001) {
+      commit(GOT_USER_STATUS_OPTIONS, res.result)
+    }
+  },
+  async [GET_PERMISSION_GROUP_OPTIONS]({commit}) {
     let res = await apiHub('get', 'api/v1/dropdown/group')
     if(res.code === 200001) {
-      commit(GOT_PERMISSION_GROUP_LIST, res.result)
+      commit(GOT_PERMISSION_GROUP_OPTIONS, res.result)
     }
   },
   async [GET_USER_LIST]({commit}, _d) {
