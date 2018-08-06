@@ -74,6 +74,8 @@ const mutations = {
         betTime: r.bet_time,
         ip: r.ip,
         betTarget: r.game_type,
+        account: r.account,
+        nick: r.nickname,
 
         betAmount: r.bet_amount,
         realAmount: r.effective_amount,

@@ -45,7 +45,10 @@
               <span>{{r.betTime}}</span><br>
               <span class="text-info">{{r.ip}}</span>
             </td>
-            <td>{{r.account}}</td>
+            <td>
+              <span v-if="r.account">{{r.account}}({{r.nick}})</span>
+              <span v-else>-</span>
+            </td>
             <td>{{r.betTarget}}</td>
             <td>{{toCurrency(r.betAmount)}}</td>
             <td>{{toCurrency(r.realAmount)}}</td>
