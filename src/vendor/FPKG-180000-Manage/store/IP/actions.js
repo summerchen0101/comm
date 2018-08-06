@@ -31,7 +31,7 @@ const actions = {
   },
   async [ADD_IP]({commit, dispatch}, _d) {
     let data = {
-      ip: _d.ip.join('.'),
+      ip: _d.ipColumns.join('.'),
       description: _d.desc
     }
     let res = await apiHub('post', 'api/v1/whitelist', data)
@@ -43,13 +43,8 @@ const actions = {
   },
   async [EDIT_IP]({commit, dispatch}, _d) {
     let data = {
-      account: _d.account,
-      name: _d.nick,
-      group_id: _d.perGroup,
-      ip: _d.ip,
-      password: _d.pw,
-      password_confirmation: _d.pw_confirm,
-      token: "",
+      ip: _d.ipColumns.join('.'),
+      description: _d.desc
     }
     let res = await apiHub('put', `api/v1/whitelist/${_d.id}`, data)
     if(res.code === 200001) {

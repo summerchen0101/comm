@@ -10,10 +10,12 @@ const mutations = {
   [GOT_IP_LIST](state, result) {
     state.ipList = result.data.map(t => ({
       id: t.id,
-      ip: t.ip.split('.'),
-      desc: t.description,
+      ip: t.ip,
+      ipColumns: t.ip.split('.'),
+      desc: t.description || '-',
       count: t.user_count,
-      createAt: t.created_at
+      createdAt: t.created_at,
+      operation: t.operation
     }))
     state.ipPager = {
       page: result.current_page,

@@ -12,24 +12,33 @@
       :rules="formRules"
       ref="ipForm"
       >
-      <el-form-item label="IP" prop="ip[0]">
+      <el-form-item label="IP">
         <el-col :span="4">
-          <el-input v-model.trim="form.ip[0]"></el-input>
+          <el-form-item prop="ipColumns[0]">
+            <el-input v-model.trim="form.ipColumns[0]"></el-input>
+          </el-form-item>
         </el-col>
         <el-col :span="2" class="text-center">-</el-col>
         <el-col :span="4">
-          <el-input v-model.trim="form.ip[1]"></el-input>
+          <el-form-item prop="ipColumns[1]">
+            <el-input v-model.trim="form.ipColumns[1]"></el-input>
+          </el-form-item>
         </el-col>
         <el-col :span="2" class="text-center">-</el-col>
         <el-col :span="4">
-          <el-input v-model.trim="form.ip[2]"></el-input>
+          <el-form-item prop="ipColumns[2]">
+            <el-input v-model.trim="form.ipColumns[2]"></el-input>
+          </el-form-item>
         </el-col>
         <el-col :span="2" class="text-center">-</el-col>
         <el-col :span="4">
-          <el-input v-model.trim="form.ip[3]"></el-input>
+          <el-form-item prop="ipColumns[3]">
+            <el-input v-model.trim="form.ipColumns[3]"></el-input>
+          </el-form-item>
         </el-col>
         <el-col :span="24">
-          <span class="text-danger">＊*表示所填IP對應段不做限制，IP首段不能為*。</span>
+          <span class="text-danger">填「*」表示所填IP對應段不做限制，IP首段不能填「*」。</span><br>
+          <span class="text-danger">ex: 192.168.0.*</span>
         </el-col>
       </el-form-item>
       <el-form-item label="IP描述" prop="desc">
@@ -57,7 +66,7 @@ import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-12000
 import { status } from '@/vendor/FPKG-10000-Config/enum'
 
 let initForm = {
-        ip: ['', '', '', ''],
+        ipColumns: ['', '', '', ''],
         desc: ""
       }
 export default {
@@ -71,17 +80,27 @@ export default {
       dialogVisible: state => state.Manage.IP.dialogVisible,
     }),
     formRules() {
-      let pwConfirmValidator = (rules, value, cb) => {
-        if(this.form.pw != this.form.pw_confirm) {
+      let ipFirstColValidator = (rules, value, cb) => {
+        if(/^\*$/.test(value)) {
           cb(false)
         }else {
           cb()
         }
       }
       return {
-        // 'ip[0]': [
-        //   { required: true, message: 'IP為必填', trigger: 'blur' },
-        // ],
+        'ipColumns[0]': [
+          { required: true, message: '不可為空', trigger: 'blur' },
+          { validator: ipFirstColValidator, message: '不可為*', trigger: 'blur' },
+        ],
+        'ipColumns[1]': [
+          { required: true, message: '不可為空', trigger: 'blur' },
+        ],
+        'ipColumns[2]': [
+          { required: true, message: '不可為空', trigger: 'blur' },
+        ],
+        'ipColumns[3]': [
+          { required: true, message: '不可為空', trigger: 'blur' },
+        ],
       }
     }
   },

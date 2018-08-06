@@ -17,7 +17,7 @@
         label="IP">
       </el-table-column>
       <el-table-column
-        width="100"
+        width="200"
         prop="desc"
         label="描述">
       </el-table-column>
