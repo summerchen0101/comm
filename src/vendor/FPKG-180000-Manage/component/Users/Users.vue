@@ -15,7 +15,7 @@
         </el-form-item>
         <el-form-item label="狀態">
           <el-select v-model="searchForm.status" prop="status">
-            <el-option v-for="t in statusOpts" :key="t.value" :label="t.label" :value="t.value"></el-option>
+            <el-option v-for="t in statusOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item class="float-right mr-0">
@@ -59,7 +59,7 @@
         label="狀態">
         <template slot-scope="scope">
           <span :class="{'text-danger': scope.row.status == 2, 'text-success': scope.row.status == 1}">
-            {{toEnum('status', scope.row.status)}}
+            {{scope.row.statusName}}
           </span>
         </template>
       </el-table-column>
@@ -101,13 +101,14 @@ import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.v
 import { 
   GET_USER_LIST, 
   GET_PERMISSION_GROUP_OPTIONS, 
+  GET_IP_OPTIONS, 
+  GET_USER_STATUS_OPTIONS, 
   SWITCH_USER_DIALOG,
   DEL_USER,
   SET_BREADCRUMB,
   GET_HISTORY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { status } from '@/vendor/FPKG-10000-Config/enum'
 import { toEnum } from '@/vendor/FPKG-120000-Util/other'
 
 export default {
@@ -124,20 +125,20 @@ export default {
       ],
       searchForm: {
         account: "",
-        status: ""
+        status: 0
       },
       searchFormRules: {
         account: [
           // { required: true, message: '帳號為必填', trigger: 'blur' },
         ],
       },
-      statusOpts: status.concat({label: '全部', value: ''})
     }
   },
   computed: {
     ...mapState({
       userList: state => state.Manage.Users.userList,
       userPager: state => state.Manage.Users.userPager,
+      statusOpts: state => state.Manage.Users.statusOpts,
     }),
   },
   methods: {
@@ -184,6 +185,8 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_PERMISSION_GROUP_OPTIONS)
+    this.$store.dispatch(GET_IP_OPTIONS)
+    this.$store.dispatch(GET_USER_STATUS_OPTIONS)
     this.$store.dispatch(GET_USER_LIST, this.searchForm)
   },
 }

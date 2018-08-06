@@ -20,17 +20,22 @@ const mutations = {
     state.statusOpts = list
   },
   [GOT_USER_LIST](state, result) {
-    state.userList = result.data.map(t => ({
-      id: t.id,
-      account: t.account,
-      nick: t.name,
-      group: t.group,
-      permission: t.group.name,
-      loginAt: t.login_at || "-",
-      createdAt: t.created_at,
-      status: t.active,
-      operation: t.operation,
-    }))
+    state.userList = result.data.map(t => {
+      let statusIndex = state.statusOpts.findIndex(opt => opt.id === t.active)
+      return {
+        id: t.id,
+        account: t.account,
+        nick: t.name,
+        group: t.group,
+        permission: t.group.name,
+        loginAt: t.login_at || "-",
+        createdAt: t.created_at,
+        status: t.active,
+        statusName: statusIndex > -1 ? state.statusOpts[statusIndex].name : '?',
+        ip: t.ip.map(t => t.id),
+        operation: t.operation,
+      }
+    })
     state.userPager = {
       page: result.current_page,
       count: result.total,

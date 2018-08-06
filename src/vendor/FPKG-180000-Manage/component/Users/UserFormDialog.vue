@@ -20,7 +20,7 @@
       </el-form-item>
       <el-form-item v-if="form.id" label="狀態" prop="status">
         <el-select v-model="form.status">
-          <el-option v-for="opt in statusOpts" :label="opt.label" :value="opt.value" :key="opt.value"></el-option>
+          <el-option v-for="opt in statusOpts.filter(t => t.id !== 0)" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="權限" prop="perGroup">
@@ -29,7 +29,9 @@
         </el-select>
       </el-form-item>
       <el-form-item label="IP" prop="ip">
-        <el-input v-model.trim="form.ip"></el-input>
+        <el-select v-model="form.ip" multiple>
+          <el-option v-for="opt in ipOpts" :label="opt.ip" :value="opt.id" :key="opt.id"></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="密碼" prop="pw">
         <el-input type="password" v-model.trim="form.pw"></el-input>
@@ -56,7 +58,6 @@ import {
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
-import { status } from '@/vendor/FPKG-10000-Config/enum'
 
 let initForm = {
         id: "",
@@ -64,7 +65,7 @@ let initForm = {
         nick: "",
         status: 1,
         perGroup: 1,
-        ip: "",
+        ip: [],
         pw: "",
         pw_confirm: "",
       }
@@ -82,13 +83,14 @@ export default {
           return dateBefore(this.form.startAt, val) 
         }
       },
-      statusOpts: status
     }
   },
   computed: {
     ...mapState({
       dialogVisible: state => state.Manage.Users.dialogVisible,
       perGroupOpts: state => state.Manage.Users.perGroupOpts,
+      ipOpts: state => state.Manage.Users.ipOpts,
+      statusOpts: state => state.Manage.Users.statusOpts,
     }),
     formRules() {
       let pwConfirmValidator = (rules, value, cb) => {

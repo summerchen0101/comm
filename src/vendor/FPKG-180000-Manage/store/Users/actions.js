@@ -27,7 +27,7 @@ const actions = {
     }
   },
   async [GET_USER_STATUS_OPTIONS]({commit}) {
-    let res = await apiHub('get', 'api/v1/dropdown/active')
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: 'user'})
     if(res.code === 200001) {
       commit(GOT_USER_STATUS_OPTIONS, res.result)
     }
@@ -56,7 +56,8 @@ const actions = {
       account: _d.account,
       name: _d.nick,
       group_id: _d.perGroup,
-      ip: _d.ip,
+      ip_whitelist: _d.ip.map(t => ({id: t})),
+      active: _d.status,
       password: _d.pw,
       password_confirmation: _d.pw_confirm,
       token: "",
@@ -73,7 +74,8 @@ const actions = {
       account: _d.account,
       name: _d.nick,
       group_id: _d.perGroup,
-      ip: _d.ip,
+      ip_whitelist: _d.ip.map(t => ({id: t})),
+      active: _d.status,
       password: _d.pw,
       password_confirmation: _d.pw_confirm,
       token: "",
