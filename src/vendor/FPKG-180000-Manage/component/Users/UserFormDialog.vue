@@ -94,7 +94,7 @@ export default {
     }),
     formRules() {
       let pwConfirmValidator = (rules, value, cb) => {
-        if(this.form.pw != this.form.pw_confirm) {
+        if(this.form.pw != value) {
           cb(false)
         }else {
           cb()
