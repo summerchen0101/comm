@@ -7,10 +7,12 @@ import actions from './actions'
 import getters from './getters'
 
 import Users from './Users'
+import IP from './IP'
 
 const store = {
   modules: {
     Users,
+    IP,
   },
   state,
   getters,

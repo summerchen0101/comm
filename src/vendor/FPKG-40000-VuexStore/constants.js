@@ -243,9 +243,25 @@ export const GET_USER_LIST = "GET_USER_LIST"
 export const DEL_USER = "DEL_USER"
 export const ADD_USER = "ADD_USER"
 export const EDIT_USER = "EDIT_USER"
+export const GET_IP_OPTIONS = "GET_IP_OPTIONS"
 
 // mutations
 export const GOT_PERMISSION_GROUP_LIST = "GOT_PERMISSION_GROUP_LIST"
 export const SWITCH_USER_DIALOG = "SWITCH_USER_DIALOG"
 export const GOT_USER_LIST = "GOT_USER_LIST"
+export const GOT_IP_OPTIONS = "GOT_IP_OPTIONS"
+
+/*
+  FPKG-180000-Manage: IP
+*/
+
+// actions
+export const GET_IP_LIST = "GET_IP_LIST"
+export const DEL_IP = "DEL_IP"
+export const ADD_IP = "ADD_IP"
+export const EDIT_IP = "EDIT_IP"
+
+// mutations
+export const SWITCH_IP_DIALOG = "SWITCH_IP_DIALOG"
+export const GOT_IP_LIST = "GOT_IP_LIST"
 
