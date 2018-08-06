@@ -19,9 +19,9 @@ export default [
         funcKey: 1102,
       },
       {
-        name: "BankAccount",
+        name: "BankAcc",
         title: "銀行帳戶管理",
-        path: "/member/bank-accoount",
+        path: "/member/bank",
         funcKey: 1103,
       },
     ]
