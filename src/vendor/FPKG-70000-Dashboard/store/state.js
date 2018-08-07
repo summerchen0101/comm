@@ -1,5 +1,6 @@
 
 const state = {
+  funcKeyCount: 0,
   menu: [],
   isShowMobileMenu: false,
   isShowWebSysMenu: false,

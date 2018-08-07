@@ -10,6 +10,7 @@ import Users from './Users'
 import IP from './IP'
 import OperatingLog from './OperatingLog'
 import LoginLog from './LoginLog'
+import Permission from './Permission'
 
 const store = {
   modules: {
@@ -17,6 +18,7 @@ const store = {
     IP,
     OperatingLog,
     LoginLog,
+    Permission,
   },
   state,
   getters,

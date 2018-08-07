@@ -12,6 +12,18 @@ export const Permission = {
   props: { funcKey: 1602 },
   component: () => import('./component/Permission/Permission.vue')
 }
+export const CreatePermission = {
+  path: '/manage/permission/add',
+  name: 'CreatePermission',
+  title: "新增權限",
+  component: () => import('./component/Permission/PermissionDetail.vue')
+}
+export const ModifyPermission = {
+  path: '/manage/permission/add/:id',
+  name: 'ModifyPermission',
+  title: "編輯權限",
+  component: () => import('./component/Permission/PermissionDetail.vue')
+}
 export const IP = {
   path: '/manage/ip',
   name: 'IP',
@@ -44,6 +56,8 @@ export const Manage = {
   children: [
     Users,
     Permission,
+    CreatePermission,
+    ModifyPermission,
     IP,
     OperatingLog,
     LoginLog,

@@ -1,11 +1,65 @@
 <template>
   <div id="Permission">
-    權限管理
+    <PageTitle title="權限群組">
+      <el-button slot="btns" type="primary" @click="onClickAdd">
+        <font-awesome-icon icon="plus" />
+      </el-button>
+    </PageTitle>
+
+    <!-- 權限群組列表 -->
+    <el-table
+      :data="perGroupList"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="權限">
+      </el-table-column>
+      <el-table-column
+        width="80"
+        prop="count"
+        label="人數">
+      </el-table-column>
+      <el-table-column
+        width="180"
+        prop="createdAt"
+        label="建立時間">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="150">
+        <template slot-scope="scope">
+          <el-button size="mini" type="info" @click="onClickEdit(scope.row)">修改</el-button>
+          <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)">刪除</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="歷程"
+        width="80">
+        <template slot-scope="scope">
+          <el-button size="mini" :class="{'history-active': scope.row.operation}" @click="onCheckHistory(scope.row.id)">
+            <font-awesome-icon icon="file-alt" />
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <Paginator v-if="perGroupPager"
+              :on-page-changed="onPageChanged"
+              :count="perGroupPager.count"
+              :perpage="perGroupPager.perpage"></Paginator>
+    <HistoryDialog ></HistoryDialog>
   </div>
 </template>
 
 <script>
-import { SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { 
+  SET_BREADCRUMB,
+  GET_PERMISSION_GROUP_LIST,
+  GET_HISTORY,
+} from '@/vendor/FPKG-40000-VuexStore/constants'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -19,10 +73,37 @@ export default {
       ]
     }
   },
-  
+  computed: {
+    ...mapState({
+      perGroupList: state => state.Manage.Permission.perGroupList,
+      perGroupPager: state => state.Manage.Permission.perGroupPager,
+    }),
+  },
+  methods: {
+    onClickAdd() {
+      this.$router.push({name: 'CreatePermission'})
+    },
+    onClickEdit(item) {
+      this.$router.push({name: 'ModifyPermission', params: {id: item.id}})
+    },
+    onClickDel() {
+
+    },
+    onPageChanged(page) {
+      this.$store.dispatch(GET_PERMISSION_GROUP_LIST, { page })
+    },
+    onCheckHistory(id) {
+      this.$store.dispatch(GET_HISTORY, {
+          funcKey: this.$attrs.funcKey, 
+          id,
+          title: "權限修改歷程"
+        })
+    },
+  },
 
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.$store.dispatch(GET_PERMISSION_GROUP_LIST)
   }
 }
 </script>

@@ -2,6 +2,11 @@
 
 
 const state = {
+  fixedPerMenu: [],
+  defaultMenu: [],
+  perGroupList: [],
+  perGroupPager: null,
+  permission: {}
 };
 
 

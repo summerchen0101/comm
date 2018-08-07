@@ -19,6 +19,7 @@ const mutations = {
       }
       return arr
     }, [])
+    state.funcKeyCount = flattenPerMenu.length
     state.menu = filterMenu(defaultMenu, flattenPerMenu)
   },
   [SWITCH_MOBILE_MENU](state, payload) {
