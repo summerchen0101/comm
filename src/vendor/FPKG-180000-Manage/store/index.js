@@ -8,11 +8,13 @@ import getters from './getters'
 
 import Users from './Users'
 import IP from './IP'
+import OperatingLog from './OperatingLog'
 
 const store = {
   modules: {
     Users,
     IP,
+    OperatingLog,
   },
   state,
   getters,

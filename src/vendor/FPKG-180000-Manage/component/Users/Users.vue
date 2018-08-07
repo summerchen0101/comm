@@ -30,6 +30,7 @@
     <el-table
       :data="userList"
       stripe
+      class="mt-4"
       style="width: 100%">
       <el-table-column
         width="180"
