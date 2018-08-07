@@ -267,6 +267,18 @@ export const EDIT_IP = "EDIT_IP"
 export const SWITCH_IP_DIALOG = "SWITCH_IP_DIALOG"
 export const GOT_IP_LIST = "GOT_IP_LIST"
 
+
+/*
+  FPKG-180000-Manage
+*/
+
+// actions
+export const GET_USER_OPTIONS = "GET_USER_OPTIONS"
+
+// mutations
+export const GOT_USER_OPTIONS = "GOT_USER_OPTIONS"
+
+
 /*
   FPKG-180000-Manage: OperatingLog
 */
@@ -274,10 +286,18 @@ export const GOT_IP_LIST = "GOT_IP_LIST"
 // actions
 export const GET_OPERATING_LOG_LIST = "GET_OPERATING_LOG_LIST"
 export const GET_OPERATING_OPTIONS = "GET_OPERATING_OPTIONS"
-export const GET_USER_OPTIONS = "GET_USER_OPTIONS"
 
 // mutations
 export const GOT_OPERATING_LOG_LIST = "GOT_OPERATING_LOG_LIST"
 export const GOT_OPERATION_OPTIONS = "GOT_OPERATION_OPTIONS"
-export const GOT_USER_OPTIONS = "GOT_USER_OPTIONS"
+
+/*
+  FPKG-180000-Manage: LoginLog
+*/
+
+// actions
+export const GET_LOGIN_LOG_LIST = "GET_LOGIN_LOG_LIST"
+
+// mutations
+export const GOT_LOGIN_LOG_LIST = "GOT_LOGIN_LOG_LIST"
 

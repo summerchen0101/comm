@@ -3,7 +3,6 @@
 
 const state = {
   operatingOpts: [],
-  userOpts: [],
   operatingList: [],
   operatingPager: null,
 };

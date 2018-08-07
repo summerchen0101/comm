@@ -24,12 +24,12 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item label="帳號">
-          <el-select v-model="searchForm.users" multiple collapse-tags style="width: 240px">
+          <el-select v-model="searchForm.users" multiple collapse-tags style="width: 240px" placeholder="全部">
             <el-option v-for="opt in userOpts" :key="opt.id" :label="`${opt.account}(${opt.name})`" :value="opt.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="項目">
-          <el-select v-model="searchForm.funcTargets" multiple collapse-tags style="width: 240px">
+          <el-select v-model="searchForm.funcTargets" multiple collapse-tags style="width: 240px" placeholder="全部">
             <el-option v-for="opt in operatingOpts" :key="opt.id" :label="opt['zh-TW']" :value="opt.id"></el-option>
           </el-select>
         </el-form-item>
@@ -117,7 +117,7 @@ export default {
   computed: {
     ...mapState({
       operatingOpts: state => state.Manage.OperatingLog.operatingOpts,
-      userOpts: state => state.Manage.OperatingLog.userOpts,
+      userOpts: state => state.Manage.userOpts,
       operatingList: state => state.Manage.OperatingLog.operatingList,
       operatingPager: state => state.Manage.OperatingLog.operatingPager,
     }),
@@ -155,10 +155,13 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_USER_OPTIONS)
     await this.$store.dispatch(GET_OPERATING_OPTIONS)
-    this.searchForm.funcTargets = this.operatingOpts.map(opt => opt.id)
+    // this.searchForm.funcTargets = this.operatingOpts.map(opt => opt.id)
   }
 }
 </script>
 
 <style lang="stylus">
+#OperatingLog 
+  .el-input--small .el-input__inner
+    placeholder(#666)
 </style>

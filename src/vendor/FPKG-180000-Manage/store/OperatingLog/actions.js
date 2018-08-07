@@ -2,8 +2,6 @@
 import { 
   GET_OPERATING_OPTIONS,
   GOT_OPERATION_OPTIONS,
-  GET_USER_OPTIONS,
-  GOT_USER_OPTIONS,
   GET_OPERATING_LOG_LIST,
   GOT_OPERATING_LOG_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
@@ -17,12 +15,6 @@ const actions = {
     let res = await apiHub("get", "api/v1/dropdown/operation")
     if(res.code === 200001) {
       commit(GOT_OPERATION_OPTIONS, res.result)
-    }
-  },
-  async [GET_USER_OPTIONS]({commit}) {
-    let res = await apiHub("get", "api/v1/dropdown/user")
-    if(res.code === 200001) {
-      commit(GOT_USER_OPTIONS, res.result)
     }
   },
   async [GET_OPERATING_LOG_LIST]({commit}, _d) {

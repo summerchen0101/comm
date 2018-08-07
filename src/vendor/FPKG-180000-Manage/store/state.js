@@ -2,6 +2,8 @@
 
 
 const state = {
+  userOpts: [],
+  operatingOpts: [],
 };
 
 

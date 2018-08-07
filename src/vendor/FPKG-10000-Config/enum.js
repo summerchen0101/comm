@@ -8,6 +8,11 @@ export const status = [
   {label: '啟用', value: 1},
   {label: '停用', value: 2},
 ]
+export const loginStatus = [
+  {label: '登入成功', value: 1},
+  {label: '正常登出', value: 2},
+  {label: '強制登出', value: 3},
+]
 export const dispenseTicketStatus = [
   {label: '暫存', value: 0},
   {label: '成功', value: 1},

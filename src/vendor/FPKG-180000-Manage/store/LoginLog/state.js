@@ -2,6 +2,8 @@
 
 
 const state = {
+  loginList: [],
+  loginPager: null,
 };
 
 
