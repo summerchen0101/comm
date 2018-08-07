@@ -92,13 +92,12 @@
 
     <!-- 新增帳號 -->
     <UserFormDialog ref="UserFormDialog"></UserFormDialog>
-    <HistoryDialog ref="HistoryDialog"></HistoryDialog>
+    <HistoryDialog ></HistoryDialog>
   </div>
 </template>
 
 <script>
 import UserFormDialog from '@/vendor/FPKG-180000-Manage/component/Users/UserFormDialog.vue';
-import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_USER_LIST, 
   GET_PERMISSION_GROUP_OPTIONS, 
@@ -115,7 +114,6 @@ import { toEnum } from '@/vendor/FPKG-120000-Util/other'
 export default {
   components: {
     UserFormDialog,
-    HistoryDialog,
   },
   data() {
     return {

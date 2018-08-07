@@ -66,7 +66,6 @@
 
 <script>
 import DispenseAccDialog from '@/vendor/FPKG-150000-Money/component/DispenseAcc/DispenseAccDialog.vue';
-import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_DISPENSE_ACC_LIST, 
   SWITCH_DISPENSE_ACC_DIALOG,
@@ -80,7 +79,6 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
     DispenseAccDialog,
-    HistoryDialog,
   },
   data() {
     return {

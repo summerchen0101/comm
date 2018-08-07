@@ -53,13 +53,12 @@
 
     <!-- 新增跑馬燈 -->
     <MarqueeFormDialog ref="MarqueeFormDialog"></MarqueeFormDialog>
-    <HistoryDialog ref="HistoryDialog"></HistoryDialog>
+    <HistoryDialog ></HistoryDialog>
   </div>
 </template>
 
 <script>
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
-import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_MARQUEE_LIST, 
   SWITCH_MARQUEE_DIALOG,
@@ -72,7 +71,6 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
     MarqueeFormDialog,
-    HistoryDialog,
   },
   data() {
     return {

@@ -28,7 +28,9 @@ import MobileMenu from '@/vendor/FPKG-70000-Dashboard/component/MobileMenu.vue';
 import PageTitle from '@/vendor/FPKG-110000-Widget/component/PageTitle.vue';
 import Paginator from '@/vendor/FPKG-110000-Widget/component/Paginator.vue';
 import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue'
-import SearchBar from '@/vendor/FPKG-110000-Widget/component/SearchBar.vue'
+import SearchBar from '@/vendor/FPKG-110000-Widget/component/SearchBar.vue';
+import SubmitBar from '@/vendor/FPKG-110000-Widget/component/SubmitBar.vue';
+import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 
 Vue.component("Breadcrumb", Breadcrumb)
 Vue.component("MenuComponent", Menu)
@@ -37,6 +39,8 @@ Vue.component("PageTitle", PageTitle)
 Vue.component("Paginator", Paginator)
 Vue.component("LoadingCover", LoadingCover)
 Vue.component("SearchBar", SearchBar)
+Vue.component("SubmitBar", SubmitBar)
+Vue.component("HistoryDialog", HistoryDialog)
 Vue.config.productionTip = false
 
 new Vue({

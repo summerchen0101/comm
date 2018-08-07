@@ -59,13 +59,12 @@
 
     <!-- 新增IP -->
     <IPFormDialog ref="IPFormDialog"></IPFormDialog>
-    <HistoryDialog ref="HistoryDialog"></HistoryDialog>
+    <HistoryDialog></HistoryDialog>
   </div>
 </template>
 
 <script>
 import IPFormDialog from '@/vendor/FPKG-180000-Manage/component/IP/IPFormDialog.vue';
-import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_IP_LIST, 
   GET_PERMISSION_GROUP_OPTIONS, 
@@ -80,7 +79,6 @@ import { status } from '@/vendor/FPKG-10000-Config/enum'
 export default {
   components: {
     IPFormDialog,
-    HistoryDialog,
   },
   data() {
     return {

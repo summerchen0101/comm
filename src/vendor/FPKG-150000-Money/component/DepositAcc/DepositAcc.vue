@@ -81,7 +81,6 @@
 
 <script>
 import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccDialog.vue';
-import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
 import { 
   GET_DEPOSIT_ACC_LIST, 
   SWITCH_DEPOSIT_ACC_DIALOG,
@@ -97,7 +96,6 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
     DepositAccDialog,
-    HistoryDialog,
   },
   data() {
     return {
