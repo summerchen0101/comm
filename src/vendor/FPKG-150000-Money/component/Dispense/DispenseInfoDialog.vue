@@ -56,10 +56,9 @@ import {
   SET_DISPENSE_STATUS,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool'
+import { onCopyText } from '@/vendor/FPKG-120000-Util/other'
 
 export default {
-  mixins: [commonTool],
   data() {
     return {
     }
@@ -85,6 +84,7 @@ export default {
     ...mapMutations([
       SWITCH_DISPENSE_INFO_DIALOG
     ]),
+    onCopyText,
   },
   
   created() {

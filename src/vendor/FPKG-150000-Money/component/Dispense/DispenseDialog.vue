@@ -61,6 +61,7 @@ import {
   SET_DISPENSE_STATUS,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { onCopyText } from '@/vendor/FPKG-120000-Util/other'
 
 let initForm = {
         reason: "",
@@ -105,6 +106,7 @@ export default {
     ...mapMutations([
       SWITCH_DISPENSE_DIALOG
     ]),
+    onCopyText,
     clearForm() {
       setTimeout(() => this.$refs.dispenseForm.clearValidate())
     },
