@@ -1,8 +1,12 @@
 import * as Enums from '@/vendor/FPKG-10000-Config/enum'
 
 export function toEnum(enumName, value) {
-  let i = Enums[enumName].findIndex(t => t.value === value)
+  let i = Enums[enumName].findIndex(t => t.value == value)
   return i > -1 ? Enums[enumName][i].label : '?'
+}
+export function toOption(options, id, nameKey = 'name') {
+  let i = options.findIndex(t => t.id == id)
+  return i > -1 ? options[i][nameKey] : '?'
 }
 
 
