@@ -27,8 +27,8 @@ const actions = {
       commit(GOT_FEE_LIST, res.result)
     }
   },
-  async [GET_USER_STATUS_OPTIONS]({commit}) {
-    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: 'user'})
+  async [GET_USER_STATUS_OPTIONS]({commit}, roleType) {
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: roleType})
     if(res.code === 200001) {
       commit(GOT_USER_STATUS_OPTIONS, res.result)
     }

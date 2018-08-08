@@ -185,7 +185,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_PERMISSION_GROUP_OPTIONS)
     this.$store.dispatch(GET_IP_OPTIONS)
-    this.$store.dispatch(GET_USER_STATUS_OPTIONS)
+    this.$store.dispatch(GET_USER_STATUS_OPTIONS, 'user')
     this.$store.dispatch(GET_USER_LIST, this.searchForm)
   },
 }
