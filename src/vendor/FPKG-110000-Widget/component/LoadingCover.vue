@@ -1,9 +1,13 @@
 <template>
   <transition name="fade">
-    <div v-if="show" class="loading-cover">
-      <h4>{{msg}}</h4>
-      <!-- <font-awesome-icon :icon="['fas', 'fa-circle-notch', 'fa-spin', 'fa-3x']" /> -->
-      <font-awesome-icon icon="circle-notch" spin size="2x" />
+    <div v-if="$store.state.Widget.displayLoadingCover" class="loading-cover">
+      <div class="text-center">
+        <h3>{{msg}}</h3>
+        <font-awesome-icon icon="circle-notch" spin size="3x" /><br>
+        <div class="mt-3 text-center">
+          <el-button @click="$store.commit('SWITCH_LOADING_COVER', false)">關 閉</el-button>
+        </div>
+      </div>
       <slot></slot>
     </div>
   </transition>
@@ -17,10 +21,6 @@ export default {
       default: "Loading", // 載入中請稍候...
       type: String
     },
-    show: {
-      default: false,
-      type: Boolean
-    }
   }
 }
 

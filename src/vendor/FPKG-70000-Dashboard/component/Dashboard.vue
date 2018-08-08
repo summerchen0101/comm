@@ -14,7 +14,7 @@
     
   </div>
   <div class="center">
-    <LoadingCover :show="$store.state.Widget.displayLoadingCover"></LoadingCover>
+    <LoadingCover></LoadingCover>
     <router-view/>
     
   </div>
