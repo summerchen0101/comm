@@ -5,6 +5,13 @@ export const MemberManage = {
   props: {funcKey: 1101},
   component: () => import('./component/MemberManage/MemberManage.vue')
 }
+export const MemberDetail = {
+  path: '/member/manage/:id/:acc',
+  name: 'MemberDetail',
+  title: "會員管理細項",
+  props: {funcKey: 1101},
+  component: () => import('./component/MemberManage/MemberDetail.vue')
+}
 
 export const MemberSearch = {
   path: '/member/search',
@@ -31,6 +38,7 @@ export const Member = {
   redirect: "/member/manage",
   children: [
     MemberManage,
+    MemberDetail,
     MemberSearch,
     BankAcc,
   ]

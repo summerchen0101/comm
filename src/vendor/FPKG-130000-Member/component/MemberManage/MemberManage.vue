@@ -1,5 +1,10 @@
 <template>
   <div id="MemberManage">
+    <PageTitle>
+      <el-button slot="btns" type="primary" @click="SWITCH_MEMBER_DIALOG(true)">
+        <font-awesome-icon icon="plus" />
+      </el-button>
+    </PageTitle>
     <SearchBar>
       <el-form :inline="true" 
                 ref="searchForm"
@@ -95,6 +100,7 @@
 
     <HistoryDialog ></HistoryDialog>
     <VerifyInfoDialog ></VerifyInfoDialog>
+    <MemberDialog ></MemberDialog>
   </div>
 </template>
 
@@ -105,16 +111,19 @@ import {
   GET_MEMBER_LIST,
   GET_HISTORY,
   VERIFY_MEMBER,
+  SWITCH_MEMBER_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { toOption } from '@/vendor/FPKG-120000-Util/other';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 import VerifyInfoDialog from '@/vendor/FPKG-130000-Member/component/MemberManage/VerifyInfoDialog.vue';
+import MemberDialog from '@/vendor/FPKG-130000-Member/component/MemberManage/MemberDialog.vue'
 
 export default {
   mixins: [commonTool],
   components: {
     VerifyInfoDialog,
+    MemberDialog,
   },
   data() {
     return {
@@ -144,14 +153,15 @@ export default {
   },
   methods: {
     ...mapMutations({
-      GET_HISTORY
+      GET_HISTORY,
+      SWITCH_MEMBER_DIALOG
     }),
     toOption,
     onSearchSubmit() {
       this.$store.dispatch(GET_MEMBER_LIST, this.searchForm)
     },
-    onClickEdit() {
-
+    onClickEdit(item) {
+      this.$router.push({name: "MemberDetail", params: {id: item.id, acc: item.account}})
     },
     onClickDel() {
 

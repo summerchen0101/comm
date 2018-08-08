@@ -4,6 +4,7 @@ import {
   GOT_MEMBER_LIST, 
   GOT_VERIFY_INFO,
   CLOSE_VERIFY_DIALOG,
+  SWITCH_MEMBER_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -35,6 +36,9 @@ const mutations = {
   },
   [CLOSE_VERIFY_DIALOG](state) {
     state.displayVerifyDialog = false
+  },
+  [SWITCH_MEMBER_DIALOG](state, status) {
+    state.dialogVisible = status
   }
 }
 

@@ -4,6 +4,8 @@ import {
   GOT_MEMBER_LIST,
   VERIFY_MEMBER,
   GOT_VERIFY_INFO,
+  SWITCH_MEMBER_DIALOG,
+  ADD_MEMBER,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -28,6 +30,18 @@ const actions = {
     if(res.code === 200001) {
       await dispatch(GET_MEMBER_LIST)
       commit(GOT_VERIFY_INFO, res.result)
+    }
+  },
+  async [ADD_MEMBER]({commit, dispatch}, _d) {
+    let data = {
+      mobile: _d.phone,
+      password: _d.pw,
+      password_confirmation: _d.pw_confirm,
+    }
+    let res = await apiHub("post", "api/v1/member", data)
+    if(res.code === 200001) {
+      commit(SWITCH_MEMBER_DIALOG, false)
+      Router.push({name: "MemberDetail", params: {id: res.result.id, acc: res.result.account}})
     }
   },
 }

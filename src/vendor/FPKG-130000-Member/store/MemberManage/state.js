@@ -9,6 +9,7 @@ const state = {
     password: ""
   },
   displayVerifyDialog: false,
+  dialogVisible: false,
 };
 
 
