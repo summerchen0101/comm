@@ -6,6 +6,8 @@ import {
   GOT_FEE_LIST,
   GET_DISPENSE_ACC_OPTIONS,
   GOT_DISPENSE_ACC_OPTIONS,
+  GET_USER_STATUS_OPTIONS,
+  GOT_USER_STATUS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -23,6 +25,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/fee')
     if(res.code === 200001) {
       commit(GOT_FEE_LIST, res.result)
+    }
+  },
+  async [GET_USER_STATUS_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: 'user'})
+    if(res.code === 200001) {
+      commit(GOT_USER_STATUS_OPTIONS, res.result)
     }
   },
   async [GET_DISPENSE_ACC_OPTIONS]({commit}) {

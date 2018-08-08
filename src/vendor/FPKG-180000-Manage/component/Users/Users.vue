@@ -137,7 +137,7 @@ export default {
     ...mapState({
       userList: state => state.Manage.Users.userList,
       userPager: state => state.Manage.Users.userPager,
-      statusOpts: state => state.Manage.Users.statusOpts,
+      statusOpts: state => state.Global.statusOpts,
     }),
   },
   methods: {

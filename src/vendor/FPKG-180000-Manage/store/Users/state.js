@@ -8,7 +8,6 @@ const state = {
   user: {},
   perGroupOpts: [],
   ipOpts: [],
-  statusOpts: [],
 };
 
 

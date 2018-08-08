@@ -90,7 +90,7 @@ export default {
       dialogVisible: state => state.Manage.Users.dialogVisible,
       perGroupOpts: state => state.Manage.Users.perGroupOpts,
       ipOpts: state => state.Manage.Users.ipOpts,
-      statusOpts: state => state.Manage.Users.statusOpts,
+      statusOpts: state => state.Global.statusOpts,
     }),
     formRules() {
       let pwConfirmValidator = (rules, value, cb) => {
@@ -144,8 +144,6 @@ export default {
       this.form = Object.assign({}, formData)
     },
     clearForm() {
-      console.log("clearForm")
-      console.log(initForm)
       this.form = Object.assign({}, initForm)
       setTimeout(() => this.$refs.userForm.clearValidate())
     },

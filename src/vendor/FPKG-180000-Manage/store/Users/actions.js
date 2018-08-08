@@ -10,8 +10,6 @@ import {
   GOT_PERMISSION_GROUP_OPTIONS,
   GET_IP_OPTIONS,
   GOT_IP_OPTIONS,
-  GET_USER_STATUS_OPTIONS,
-  GOT_USER_STATUS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
@@ -24,12 +22,6 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/whitelist')
     if(res.code === 200001) {
       commit(GOT_IP_OPTIONS, res.result)
-    }
-  },
-  async [GET_USER_STATUS_OPTIONS]({commit}) {
-    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: 'user'})
-    if(res.code === 200001) {
-      commit(GOT_USER_STATUS_OPTIONS, res.result)
     }
   },
   async [GET_PERMISSION_GROUP_OPTIONS]({commit}) {
