@@ -22,6 +22,7 @@ export default {
   background-color: #efefef 
   border-radius: 3px
   margin-top: 10px
+  margin-bottom: 20px
   .el-form-item--small.el-form-item, label
     margin-bottom: 0
 </style>
