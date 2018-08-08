@@ -81,6 +81,20 @@ export const GOT_HISTORY = "GOT_HISTORY"
 
 
 /*
+  FPKG-130000-Member: MemberManage
+*/
+
+// actions
+export const GET_MEMBER_LIST = "GET_MEMBER_LIST"
+export const VERIFY_MEMBER = "VERIFY_MEMBER"
+
+// mutations
+export const GOT_MEMBER_LIST = "GOT_MEMBER_LIST"
+export const GOT_VERIFY_INFO = "GOT_VERIFY_INFO"
+export const CLOSE_VERIFY_DIALOG = "CLOSE_VERIFY_DIALOG"
+
+
+/*
   FPKG-140000-Announce: Marquee
 */
 
