@@ -58,6 +58,7 @@ import {
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
+import { pwValidator, pwConfirmValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 let initForm = {
         id: "",
@@ -93,13 +94,6 @@ export default {
       statusOpts: state => state.Global.statusOpts,
     }),
     formRules() {
-      let pwConfirmValidator = (rules, value, cb) => {
-        if(this.form.pw != value) {
-          cb(false)
-        }else {
-          cb()
-        }
-      }
       return {
         account: [
           { required: !this.form.id, message: '帳號為必填', trigger: 'blur' },
@@ -116,7 +110,7 @@ export default {
         ],
         pw_confirm: [
           { required: !this.form.id, message: '確認密碼為必填', trigger: 'blur' },
-          { validator: pwConfirmValidator, message: '確認密碼不同', trigger: 'blur' },
+          { validator: pwConfirmValidator(this.form.pw), trigger: 'blur' },
         ],
       }
     }
