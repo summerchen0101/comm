@@ -12,6 +12,16 @@ const state = {
   pointDialogVisible: false,
   dialogVisible: false,
   member: {},
+  pointModify: {
+    add: {
+      point: "",
+      memo: "",
+    },
+    subtract: {
+      point: "",
+      memo: "",
+    }
+  },
 };
 
 

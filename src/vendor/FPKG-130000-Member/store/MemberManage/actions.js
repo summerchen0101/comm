@@ -53,13 +53,19 @@ const actions = {
       Router.push({name: "MemberDetail", params: {id: res.result.id, acc: res.result.account}})
     }
   },
-  async [EDIT_MEMBER]({commit, dispatch}, _d) {
+  async [EDIT_MEMBER]({commit, dispatch, state, rootState}, _d) {
     let data = {
       nickname: _d.nick,
       active: _d.status,
       password: _d.pw || undefined,
       password_confirmation: _d.pw_confirm || undefined,
       daily_deposit_limit: _d.dailyDepositLimit,
+
+      earn_point: state.pointModify.add.point,
+      earn_reason: state.pointModify.add.memo,
+      lost_point: state.pointModify.subtract.point,
+      lost_reason: state.pointModify.subtract.memo,
+      review_user_id: rootState.Account.userInfo.id,
       
       brokerage_level_active: _d.isLevelActive ? 1 : 2,
       brokerage_level_id: _d.startLevel.toString(),

@@ -7,8 +7,11 @@ import {
   SWITCH_MEMBER_DIALOG,
   GOT_MEMBER,
   SWITCH_POINT_DIALOG,
+  SET_MEMBER_POINT_MODIFY,
+  CLEAR_MEMBER_POINT_MODIFY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import Router from '@/router'
+import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
   [GOT_MEMBER_LIST](state, result) {
@@ -78,6 +81,25 @@ const mutations = {
         bankAccount: t.account,
         status: t.status
       })),
+    }
+  },
+  [SET_MEMBER_POINT_MODIFY](state, _d) {
+    state.pointModify[_d.type] = Object.assign({}, state.pointModify[_d.type], {
+      point: Router.app.$numeral(_d.point).value(),
+      memo: _d.memo
+    })
+    EventsHub.$emit("Member:pointModifyChanged")
+  },
+  [CLEAR_MEMBER_POINT_MODIFY](state) {
+    state.pointModify = {
+      add: {
+        point: "",
+        memo: "",
+      },
+      subtract: {
+        point: "",
+        memo: "",
+      }
     }
   },
 }

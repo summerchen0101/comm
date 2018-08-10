@@ -156,6 +156,7 @@ import {
   GET_USER_STATUS_OPTIONS,
   SWITCH_POINT_DIALOG,
   EDIT_MEMBER,
+  CLEAR_MEMBER_POINT_MODIFY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
@@ -195,6 +196,7 @@ export default {
       statusOpts: state => state.Global.statusOpts,
       dailyDepositLimitOpts: state => state.Global.dailyDepositLimitOpts,
       member: state => state.Member.MemberManage.member,
+      pointModify: state => state.Member.MemberManage.pointModify
     }),
     breadcrumbPath() {
       return [
@@ -226,10 +228,15 @@ export default {
       //   })
       // }
       this.$store.dispatch(EDIT_MEMBER, this.form)
+    },
+    onPointModifyChanged() {
+      this.form.point = this.$numeral(this.member.point).value() + this.$numeral(this.pointModify.add.point).value() - this.$numeral(this.pointModify.subtract.point).value()
     }
   },
   async mounted() {
+    this.$hub.$on("Member:pointModifyChanged", this.onPointModifyChanged)
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.$store.commit(CLEAR_MEMBER_POINT_MODIFY)
     this.$store.dispatch(GET_DAILY_DEPOSIT_LIMIT_OPTIONS)
     this.$store.dispatch(GET_USER_STATUS_OPTIONS)
     await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
