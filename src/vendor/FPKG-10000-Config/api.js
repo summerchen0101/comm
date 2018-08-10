@@ -20,7 +20,8 @@ export async function apiHub(method, url, data, params) {
         if(status === 500) {
           alert(`API Error`)
         }
-        return (status >= 200 && status < 300) || status === 422
+        // return (status >= 200 && status < 300) || status === 422
+        return true
       },
     })
     Store.commit(SWITCH_LOADING_COVER, false)
