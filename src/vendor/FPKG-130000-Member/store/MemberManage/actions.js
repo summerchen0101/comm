@@ -6,6 +6,9 @@ import {
   GOT_VERIFY_INFO,
   SWITCH_MEMBER_DIALOG,
   ADD_MEMBER,
+  EDIT_MEMBER,
+  GET_MEMBER,
+  GOT_MEMBER,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -32,6 +35,12 @@ const actions = {
       commit(GOT_VERIFY_INFO, res.result)
     }
   },
+  async [GET_MEMBER]({commit, dispatch}, id) {
+    let res = await apiHub("get", `api/v1/member/${id}`)
+    if(res.code === 200001) {
+      commit(GOT_MEMBER, res.result)
+    }
+  },
   async [ADD_MEMBER]({commit, dispatch}, _d) {
     let data = {
       mobile: _d.phone,
@@ -42,6 +51,26 @@ const actions = {
     if(res.code === 200001) {
       commit(SWITCH_MEMBER_DIALOG, false)
       Router.push({name: "MemberDetail", params: {id: res.result.id, acc: res.result.account}})
+    }
+  },
+  async [EDIT_MEMBER]({commit, dispatch}, _d) {
+    let data = {
+      nickname: _d.nick,
+      active: _d.status,
+      password: _d.pw || undefined,
+      password_confirmation: _d.pw_confirm || undefined,
+      daily_deposit_limit: _d.dailyDepositLimit,
+      
+      brokerage_level_active: _d.isLevelActive ? 1 : 2,
+      brokerage_level_id: _d.startLevel.toString(),
+      brokerage_start: _d.commisionStartAt,
+      brokerage_end: _d.commisionEndAt,
+
+      remark: _d.memo,
+    }
+    let res = await apiHub("put", `api/v1/member/${_d.id}`, data)
+    if(res.code === 200001) {
+      Router.push({name: "MemberManage"})
     }
   },
 }

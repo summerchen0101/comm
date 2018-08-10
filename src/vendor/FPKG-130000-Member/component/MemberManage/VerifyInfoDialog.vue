@@ -57,10 +57,5 @@ export default {
 
 <style lang="stylus">
 #VerifyInfoDialog
-  .el-table 
-    th 
-      background-color: #eee
-    td p 
-      margin-bottom: 0
-
+  //
 </style>

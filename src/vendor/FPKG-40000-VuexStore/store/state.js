@@ -5,6 +5,7 @@ const state = {
   bankList: [],
   dispenseAccList: [],
   statusOpts: [],
+  dailyDepositLimitOpts: [],
   lang: 'zh-TW'
 };
 

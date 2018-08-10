@@ -68,8 +68,8 @@ const actions = {
       group_id: _d.perGroup,
       ip_whitelist: _d.ip.map(t => ({id: t})),
       active: _d.status,
-      password: _d.pw,
-      password_confirmation: _d.pw_confirm,
+      password: _d.pw || undefined,
+      password_confirmation: _d.pw_confirm || undefined,
       token: "",
     }
     let res = await apiHub('put', `api/v1/user/${_d.id}`, data)

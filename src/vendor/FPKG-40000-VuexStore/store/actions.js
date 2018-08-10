@@ -8,6 +8,8 @@ import {
   GOT_DISPENSE_ACC_OPTIONS,
   GET_USER_STATUS_OPTIONS,
   GOT_USER_STATUS_OPTIONS,
+  GET_DAILY_DEPOSIT_LIMIT_OPTIONS,
+  GOT_DAILY_DEPOSIT_LIMIT_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -37,6 +39,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/dispense_account')
     if(res.code === 200001) {
       commit(GOT_DISPENSE_ACC_OPTIONS, res.result)
+    }
+  },
+  async [GET_DAILY_DEPOSIT_LIMIT_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/daily_deposit_limit')
+    if(res.code === 200001) {
+      commit(GOT_DAILY_DEPOSIT_LIMIT_OPTIONS, res.result)
     }
   },
 }
