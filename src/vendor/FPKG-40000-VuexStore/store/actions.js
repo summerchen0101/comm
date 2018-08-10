@@ -8,8 +8,12 @@ import {
   GOT_DISPENSE_ACC_OPTIONS,
   GET_USER_STATUS_OPTIONS,
   GOT_USER_STATUS_OPTIONS,
+  GET_MEMBER_STATUS_OPTIONS,
+  GOT_MEMBER_STATUS_OPTIONS,
   GET_DAILY_DEPOSIT_LIMIT_OPTIONS,
   GOT_DAILY_DEPOSIT_LIMIT_OPTIONS,
+  GET_GAME_TYPE_OPTIONS,
+  GOT_GAME_TYPE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -29,10 +33,16 @@ const actions = {
       commit(GOT_FEE_LIST, res.result)
     }
   },
-  async [GET_USER_STATUS_OPTIONS]({commit}, roleType) {
-    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: roleType})
+  async [GET_USER_STATUS_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: "user"})
     if(res.code === 200001) {
       commit(GOT_USER_STATUS_OPTIONS, res.result)
+    }
+  },
+  async [GET_MEMBER_STATUS_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: "member"})
+    if(res.code === 200001) {
+      commit(GOT_MEMBER_STATUS_OPTIONS, res.result)
     }
   },
   async [GET_DISPENSE_ACC_OPTIONS]({commit}) {
@@ -45,6 +55,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/daily_deposit_limit')
     if(res.code === 200001) {
       commit(GOT_DAILY_DEPOSIT_LIMIT_OPTIONS, res.result)
+    }
+  },
+  async [GET_GAME_TYPE_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/gamekind')
+    if(res.code === 200001) {
+      commit(GOT_GAME_TYPE_OPTIONS, res.result)
     }
   },
 }

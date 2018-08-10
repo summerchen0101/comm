@@ -4,8 +4,10 @@ const state = {
   feeList: [],
   bankList: [],
   dispenseAccList: [],
-  statusOpts: [],
+  userStatusOpts: [],
+  memberStatusOpts: [],
   dailyDepositLimitOpts: [],
+  gameTypeOpts: [],
   lang: 'zh-TW'
 };
 

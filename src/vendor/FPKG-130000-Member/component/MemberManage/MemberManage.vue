@@ -70,9 +70,10 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="150">
+        width="230">
         <template slot-scope="scope">
           <el-button size="mini" type="info" @click="onClickEdit(scope.row)">修改</el-button>
+          <el-button size="mini" type="primary" @click="onClickGameEdit(scope.row)">遊戲</el-button>
           <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)">刪除</el-button>
         </template>
       </el-table-column>
@@ -107,7 +108,7 @@
 <script>
 import { 
   SET_BREADCRUMB, 
-  GET_USER_STATUS_OPTIONS,
+  GET_MEMBER_STATUS_OPTIONS,
   GET_MEMBER_LIST,
   GET_HISTORY,
   VERIFY_MEMBER,
@@ -146,7 +147,7 @@ export default {
   
   computed: {
     ...mapState({
-      statusOpts: state => state.Global.statusOpts,
+      statusOpts: state => state.Global.memberStatusOpts,
       memberList: state => state.Member.MemberManage.memberList,
       memberPager: state => state.Member.MemberManage.memberPager,
     })
@@ -162,6 +163,9 @@ export default {
     },
     onClickEdit(item) {
       this.$router.push({name: "MemberDetail", params: {id: item.id, acc: item.account}})
+    },
+    onClickGameEdit(item) {
+      this.$router.push({name: "MemberGame", params: {id: item.id, acc: item.account}})
     },
     onClickDel() {
 
@@ -184,7 +188,7 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_USER_STATUS_OPTIONS, 'member')
+    this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
     this.$store.dispatch(GET_MEMBER_LIST, this.searchForm)
   }
 }

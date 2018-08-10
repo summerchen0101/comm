@@ -137,7 +137,7 @@ export default {
     ...mapState({
       userList: state => state.Manage.Users.userList,
       userPager: state => state.Manage.Users.userPager,
-      statusOpts: state => state.Global.statusOpts,
+      statusOpts: state => state.Global.userStatusOpts,
     }),
   },
   methods: {
@@ -185,7 +185,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_PERMISSION_GROUP_OPTIONS)
     this.$store.dispatch(GET_IP_OPTIONS)
-    this.$store.dispatch(GET_USER_STATUS_OPTIONS, 'user')
+    this.$store.dispatch(GET_USER_STATUS_OPTIONS)
     this.$store.dispatch(GET_USER_LIST, this.searchForm)
   },
 }

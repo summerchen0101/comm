@@ -91,7 +91,7 @@ export default {
       dialogVisible: state => state.Manage.Users.dialogVisible,
       perGroupOpts: state => state.Manage.Users.perGroupOpts,
       ipOpts: state => state.Manage.Users.ipOpts,
-      statusOpts: state => state.Global.statusOpts,
+      statusOpts: state => state.Global.userStatusOpts,
     }),
     formRules() {
       return {

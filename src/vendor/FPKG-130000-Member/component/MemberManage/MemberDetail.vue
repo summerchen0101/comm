@@ -153,7 +153,7 @@ import {
   SET_BREADCRUMB,
   GET_MEMBER,
   GET_DAILY_DEPOSIT_LIMIT_OPTIONS,
-  GET_USER_STATUS_OPTIONS,
+  GET_MEMBER_STATUS_OPTIONS,
   SWITCH_POINT_DIALOG,
   EDIT_MEMBER,
   CLEAR_MEMBER_POINT_MODIFY,
@@ -193,7 +193,7 @@ export default {
   
   computed: {
     ...mapState({
-      statusOpts: state => state.Global.statusOpts,
+      statusOpts: state => state.Global.memberStatusOpts,
       dailyDepositLimitOpts: state => state.Global.dailyDepositLimitOpts,
       member: state => state.Member.MemberManage.member,
       pointModify: state => state.Member.MemberManage.pointModify
@@ -238,7 +238,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.commit(CLEAR_MEMBER_POINT_MODIFY)
     this.$store.dispatch(GET_DAILY_DEPOSIT_LIMIT_OPTIONS)
-    this.$store.dispatch(GET_USER_STATUS_OPTIONS)
+    this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
     await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
     this.form = Object.assign({}, this.form, this.member)
   }
