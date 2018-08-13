@@ -4,7 +4,8 @@ import {
 } from '@/vendor/FPKG-120000-Util/number';
 
 import { 
-  getDateTime, 
+  toDateTime, 
+  toShortDateTime, 
   startAtDay, 
   endAtDay, 
   dateAfter, 
@@ -31,7 +32,8 @@ export default {
     toCurrency,
     toCurrencyDecimal,
 
-    getDateTime,
+    toDateTime,
+    toShortDateTime,
     startAtDay, 
     endAtDay, 
     dateAfter, 

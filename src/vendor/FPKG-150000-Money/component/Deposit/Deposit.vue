@@ -89,14 +89,14 @@
         min-width="150"
         label="申請時間">
          <template slot-scope="scope">
-           <span>{{getDateTime(scope.row.depositAt)}}</span>
+           <span>{{toDateTime(scope.row.depositAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
         min-width="150"
         label="截止時間">
         <template slot-scope="scope">
-           <span>{{getDateTime(scope.row.expireAt)}}</span>
+           <span>{{toDateTime(scope.row.expireAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column

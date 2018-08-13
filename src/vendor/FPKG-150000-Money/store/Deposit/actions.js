@@ -10,7 +10,7 @@ import {
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
-import { getDateTime } from '@/vendor/FPKG-120000-Util/time.js'
+import { toDateTime } from '@/vendor/FPKG-120000-Util/time.js'
 
 
 
@@ -19,8 +19,8 @@ import Router from '@/router'
 const actions = {
   async [GET_DEPOSIT_INFO]({commit}, _d) {
     let params = {
-      start_time: _d.status != 1 ? getDateTime(_d.startAt): undefined,
-      end_time: _d.status != 1 ? getDateTime(_d.endAt): undefined,
+      start_time: _d.status != 1 ? toDateTime(_d.startAt): undefined,
+      end_time: _d.status != 1 ? toDateTime(_d.endAt): undefined,
       no: _d.number || undefined,
       account: _d.account || undefined,
     }
@@ -33,8 +33,8 @@ const actions = {
     let params
     if(_d) {
       params = {
-        start_time: _d.status != 1 ? getDateTime(_d.startAt): undefined,
-        end_time: _d.status != 1 ? getDateTime(_d.endAt): undefined,
+        start_time: _d.status != 1 ? toDateTime(_d.startAt): undefined,
+        end_time: _d.status != 1 ? toDateTime(_d.endAt): undefined,
         no: _d.number || undefined,
         account: _d.account || undefined,
         page: _d.page || undefined

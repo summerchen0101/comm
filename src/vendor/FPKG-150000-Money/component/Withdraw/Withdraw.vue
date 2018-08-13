@@ -84,7 +84,7 @@
         min-width="150"
         label="申請時間">
          <template slot-scope="scope">
-           <span>{{getDateTime(scope.row.withdrawAt)}}</span>
+           <span>{{toDateTime(scope.row.withdrawAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column

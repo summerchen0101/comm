@@ -9,7 +9,7 @@ import {
   GOT_MEMBER_GAME_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-import { getDate } from '@/vendor/FPKG-120000-Util/time.js'
+import { toDate } from '@/vendor/FPKG-120000-Util/time.js'
 
 
 import Router from '@/router'
@@ -17,8 +17,8 @@ import Router from '@/router'
 const actions = {
   async [GET_MEMBER_REPORT]({commit}, _d) {
     let params = {
-      start_date: getDate(_d.startAt),
-      end_date: getDate(_d.endAt),
+      start_date: toDate(_d.startAt),
+      end_date: toDate(_d.endAt),
       account: _d.account,
     }
     let res = await apiHub("get", "api/v1/statement/member", null, params)
@@ -32,8 +32,8 @@ const actions = {
   },
   async [GET_MEMBER_GAME_REPORT_INFO]({commit}, _d) {
     let params = {
-      start_date: getDate(_d.startAt),
-      end_date: getDate(_d.endAt),
+      start_date: toDate(_d.startAt),
+      end_date: toDate(_d.endAt),
       account: _d.account,
     }
     let res = await apiHub("get", `api/v1/statement/member/${_d.gameTypeId}/summary`, null, params)
@@ -43,8 +43,8 @@ const actions = {
   },
   async [GET_MEMBER_GAME_REPORT_DETAIL]({commit}, _d) {
     let params = {
-      start_date: getDate(_d.startAt),
-      end_date: getDate(_d.endAt),
+      start_date: toDate(_d.startAt),
+      end_date: toDate(_d.endAt),
       account: _d.account,
     }
     let res = await apiHub("get", `api/v1/statement/member/${_d.gameTypeId}/list`, null, params)

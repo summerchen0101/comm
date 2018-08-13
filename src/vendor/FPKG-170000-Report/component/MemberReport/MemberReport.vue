@@ -40,7 +40,7 @@
 
 <script>
 import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
-import moment, { getDate, startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { toDate, startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
 export default {
@@ -97,8 +97,8 @@ export default {
           // this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
           let f = this.searchForm
           this.$router.push({name: "MemberReportInfo", params: {
-            startAt: getDate(f.startAt),
-            endAt: getDate(f.endAt),
+            startAt: toDate(f.startAt),
+            endAt: toDate(f.endAt),
             account: f.account
           }})
         }

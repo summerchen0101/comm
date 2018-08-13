@@ -46,7 +46,7 @@
         min-width="150"
         label="申請時間">
          <template slot-scope="scope">
-           <span>{{getDateTime(scope.row.createdAt)}}</span>
+           <span>{{toDateTime(scope.row.createdAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
