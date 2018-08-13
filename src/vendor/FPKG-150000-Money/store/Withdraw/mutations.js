@@ -1,7 +1,6 @@
 
 
 import { 
-  GOT_WITHDRAW_STATUS_LIST, 
   GOT_WITHDRAW_INFO,
   GOT_WITHDRAW_LIST,
   SWITCH_WITHDRAW_DIALOG,
@@ -46,9 +45,6 @@ const mutations = {
   },
   [SET_WITHDRAW](state, withdraw) {
     state.withdraw = withdraw
-  },
-  [GOT_WITHDRAW_STATUS_LIST](state, statusList) {
-    state.withdrawStatusList = statusList
   },
   [GOT_WITHDRAW_INFO](state, info) {
     state.withdrawInfo = Object.assign({}, state.withdrawInfo,{

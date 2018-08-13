@@ -4,8 +4,6 @@ import {
   GOT_WITHDRAW_INFO,
   GET_WITHDRAW_LIST,
   GOT_WITHDRAW_LIST,
-  GET_WITHDRAW_STATUS_LIST,
-  GOT_WITHDRAW_STATUS_LIST,
   CHANGED_WITHDRAW_LIST_TYPE,
   SWITCH_WITHDRAW_DIALOG,
   SET_WITHDRAW_STATUS,
@@ -17,15 +15,6 @@ import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 import Router from '@/router'
 
 const actions = {
-  async [GET_WITHDRAW_STATUS_LIST]({commit}) {
-    let params = {
-      condition: 'withdrawal'
-    }
-    let res = await apiHub("get", "api/v1/dropdown/status", null, params)
-    if(res.code === 200001) {
-      commit(GOT_WITHDRAW_STATUS_LIST, res.result)
-    }
-  },
   async [GET_WITHDRAW_INFO]({commit}, _d) {
     let params = {
       // start_time: _d.startTime,

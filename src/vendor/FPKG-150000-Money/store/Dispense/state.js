@@ -8,7 +8,6 @@ const state = {
   dispensePager: null,
   dispenseDialogVisible: false,
   dispenseInfoDialogVisible: false,
-  dispenseStatusList: [],
   dispenseInfo: {
     count: 0,
     total: 0,

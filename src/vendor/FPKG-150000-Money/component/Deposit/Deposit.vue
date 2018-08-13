@@ -2,7 +2,7 @@
   <div id="Deposit">
     <el-select v-model="searchForm.status">
       <el-option
-        v-for="opt in statusList"
+        v-for="opt in statusOpts"
         :key="opt.id"
         :label="opt.name"
         :value="opt.id">
@@ -139,7 +139,7 @@
 <script>
 import { 
   SET_BREADCRUMB, 
-  GET_DEPOSIT_STATUS_LIST, 
+  GET_STATUS_OPTIONS, 
   GET_DEPOSIT_INFO, 
   GET_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
@@ -182,7 +182,7 @@ export default {
   computed: {
     ...mapState({
       listType: state => state.Money.Deposit.listType,
-      statusList: state => state.Money.Deposit.depositStatusList,
+      statusOpts: state => state.Global.statusOpts,
       depositPager: state => state.Money.Deposit.depositPager,
       depositInfo: state => state.Money.Deposit.depositInfo,
       depositList: state => state.Money.Deposit.depositList,
@@ -251,7 +251,7 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_DEPOSIT_STATUS_LIST)
+    this.$store.dispatch(GET_STATUS_OPTIONS)
   }
 }
 </script>

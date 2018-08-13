@@ -4,6 +4,7 @@ const state = {
   feeList: [],
   bankList: [],
   dispenseAccList: [],
+  statusOpts: [],
   userStatusOpts: [],
   memberStatusOpts: [],
   dailyDepositLimitOpts: [],

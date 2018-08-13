@@ -3,6 +3,7 @@
 import {
   GOT_BANK_LIST,
   GOT_FEE_LIST,
+  GOT_STATUS_OPTIONS,
   GOT_DISPENSE_ACC_OPTIONS,
   GOT_USER_STATUS_OPTIONS,
   GOT_MEMBER_STATUS_OPTIONS,
@@ -17,6 +18,9 @@ const mutations = {
   },
   [GOT_FEE_LIST](state, list) {
     state.feeList = list
+  },
+  [GOT_STATUS_OPTIONS](state, list) {
+    state.statusOpts = list
   },
   [GOT_DISPENSE_ACC_OPTIONS](state, list) {
     state.dispenseAccList = list

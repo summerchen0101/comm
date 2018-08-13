@@ -4,6 +4,8 @@ import {
   GOT_BANK_LIST,
   GET_FEE_LIST,
   GOT_FEE_LIST,
+  GET_STATUS_OPTIONS,
+  GOT_STATUS_OPTIONS,
   GET_DISPENSE_ACC_OPTIONS,
   GOT_DISPENSE_ACC_OPTIONS,
   GET_USER_STATUS_OPTIONS,
@@ -23,6 +25,15 @@ import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import Router from '@/router'
 
 const actions = {
+  async [GET_STATUS_OPTIONS]({commit}) {
+    let params = {
+      condition: 'deposit'
+    }
+    let res = await apiHub("get", "api/v1/dropdown/status", null, params)
+    if(res.code === 200001) {
+      commit(GOT_STATUS_OPTIONS, res.result)
+    }
+  },
   async [GET_BANK_LIST]({commit}) {
     let res = await apiHub('get', 'api/v1/dropdown/bank')
     if(res.code === 200001) {

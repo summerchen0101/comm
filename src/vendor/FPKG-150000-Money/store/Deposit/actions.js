@@ -4,8 +4,6 @@ import {
   GOT_DEPOSIT_INFO,
   GET_DEPOSIT_LIST,
   GOT_DEPOSIT_LIST,
-  GET_DEPOSIT_STATUS_LIST,
-  GOT_DEPOSIT_STATUS_LIST,
   SET_DEPOSIT_STATUS,
   SWITCH_DEPOSIT_DIALOG,
   CHANGED_DEPOSIT_LIST_TYPE,
@@ -19,15 +17,6 @@ import { getDateTime } from '@/vendor/FPKG-120000-Util/time.js'
 import Router from '@/router'
 
 const actions = {
-  async [GET_DEPOSIT_STATUS_LIST]({commit}) {
-    let params = {
-      condition: 'deposit'
-    }
-    let res = await apiHub("get", "api/v1/dropdown/status", null, params)
-    if(res.code === 200001) {
-      commit(GOT_DEPOSIT_STATUS_LIST, res.result)
-    }
-  },
   async [GET_DEPOSIT_INFO]({commit}, _d) {
     let params = {
       start_time: _d.status != 1 ? getDateTime(_d.startAt): undefined,

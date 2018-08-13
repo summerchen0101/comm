@@ -1,7 +1,6 @@
 
 
 import { 
-  GOT_DISPENSE_STATUS_LIST, 
   GOT_DISPENSE_INFO,
   GOT_DISPENSE_LIST,
   SWITCH_DISPENSE_DIALOG,
@@ -48,9 +47,6 @@ const mutations = {
   },
   [SET_DISPENSE](state, dispense) {
     state.dispense = dispense
-  },
-  [GOT_DISPENSE_STATUS_LIST](state, statusList) {
-    state.dispenseStatusList = statusList
   },
   [GOT_DISPENSE_INFO](state, info) {
     state.dispenseInfo = Object.assign({}, state.dispenseInfo,{

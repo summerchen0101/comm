@@ -8,7 +8,6 @@ const state = {
   depositPager: null,
   depositDialogVisible: false,
   depositInfoDialogVisible: false,
-  depositStatusList: [],
   depositInfo: {
     count: 0,
     total: 0,

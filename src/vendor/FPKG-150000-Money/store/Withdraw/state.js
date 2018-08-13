@@ -8,7 +8,6 @@ const state = {
   withdrawPager: null,
   withdrawDialogVisible: false,
   withdrawInfoDialogVisible: false,
-  withdrawStatusList: [],
   withdrawInfo: {
     count: 0,
     total: 0,

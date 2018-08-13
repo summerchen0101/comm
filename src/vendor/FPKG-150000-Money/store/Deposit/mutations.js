@@ -1,7 +1,6 @@
 
 
 import { 
-  GOT_DEPOSIT_STATUS_LIST, 
   GOT_DEPOSIT_INFO,
   GOT_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
@@ -52,9 +51,6 @@ const mutations = {
   [SET_DEPOSIT](state, deposit) {
     state.deposit = Object.assign({}, state.deposit, deposit)
     EventsHub.$emit("deposit:bankInfoSettup")
-  },
-  [GOT_DEPOSIT_STATUS_LIST](state, statusList) {
-    state.depositStatusList = statusList
   },
   [GOT_DEPOSIT_INFO](state, info) {
     state.depositInfo = Object.assign({}, state.depositInfo,{

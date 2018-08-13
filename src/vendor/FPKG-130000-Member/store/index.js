@@ -7,10 +7,12 @@ import actions from './actions'
 import getters from './getters'
 
 import MemberManage from './MemberManage'
+import BankAcc from './BankAcc'
 
 const store = {
   modules: {
-    MemberManage
+    MemberManage,
+    BankAcc,
   },
   state,
   getters,

@@ -4,8 +4,6 @@ import {
   GOT_DISPENSE_INFO,
   GET_DISPENSE_LIST,
   GOT_DISPENSE_LIST,
-  GET_DISPENSE_STATUS_LIST,
-  GOT_DISPENSE_STATUS_LIST,
   CHANGED_DISPENSE_LIST_TYPE,
   SWITCH_DISPENSE_DIALOG,
   SET_DISPENSE_STATUS,
@@ -17,15 +15,6 @@ import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 import Router from '@/router'
 
 const actions = {
-  async [GET_DISPENSE_STATUS_LIST]({commit}) {
-    let params = {
-      condition: 'dispense'
-    }
-    let res = await apiHub("get", "api/v1/dropdown/status", null, params)
-    if(res.code === 200001) {
-      commit(GOT_DISPENSE_STATUS_LIST, res.result)
-    }
-  },
   async [GET_DISPENSE_INFO]({commit}, _d) {
     let params = {
       // start_time: _d.startTime,

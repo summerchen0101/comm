@@ -2,7 +2,7 @@
   <div id="Withdraw">
     <el-select v-model="searchForm.status">
       <el-option
-        v-for="opt in statusList"
+        v-for="opt in statusOpts"
         :key="opt.id"
         :label="opt.name"
         :value="opt.id">
@@ -126,7 +126,7 @@
 <script>
 import { 
   SET_BREADCRUMB, 
-  GET_WITHDRAW_STATUS_LIST, 
+  GET_STATUS_OPTIONS, 
   GET_WITHDRAW_INFO, 
   GET_WITHDRAW_LIST,
   SWITCH_WITHDRAW_DIALOG,
@@ -170,7 +170,7 @@ export default {
   computed: {
     ...mapState({
       listType: state => state.Money.Withdraw.listType,
-      statusList: state => state.Money.Withdraw.withdrawStatusList,
+      statusOpts: state => state.Global.statusOpts,
       withdrawPager: state => state.Money.Withdraw.withdrawPager,
       withdrawInfo: state => state.Money.Withdraw.withdrawInfo,
       withdrawList: state => state.Money.Withdraw.withdrawList,
@@ -240,7 +240,7 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_FEE_LIST)
-    this.$store.dispatch(GET_WITHDRAW_STATUS_LIST)
+    this.$store.dispatch(GET_STATUS_OPTIONS)
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div id="Dispense">
     <el-select v-model="searchForm.status">
       <el-option
-        v-for="opt in statusList"
+        v-for="opt in statusOpts"
         :key="opt.id"
         :label="opt.name"
         :value="opt.id">
@@ -131,7 +131,7 @@
 <script>
 import { 
   SET_BREADCRUMB, 
-  GET_DISPENSE_STATUS_LIST, 
+  GET_STATUS_OPTIONS, 
   GET_DISPENSE_INFO, 
   GET_DISPENSE_LIST,
   SWITCH_DISPENSE_DIALOG,
@@ -175,7 +175,7 @@ export default {
   computed: {
     ...mapState({
       listType: state => state.Money.Dispense.listType,
-      statusList: state => state.Money.Dispense.dispenseStatusList,
+      statusOpts: state => state.Global.statusOpts,
       dispensePager: state => state.Money.Dispense.dispensePager,
       dispenseInfo: state => state.Money.Dispense.dispenseInfo,
       dispenseList: state => state.Money.Dispense.dispenseList,
@@ -245,7 +245,7 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_DISPENSE_ACC_OPTIONS)
-    this.$store.dispatch(GET_DISPENSE_STATUS_LIST)
+    this.$store.dispatch(GET_STATUS_OPTIONS)
   }
 }
 </script>
