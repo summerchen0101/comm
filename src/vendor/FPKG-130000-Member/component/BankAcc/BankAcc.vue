@@ -146,7 +146,10 @@ export default {
       this.$store.dispatch(GET_BANK_ACC_LIST, this.searchForm)
     },
     onPageChanged(page) {
-      this.$store.dispatch(GET_BANK_ACC_LIST, { page })
+      this.$store.dispatch(GET_BANK_ACC_LIST, {
+        ...this.searchForm,
+        page
+      })
     },
     onReview(type, item) {
       this.$store.commit(SET_BANK_ACC, {

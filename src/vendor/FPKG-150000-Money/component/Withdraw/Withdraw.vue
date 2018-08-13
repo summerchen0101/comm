@@ -218,8 +218,11 @@ export default {
       }
       
     },
-    onPageChanged() {
-
+    onPageChanged(page) {
+      this.$store.dispatch(GET_WITHDRAW_LIST, {
+        ...this.searchForm,
+        page
+      })
     },
 
     async onSearchSubmit() {
@@ -241,6 +244,8 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_FEE_LIST)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_WITHDRAW_INFO, this.searchForm)
+    this.$store.dispatch(GET_WITHDRAW_LIST, this.searchForm)
   }
 }
 </script>

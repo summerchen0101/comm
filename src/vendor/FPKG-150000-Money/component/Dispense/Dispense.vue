@@ -223,8 +223,11 @@ export default {
       }
       
     },
-    onPageChanged() {
-
+    onPageChanged(page) {
+      this.$store.dispatch(GET_DISPENSE_LIST, {
+        ...this.searchForm,
+        page
+      })
     },
 
     async onSearchSubmit() {
@@ -246,6 +249,8 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_DISPENSE_ACC_OPTIONS)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_DISPENSE_INFO, this.searchForm)
+    this.$store.dispatch(GET_DISPENSE_LIST, this.searchForm)
   }
 }
 </script>

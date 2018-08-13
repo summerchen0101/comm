@@ -230,8 +230,11 @@ export default {
       }
       
     },
-    onPageChanged() {
-
+    onPageChanged(page) {
+      this.$store.dispatch(GET_DEPOSIT_LIST, {
+        ...this.searchForm,
+        page
+      })
     },
 
     async onSearchSubmit() {
@@ -252,6 +255,8 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_DEPOSIT_INFO, this.searchForm)
+    this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
   }
 }
 </script>

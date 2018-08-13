@@ -178,7 +178,7 @@ export default {
       });
     },
     onPageChanged(page) {
-      this.$store.dispatch(GET_USER_LIST, {page})
+      this.$store.dispatch(GET_USER_LIST, {...this.searchForm, page})
     }
   },
   mounted() {
