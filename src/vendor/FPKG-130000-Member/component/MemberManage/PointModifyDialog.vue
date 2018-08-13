@@ -4,7 +4,7 @@
     :visible.sync="dialogVisible"
     width="350px"
     :title="$route.query.action === 'add' ? '撥點' : '扣點'"
-    @open="beforeOpen"
+    @open="onOpen"
     @closed="afterClosed"
     :before-close="onClose">
     <el-form label-position="top">
@@ -66,7 +66,7 @@ export default {
     onClose() {
       this.$store.commit(SWITCH_POINT_DIALOG, false)
     },
-    beforeOpen() {
+    onOpen() {
       this.form = Object.assign({}, initForm, {
         account: this.$route.params.acc,
         point: this.pointModify[this.$route.query.action].point,
