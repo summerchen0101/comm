@@ -9,6 +9,7 @@ import {
   SWITCH_POINT_DIALOG,
   SET_MEMBER_POINT_MODIFY,
   CLEAR_MEMBER_POINT_MODIFY,
+  GOT_MEMBER_GAME_SETTING,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import Router from '@/router'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
@@ -82,6 +83,17 @@ const mutations = {
         status: t.status
       })),
     }
+  },
+  [GOT_MEMBER_GAME_SETTING](state, result) {
+    state.gameSetting = result.map(g => ({
+      gameType: g.game_kind,
+      status: g.switch,
+      template: g.model,
+      maxWin: g.max_win,
+      result: g.payoff,
+      allowSetting: g.act == 'true',
+      hasMaxWin: typeof g.max_win === 'number'
+    }))
   },
   [SET_MEMBER_POINT_MODIFY](state, _d) {
     state.pointModify[_d.type] = Object.assign({}, state.pointModify[_d.type], {

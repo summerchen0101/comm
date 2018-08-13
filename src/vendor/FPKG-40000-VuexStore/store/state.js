@@ -8,6 +8,7 @@ const state = {
   memberStatusOpts: [],
   dailyDepositLimitOpts: [],
   gameTypeOpts: [],
+  gameTplOpts: {},
   lang: 'zh-TW'
 };
 

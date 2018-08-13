@@ -9,6 +9,9 @@ import {
   EDIT_MEMBER,
   GET_MEMBER,
   GOT_MEMBER,
+  GET_MEMBER_GAME_SETTING,
+  GOT_MEMBER_GAME_SETTING,
+  EDIT_MEMBER_GAME_SETTING,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -39,6 +42,23 @@ const actions = {
     let res = await apiHub("get", `api/v1/member/${id}`)
     if(res.code === 200001) {
       commit(GOT_MEMBER, res.result)
+    }
+  },
+  async [GET_MEMBER_GAME_SETTING]({commit, dispatch}, id) {
+    let res = await apiHub("get", `api/v1/member/${id}/setting`)
+    if(res.code === 200001) {
+      commit(GOT_MEMBER_GAME_SETTING, res.result)
+    }
+  },
+  async [EDIT_MEMBER_GAME_SETTING]({commit, dispatch}, _d) {
+    let res = await apiHub("put", `api/v1/member/${_d.id}/setting`, {setting: _d.setting.map(g => ({
+      game_kind: g.gameType,
+      switch: g.status,
+      model: g.template,
+      max_win: g.maxWin,
+    }))})
+    if(res.code === 200001) {
+      Router.push({name: "MemberManage"})
     }
   },
   async [ADD_MEMBER]({commit, dispatch}, _d) {

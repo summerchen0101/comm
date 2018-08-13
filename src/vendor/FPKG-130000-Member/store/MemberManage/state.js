@@ -12,6 +12,7 @@ const state = {
   pointDialogVisible: false,
   dialogVisible: false,
   member: {},
+  gameSetting: [],
   pointModify: {
     add: {
       point: "",

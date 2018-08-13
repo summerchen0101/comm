@@ -8,9 +8,16 @@ export const MemberManage = {
 export const MemberDetail = {
   path: '/member/manage/:id/:acc',
   name: 'MemberDetail',
-  title: "會員管理細項",
+  title: "會員編輯",
   props: {funcKey: 1101},
   component: () => import('./component/MemberManage/MemberDetail.vue')
+}
+export const MemberGame = {
+  path: '/member/manage/:id/:acc/game',
+  name: 'MemberGame',
+  title: "會員遊戲設定",
+  props: {funcKey: 1101},
+  component: () => import('./component/MemberManage/MemberGame.vue'),
 }
 
 export const MemberSearch = {
@@ -39,6 +46,7 @@ export const Member = {
   children: [
     MemberManage,
     MemberDetail,
+    MemberGame,
     MemberSearch,
     BankAcc,
   ]

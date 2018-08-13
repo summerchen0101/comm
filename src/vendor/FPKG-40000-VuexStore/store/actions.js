@@ -14,6 +14,8 @@ import {
   GOT_DAILY_DEPOSIT_LIMIT_OPTIONS,
   GET_GAME_TYPE_OPTIONS,
   GOT_GAME_TYPE_OPTIONS,
+  GET_GAME_TEMPLATE_OPTIONS,
+  GOT_GAME_TEMPLATE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 
@@ -61,6 +63,15 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/gamekind')
     if(res.code === 200001) {
       commit(GOT_GAME_TYPE_OPTIONS, res.result)
+    }
+  },
+  async [GET_GAME_TEMPLATE_OPTIONS]({commit}, id) {
+    let res = await apiHub('get', 'api/v1/dropdown/model', null, {game_kind: id})
+    if(res.code === 200001) {
+      commit(GOT_GAME_TEMPLATE_OPTIONS, {
+        gameType: id,
+        options: res.result
+      })
     }
   },
 }
