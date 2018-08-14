@@ -6,7 +6,7 @@
     width="630px"
     :before-close="() => SWITCH_HISTORY_DIALOG(false)">
     <el-table
-      :data="historyList"
+      :data="$lodash.take(historyList, 5)"
       border
       style="width: 100%">
       <el-table-column
@@ -37,6 +37,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- <Paginator v-if="historyPager"
+              :on-page-changed="onPageChanged"
+              :count="historyPager.count"
+              :perpage="historyPager.perpage"></Paginator> -->
     <span slot="footer" class="dialog-footer">
       <el-button type="primary" @click="SWITCH_HISTORY_DIALOG(false)">關閉</el-button>
     </span>
@@ -58,6 +62,7 @@ export default {
     ...mapState({
       title: state => state.Widget.historyTitle,
       historyList: state => state.Widget.historyList,
+      historyPager: state => state.Widget.historyPager,
       dialogVisible: state => state.Widget.historyDialogVisible
     }),
   },
@@ -65,6 +70,9 @@ export default {
     ...mapMutations([
       SWITCH_HISTORY_DIALOG
     ]),
+    onPageChanged(page) {
+      this.$hub.$emit("Widgets:HistoryDialog:pageChange", page)
+    }
   },
 }
 </script>
