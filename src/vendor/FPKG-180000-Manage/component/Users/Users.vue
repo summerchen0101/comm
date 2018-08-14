@@ -46,14 +46,18 @@
         label="權限">
       </el-table-column>
       <el-table-column
-        width="180"
-        prop="loginAt"
+        width="150"
         label="最後登入">
+        <template slot-scope="scope">
+          {{toShortDateTime(scope.row.loginAt)}}
+        </template>
       </el-table-column>
       <el-table-column
         width="180"
-        prop="createdAt"
         label="建立時間">
+        <template slot-scope="scope">
+          {{toDateTime(scope.row.createdAt)}}
+        </template>
       </el-table-column>
       <el-table-column
         width="100"
@@ -110,8 +114,10 @@ import {
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { toEnum } from '@/vendor/FPKG-120000-Util/other'
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
+  mixins: [commonTool],
   components: {
     UserFormDialog,
   },

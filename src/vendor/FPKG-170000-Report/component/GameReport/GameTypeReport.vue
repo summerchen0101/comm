@@ -16,10 +16,10 @@
           <tr>
             <td>{{info.gameType}}</td>
             <td>{{toCurrency(info.count)}}</td>
-            <td>{{toCurrency(info.betAmount)}}</td>
-            <td>{{toCurrency(info.realAmount)}}</td>
-            <td>{{toCurrency(info.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(info.result)}}</td>
+            <td>{{toCurrencyDecimal(info.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(info.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -46,10 +46,10 @@
               </router-link>
             </td>
             <td>{{toCurrency(r.count)}}</td>
-            <td>{{toCurrency(r.betAmount)}}</td>
-            <td>{{toCurrency(r.realAmount)}}</td>
-            <td>{{toCurrency(r.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(r.result)}}</td>
+            <td>{{toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(r.result)}}</td>
           </tr>
         </tbody>
       </table>

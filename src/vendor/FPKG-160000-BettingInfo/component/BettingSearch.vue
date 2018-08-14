@@ -29,7 +29,7 @@
           </tr>
           <tr>
             <th>下注時間</th>
-            <td>{{bettingInfo.betTime || "暫無資料"}}</td>
+            <td>{{bettingInfo.betTime ? toShortDateTime(bettingInfo.betTime) : "暫無資料"}}</td>
           </tr>
           <tr>
             <th>IP</th>
@@ -53,19 +53,19 @@
           </tr>
           <tr>
             <th>投注金額</th>
-            <td>{{typeof bettingInfo.betAmount === 'number' ?  bettingInfo.betAmount : "暫無資料"}}</td> 
+            <td>{{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}</td> 
           </tr>
           <tr>
             <th>有效金額</th>
-            <td>{{typeof bettingInfo.realAmount === 'number' ?  bettingInfo.realAmount : "暫無資料"}}</td>            
+            <td>{{typeof bettingInfo.realAmount === 'number' ?  toCurrencyDecimal(bettingInfo.realAmount) : "暫無資料"}}</td>            
           </tr>
           <tr>
             <th>中獎金額</th>
-            <td>{{typeof bettingInfo.winAmount === 'number' ?  bettingInfo.winAmount : "暫無資料"}}</td>
+            <td>{{typeof bettingInfo.winAmount === 'number' ?  toCurrencyDecimal(bettingInfo.winAmount) : "暫無資料"}}</td>
           </tr>
           <tr>
             <th>會員結果</th>
-            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{bettingInfo.betResult}}</td>
+            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{toCurrencyDecimal(bettingInfo.betResult)}}</td>
             <td v-else>暫無資料</td>
           </tr>
         </tbody>
@@ -79,9 +79,11 @@
 import { SET_BREADCRUMB, GET_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { gameType } from '@/vendor/FPKG-10000-Config/enum'
 import { mapState } from 'vuex';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 
 export default {
+  mixins: [commonTool],
   components: {
   },
   data() {
@@ -94,7 +96,7 @@ export default {
       ],
       searchForm: {
         type: 1,
-        number: ""
+        number: "2592373541147945"
       },
       searchFormRules: {
         type: [

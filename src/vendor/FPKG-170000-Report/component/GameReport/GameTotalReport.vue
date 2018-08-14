@@ -16,10 +16,10 @@
           <tr>
             <td>-</td>
             <td>{{toCurrency(totalInfo.count)}}</td>
-            <td>{{toCurrency(totalInfo.betAmount)}}</td>
-            <td>{{toCurrency(totalInfo.realAmount)}}</td>
-            <td>{{toCurrency(totalInfo.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(totalInfo.result)}}</td>
+            <td>{{toCurrencyDecimal(totalInfo.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(totalInfo.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(totalInfo.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(totalInfo.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -44,10 +44,10 @@
               </router-link>
             </td>
             <td>{{toCurrency(r.count)}}</td>
-            <td>{{toCurrency(r.betAmount)}}</td>
-            <td>{{toCurrency(r.realAmount)}}</td>
-            <td>{{toCurrency(r.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(r.result)}}</td>
+            <td>{{toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(r.result)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>

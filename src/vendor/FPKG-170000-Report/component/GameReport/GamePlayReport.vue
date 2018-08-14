@@ -16,10 +16,10 @@
           <tr>
             <td>{{getGamePlayName(info.gamePlayId)}}</td>
             <td>{{toCurrency(info.count)}}</td>
-            <td>{{toCurrency(info.betAmount)}}</td>
-            <td>{{toCurrency(info.realAmount)}}</td>
-            <td>{{toCurrency(info.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(info.result)}}</td>
+            <td>{{toCurrencyDecimal(info.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(info.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -42,7 +42,7 @@
           <tr v-for="r,i in report" :key="i">
             <td>{{r.number}}</td>
             <td>
-              <span>{{r.betTime}}</span><br>
+              <span>{{toShortDateTime(r.betTime)}}</span><br>
               <span class="text-info">{{r.ip}}</span>
             </td>
             <td>
@@ -50,10 +50,10 @@
               <span v-else>-</span>
             </td>
             <td>{{r.betTarget}}</td>
-            <td>{{toCurrency(r.betAmount)}}</td>
-            <td>{{toCurrency(r.realAmount)}}</td>
-            <td>{{toCurrency(r.winAmount)}}</td>
-            <td class="text-danger">{{toCurrency(r.result)}}</td>
+            <td>{{toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(r.result)}}</td>
           </tr>
         </tbody>
       </table>

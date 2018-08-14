@@ -17,13 +17,17 @@
       </el-table-column>
       <el-table-column
         width="180"
-        prop="startAt"
         label="開始時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTime(scope.row.startAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         width="180"
-        prop="endAt"
         label="結束時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTime(scope.row.endAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -59,6 +63,7 @@
 
 <script>
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import { 
   GET_MARQUEE_LIST, 
   SWITCH_MARQUEE_DIALOG,
@@ -69,6 +74,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
+  mixins: [commonTool],
   components: {
     MarqueeFormDialog,
   },

@@ -25,7 +25,7 @@ const mutations = {
         nick: t.name,
         group: t.group,
         permission: t.group.name,
-        loginAt: t.login_at || "-",
+        loginAt: t.login_at,
         createdAt: t.created_at,
         status: t.active,
         statusName: statusIndex > -1 ? statusOpts[statusIndex].label : '?',

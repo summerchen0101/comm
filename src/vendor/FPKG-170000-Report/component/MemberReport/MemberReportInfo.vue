@@ -15,11 +15,11 @@
         <tbody>
           <tr>
             <td>{{info.account}}</td>
-            <td>{{info.count}}</td>
-            <td>{{info.betAmount}}</td>
-            <td>{{info.realAmount}}</td>
-            <td>{{info.winAmount}}</td>
-            <td class="text-danger">{{info.result}}</td>
+            <td>{{toCurrency(info.count)}}</td>
+            <td>{{toCurrencyDecimal(info.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(info.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(info.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -43,11 +43,11 @@
                 {{r.gameType}}
               </router-link>
             </td>
-            <td>{{r.count}}</td>
-            <td>{{r.betAmount}}</td>
-            <td>{{r.realAmount}}</td>
-            <td>{{r.winAmount}}</td>
-            <td class="text-danger">{{r.result}}</td>
+            <td>{{toCurrency(r.count)}}</td>
+            <td>{{toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.realAmount)}}</td>
+            <td>{{toCurrencyDecimal(r.winAmount)}}</td>
+            <td class="text-danger">{{toCurrencyDecimal(r.result)}}</td>
           </tr>
           <tr v-if="report.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>
@@ -62,8 +62,10 @@
 import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
+  mixins: [commonTool],
   components: {
   },
   data() {

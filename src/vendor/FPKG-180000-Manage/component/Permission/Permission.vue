@@ -22,8 +22,10 @@
       </el-table-column>
       <el-table-column
         width="180"
-        prop="createdAt"
         label="建立時間">
+        <template slot-scope="scope">
+          {{toDateTime(scope.row.createdAt)}}
+        </template>
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -60,8 +62,10 @@ import {
   GET_HISTORY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
+  mixins: [commonTool],
   components: {
   },
   data() {

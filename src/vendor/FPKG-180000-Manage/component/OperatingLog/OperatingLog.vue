@@ -9,7 +9,7 @@
           <el-date-picker
             style="width: 180px"
             v-model="searchForm.startAt"
-            format="yyyy-MM-dd HH:mm"
+            format="MM-dd HH:mm"
             :picker-options="startAtOption"
             type="datetime"
             @change="onStartAtChanged">
@@ -18,7 +18,7 @@
           <el-date-picker
             style="width: 180px"
             v-model="searchForm.endAt"
-            format="yyyy-MM-dd HH:mm"
+            format="MM-dd HH:mm"
             :picker-options="endAtOption"
             type="datetime">
           </el-date-picker>
@@ -56,8 +56,10 @@
       </el-table-column>
       <el-table-column
         width="150"
-        prop="time"
         label="時間">
+        <template slot-scope="scope">
+          {{toShortDateTime(scope.row.time)}}
+        </template>
       </el-table-column>
       <el-table-column
         width="150"
@@ -90,8 +92,11 @@ import {
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
+
 
 export default {
+  mixins: [commonTool],
   components: {
   },
   data() {
