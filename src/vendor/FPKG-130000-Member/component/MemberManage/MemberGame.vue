@@ -34,7 +34,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="4" style="margin-top: 34px">
-              <el-button type="info" @click="onReset(g.gameType)">重置</el-button>
+              <el-button type="info" @click="onReset(g.gameType)" :disabled="!g.allowSetting">重置</el-button>
             </el-col>
           </el-row>
         </el-col>
@@ -42,7 +42,7 @@
     </el-form>
     <SubmitBar>
       <el-button @click="$router.push({name: 'MemberManage'})">取消</el-button>
-      <el-button type="primary" @click="onSubmit">確定</el-button>
+      <el-button type="primary" @click="onSubmit" :disabled="gameSetting.findIndex(g => g.allowSetting) === -1">確定</el-button>
     </SubmitBar>
 
   </div>
@@ -66,11 +66,10 @@ export default {
   },
   data() {
     return {
+      initSetting: null,
       form: null,
-      isSaved: false,
     }
   },
-  
   computed: {
     ...mapState({
       statusOpts: state => state.Global.memberStatusOpts,
@@ -92,14 +91,14 @@ export default {
     ...mapMutations({
     }),
     createGameForm() {
-      this.gameSetting.forEach(g => {
-        if(!this.form) this.form = {}
-        this.form[g.gameType] = g
-        this.$store.dispatch(GET_GAME_TEMPLATE_OPTIONS, g.gameType)
-      })
+      this.form = this.gameSetting.reduce((obj, next) => {
+        obj[next.gameType] = next
+        this.$store.dispatch(GET_GAME_TEMPLATE_OPTIONS, next.gameType)
+        return obj
+      }, {})
+      this.initSetting = this.$lodash.cloneDeep(this.form)
     },
     onSubmit() {
-      this.isSaved = true
       this.$store.dispatch(EDIT_MEMBER_GAME_SETTING, {
         id: this.$route.params.id,
         setting: this.$lodash.map(this.form)
@@ -117,7 +116,7 @@ export default {
     this.createGameForm()
   },
   beforeRouteLeave(to, from, next) {
-    if(!this.isSaved) {
+    if(!this.$lodash.isEqual(this.initSetting, this.form)) {
       this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
