@@ -34,7 +34,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="4" style="margin-top: 34px">
-              <el-button type="info" @click="onReset(g.gameType)" :disabled="!g.allowSetting">重置</el-button>
+              <el-button :type="form[g.gameType].clear ? 'danger' : 'info'" @click="onReset($event, g.gameType)" :disabled="!g.allowSetting">重置<i v-if="form[g.gameType].clear" class="el-icon-circle-check el-icon--right"></i></el-button>
             </el-col>
           </el-row>
         </el-col>
@@ -44,7 +44,6 @@
       <el-button @click="$router.push({name: 'MemberManage'})">取消</el-button>
       <el-button type="primary" @click="onSubmit" :disabled="gameSetting.findIndex(g => g.allowSetting) === -1">確定</el-button>
     </SubmitBar>
-
   </div>
 </template>
 
@@ -68,6 +67,7 @@ export default {
     return {
       initSetting: null,
       form: null,
+      isSaved: false,
     }
   },
   computed: {
@@ -90,22 +90,33 @@ export default {
   methods: {
     ...mapMutations({
     }),
+    async loadTemplates(index) {
+      await this.$store.dispatch(GET_GAME_TEMPLATE_OPTIONS, this.gameSetting[index].gameType)
+      if(this.gameSetting.length > index+1) {
+        await this.loadTemplates(index+1)
+      }
+    },
     createGameForm() {
       this.form = this.gameSetting.reduce((obj, next) => {
-        obj[next.gameType] = next
-        this.$store.dispatch(GET_GAME_TEMPLATE_OPTIONS, next.gameType)
+        obj[next.gameType] = {
+          ...next,
+          clear: false // 重置按鈕
+        }
         return obj
       }, {})
       this.initSetting = this.$lodash.cloneDeep(this.form)
     },
     onSubmit() {
+      this.isSaved = true
       this.$store.dispatch(EDIT_MEMBER_GAME_SETTING, {
         id: this.$route.params.id,
         setting: this.$lodash.map(this.form)
       })
     },
-    onReset() {
-
+    onReset(e, gameType) {
+      this.form[gameType].maxWin = 0
+      this.form[gameType].clear = true
+      e.currentTarget.blur()
     }
   },
   async mounted() {
@@ -114,9 +125,13 @@ export default {
     await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
     await this.$store.dispatch(GET_MEMBER_GAME_SETTING, this.$route.params.id)
     this.createGameForm()
+    if(this.gameSetting.length > 0) {
+      await this.loadTemplates(0)
+      this.$forceUpdate()
+    }
   },
   beforeRouteLeave(to, from, next) {
-    if(!this.$lodash.isEqual(this.initSetting, this.form)) {
+    if(!this.$lodash.isEqual(this.initSetting, this.form) && !this.isSaved) {
       this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
