@@ -22,7 +22,7 @@ export const MemberGame = {
 
 export const MemberSearch = {
   path: '/member/search',
-  name: 'MemberManage',
+  name: 'MemberSearch',
   title: "會員搜尋",
   props: {funcKey: 1102},
   component: () => import('./component/MemberSearch/MemberSearch.vue')

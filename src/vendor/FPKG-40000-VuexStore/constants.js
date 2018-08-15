@@ -115,6 +115,16 @@ export const CLEAR_MEMBER_POINT_MODIFY = "CLEAR_MEMBER_POINT_MODIFY"
 export const GOT_MEMBER_GAME_SETTING = "GOT_MEMBER_GAME_SETTING"
 
 /*
+  FPKG-130000-Member: MemberSearch
+*/
+
+// actions
+export const GET_SINGLE_MEMBER = "GET_SINGLE_MEMBER"
+
+// mutations
+export const GOT_SINGLE_MEMBER = "GOT_SINGLE_MEMBER"
+
+/*
   FPKG-130000-Member: BankAcc
 */
 

@@ -1,14 +1,62 @@
 <template>
   <div id="MemberSearch">
-    會員搜尋
+    <SearchBar>
+      <el-form :inline="true" 
+                ref="searchForm"
+                :model="searchForm">
+        <el-form-item prop="account">
+          <el-col :span="6">
+            <el-radio v-model="searchForm.type" label="account">會員</el-radio>
+          </el-col>
+          <el-col :span="18">
+            <el-input v-model.trim="searchForm.account" placeholder="搜尋帳號" :disabled="searchForm.type !== 'account'"></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="phone">
+          <el-col :span="6">
+            <el-radio v-model="searchForm.type" label="phone">手機</el-radio>
+          </el-col>
+          <el-col :span="18">
+            <el-input v-model.trim="searchForm.phone" placeholder="搜尋手機號碼" :disabled="searchForm.type !== 'phone'"></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item class="float-right mr-0">
+          <el-button type="primary" @click="onSearchSubmit">
+            <font-awesome-icon icon="search" />
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </SearchBar>
+    <el-row :gutter="30">
+      <el-col :span="12">
+        <!-- 個人資訊 -->
+        <PersonalInfo></PersonalInfo>
+        <!-- 銀行帳戶資訊 -->
+        <BankAccInfo></BankAccInfo>
+      </el-col>
+      <el-col :span="12">
+        <!-- 點數資訊 -->
+        <PointInfo></PointInfo>
+        <!-- 佣金資訊 -->
+        <CommissionInfo></CommissionInfo>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import { SET_BREADCRUMB } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_SINGLE_MEMBER } from '@/vendor/FPKG-40000-VuexStore/constants'
+import PersonalInfo from './PersonalInfo'
+import PointInfo from './PointInfo'
+import CommissionInfo from './CommissionInfo'
+import BankAccInfo from './BankAccInfo'
 
 export default {
   components: {
+    PersonalInfo,
+    PointInfo,
+    CommissionInfo,
+    BankAccInfo,
   },
   data() {
     return {
@@ -16,10 +64,19 @@ export default {
         {name: "Home", title: "首頁"},
         {name: null, title: "會員資訊"},
         {name: null, title: "會員搜尋"},
-      ]
+      ],
+      searchForm: {
+        type: "account",
+        account: "PHTX468",
+        phone: ""
+      }
     }
   },
-  
+  methods: {
+    onSearchSubmit() {
+      this.$store.dispatch(GET_SINGLE_MEMBER, this.searchForm)
+    }
+  },
 
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
@@ -28,4 +85,40 @@ export default {
 </script>
 
 <style lang="stylus">
+#MemberSearch 
+  h5 
+    font-size: 16px
+    position: relative
+    display: flex
+    align-items center 
+    justify-content center
+    &:before 
+      content: ""
+      display: block
+      border-bottom: 1px solid #ccc
+      margin-right: 10px
+      width: 20px
+    &:after 
+      content: ""
+      display: block
+      border-bottom: 1px solid #ccc
+      flex-grow: 1
+      margin-left: 10px
+      
+  table 
+    margin-bottom: 25px
+    th, td 
+      font-size: 13px
+      color: #555
+    th 
+      background-color: #eee 
+      width: 170px
+    td 
+      .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after // 勾勾
+        border-color: #666
+      .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner // 勾勾框
+        border-color: #ccc
+      .el-checkbox__input.is-disabled + span.el-checkbox__label // label的字
+        color: #333
+        font-size: 13px
 </style>
