@@ -70,11 +70,10 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="230">
+        width="150">
         <template slot-scope="scope">
           <el-button size="mini" type="info" @click="onClickEdit(scope.row)">修改</el-button>
-          <el-button size="mini" type="primary" @click="onClickGameEdit(scope.row)">遊戲</el-button>
-          <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)">刪除</el-button>
+          <el-button size="mini" type="warning" @click="onClickGameEdit(scope.row)">遊戲</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -166,9 +165,6 @@ export default {
     },
     onClickGameEdit(item) {
       this.$router.push({name: "MemberGame", params: {id: item.id, acc: item.account}})
-    },
-    onClickDel() {
-
     },
     onClickVerify(item) {
       if(!item.isVerified) {
