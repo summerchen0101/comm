@@ -13,11 +13,27 @@
         </tr>
         <tr>
           <th>撥點</th>
-          <td>{{toCurrencyDecimal(pointInfo.addedPoint)}}</td>
+          <td>
+            <router-link :to="{name: 'MemberAddedPoint', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(pointInfo.addedPoint)}}
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>扣點</th>
-          <td>{{toCurrencyDecimal(pointInfo.subtractedPoint)}}</td>
+          <td>
+            <router-link :to="{name: 'MemberSubtractedPoint', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(pointInfo.subtractedPoint)}}
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>申請中提款</th>
@@ -29,7 +45,15 @@
         </tr>
         <tr>
           <th>已提領佣金</th>
-          <td>{{toCurrencyDecimal(pointInfo.withdrawPoint)}}</td>
+          <td>
+            <router-link :to="{name: 'MemberWithdrawnCommission', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(pointInfo.withdrawnCommission)}}
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>會員結果</th>
@@ -63,6 +87,7 @@ export default {
   },
   computed: {
     ...mapState({
+      personalInfo: state => state.Member.MemberSearch.personalInfo,
       pointInfo: state => state.Member.MemberSearch.pointInfo
     })
   },

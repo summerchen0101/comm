@@ -1,11 +1,18 @@
 
 
 import { 
-  GOT_SINGLE_MEMBER
+  GOT_SINGLE_MEMBER,
+  GOT_ALLOW_COMMISSION_LIST,
+  GOT_WITHDRAWN_COMMISSION_LIST,
+  GOT_DIRECT_MEMBER_LIST,
+  GOT_UPPER_MEMBER_LIST,
+  GOT_ADDED_POINT_LIST,
+  GOT_SUBTRACTED_POINT_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
   [GOT_SINGLE_MEMBER](state, result) {
+    state.isSearched = true
     state.personalInfo = {
       id: result.info.id,
       account: result.info.account,
@@ -30,7 +37,7 @@ const mutations = {
       subtractedPoint: result.credit.lost_point, // 扣點
       applyPoint: result.credit.withdrawal_credit_apply, // 申請中提款
       dispensePoint: result.credit.dispense_credit, // 出款
-      withdrawPoint: result.credit.withdrawal_brokerage, // 已提領佣金
+      withdrawnCommission: result.credit.withdrawal_brokerage, // 已提領佣金
       memberResult: result.credit.payoff, // 會員結果
       unCheckBetting: result.credit.bet_amount_pending, // 未結帳投注
       pointVerify: result.credit.balance_verify, // 點數驗證
@@ -39,11 +46,7 @@ const mutations = {
       totalValidityBetting: result.brokerage.total_feat, // 本週總有效投注額
       selfValidityBetting: result.brokerage.feat, // 本週個人有效投注額
       directValidityBetting: result.brokerage.downline_feat, // 本週直屬總有效投注額
-      commisionUnit: {
-        "1": "700.0000",
-        "2": "600.0000"
-    }
-, // 當前每萬元返還
+      commisionUnit: result.brokerage.feedback, // 當前每萬元返還
       totalCommision: result.brokerage.total_brokerage, // 本週總佣金
       allowCommision: result.brokerage.brokerage, // 可提領佣金
     }
@@ -51,7 +54,73 @@ const mutations = {
       bankAccount: b.bank_account,
       status: b.status,
     }))
-  }
+  },
+  [GOT_ALLOW_COMMISSION_LIST](state, result) {
+    state.allowCommissionList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.allowCommissionPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [GOT_WITHDRAWN_COMMISSION_LIST](state, result) {
+    state.withdrawnCommissionList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.withdrawnCommissionPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [GOT_DIRECT_MEMBER_LIST](state, result) {
+    state.directMemberList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.directMemberPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [GOT_UPPER_MEMBER_LIST](state, result) {
+    state.upperMemberList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.upperMemberPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [GOT_ADDED_POINT_LIST](state, result) {
+    state.addedPointList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.addedPointPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [GOT_SUBTRACTED_POINT_LIST](state, result) {
+    state.subtractedPointList = result.data.map(t => ({
+      id: t.id,
+    }))
+    state.subtractedPointPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
 }
 
 export default mutations

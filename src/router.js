@@ -9,6 +9,14 @@ import {
  } from '@/vendor/FPKG-40000-VuexStore/constants'
 import Dashboard from '@/vendor/FPKG-70000-Dashboard/router'
 import { Login, Logout } from '@/vendor/FPKG-90000-Account/router'
+import { 
+  MemberAllowCommission,
+  MemberWithdrawnCommission,
+  MemberAddedPoint,
+  MemberSubtractedPoint,
+  MemberDirectMembers,
+  MemberUpperMembers,
+} from '@/vendor/FPKG-130000-Member/router'
 
 Vue.use(Router)
 
@@ -17,6 +25,12 @@ const RouterSetting = new Router({
     Dashboard,
     Login,
     Logout,
+    MemberAllowCommission,
+    MemberWithdrawnCommission,
+    MemberAddedPoint,
+    MemberSubtractedPoint,
+    MemberDirectMembers,
+    MemberUpperMembers,
   ]
 })
 

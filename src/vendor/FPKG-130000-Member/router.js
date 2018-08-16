@@ -51,3 +51,47 @@ export const Member = {
     BankAcc,
   ]
 }
+
+// opens
+export const MemberAllowCommission = {
+  path: '/member/allow-commission/:id/:acc/:nick',
+  name: 'MemberAllowCommission',
+  title: "會員搜尋:可提領佣金列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/AllowCommission.vue')
+}
+export const MemberWithdrawnCommission = {
+  path: '/member/withdrawn-commission/:id/:acc/:nick',
+  name: 'MemberWithdrawnCommission',
+  title: "會員搜尋:已提領佣金列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/WithdrawnCommission.vue')
+}
+export const MemberAddedPoint = {
+  path: '/member/added-point/:id/:acc/:nick',
+  name: 'MemberAddedPoint',
+  title: "會員搜尋:撥點列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/AddedPoint.vue')
+}
+export const MemberSubtractedPoint = {
+  path: '/member/subtracted-point/:id/:acc/:nick',
+  name: 'MemberSubtractedPoint',
+  title: "會員搜尋:扣點列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/SubtractedPoint.vue')
+}
+export const MemberDirectMembers = {
+  path: '/member/direct-member/:id/:acc/:nick',
+  name: 'MemberDirectMembers',
+  title: "會員搜尋:直屬會員列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/DirectMembers.vue')
+}
+export const MemberUpperMembers = {
+  path: '/member/upper-member/:id/:acc/:nick',
+  name: 'MemberUpperMembers',
+  title: "會員搜尋:代理會員列表",
+  props: {funcKey: 1102},
+  component: () => import('./component/MemberSearch/opens/UpperMembers.vue')
+}

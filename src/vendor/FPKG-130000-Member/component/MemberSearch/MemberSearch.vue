@@ -27,7 +27,7 @@
         </el-form-item>
       </el-form>
     </SearchBar>
-    <el-row :gutter="30">
+    <el-row :gutter="30" v-if="$store.state.Member.MemberSearch.isSearched">
       <el-col :span="12">
         <!-- 個人資訊 -->
         <PersonalInfo></PersonalInfo>
@@ -114,11 +114,12 @@ export default {
       background-color: #eee 
       width: 170px
     td 
-      .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after // 勾勾
+      .el-checkbox__input.is-disabled .el-checkbox__inner::after // 勾勾
         border-color: #666
-      .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner // 勾勾框
+      .el-checkbox__input.is-disabled .el-checkbox__inner // 勾勾框
         border-color: #ccc
+        background-color: transparent
       .el-checkbox__input.is-disabled + span.el-checkbox__label // label的字
-        color: #333
+        color: #444
         font-size: 13px
 </style>

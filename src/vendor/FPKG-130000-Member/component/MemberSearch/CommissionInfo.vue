@@ -1,12 +1,6 @@
 <template>
   <div>
     <h5>佣金資訊</h5>
-    <!-- totalValidityBetting: result.brokerage.total_feat, // 本週總有效投注額
-    selfValidityBetting: result.brokerage.feat, // 本週個人有效投注額
-    directValidityBetting: result.brokerage.downline_feat, // 本週直屬總有效投注額
-    commisionUnit: result.brokerage.feedback, // 當前每萬元返還
-    totalCommision: result.brokerage.total_brokerage, // 本週總佣金
-    allowCommision: result.brokerage.brokerage, // 可提領佣金 -->
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -24,7 +18,8 @@
         <tr>
           <th>當前每萬元返還</th>
           <td>
-            <span v-for="v, k in commissionInfo.commisionUnit" class="mr-3">
+            <span v-if="$lodash.map(commissionInfo.commisionUnit).length === 0">-</span>
+            <span v-else v-for="v, k in commissionInfo.commisionUnit" :key="k" class="mr-3">
               <b>{{k}}:</b> {{toCurrency(v)}}
             </span>
           </td>
@@ -35,7 +30,15 @@
         </tr>
         <tr>
           <th>可提領佣金</th>
-          <td>{{toCurrencyDecimal(commissionInfo.allowCommision)}}</td>
+          <td>
+            <router-link :to="{name: 'MemberAllowCommission', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(commissionInfo.allowCommision)}}
+            </router-link>
+          </td>
         </tr>
       </thead>
     </table>
@@ -57,6 +60,7 @@ export default {
   },
   computed: {
     ...mapState({
+      personalInfo: state => state.Member.MemberSearch.personalInfo,
       commissionInfo: state => state.Member.MemberSearch.commissionInfo
     })
   },

@@ -35,11 +35,27 @@
         </tr>
         <tr>
           <th>直屬會員數量</th>
-          <td>{{personalInfo.directMembers}}</td>
+          <td>
+            <router-link :to="{name: 'MemberDirectMembers', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(personalInfo.directMembers)}}
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>代理會員數量</th>
-          <td>{{personalInfo.upperMembers}}</td>
+          <td>
+            <router-link :to="{name: 'MemberUpperMembers', params: {
+                id: personalInfo.id,
+                acc: personalInfo.account,
+                nick: personalInfo.nick,
+              }}" target="_blank">
+              {{toCurrencyDecimal(personalInfo.upperMembers)}}
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>單日存款限額</th>
