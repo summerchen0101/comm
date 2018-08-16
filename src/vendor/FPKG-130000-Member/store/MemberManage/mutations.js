@@ -64,7 +64,7 @@ const mutations = {
       point: result.balance,
       phone: result.mobile,
       lineID: result.line_id,
-      dailyDepositLimit: result.daily_deposit_limit,
+      memberDepositLimit: result.member_deposit_limit_id,
 
       isLevelActive: result.brokerage_level_active == 1,
       startLevel: result.brokerage_level_id,

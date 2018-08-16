@@ -45,9 +45,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="單日存款限額">
-            <el-select v-model="form.dailyDepositLimit" style="width: 100%">
-              <el-option v-for="opt in dailyDepositLimitOpts" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
+          <el-form-item label="會員存款條件">
+            <el-select v-model="form.memberDepositLimit" style="width: 100%">
+              <el-option v-for="opt in memberDepositLimitOpts" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
             </el-select>
           </el-form-item>
         </el-col>
@@ -152,7 +152,7 @@
 import { 
   SET_BREADCRUMB,
   GET_MEMBER,
-  GET_DAILY_DEPOSIT_LIMIT_OPTIONS,
+  GET_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GET_MEMBER_STATUS_OPTIONS,
   SWITCH_POINT_DIALOG,
   EDIT_MEMBER,
@@ -179,7 +179,7 @@ export default {
         lineID: "",
         pw: "",
         pw_confirm: "",
-        dailyDepositLimit: 5000,
+        memberDepositLimit: 5000,
         memo: "",
         isLevelActive: false,
         startLevel: 1,
@@ -194,7 +194,7 @@ export default {
   computed: {
     ...mapState({
       statusOpts: state => state.Global.memberStatusOpts,
-      dailyDepositLimitOpts: state => state.Global.dailyDepositLimitOpts,
+      memberDepositLimitOpts: state => state.Global.memberDepositLimitOpts,
       member: state => state.Member.MemberManage.member,
       pointModify: state => state.Member.MemberManage.pointModify
     }),
@@ -237,7 +237,7 @@ export default {
     this.$hub.$on("Member:pointModifyChanged", this.onPointModifyChanged)
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.commit(CLEAR_MEMBER_POINT_MODIFY)
-    this.$store.dispatch(GET_DAILY_DEPOSIT_LIMIT_OPTIONS)
+    this.$store.dispatch(GET_MEMBER_DEPOSIT_LIMIT_OPTIONS)
     this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
     await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
     this.form = Object.assign({}, this.form, this.member)

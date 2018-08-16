@@ -79,7 +79,7 @@ const actions = {
       active: _d.status,
       password: _d.pw || undefined,
       password_confirmation: _d.pw_confirm || undefined,
-      daily_deposit_limit: _d.dailyDepositLimit,
+      member_deposit_limit_id: _d.memberDepositLimit,
 
       earn_point: state.pointModify.add.point,
       earn_reason: state.pointModify.add.memo,

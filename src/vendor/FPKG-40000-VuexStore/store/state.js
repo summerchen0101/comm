@@ -7,7 +7,7 @@ const state = {
   statusOpts: [],
   userStatusOpts: [],
   memberStatusOpts: [],
-  dailyDepositLimitOpts: [],
+  memberDepositLimitOpts: [],
   gameTypeOpts: [],
   gameTplOpts: {},
   lang: 'zh-TW'

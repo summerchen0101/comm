@@ -7,7 +7,7 @@ import {
   GOT_DISPENSE_ACC_OPTIONS,
   GOT_USER_STATUS_OPTIONS,
   GOT_MEMBER_STATUS_OPTIONS,
-  GOT_DAILY_DEPOSIT_LIMIT_OPTIONS,
+  GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GOT_GAME_TYPE_OPTIONS,
   GOT_GAME_TEMPLATE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
@@ -31,8 +31,8 @@ const mutations = {
   [GOT_MEMBER_STATUS_OPTIONS](state, list) {
     state.memberStatusOpts = list
   },
-  [GOT_DAILY_DEPOSIT_LIMIT_OPTIONS](state, list) {
-    state.dailyDepositLimitOpts = list
+  [GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS](state, list) {
+    state.memberDepositLimitOpts = list
   },
   [GOT_GAME_TYPE_OPTIONS](state, list) {
     state.gameTypeOpts = list

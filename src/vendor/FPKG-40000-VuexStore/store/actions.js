@@ -12,8 +12,8 @@ import {
   GOT_USER_STATUS_OPTIONS,
   GET_MEMBER_STATUS_OPTIONS,
   GOT_MEMBER_STATUS_OPTIONS,
-  GET_DAILY_DEPOSIT_LIMIT_OPTIONS,
-  GOT_DAILY_DEPOSIT_LIMIT_OPTIONS,
+  GET_MEMBER_DEPOSIT_LIMIT_OPTIONS,
+  GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GET_GAME_TYPE_OPTIONS,
   GOT_GAME_TYPE_OPTIONS,
   GET_GAME_TEMPLATE_OPTIONS,
@@ -64,10 +64,10 @@ const actions = {
       commit(GOT_DISPENSE_ACC_OPTIONS, res.result)
     }
   },
-  async [GET_DAILY_DEPOSIT_LIMIT_OPTIONS]({commit}) {
-    let res = await apiHub('get', 'api/v1/dropdown/daily_deposit_limit')
+  async [GET_MEMBER_DEPOSIT_LIMIT_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/member_deposit_limit')
     if(res.code === 200001) {
-      commit(GOT_DAILY_DEPOSIT_LIMIT_OPTIONS, res.result)
+      commit(GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS, res.result)
     }
   },
   async [GET_GAME_TYPE_OPTIONS]({commit}) {
