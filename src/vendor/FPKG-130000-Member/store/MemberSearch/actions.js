@@ -23,6 +23,7 @@ import {
   GOT_SUBTRACTED_POINT_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
+import { toDateTime } from '@/vendor/FPKG-120000-Util/time'
 
 
 import Router from '@/router'
@@ -84,8 +85,8 @@ const actions = {
   },
   async [GET_ADDED_POINT_LIST]({commit}, _d = {}) {
     let params = {
-      start_time: _d.startAt,
-      end_time: _d.endAt,
+      start_time: _d.startAt ? toDateTime(_d.startAt) : undefined,
+      end_time: _d.endAt ? toDateTime(_d.endAt) : undefined,
       page: _d.page,
     }
     let res = await apiHub("get", `api/v1/member_search/${_d.id}/balance/5`, null, params) // 5:撥點 6:扣點
@@ -95,8 +96,8 @@ const actions = {
   },
   async [GET_SUBTRACTED_POINT_LIST]({commit}, _d = {}) {
     let params = {
-      start_time: _d.startAt,
-      end_time: _d.endAt,
+      start_time: _d.startAt ? toDateTime(_d.startAt) : undefined,
+      end_time: _d.endAt ? toDateTime(_d.endAt) : undefined,
       page: _d.page,
     }
     let res = await apiHub("get", `api/v1/member_search/${_d.id}/balance/6`, null, params) // 5:撥點 6:扣點

@@ -57,7 +57,12 @@ const mutations = {
   },
   [GOT_ALLOW_COMMISSION_LIST](state, result) {
     state.allowCommissionList = result.data.map(t => ({
-      id: t.id,
+      startAt: t.start,
+      endAt: t.end,
+      selfValidityBetting: t.feat,
+      totalValidityBetting: t.total_feat,
+      allowCommision: t.brokerage,
+      totalCommision: t.total_brokerage,
     }))
     state.allowCommissionPager = {
       page: result.current_page,
@@ -68,7 +73,8 @@ const mutations = {
   },
   [GOT_WITHDRAWN_COMMISSION_LIST](state, result) {
     state.withdrawnCommissionList = result.data.map(t => ({
-      id: t.id,
+      point: t.credit,
+      createdAt: t.created_at,
     }))
     state.withdrawnCommissionPager = {
       page: result.current_page,
@@ -80,6 +86,13 @@ const mutations = {
   [GOT_DIRECT_MEMBER_LIST](state, result) {
     state.directMemberList = result.data.map(t => ({
       id: t.id,
+      account: t.account,
+      nick: t.nickname,
+      phone: t.mobile,
+      status: t.active,
+      createdAt: t.created_at,
+      selfValidityBetting: t.feat,
+      allowCommision: t.brokerage,
     }))
     state.directMemberPager = {
       page: result.current_page,
@@ -91,6 +104,13 @@ const mutations = {
   [GOT_UPPER_MEMBER_LIST](state, result) {
     state.upperMemberList = result.data.map(t => ({
       id: t.id,
+      account: t.account,
+      nick: t.nickname,
+      phone: t.mobile,
+      status: t.active,
+      createdAt: t.created_at,
+      selfValidityBetting: t.feat,
+      allowCommision: t.brokerage,
     }))
     state.upperMemberPager = {
       page: result.current_page,
@@ -101,7 +121,10 @@ const mutations = {
   },
   [GOT_ADDED_POINT_LIST](state, result) {
     state.addedPointList = result.data.map(t => ({
-      id: t.id,
+      point: t.balance,
+      createdAt: t.created_at,
+      memo: t.reason || "-",
+      operator: t.review_user,
     }))
     state.addedPointPager = {
       page: result.current_page,
@@ -112,7 +135,10 @@ const mutations = {
   },
   [GOT_SUBTRACTED_POINT_LIST](state, result) {
     state.subtractedPointList = result.data.map(t => ({
-      id: t.id,
+      point: t.balance,
+      createdAt: t.created_at,
+      memo: t.reason || "-",
+      operator: t.review_user,
     }))
     state.subtractedPointPager = {
       page: result.current_page,

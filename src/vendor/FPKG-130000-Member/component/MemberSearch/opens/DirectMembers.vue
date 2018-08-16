@@ -1,5 +1,6 @@
 <template>
   <div id="DirectMembers" class="container">
+    <LoadingCover></LoadingCover>
     <!-- 直屬及代理會員數 -->
     <table class="table table-bordered">
       <thead>
@@ -8,8 +9,8 @@
           <th>直屬會員數</th>
         </tr>
         <tr>
-          <td>{{$route.params.acc}}({{$route.params.nick}})</td>
-          <td>{{directMemberList.length}}</td>
+          <td>{{$route.params.acc}} ({{$route.params.nick}})</td>
+          <td>{{$route.params.count || 0}}</td>
         </tr>
       </thead>
     </table>
@@ -17,21 +18,11 @@
       <el-form :inline="true" 
                 ref="searchForm"
                 :model="searchForm">
-        <el-form-item prop="account">
-          <el-col :span="6">
-            <el-radio v-model="searchForm.type" label="account">會員</el-radio>
-          </el-col>
-          <el-col :span="18">
-            <el-input v-model.trim="searchForm.account" placeholder="搜尋帳號" :disabled="searchForm.type !== 'account'"></el-input>
-          </el-col>
+        <el-form-item prop="account" label="會員">
+          <el-input v-model.trim="searchForm.account" placeholder="搜尋帳號"></el-input>
         </el-form-item>
-        <el-form-item prop="phone">
-          <el-col :span="6">
-            <el-radio v-model="searchForm.type" label="phone">手機</el-radio>
-          </el-col>
-          <el-col :span="18">
-            <el-input v-model.trim="searchForm.phone" placeholder="搜尋手機號碼" :disabled="searchForm.type !== 'phone'"></el-input>
-          </el-col>
+        <el-form-item prop="phone" label="手機">
+          <el-input v-model.trim="searchForm.phone" placeholder="搜尋手機號碼"></el-input>
         </el-form-item>
         <el-form-item prop="status" label="狀態">
           <el-select v-model="searchForm.status" style="width: 100%">
@@ -52,8 +43,38 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="title"
-        label="標題">
+        label="帳號(暱稱)">
+        <template slot-scope="scope">
+          {{scope.row.account}} ({{scope.row.nick}})
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="phone"
+        label="手機號碼">
+      </el-table-column>
+      <el-table-column
+        label="本週業績">
+        <template slot-scope="scope">
+          {{toCurrencyDecimal(scope.row.selfValidityBetting)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="本週總佣金">
+        <template slot-scope="scope">
+          {{toCurrencyDecimal(scope.row.allowCommision)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        prop="createdAt"
+        label="建立日期">
+      </el-table-column>
+      <el-table-column
+        label="狀態">
+        <template slot-scope="scope">
+          <span :class="{'text-success': scope.row.status == 1, 'text-danger': scope.row.status == 2}">
+            {{toOption(statusOpts, scope.row.status)}}
+          </span>
+        </template>
       </el-table-column>
     </el-table>
     <Paginator v-if="directMemberPager"
@@ -75,7 +96,6 @@ export default {
   data() {
     return {
       searchForm: {
-        type: "account",
         account: "",
         phone: "",
         status: 0
@@ -112,7 +132,7 @@ export default {
 #DirectMembers
   margin: 30px auto
   table 
-    margin-bottom: 25px
+    // margin-bottom: 25px
     th, td 
       font-size: 13px
       color: #555

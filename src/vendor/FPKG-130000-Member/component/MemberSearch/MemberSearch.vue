@@ -67,7 +67,7 @@ export default {
       ],
       searchForm: {
         type: "account",
-        account: "PHTX468",
+        account: "PHMW473",
         phone: ""
       }
     }
@@ -106,7 +106,7 @@ export default {
       margin-left: 10px
       
   table 
-    margin-bottom: 25px
+    // margin-bottom: 25px
     th, td 
       font-size: 13px
       color: #555

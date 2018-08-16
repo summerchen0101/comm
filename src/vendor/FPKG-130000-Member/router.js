@@ -82,14 +82,14 @@ export const MemberSubtractedPoint = {
   component: () => import('./component/MemberSearch/opens/SubtractedPoint.vue')
 }
 export const MemberDirectMembers = {
-  path: '/member/direct-member/:id/:acc/:nick',
+  path: '/member/direct-member/:id/:acc/:nick/:count',
   name: 'MemberDirectMembers',
   title: "會員搜尋:直屬會員列表",
   props: {funcKey: 1102},
   component: () => import('./component/MemberSearch/opens/DirectMembers.vue')
 }
 export const MemberUpperMembers = {
-  path: '/member/upper-member/:id/:acc/:nick',
+  path: '/member/upper-member/:id/:acc/:nick/:count',
   name: 'MemberUpperMembers',
   title: "會員搜尋:代理會員列表",
   props: {funcKey: 1102},

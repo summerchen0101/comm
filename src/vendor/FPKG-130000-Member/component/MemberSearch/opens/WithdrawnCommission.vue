@@ -1,12 +1,13 @@
 <template>
   <div id="WithdrawnCommission" class="container">
+    <LoadingCover></LoadingCover>
     <!-- 已提領佣金 -->
     <table class="table table-bordered">
       <tr>
         <th>帳號(暱稱)</th>
       </tr>
       <tr>
-        <td>{{$route.params.acc}}({{$route.params.nick}})</td>
+        <td>{{$route.params.acc}} ({{$route.params.nick}})</td>
       </tr>
     </table>
 
@@ -16,8 +17,12 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="title"
-        label="標題">
+        prop="point"
+        label="佣金點數">
+      </el-table-column>
+      <el-table-column
+        prop="createdAt"
+        label="提領日期">
       </el-table-column>
     </el-table>
     <Paginator v-if="withdrawnCommissionPager"
@@ -65,7 +70,7 @@ export default {
 #WithdrawnCommission
   margin: 30px auto
   table 
-    margin-bottom: 25px
+    // margin-bottom: 25px
     th, td 
       font-size: 13px
       color: #555
