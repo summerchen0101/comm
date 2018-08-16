@@ -6,6 +6,8 @@ import {
 import { 
   toDateTime, 
   toShortDateTime, 
+  toDate, 
+  toShortDate, 
   startAtDay, 
   endAtDay, 
   dateAfter, 
@@ -34,6 +36,8 @@ export default {
 
     toDateTime,
     toShortDateTime,
+    toDate, 
+    toShortDate, 
     startAtDay, 
     endAtDay, 
     dateAfter, 
