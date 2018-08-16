@@ -47,8 +47,10 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="point"
-        label="撥點點數">
+        label="扣點點數">
+        <template slot-scope="scope">
+          {{toCurrencyDecimal(scope.row.point)}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="createdAt"

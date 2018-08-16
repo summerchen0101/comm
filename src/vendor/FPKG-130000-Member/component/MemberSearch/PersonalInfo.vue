@@ -69,15 +69,15 @@
         </tr>
         <tr>
           <th>最後登入</th>
-          <td>{{personalInfo.loginAt}}</td>
+          <td>{{personalInfo.loginAt || "-"}}</td>
         </tr>
         <tr>
           <th>最後登入IP</th>
-          <td>{{personalInfo.loginIP}}</td>
+          <td>{{personalInfo.loginIP || "-"}}</td>
         </tr>
         <tr>
           <th>備註</th>
-          <td>{{personalInfo.memo}}</td>
+          <td>{{personalInfo.memo || "-"}}</td>
         </tr>
       </thead>
     </table>

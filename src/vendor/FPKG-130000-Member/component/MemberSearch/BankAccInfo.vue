@@ -2,17 +2,19 @@
   <div>
     <h5>銀行帳戶資訊</h5>
     <table class="table table-bordered">
-      <thead>
-        <tr v-for="b,i in bankAccInfo" :key="i">
-          <th>銀行帳戶</th>
-          <td>{{b.bankAccount}}
-              <el-checkbox class="float-right" style="margin-bottom: 0" disabled
-                            :value="b.status == 1">
-                            驗證通過
-              </el-checkbox>
-          </td>
-        </tr>
-      </thead>
+      <tr v-if="bankAccInfo.length === 0">
+        <th>銀行帳戶</th>
+        <td>(暫無設定)</td>
+      </tr>
+      <tr v-for="b,i in bankAccInfo" :key="i">
+        <th>銀行帳戶</th>
+        <td>{{b.bankAccount}}
+            <el-checkbox class="float-right" style="margin-bottom: 0" disabled
+                          :value="b.status == 1">
+                          驗證通過
+            </el-checkbox>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
