@@ -42,27 +42,22 @@
       class="mt-4"
       style="width: 100%">
       <el-table-column
-        width="180"
         label="帳號(暱稱)">
         <template slot-scope="scope">
-          <span>{{scope.row.account}}</span>
-          <span>({{scope.row.nick}})</span>
+          {{scope.row.account}} ({{scope.row.nick}})
         </template>
       </el-table-column>
       <el-table-column
-        width="150"
         label="時間">
         <template slot-scope="scope">
           {{toShortDateTime(scope.row.time)}}
         </template>
       </el-table-column>
       <el-table-column
-        width="150"
         prop="ip"
         label="IP">
       </el-table-column>
       <el-table-column
-        width="150"
         prop="area"
         label="地區">
       </el-table-column>

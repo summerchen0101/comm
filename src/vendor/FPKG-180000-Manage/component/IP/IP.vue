@@ -12,22 +12,18 @@
       stripe
       style="width: 100%">
       <el-table-column
-        width="180"
         prop="ip"
         label="IP">
       </el-table-column>
       <el-table-column
-        width="200"
         prop="desc"
         label="描述">
       </el-table-column>
       <el-table-column
-        width="80"
         prop="count"
         label="人數">
       </el-table-column>
       <el-table-column
-        width="180"
         label="建立時間">
         <template slot-scope="scope">
           {{toDateTime(scope.row.createdAt)}}

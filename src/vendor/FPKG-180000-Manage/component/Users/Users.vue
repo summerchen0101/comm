@@ -33,7 +33,6 @@
       class="mt-4"
       style="width: 100%">
       <el-table-column
-        width="180"
         label="帳號(暱稱)">
         <template slot-scope="scope">
           <span>{{scope.row.account}}</span>
@@ -41,26 +40,22 @@
         </template>
       </el-table-column>
       <el-table-column
-        width="100"
         prop="permission"
         label="權限">
       </el-table-column>
       <el-table-column
-        width="150"
         label="最後登入">
         <template slot-scope="scope">
           {{toShortDateTime(scope.row.loginAt)}}
         </template>
       </el-table-column>
       <el-table-column
-        width="180"
         label="建立時間">
         <template slot-scope="scope">
           {{toDateTime(scope.row.createdAt)}}
         </template>
       </el-table-column>
       <el-table-column
-        width="100"
         label="狀態">
         <template slot-scope="scope">
           <span :class="{'text-danger': scope.row.status == 2, 'text-success': scope.row.status == 1}">
