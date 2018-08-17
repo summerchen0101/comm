@@ -22,6 +22,11 @@ Vue.use(Router)
 
 const RouterSetting = new Router({
   routes: [
+    {
+      path: '/',
+      name: 'Index',
+      redirect: {name: 'Home'},
+    },
     Dashboard,
     Login,
     Logout,
@@ -39,12 +44,7 @@ RouterSetting.beforeEach(async (to, from, next) => {
   const Store = RouterSetting.app.$store
 
   Store.commit(SWITCH_WEB_SYS_MENU, false)
-
-  // // 若無站台資料 Y-> 獲取站台資訊
-  // if(!Store.getters.BRANCH_INFO) {
-  //   await Store.dispatch(GET_BRANCH_INFO)
-  // }
-
+  
   // 若無Auth 
   if(!Store.state.Account.auth) {
     Store.commit(SET_USER_AUTH)

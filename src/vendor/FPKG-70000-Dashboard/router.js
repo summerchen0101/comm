@@ -6,6 +6,7 @@ import { Money } from '@/vendor/FPKG-150000-Money/router.js'
 import { BettingInfo } from '@/vendor/FPKG-160000-BettingInfo/router.js'
 import { Report } from '@/vendor/FPKG-170000-Report/router.js'
 import { Manage } from '@/vendor/FPKG-180000-Manage/router.js'
+import { Home } from '@/vendor/FPKG-190000-Home/router.js'
 
 export default {
   path: '/dashboard',
@@ -19,5 +20,6 @@ export default {
     Report,
     Manage,
     Member,
+    Home,
   ]
 }
