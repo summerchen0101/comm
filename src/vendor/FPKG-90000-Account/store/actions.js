@@ -46,7 +46,7 @@ const actions = {
       commit(SET_USER_AUTH)
       await dispatch(GET_USER_INFO)
       console.log("登入成功")
-      Router.push({name: 'Announce'})
+      Router.push({name: 'Home'})
     }else {
       console.log("登入失敗")
     }

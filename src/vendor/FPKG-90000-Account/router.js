@@ -10,7 +10,7 @@ export const PersonalProfile = {
 
 
 export const Login = {
-  path: '/',
+  path: '/login',
   name: 'Login',
   component: () => import('@/vendor/FPKG-90000-Account/component/Login.vue'),
   beforeEnter(to, from, next) {
@@ -19,7 +19,7 @@ export const Login = {
 }
 
 export const Logout = {
-  path: '/',
+  path: '/login',
   name: 'Logout',
   async beforeEnter(to, from, next) {
     await VueStore.dispatch(DO_LOGOUT)
