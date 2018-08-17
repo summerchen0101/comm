@@ -1,6 +1,6 @@
 
 
-import { GOT_REVIEW_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { GOT_REVIEW_LIST, SWITCH_REVIEW_LOADING_STATUS } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
@@ -12,7 +12,10 @@ const mutations = {
       bank: result.bank,
       sms: result.message,
     }
-  }
+  },
+  [SWITCH_REVIEW_LOADING_STATUS](state, status) {
+    state.isLoadingReviews = status
+  },
 }
 
 export default mutations

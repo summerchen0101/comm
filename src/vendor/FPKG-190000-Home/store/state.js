@@ -2,6 +2,7 @@
 
 
 const state = {
+  isLoadingReviews: false,
   reviews: {
     deposit: 0,
     withdraw: 0,

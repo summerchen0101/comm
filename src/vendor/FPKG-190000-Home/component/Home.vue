@@ -25,6 +25,10 @@
             <span class="label text-primary">簡訊點數</span>
             <span class="number">{{toCurrency(reviews.sms)}}</span>
           </div>
+          <div class="reload btn" @click="getReviewList">
+            <span class="count">{{count}}</span>
+            <font-awesome-icon icon="sync-alt" :spin="isLoading" />
+          </div>
         </div>
       </div>
     </div>
@@ -45,17 +49,37 @@ export default {
     return {
       breadcrumbPath: [
         {name: null, title: "首頁"},
-      ]
+      ],
+      count: 60,
+      interval: null
     }
   },
   computed: {
     ...mapState({
       reviews: state => state.Home.reviews,
+      isLoading: state => state.Home.isLoadingReviews,
     })
+  },
+  methods: {
+    async getReviewList() {
+      await this.$store.dispatch(GET_REVIEW_LIST)
+      this.count = 60
+    },
+    async tick() {
+      this.count--
+      if(this.count === 0) {
+        await this.getReviewList()
+      }
+      this.interval = setTimeout(this.tick, 1000)
+    }
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_REVIEW_LIST)
+    this.getReviewList()
+    this.tick()
+  },
+  beforeDestroy() {
+    clearTimeout(this.interval)
   }
 }
 </script>
@@ -67,6 +91,14 @@ export default {
   .reviewBoxs
     display: flex 
     margin-left: -20px
+    > .reload
+      margin-left: 10px
+      height: 40px
+      &:hover 
+        color: #666
+      .count 
+        margin-right: 5px
+        font-size: 12px
     > .box 
       flex: 1
       // border: 1px solid #ccc 

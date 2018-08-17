@@ -1,6 +1,5 @@
 import Vue from 'vue'
 
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
   faSpinner, 
@@ -14,6 +13,7 @@ import {
   faThLarge,
   faBullhorn,
   faDollarSign,
+  faSyncAlt,
   faChartBar,
   faUsers
 } from '@fortawesome/free-solid-svg-icons'
@@ -31,6 +31,7 @@ library.add(
   faThLarge,
   faBullhorn,
   faDollarSign,
+  faSyncAlt,
   faChartBar,
   faUsers
 )
