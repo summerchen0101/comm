@@ -25,7 +25,7 @@
             <span class="label text-primary">簡訊點數</span>
             <span class="number">{{toCurrency(reviews.sms)}}</span>
           </div>
-          <div class="reload btn" @click="getReviewList">
+          <div class="reload pointer" @click="getReviewList">
             <span class="count">{{count}}</span>
             <font-awesome-icon icon="sync-alt" :spin="isLoading" />
           </div>

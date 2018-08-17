@@ -15,7 +15,9 @@ import {
   faDollarSign,
   faSyncAlt,
   faChartBar,
-  faUsers
+  faUsers,
+  faBars,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -33,7 +35,9 @@ library.add(
   faDollarSign,
   faSyncAlt,
   faChartBar,
-  faUsers
+  faUsers,
+  faBars,
+  faSignOutAlt
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
