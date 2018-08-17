@@ -94,6 +94,7 @@ export default {
     > .reload
       margin-left: 10px
       height: 40px
+      width: 40px
       &:hover 
         color: #666
       .count 
