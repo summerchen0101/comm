@@ -1,14 +1,26 @@
 import axios from 'axios'
 import Store from '@/store'
 import { SWITCH_LOADING_COVER } from '@/vendor/FPKG-40000-VuexStore/constants'
-// import {  } from './branch'
+
+export const branchDomain = psl.parse(location.hostname).domain || location.hostname
+
+var apiPathByEnv = {
+  local: '/api',
+  dev: 'http://platformapi.thoth-dev.com',
+  beta: 'https://platform-api.gebtest365.net'
+}
+var apiPathMap = [
+  {path: '/api', domain: 'localhost'},
+  {path: 'http://platformapi.thoth-dev.com', domain: 'thoth-dev.com'},
+  {path: 'https://platform-api.gebtest365.net', domain: 'gebtest365.net'},
+]
+var apiIndex = apiPathMap.findIndex(t => branchDomain.search(t.domain) > -1)
 export async function apiHub(method, url, data, params) {
   Store.commit(SWITCH_LOADING_COVER, true)
   try {
     var _response = await axios({
-      baseURL: process.env.NODE_ENV === 'production' ? 'http://platformapi.thoth-dev.com' : '/api',
-      // timeout: 1000,
-      // withCredentials: true,
+      baseURL: apiPathMap[apiIndex].path,
+      // baseURL: apiPathByEnv[process.env.VUE_APP_API_ENV],
       method,
       url,
       data,
