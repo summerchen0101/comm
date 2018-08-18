@@ -12,6 +12,7 @@ deploy:develop:
     - master
   script:
     - yarn --ignore-engines
+    - yarn build
     - cp -R dist /var/www/platform-comm-f2e/dist_new
     - mv /var/www/platform-comm-f2e/dist /var/www/platform-comm-f2e/dist_old
     - mv /var/www/platform-comm-f2e/dist_new /var/www/platform-comm-f2e/dist
@@ -29,6 +30,7 @@ deploy:test:
   except:
     - branches
   script:
+    - yarn install
     - yarn build
     - mv dist /var/www/platform-comm-f2e/dist_gitlabrunner
     - mv /var/www/platform-comm-f2e/dist_deploy /var/www/platform-comm-f2e/dist_old
