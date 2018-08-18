@@ -1,13 +1,10 @@
 stages:
   - deploy
 
-before_script:
-  - yarn --ignore-engines
-
 deploy:develop:
   environment:
     name: develop
-    url: $ENVIRONMENT_URL_DEV
+    url: $DEV_ENVIRONMENT_URL
   tags:
     - share-dev-nodejs
   stage: deploy
@@ -18,4 +15,22 @@ deploy:develop:
     - cp -R dist /var/www/platform-comm-f2e/dist_new
     - mv /var/www/platform-comm-f2e/dist /var/www/platform-comm-f2e/dist_old
     - mv /var/www/platform-comm-f2e/dist_new /var/www/platform-comm-f2e/dist
+    - rm -rf /var/www/platform-comm-f2e/dist_old
+    
+deploy:test:
+  environment:
+    name: test
+    url: $TEST_ENVIRONMENT_URL
+  tags:
+    - platform-comm-f2e-test-machine
+  stage: deploy
+  only:
+    - /^.*-beta.*$/
+  except:
+    - branches
+  script:
+    - yarn build
+    - mv dist /var/www/platform-comm-f2e/dist_gitlabrunner
+    - mv /var/www/platform-comm-f2e/dist_deploy /var/www/platform-comm-f2e/dist_old
+    - mv /var/www/platform-comm-f2e/dist_gitlabrunner /var/www/platform-comm-f2e/dist_deploy
     - rm -rf /var/www/platform-comm-f2e/dist_old
