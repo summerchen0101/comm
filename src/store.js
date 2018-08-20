@@ -18,7 +18,6 @@ Vue.use(Vuex)
 const store = {
   modules: {
     Global,
-    Config,
     Widget,
     Dashboard,
     Account,
