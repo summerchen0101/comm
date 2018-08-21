@@ -7,12 +7,12 @@ export const branchDomain = psl.parse(location.hostname).domain || location.host
 var apiPathByEnv = {
   local: '/api',
   dev: 'http://platformapi.thoth-dev.com',
-  beta: 'https://platform-api.gebtest365.net'
+  beta: 'http://platform-api.gebtest365.net'
 }
 var apiPathMap = [
   {path: '/api', domain: 'localhost'},
   {path: 'http://platformapi.thoth-dev.com', domain: 'thoth-dev.com'},
-  {path: 'https://platform-api.gebtest365.net', domain: 'gebtest365.net'},
+  {path: 'http://platform-api.gebtest365.net', domain: 'gebtest365.net'},
 ]
 var apiIndex = apiPathMap.findIndex(t => branchDomain.search(t.domain) > -1)
 export async function apiHub(method, url, data, params) {
