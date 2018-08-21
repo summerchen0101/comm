@@ -1,10 +1,18 @@
 stages:
   - deploy
 
+before_script:
+  - touch .env
+  - echo VUE_APP_API_ENV=$DEPLOY_VUE_APP_API_ENV >> .env
+  - echo VUE_APP_API_PATH=$DEPLOY_VUE_APP_API_PATH >> .env
+
 deploy:develop:
   environment:
     name: develop
     url: $DEV_ENVIRONMENT_URL
+  variables:
+    DEPLOY_VUE_APP_API_ENV: $DEV_VUE_APP_API_ENV
+    DEPLOY_VUE_APP_API_PATH: $DEV_VUE_APP_API_PATH
   tags:
     - share-dev-nodejs
   stage: deploy
@@ -22,6 +30,9 @@ deploy:test:
   environment:
     name: test
     url: $TEST_ENVIRONMENT_URL
+  variables:
+    DEPLOY_VUE_APP_API_ENV: $TEST_VUE_APP_API_ENV
+    DEPLOY_VUE_APP_API_PATH: $TEST_VUE_APP_API_PATH
   tags:
     - platform-comm-f2e-test-machine
   stage: deploy
