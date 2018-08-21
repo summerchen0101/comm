@@ -96,7 +96,7 @@ export default {
       ],
       searchForm: {
         type: 1,
-        number: "2592373541147945"
+        number: ""
       },
       searchFormRules: {
         type: [

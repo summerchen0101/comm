@@ -54,7 +54,7 @@ export default {
         {name: null, title: "會員報表"},
       ],
       searchForm: {
-        account: this.$route.params.account || "PHTX468",
+        account: this.$route.params.account || "",
         startAt: this.$route.params.startAt || startAtDay(new Date()),
         endAt: this.$route.params.endAt || endAtDay(new Date()),
       },

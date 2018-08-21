@@ -56,8 +56,8 @@ export default {
   data() {
     return {
       form: {
-        account: "thothadmin",
-        password: "password",
+        account: "",
+        password: "",
         remember: false,
         captcha: "",
         captchaUuid: "",
