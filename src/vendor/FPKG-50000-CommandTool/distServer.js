@@ -3,7 +3,7 @@ var express = require('express')
 var app = express()
 var opn = require('opn')
 var proxy = require('express-http-proxy'); 
-var port = process.env.DIST_PORT;
+var port = process.env.DIST_REVIEW_PORT;
 var distPath = process.cwd() + '/dist'
 
 app.use('/api', proxy('platformapi.thoth-dev.com'));
