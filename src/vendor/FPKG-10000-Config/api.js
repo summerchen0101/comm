@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Store from '@/store'
+import Router from '@/router'
 import { SWITCH_LOADING_COVER } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 // export const branchDomain = psl.parse(location.hostname).domain || location.hostname
@@ -30,6 +31,10 @@ export async function apiHub(method, url, data, params) {
       alert(`系統忙碌中: ${_response.status}`)
       // alert(`API Error: ${_response.status}`)
     }
+    if(_response.data.code) {
+      Router.app.handleErrCode(_response.data.code)
+    }
+    
     return _response.data
   }catch(err) {
     console.log(err)

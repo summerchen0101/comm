@@ -43,7 +43,10 @@ Vue.component("SubmitBar", SubmitBar)
 Vue.component("HistoryDialog", HistoryDialog)
 Vue.config.productionTip = false
 
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool'
+
 new Vue({
+  mixins: [commonTool],
   router,
   store,
   render: h => h(App)

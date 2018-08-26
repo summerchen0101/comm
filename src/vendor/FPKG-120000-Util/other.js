@@ -1,4 +1,5 @@
 import * as Enums from '@/vendor/FPKG-10000-Config/enum'
+import errCode from '@/vendor/FPKG-10000-Config/errCode'
 
 export function toEnum(enumName, value) {
   let i = Enums[enumName].findIndex(t => t.value == value)
@@ -25,4 +26,12 @@ export function onCopyText() {
     message: '已複製資訊',
     duration: 2000,
   });
+}
+
+export function handleErrCode(code) {
+  if(code !== 200001) {
+      let msg =  errCode[code] || '未知錯誤碼'
+      this.$alert(msg, '提示');
+  }
+  return
 }

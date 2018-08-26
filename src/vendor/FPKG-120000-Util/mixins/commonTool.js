@@ -1,26 +1,8 @@
-import { 
-  toCurrency, 
-  toCurrencyDecimal 
-} from '@/vendor/FPKG-120000-Util/number';
+import * as number from '@/vendor/FPKG-120000-Util/number';
 
-import { 
-  toDateTime, 
-  toShortDateTime, 
-  toDate, 
-  toShortDate, 
-  startAtDay, 
-  endAtDay, 
-  dateAfter, 
-  dateBefore,
-  getWeekRange,
-  getWeeksOfMonths,
-} from '@/vendor/FPKG-120000-Util/time';
+import * as time from '@/vendor/FPKG-120000-Util/time';
 
-import { 
-  toEnum,
-  toOption,
-  onCopyText,
-} from '@/vendor/FPKG-120000-Util/other';
+import * as other from '@/vendor/FPKG-120000-Util/other';
 
 
 
@@ -31,23 +13,8 @@ export default {
     }
   },
   methods: {
-    toCurrency,
-    toCurrencyDecimal,
-
-    toDateTime,
-    toShortDateTime,
-    toDate, 
-    toShortDate, 
-    startAtDay, 
-    endAtDay, 
-    dateAfter, 
-    dateBefore,
-    getWeekRange,
-    getWeeksOfMonths,
-
-    toEnum,
-    toOption,
-    onCopyText,
-    
+    ...number,
+    ...time,
+    ...other,
   }
 }
