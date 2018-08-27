@@ -27,10 +27,10 @@ export async function apiHub(method, url, data, params) {
       },
     })
     Store.commit(SWITCH_LOADING_COVER, false)
-    if(_response.status === 422) {
-      alert(`系統忙碌中: ${_response.status}`)
-      // alert(`API Error: ${_response.status}`)
-    }
+    // if(_response.status === 422) {
+    //   alert(`系統忙碌中: ${_response.status}`)
+    //   // alert(`API Error: ${_response.status}`)
+    // }
     if(_response.data.code) {
       Router.app.handleErrCode(_response.data.code)
     }
