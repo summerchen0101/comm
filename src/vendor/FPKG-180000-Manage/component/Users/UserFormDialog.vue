@@ -58,7 +58,7 @@ import {
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
-import { userPwValidator, pwConfirmValidator } from '@/vendor/FPKG-120000-Util/customValidate'
+import { userPwValidator, pwConfirmValidator, accountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 let initForm = {
         id: "",
@@ -97,6 +97,7 @@ export default {
       return {
         account: [
           { required: !this.form.id, message: '帳號為必填', trigger: 'blur' },
+          { validator: accountValidator, trigger: 'blur' },
         ],
         nick: [
           { required: true, message: '暱稱為必填', trigger: 'blur' },

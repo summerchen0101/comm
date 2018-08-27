@@ -14,6 +14,14 @@ export const Vaccount = {
   msg: "8~12位數字或英文字母",
 }
 
+export const accountValidator = (rules, value, cb) => {
+  if(!Vaccount.test(value)) {
+    cb(Vaccount.msg)
+  }else {
+    cb()
+  }
+}
+
 /**
  * 圖形驗證碼驗證: 4位
  */
