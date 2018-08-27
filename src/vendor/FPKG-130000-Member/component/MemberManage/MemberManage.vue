@@ -72,8 +72,8 @@
         label="操作"
         width="150">
         <template slot-scope="scope">
-          <el-button size="mini" type="info" @click="onClickEdit(scope.row)">修改</el-button>
-          <el-button size="mini" type="warning" @click="onClickGameEdit(scope.row)">遊戲</el-button>
+          <el-button size="mini" type="info" @click="onClickEdit(scope.row)" :disabled="!scope.row.isVerified">修改</el-button>
+          <el-button size="mini" type="warning" @click="onClickGameEdit(scope.row)" :disabled="!scope.row.isVerified">遊戲</el-button>
         </template>
       </el-table-column>
       <el-table-column
