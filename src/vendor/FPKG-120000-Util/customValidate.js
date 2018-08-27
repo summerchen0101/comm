@@ -1,4 +1,12 @@
 /**
+ * 點數驗證: 僅可正整數
+ */
+export const Vpoint = {
+  test: (val) => /^[1-9]+$/.test(val),
+  msg: "僅可為正整數",
+}
+
+/**
  * 帳號驗證: 8~12位數字或英文字母
  */
 export const Vaccount = {
