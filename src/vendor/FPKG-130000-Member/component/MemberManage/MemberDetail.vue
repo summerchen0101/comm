@@ -30,11 +30,13 @@
         <el-col :span="8">
           <el-form-item label="密碼">
             <el-input v-model="form.pw"></el-input>
+            <Validation name="密碼" :target="$v.form.pw" :patternMsg="VmemberPw.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="密碼確認">
             <el-input v-model="form.pw_confirm"></el-input>
+            <Validation name="密碼確認" :target="$v.form.pw_confirm"></Validation>
           </el-form-item>
         </el-col>
       </el-row>
@@ -162,6 +164,8 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 import PointModifyDialog from '@/vendor/FPKG-130000-Member/component/MemberManage/PointModifyDialog.vue';
 import { memberLevel } from '@/vendor/FPKG-10000-Config/enum';
+import { required, sameAs } from 'vuelidate/lib/validators'
+import { VmemberPw } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -171,6 +175,7 @@ export default {
   data() {
     let weeks = this.getWeeksOfMonths(6)
     return {
+      VmemberPw,
       form: {
         id: this.$route.params.id,
         account: "",
@@ -190,7 +195,18 @@ export default {
       weekOpts: this.getWeeksOfMonths(6).map(w => ({...w, id: `${w.year}-${w.weekNum}`}))
     }
   },
-  
+  validations: {
+    form: {
+      pw: { 
+        required,
+        pattern: VmemberPw.test,
+      },
+      pw_confirm: { 
+        required, 
+        sameAs: sameAs('pw')
+      },
+    }
+  },
   computed: {
     ...mapState({
       statusOpts: state => state.Global.memberStatusOpts,
@@ -216,17 +232,13 @@ export default {
       this.$store.commit(SWITCH_POINT_DIALOG, true)
     },
     onSubmit() {
-      // let start = this.weekOpts[this.form.commisionStartAt]
-      // let end = this.weekOpts[this.form.commisionEndAt]
-      // // 若結束時間大於開始時間，跳提示提醒
-      // if(end.moment.diff(start.moment) < 0) {
-      //   this.$confirm('結束時間必需晚於開始時間', '錯誤提示', {
-      //     confirmButtonText: '確定',
-      //     showCancelButton: false,
-      //     type: 'warning',
-      //     callback: () => {}
-      //   })
-      // }
+      if(this.form.pw) { // 若密碼有填的話則驗證
+        this.$v.form.$touch()
+        if(this.$v.form.$invalid) {
+          return
+        }
+      }
+      
       this.$store.dispatch(EDIT_MEMBER, this.form)
     },
     onPointModifyChanged() {
