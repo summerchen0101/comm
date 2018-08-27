@@ -111,7 +111,7 @@ export default {
         ],
         pw_confirm: [
           { required: !this.form.id, message: '確認密碼為必填', trigger: 'blur' },
-          { validator: pwConfirmValidator(this.form.pw), trigger: 'blur' },
+          { validator: pwConfirmValidator.bind(this), trigger: 'blur' },
         ],
       }
     }
