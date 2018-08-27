@@ -155,11 +155,11 @@ export default [
       },
     ]
   },
-  {
-    name: "Logout",
-    title: "登出",
-    path: "/login",
-    icon: "sign-out-alt",
-    funcKey: 0,
-  },
+  // {
+  //   name: "Logout",
+  //   title: "登出",
+  //   path: "/login",
+  //   icon: "sign-out-alt",
+  //   funcKey: 0,
+  // },
 ]
