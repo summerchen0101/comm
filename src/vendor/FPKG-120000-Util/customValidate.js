@@ -102,7 +102,7 @@ export const VuserPw = {
 }
 
 export const userPwValidator = (rules, value, cb) => {
-  if(!VuserPw.test(value)) {
+  if(value && !VuserPw.test(value)) {
     cb(VuserPw.msg)
   }else {
     cb()
@@ -118,7 +118,7 @@ export const VmemberPw = {
 }
 
 export const memberPwValidator = (rules, value, cb) => {
-  if(!VmemberPw.test(value)) {
+  if(value && !VmemberPw.test(value)) {
     cb(VmemberPw.msg)
   }else {
     cb()
@@ -128,13 +128,10 @@ export const memberPwValidator = (rules, value, cb) => {
 /**
  * 密碼確認驗證
  */
-export const pwConfirmValidator = (pwValue) => {
-  return ((rules, value, cb) => {
-    if(pwValue != value) {
-      cb("密碼不同")
-    }else {
-      cb()
-    }
-  })
+export function pwConfirmValidator(rules, value, cb) {
+  if(this.form.pw != value) {
+    cb("密碼不同")
+  }else {
+    cb()
+  }
 }
-
