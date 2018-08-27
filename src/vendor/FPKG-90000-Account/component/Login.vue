@@ -53,7 +53,7 @@
 import { DO_LOGIN } from '@/vendor/FPKG-40000-VuexStore/constants'
 import Captcha from '@/vendor/FPKG-110000-Widget/component/Captcha.vue'
 import { required, sameAs } from 'vuelidate/lib/validators'
-import { Vcaptcha, Vpw, Vaccount } from '@/vendor/FPKG-120000-Util/customValidate'
+import { Vcaptcha, VuserPw, Vaccount } from '@/vendor/FPKG-120000-Util/customValidate'
 export default {
   components: {
     Captcha
@@ -78,7 +78,7 @@ export default {
       },
       password: { 
         required,
-        pattern: Vpw.test,
+        pattern: VuserPw.test,
       },
       captcha: {
         required,

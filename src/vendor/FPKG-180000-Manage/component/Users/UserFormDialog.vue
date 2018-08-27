@@ -58,7 +58,7 @@ import {
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
-import { pwValidator, pwConfirmValidator } from '@/vendor/FPKG-120000-Util/customValidate'
+import { userPwValidator, pwConfirmValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 let initForm = {
         id: "",
@@ -106,7 +106,7 @@ export default {
         ],
         pw: [
           { required: !this.form.id, message: '密碼為必填', trigger: 'blur' },
-          { min: 8, max: 12, message: '至少需8~12碼英數字', trigger: 'blur' },
+          { validator: userPwValidator, trigger: 'blur' },
         ],
         pw_confirm: [
           { required: !this.form.id, message: '確認密碼為必填', trigger: 'blur' },

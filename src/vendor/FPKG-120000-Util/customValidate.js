@@ -33,23 +33,41 @@ export const Vcode = {
 export const codeValidator = (rules, value, cb) => {
   if(!Vcode.test(value)) {
     cb(Vcode.msg)
+  }else {
+    cb()
   }
-  cb()
 }
 
 /**
- * 密碼驗證: 8~12位數字或英文字母
+ * 管理角色密碼驗證: 8~12位數字或英文字母
  */
-export const Vpw = {
+export const VuserPw = {
   test: (val) => /^\w{8,12}$/g.test(val),
   msg: "8~12位數字或英文字母",
 }
 
-export const pwValidator = (rules, value, cb) => {
-  if(!Vpw.test(value)) {
-    cb(Vpw.msg)
+export const userPwValidator = (rules, value, cb) => {
+  if(!VuserPw.test(value)) {
+    cb(VuserPw.msg)
+  }else {
+    cb()
   }
-  cb()
+}
+
+/**
+ * 會員密碼驗證: 6~20位數字或英文字母
+ */
+export const VmemberPw = {
+  test: (val) => /^\w{6,20}$/g.test(val),
+  msg: "6~20位數字或英文字母",
+}
+
+export const memberPwValidator = (rules, value, cb) => {
+  if(!VmemberPw.test(value)) {
+    cb(VmemberPw.msg)
+  }else {
+    cb()
+  }
 }
 
 /**
