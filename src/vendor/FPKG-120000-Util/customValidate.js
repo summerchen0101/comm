@@ -10,7 +10,7 @@ export const Vpoint = {
  * 帳號驗證: 8~12位數字或英文字母
  */
 export const Vaccount = {
-  test: (val) => /^\w{8,12}$/g.test(val),
+  test: (val) => /^\w{8,12}$/.test(val),
   msg: "8~12位數字或英文字母",
 }
 
@@ -18,7 +18,7 @@ export const Vaccount = {
  * 圖形驗證碼驗證: 4位
  */
 export const Vcaptcha = {
-  test: (val) => /^[a-zA-Z1-9]{4}$/g.test(val),
+  test: (val) => /^[a-zA-Z1-9]{4}$/.test(val),
   msg: "驗證碼為4碼",
 }
 
@@ -26,7 +26,7 @@ export const Vcaptcha = {
  * 代碼驗證: 3~6位大寫英文字母
  */
 export const Vcode = {
-  test: (val) => /^[A-Z]{3,6}$/g.test(val),
+  test: (val) => /^[A-Z]{3,6}$/.test(val),
   msg: "3~6位大寫英文字母",
 }
 
@@ -42,7 +42,7 @@ export const codeValidator = (rules, value, cb) => {
  * 管理角色密碼驗證: 8~12位數字或英文字母
  */
 export const VuserPw = {
-  test: (val) => /^\w{8,12}$/g.test(val),
+  test: (val) => /^\w{8,12}$/.test(val),
   msg: "8~12位數字或英文字母",
 }
 
@@ -58,7 +58,7 @@ export const userPwValidator = (rules, value, cb) => {
  * 會員密碼驗證: 6~20位數字或英文字母
  */
 export const VmemberPw = {
-  test: (val) => /^\w{6,20}$/g.test(val),
+  test: (val) => /^\w{6,20}$/.test(val),
   msg: "6~20位數字或英文字母",
 }
 
