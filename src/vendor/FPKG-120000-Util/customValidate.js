@@ -37,6 +37,21 @@ export const codeValidator = (rules, value, cb) => {
     cb()
   }
 }
+/**
+ * 手機驗證
+ */
+export const Vphone = {
+  test: (val) => /^09\d{8}$/.test(val),
+  msg: "手機格式有誤",
+}
+
+export const phoneValidator = (rules, value, cb) => {
+  if(!Vphone.test(value)) {
+    cb(Vphone.msg)
+  }else {
+    cb()
+  }
+}
 
 /**
  * IP欄位驗證: 1~3位數字或*字

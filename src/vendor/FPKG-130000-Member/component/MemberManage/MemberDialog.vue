@@ -37,7 +37,7 @@ import {
   ADD_MEMBER,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { memberPwValidator, pwConfirmValidator } from '@/vendor/FPKG-120000-Util/customValidate.js'
+import { memberPwValidator, pwConfirmValidator, phoneValidator } from '@/vendor/FPKG-120000-Util/customValidate.js'
 
 let initForm = {
         phone: "",
@@ -57,7 +57,8 @@ export default {
     formRules() {
       return {
         phone: [
-          {required: true, message: "手機為必填", trigger: "blur"}
+          {required: true, message: "手機為必填", trigger: "blur"},
+          {validator: phoneValidator, trigger: "blur"},
         ],
         pw: [
           {required: true, message: "密碼為必填", trigger: "blur"},
