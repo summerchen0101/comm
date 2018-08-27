@@ -90,7 +90,13 @@
                     <el-option v-for="opt,i in weekOpts" :label="`${opt.start}-${opt.end}`" :value="opt.id" :key="opt.id"></el-option>
                   </el-select>
                 </el-form-item>
-
+              </el-col>
+              <el-col :offset="8" :span="16">
+                <div class="el-form-item__error my">
+                  <label v-if="$v.form.commisionEndAt.date === false && $v.form.commisionEndAt.$dirty === true" class="validation-error-label">
+                    <i class="el-icon-error"></i> 結束時間必需晚於開始時間
+                  </label>
+                </div>
               </el-col>
             </el-row>
           </el-form-item>
@@ -205,7 +211,17 @@ export default {
         required, 
         sameAs: sameAs('pw')
       },
-    }
+      commisionEndAt: {
+        date: (value, form) => {
+          if(form.commisionStartAt.replace('-', '') > value.replace('-', '')) {
+            return false
+          }
+          return true
+        }
+      }
+    },
+    pwValidGroup: ['form.pw', 'form.pw_confirm'],
+    commisionDateValidGroup: ['form.commisionEndAt'],
   },
   computed: {
     ...mapState({
@@ -233,12 +249,17 @@ export default {
     },
     onSubmit() {
       if(this.form.pw) { // 若密碼有填的話則驗證
-        this.$v.form.$touch()
-        if(this.$v.form.$invalid) {
+        this.$v.pwValidGroup.$touch()
+        if(this.$v.pwValidGroup.$invalid) {
           return
         }
       }
-      
+      if(this.form.isLevelActive) { // 若有啟用會員等級
+        this.$v.commisionDateValidGroup.$touch()
+        if(this.$v.commisionDateValidGroup.$invalid) {
+          return
+        }
+      }
       this.$store.dispatch(EDIT_MEMBER, this.form)
     },
     onPointModifyChanged() {
