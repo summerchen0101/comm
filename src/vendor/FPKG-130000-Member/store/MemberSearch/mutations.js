@@ -24,7 +24,7 @@ const mutations = {
       startLevel: result.info.level, // 會員起始級別
       directMembers: result.info.parent_member_count, // 直屬會員數量
       upperMembers: result.info.upper_member_count, // 代理會員數量
-      dialyDepositLimit: result.info.member_deposit_limit_id, // 單日存款限額
+      dialyDepositLimit: result.info.member_deposit_limit_id, // 會員存款條件
       createdAt: result.info.created_at,
       loginAt: result.info.login_at,
       loginIP: result.info.login_ip,

@@ -60,8 +60,8 @@
           </td>
         </tr>
         <tr>
-          <th>單日存款限額</th>
-          <td>{{toCurrency(personalInfo.dialyDepositLimit)}}</td>
+          <th>會員存款條件</th>
+          <td>{{toOption(memberDepositLimitOpts, personalInfo.dialyDepositLimit)}}</td>
         </tr>
         <tr>
           <th>建立時間</th>
@@ -100,6 +100,7 @@ export default {
   computed: {
     ...mapState({
       statusOpts: state => state.Global.memberStatusOpts,
+      memberDepositLimitOpts: state => state.Global.memberDepositLimitOpts,
       personalInfo: state => state.Member.MemberSearch.personalInfo
     })
   },

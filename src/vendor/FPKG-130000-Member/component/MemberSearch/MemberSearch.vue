@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_SINGLE_MEMBER } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_SINGLE_MEMBER, GET_MEMBER_DEPOSIT_LIMIT_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
 import PersonalInfo from './PersonalInfo'
 import PointInfo from './PointInfo'
 import CommissionInfo from './CommissionInfo'
@@ -80,6 +80,7 @@ export default {
 
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.$store.dispatch(GET_MEMBER_DEPOSIT_LIMIT_OPTIONS)
   }
 }
 </script>
