@@ -18,10 +18,8 @@
         <tr>
           <th>當前每萬元返還</th>
           <td>
-            <span v-if="$lodash.map(commissionInfo.commisionUnit).length === 0">-</span>
-            <span v-else v-for="v, k in commissionInfo.commisionUnit" :key="k" class="mr-3">
-              <b>{{k}}:</b> {{toCurrency(v)}}
-            </span>
+            <span class="mr-3"><b>A</b>: {{toCurrency(commissionInfo.commisionUnit.A) || '-'}}</span>
+            <span><b>B</b>: {{toCurrency(commissionInfo.commisionUnit.B) || '-'}}</span>
           </td>
         </tr>
         <tr>

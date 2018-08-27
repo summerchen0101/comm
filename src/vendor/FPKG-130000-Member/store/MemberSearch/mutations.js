@@ -46,7 +46,10 @@ const mutations = {
       totalValidityBetting: result.brokerage.total_feat, // 本週總有效投注額
       selfValidityBetting: result.brokerage.feat, // 本週個人有效投注額
       directValidityBetting: result.brokerage.downline_feat, // 本週直屬總有效投注額
-      commisionUnit: result.brokerage.feedback, // 當前每萬元返還
+      commisionUnit: {
+        A: result.brokerage.feedback['1'],
+        B: result.brokerage.feedback['2'],
+      }, // 當前每萬元返還
       totalCommision: result.brokerage.total_brokerage, // 本週總佣金
       allowCommision: result.brokerage.brokerage, // 可提領佣金
     }
