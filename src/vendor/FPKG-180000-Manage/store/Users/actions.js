@@ -34,7 +34,9 @@ const actions = {
     let params = null
     if(_d) {
       params = {
-        page: _d.page
+        account: _d.account,
+        active: _d.status,
+        page: _d.page,
       }
     }
     
