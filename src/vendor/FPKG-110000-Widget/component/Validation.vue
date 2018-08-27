@@ -6,6 +6,9 @@
     <label v-else-if="target.pattern === false && target.$dirty === true" class="validation-error-label">
       <i class="el-icon-error"></i> {{patternMsg ? patternMsg : name + '格式錯誤'}}
     </label>
+    <label v-else-if="target.sameAs === false && target.$dirty === true" class="validation-error-label">
+      <i class="el-icon-error"></i> {{name}}有誤
+    </label>
   </div>
 </template>
 
