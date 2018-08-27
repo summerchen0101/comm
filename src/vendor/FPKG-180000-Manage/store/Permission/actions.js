@@ -2,6 +2,7 @@
 import { 
   CREATE_PERMISSION_GROUP,
   MODIFY_PERMISSION_GROUP,
+  DEL_PERMISSION_GROUP,
   SET_FIXED_PERMISSION_MENU,
   GET_PERMISSION_GROUP_LIST,
   GOT_PERMISSION_GROUP_LIST,
@@ -55,6 +56,13 @@ const actions = {
       if(i > -1) {
         commit(GOT_PERMISSION, res.result.data[i])
       }
+      
+    }
+  },
+  async [DEL_PERMISSION_GROUP]({commit, dispatch}, id) {
+    let res = await apiHub('delete', `api/v1/group/${id}`)
+    if(res.code === 200001) {
+      dispatch(GET_PERMISSION_GROUP_LIST)
       
     }
   },

@@ -60,6 +60,7 @@
 import { 
   SET_BREADCRUMB,
   GET_PERMISSION_GROUP_LIST,
+  DEL_PERMISSION_GROUP,
   GET_HISTORY,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
@@ -91,8 +92,15 @@ export default {
     onClickEdit(item) {
       this.$router.push({name: 'ModifyPermission', params: {id: item.id}})
     },
-    onClickDel() {
-
+    onClickDel(id) {
+      this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch(DEL_PERMISSION_GROUP, id)
+      }).catch(() => {        
+      });
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_PERMISSION_GROUP_LIST, { page })
