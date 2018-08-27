@@ -20,6 +20,7 @@ const actions = {
   async [GET_DEFAULT_PERMISSION_MENU]({commit}) {
     let res = await apiHub("get", "api/v1/group/permission")
     commit(GOT_DEFAULT_PERMISSION_MENU, res.result)
+    commit(SET_FIXED_PERMISSION_MENU, res.result)
   },
   async [GET_PERMISSION_GROUP_LIST]({commit}, _d = {}) {
     let params = {

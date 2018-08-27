@@ -84,15 +84,16 @@ export default {
   methods: {
     onSelectedAllChanged(isSelected) {
       if(isSelected) {
-        this.$refs.tree.setCheckedKeys(this.fixedPerMenu.map(m => m.funcKey));
+        this.$refs.tree.setCheckedKeys(this.fixedPerMenu.map(m => m.func_key));
       }else{
         this.$refs.tree.setCheckedKeys([]);
       }
+      // this.isSelectedMultiple = false
     },
     onCheckedChanged() {
       let selectedLength = this.$refs.tree.getCheckedKeys().length
-      this.isSelectedMultiple = selectedLength > 0 && selectedLength < 22
-      this.selectedAll = selectedLength === 22
+      this.isSelectedMultiple = selectedLength > 0 && selectedLength < this.fixedPerMenu.length
+      this.selectedAll = selectedLength === this.fixedPerMenu.length
     },
     onClear() {
       this.form.name = ""

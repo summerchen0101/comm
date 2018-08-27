@@ -5,6 +5,7 @@ import {
   SET_MENU 
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import defaultMenu from '@/vendor/FPKG-10000-Config/menu.js'
+import { filterMenu } from '@/vendor/FPKG-120000-Util/other'
 import _ from 'lodash'
 
 const mutations = {
@@ -28,15 +29,6 @@ const mutations = {
   [SWITCH_WEB_SYS_MENU](state, payload) {
     state.isShowWebSysMenu = payload
   },
-}
-
-function filterMenu(dM, pM) {
-  return dM.filter(dm => {
-    if(dm.children && dm.children.length > 0) {
-      dm.children = filterMenu(dm.children, pM)
-    }
-    return pM.findIndex(pm => pm.func_key === dm.funcKey) > -1 || dm.funcKey === 0
-  })
 }
 
 export default mutations

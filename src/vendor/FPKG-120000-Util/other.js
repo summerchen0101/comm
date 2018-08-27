@@ -35,3 +35,12 @@ export function handleErrCode(code) {
   }
   return
 }
+
+export function filterMenu(dM, pM) {
+  return dM.filter(dm => {
+    if(dm.children && dm.children.length > 0) {
+      dm.children = filterMenu(dm.children, pM)
+    }
+    return pM.findIndex(pm => pm.func_key === dm.funcKey) > -1 || dm.funcKey === 0
+  })
+}

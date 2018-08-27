@@ -1,5 +1,3 @@
-
-
 import { 
   SET_FIXED_PERMISSION_MENU, 
   GOT_DEFAULT_PERMISSION_MENU,
@@ -9,7 +7,13 @@ import {
 
 const mutations = {
   [SET_FIXED_PERMISSION_MENU](state, menu) {
-    state.fixedPerMenu = menu
+    state.fixedPerMenu = menu.reduce((arr, obj) => {
+      arr = arr.concat(obj)
+      if(obj.menu.length > 0) {
+        arr = arr.concat(obj.menu)
+      }
+      return arr
+    }, [])
   },
   [GOT_DEFAULT_PERMISSION_MENU](state, menu) {
     state.defaultMenu = menu
