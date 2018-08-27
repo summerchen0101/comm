@@ -39,6 +39,38 @@ export const codeValidator = (rules, value, cb) => {
 }
 
 /**
+ * IP欄位驗證: 1~3位數字或*字
+ */
+export const VipColumn = {
+  test: (val) => /(^[0-9]{1,3}$)|(^\*{1}$)/.test(val),
+  msg: "1~3位數字或*字",
+}
+
+export const ipColumnValidator = (rules, value, cb) => {
+  if(!VipColumn.test(value)) {
+    cb(VipColumn.msg)
+  }else {
+    cb()
+  }
+}
+
+/**
+ * 守格IP欄位驗證: 1~3位數字
+ */
+export const VfirstIpColumn = {
+  test: (val) => /^[0-9]{1,3}$/.test(val),
+  msg: "1~3位數字",
+}
+
+export const firstIpColumnValidator = (rules, value, cb) => {
+  if(!VfirstIpColumn.test(value)) {
+    cb(VfirstIpColumn.msg)
+  }else {
+    cb()
+  }
+}
+
+/**
  * 管理角色密碼驗證: 8~12位數字或英文字母
  */
 export const VuserPw = {
@@ -82,3 +114,4 @@ export const pwConfirmValidator = (pwValue) => {
     }
   })
 }
+

@@ -3,7 +3,7 @@
     :title="form.id ? '編輯IP' : '新增IP'"
     :before-close="() => SWITCH_IP_DIALOG(false)"
     :visible.sync="dialogVisible"
-    width="50%">
+    width="70%">
     <el-form 
       label-width="80px" 
       label-position="left"
@@ -64,6 +64,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
 import { status } from '@/vendor/FPKG-10000-Config/enum'
+import { ipColumnValidator, firstIpColumnValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 let initForm = {
         ipColumns: ['', '', '', ''],
@@ -80,26 +81,22 @@ export default {
       dialogVisible: state => state.Manage.IP.dialogVisible,
     }),
     formRules() {
-      let ipFirstColValidator = (rules, value, cb) => {
-        if(/^\*$/.test(value)) {
-          cb(false)
-        }else {
-          cb()
-        }
-      }
       return {
         'ipColumns[0]': [
           { required: true, message: '不可為空', trigger: 'blur' },
-          { validator: ipFirstColValidator, message: '不可為*', trigger: 'blur' },
+          { validator: firstIpColumnValidator, trigger: 'blur' },
         ],
         'ipColumns[1]': [
           { required: true, message: '不可為空', trigger: 'blur' },
+          { validator: ipColumnValidator, trigger: 'blur' },
         ],
         'ipColumns[2]': [
           { required: true, message: '不可為空', trigger: 'blur' },
+          { validator: ipColumnValidator, trigger: 'blur' },
         ],
         'ipColumns[3]': [
           { required: true, message: '不可為空', trigger: 'blur' },
+          { validator: ipColumnValidator, trigger: 'blur' },
         ],
       }
     }
@@ -127,9 +124,7 @@ export default {
       this.form = Object.assign({}, formData)
     },
     clearForm() {
-      console.log("clearForm")
-      console.log(initForm)
-      this.form = Object.assign({}, initForm)
+      this.form = this.$lodash.cloneDeep(initForm)
       setTimeout(() => this.$refs.ipForm.clearValidate())
     },
 
