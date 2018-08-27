@@ -27,13 +27,14 @@
           {{toDateTime(scope.row.createdAt)}}
         </template>
       </el-table-column>
+      <!-- 管理者: id=1 不給修改刪除 -->
       <el-table-column
         fixed="right"
         label="操作"
         width="150">
         <template slot-scope="scope">
-          <el-button size="mini" type="info" @click="onClickEdit(scope.row)">修改</el-button>
-          <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)">刪除</el-button>
+          <el-button size="mini" type="info" @click="onClickEdit(scope.row)" :disabled="scope.row.id == 1">修改</el-button>
+          <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)" :disabled="scope.row.id == 1">刪除</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -41,7 +42,7 @@
         label="歷程"
         width="80">
         <template slot-scope="scope">
-          <el-button size="mini" :class="{'history-active': scope.row.operation}" @click="onCheckHistory(scope.row.id)">
+          <el-button size="mini" :class="{'history-active': scope.row.operation}" @click="onCheckHistory(scope.row.id)" :disabled="scope.row.id == 1">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
