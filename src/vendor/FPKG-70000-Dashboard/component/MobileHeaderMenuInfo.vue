@@ -1,6 +1,6 @@
 <template>
   <div id="MobileHeaderMenuInfo">
-    <i class="el-icon-menu" style="margin-right: 15px; color: #fff" @click="onClick"></i>
+    <!-- <i class="el-icon-menu" style="margin-right: 15px; color: #fff" @click="onClick"></i> -->
     <el-dropdown trigger="click" style="cursor: pointer" @command="onUserNameClick">
       <span class="username">{{userInfo.account && userInfo.account.p5_ant_account}}</span>
       <el-dropdown-menu slot="dropdown">
