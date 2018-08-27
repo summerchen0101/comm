@@ -3,6 +3,7 @@
     title="新增帳號"
     :before-close="() => SWITCH_MEMBER_DIALOG(false)"
     :visible.sync="dialogVisible"
+    @closed="afterClosed"
     width="50%">
     <el-form 
       label-width="80px" 
@@ -85,6 +86,9 @@ export default {
       setTimeout(() => this.$refs.memberForm.clearValidate())
       this.form = Object.assign({}, initForm)
     },
+    afterClosed() {
+      this.clearForm()
+    }
   },
   
   created() {
