@@ -1,8 +1,10 @@
 <template>
   <div class="el-form-item__error my">
-    <label v-if="validate.required === false && validate.$dirty === true" class="validation-error-label">{{name}}為必填</label>
-    <label v-else-if="validate.pattern === false && validate.$dirty === true" class="validation-error-label">
-      {{msg ? msg : name + '格式錯誤'}}
+    <label v-if="target.required === false && target.$dirty === true" class="validation-error-label">
+      <i class="el-icon-error"></i> {{name}}為必填
+    </label>
+    <label v-else-if="target.pattern === false && target.$dirty === true" class="validation-error-label">
+      <i class="el-icon-error"></i> {{patternMsg ? patternMsg : name + '格式錯誤'}}
     </label>
   </div>
 </template>
@@ -14,11 +16,11 @@
         type: String,
         default: "此"
       },
-      validate: {
+      target: {
         type: Object,
         default: () => {}
       },
-      msg: {
+      patternMsg: {
         type: String,
         default: ""
       }
