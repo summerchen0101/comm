@@ -31,7 +31,7 @@ export function onCopyText() {
 export function handleErrCode(code) {
   if(code !== 200001) {
       let msg =  errCode[code] || '未知錯誤碼'
-      this.$alert(msg, '提示');
+      this.$alert(msg, '錯誤提示');
   }
   return
 }
