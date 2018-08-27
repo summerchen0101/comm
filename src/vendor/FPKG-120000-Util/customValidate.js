@@ -2,7 +2,7 @@
  * 點數驗證: 僅可正整數
  */
 export const Vpoint = {
-  test: (val) => /^[1-9]+$/.test(val),
+  test: (val) => /^\d*$/.test(val),
   msg: "僅可為正整數",
 }
 
@@ -18,7 +18,7 @@ export const Vaccount = {
  * 圖形驗證碼驗證: 4位
  */
 export const Vcaptcha = {
-  test: (val) => /^[a-zA-Z1-9]{4}$/.test(val),
+  test: (val) => /^[a-zA-Z0-9]{4}$/.test(val),
   msg: "驗證碼為4碼",
 }
 
