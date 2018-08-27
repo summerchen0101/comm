@@ -27,20 +27,24 @@
         </el-form-item>
       </el-form>
     </SearchBar>
-    <el-row :gutter="30" v-if="$store.state.Member.MemberSearch.isSearched">
-      <el-col :span="12">
-        <!-- 個人資訊 -->
-        <PersonalInfo></PersonalInfo>
-        <!-- 銀行帳戶資訊 -->
-        <BankAccInfo></BankAccInfo>
-      </el-col>
-      <el-col :span="12">
-        <!-- 點數資訊 -->
-        <PointInfo></PointInfo>
-        <!-- 佣金資訊 -->
-        <CommissionInfo></CommissionInfo>
-      </el-col>
-    </el-row>
+    <div v-if="$store.state.Member.MemberSearch.isSearched">
+      <el-row :gutter="30" v-if="$store.state.Member.MemberSearch.personalInfo">
+        <el-col :span="12">
+          <!-- 個人資訊 -->
+          <PersonalInfo></PersonalInfo>
+          <!-- 銀行帳戶資訊 -->
+          <BankAccInfo></BankAccInfo>
+        </el-col>
+        <el-col :span="12">
+          <!-- 點數資訊 -->
+          <PointInfo></PointInfo>
+          <!-- 佣金資訊 -->
+          <CommissionInfo></CommissionInfo>
+        </el-col>
+      </el-row>
+      <p class="noData">(暫無資料)</p>
+    </div>
+    
   </div>
 </template>
 
@@ -105,6 +109,10 @@ export default {
       border-bottom: 1px solid #ccc
       flex-grow: 1
       margin-left: 10px
+
+  p.noData
+    color: #666
+    font-size: 14px
       
   table 
     // margin-bottom: 25px

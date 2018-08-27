@@ -3,10 +3,10 @@
 
 const state = {
   isSearched: false,
-  personalInfo: {},
-  pointInfo: {},
-  commissionInfo: {},
-  bankAccInfo: {},
+  personalInfo: null,
+  pointInfo: null,
+  commissionInfo: null,
+  bankAccInfo: null,
 
   // opens
   allowCommissionList: [],

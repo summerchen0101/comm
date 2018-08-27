@@ -13,6 +13,15 @@ import {
 const mutations = {
   [GOT_SINGLE_MEMBER](state, result) {
     state.isSearched = true
+    if(result.info.length === 0) { // 若搜尋無資料時
+      state = Object.assign({}, state, {
+        personalInfo: null,
+        pointInfo: null,
+        commissionInfo: null,
+        bankAccInfo: null,
+      })
+      return
+    }
     state.personalInfo = {
       id: result.info.id,
       account: result.info.account,
