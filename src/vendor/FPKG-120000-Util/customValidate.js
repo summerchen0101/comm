@@ -62,11 +62,19 @@ export const phoneValidator = (rules, value, cb) => {
 }
 
 /**
+ * 守格IP欄位驗證: 1~3位數字
+ */
+export const VfirstIpColumn = {
+  test: (val) => /^(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(val),
+  msg: "0~255",
+}
+
+/**
  * IP欄位驗證: 1~3位數字或*字
  */
 export const VipColumn = {
-  test: (val) => /(^[0-9]{1,3}$)|(^\*{1}$)/.test(val),
-  msg: "1~3位數字或*字",
+  test: (val) => /(^(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])$)|(^\*{1}$)/.test(val),
+  msg: "0~255或「*」",
 }
 
 export const ipColumnValidator = (rules, value, cb) => {
@@ -75,14 +83,6 @@ export const ipColumnValidator = (rules, value, cb) => {
   }else {
     cb()
   }
-}
-
-/**
- * 守格IP欄位驗證: 1~3位數字
- */
-export const VfirstIpColumn = {
-  test: (val) => /^[0-9]{1,3}$/.test(val),
-  msg: "1~3位數字",
 }
 
 export const firstIpColumnValidator = (rules, value, cb) => {
