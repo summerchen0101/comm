@@ -51,7 +51,7 @@ import {
   EDIT_MARQUEE,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { codeValidator } from '@/vendor/FPKG-120000-Util/customValidate';
+import { codeValidator, startAtValidator, endAtValidator } from '@/vendor/FPKG-120000-Util/customValidate';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 
 let initForm = {
@@ -76,6 +76,14 @@ export default {
         desc: [
           { required: true, message: '內容為必填', trigger: 'blur' },
           { max: 100, message: '最多為100字', trigger: 'blur' },
+        ],
+        startAt: [
+          { required: true, message: '開始時間為必填', trigger: 'blur' },
+          { validator: startAtValidator.bind(this), trigger: 'blur' },
+        ],
+        endAt: [
+          { required: true, message: '結束時間為必填', trigger: 'blur' },
+          { validator: endAtValidator.bind(this), trigger: 'blur' },
         ],
       },
       startAtOption: {

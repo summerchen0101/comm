@@ -1,3 +1,5 @@
+import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
+
 /**
  * 點數驗證: 僅可正整數
  */
@@ -131,6 +133,27 @@ export const memberPwValidator = (rules, value, cb) => {
 export function pwConfirmValidator(rules, value, cb) {
   if(this.form.pw != value) {
     cb("密碼不同")
+  }else {
+    cb()
+  }
+}
+
+/**
+ * 開始時間驗證
+ */
+export function startAtValidator(rules, value, cb) {
+  if(dateAfter(this.form.endAt, value)) {
+    cb("開始時間需早於結束時間")
+  }else {
+    cb()
+  }
+}
+/**
+ * 結束時間驗證
+ */
+export function endAtValidator(rules, value, cb) {
+  if(dateBefore(this.form.startAt, value)) {
+    cb("結束時間需晚於開始時間")
   }else {
     cb()
   }
