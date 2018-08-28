@@ -66,7 +66,7 @@ export default {
         ],
         pw_confirm: [
           {required: true, message: "密碼確認為必填", trigger: "blur"},
-          {validator: pwConfirmValidator(this.form.pw), trigger: "blur"},
+          {validator: pwConfirmValidator, trigger: "blur"},
         ],
       }
     }
