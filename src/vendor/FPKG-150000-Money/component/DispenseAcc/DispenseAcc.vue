@@ -45,7 +45,7 @@
         label="歷程"
         width="80">
         <template slot-scope="scope">
-          <el-button size="mini" :class="{'history-active': scope.row.operation}" @click="onCheckHistory(scope.row.id)">
+          <el-button size="mini" :class="{'history-active': scope.row.operation}" :disabled="!scope.row.operation" @click="onCheckHistory(scope.row.id)">
             <font-awesome-icon icon="file-alt" />
           </el-button>
         </template>
