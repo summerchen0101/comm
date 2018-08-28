@@ -9,6 +9,14 @@ export const Vpoint = {
 }
 
 /**
+ * lineID驗證: 僅可正整數
+ */
+export const VlineID = {
+  test: (val) => /^[1-9a-z_.-]{1,20}$/.test(val),
+  msg: "半形小寫英文字母或數字及符號「.」「-」「_」共20位內",
+}
+
+/**
  * 帳號驗證: 8~12位數字或英文字母
  */
 export const Vaccount = {

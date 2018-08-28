@@ -77,6 +77,7 @@ const actions = {
     let data = {
       nickname: _d.nick,
       active: _d.status,
+      line_id: _d.lineID || undefined,
       password: _d.pw || undefined,
       password_confirmation: _d.pw_confirm || undefined,
       member_deposit_limit_id: _d.memberDepositLimit,

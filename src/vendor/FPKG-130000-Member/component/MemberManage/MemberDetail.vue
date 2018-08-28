@@ -43,7 +43,8 @@
       <el-row :gutter="40">
         <el-col :span="8">
           <el-form-item label="Line ID">
-            <el-input v-model="form.lineID" disabled></el-input>
+            <el-input v-model="form.lineID"></el-input>
+            <Validation name="Line ID" :target="$v.form.lineID" :patternMsg="VlineID.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -171,7 +172,7 @@ import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 import PointModifyDialog from '@/vendor/FPKG-130000-Member/component/MemberManage/PointModifyDialog.vue';
 import { memberLevel } from '@/vendor/FPKG-10000-Config/enum';
 import { required, sameAs } from 'vuelidate/lib/validators'
-import { VmemberPw } from '@/vendor/FPKG-120000-Util/customValidate'
+import { VmemberPw, VlineID } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -182,6 +183,7 @@ export default {
     let weeks = this.getWeeksOfMonths(6)
     return {
       VmemberPw,
+      VlineID,
       form: {
         id: this.$route.params.id,
         account: "",
@@ -212,6 +214,9 @@ export default {
         required, 
         sameAs: sameAs('pw')
       },
+      lineID: { 
+        pattern: VlineID.test
+      },
       commisionEndAt: {
         date: (value, form) => {
           if(form.commisionStartAt.replace('-', '') > value.replace('-', '')) {
@@ -221,6 +226,7 @@ export default {
         }
       }
     },
+    basicGroup: ['form.lineID'],
     pwValidGroup: ['form.pw', 'form.pw_confirm'],
     commisionDateValidGroup: ['form.commisionEndAt'],
   },
@@ -260,6 +266,10 @@ export default {
         if(this.$v.commisionDateValidGroup.$invalid) {
           return
         }
+      }
+      this.$v.basicGroup.$touch()
+      if(this.$v.basicGroup.$invalid) {
+        return
       }
       this.$store.dispatch(EDIT_MEMBER, this.form)
     },
