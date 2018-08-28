@@ -49,7 +49,12 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_SINGLE_MEMBER, GET_MEMBER_DEPOSIT_LIMIT_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { 
+  SET_BREADCRUMB, 
+  GET_SINGLE_MEMBER, 
+  GET_MEMBER_DEPOSIT_LIMIT_OPTIONS,
+  CLEAR_MEMBER_SEARCHED_DATA,
+} from '@/vendor/FPKG-40000-VuexStore/constants'
 import PersonalInfo from './PersonalInfo'
 import PointInfo from './PointInfo'
 import CommissionInfo from './CommissionInfo'
@@ -75,6 +80,9 @@ export default {
         phone: ""
       }
     }
+  },
+  beforeDestroy() {
+    this.$store.commit(CLEAR_MEMBER_SEARCHED_DATA)
   },
   methods: {
     onSearchSubmit() {

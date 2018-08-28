@@ -1,5 +1,6 @@
 
 import { 
+  CLEAR_MEMBER_SEARCHED_DATA,
   GET_SINGLE_MEMBER,
   GOT_SINGLE_MEMBER,
 
@@ -30,6 +31,7 @@ import Router from '@/router'
 
 const actions = {
   async [GET_SINGLE_MEMBER]({commit}, _d) {
+    commit(CLEAR_MEMBER_SEARCHED_DATA)
     let params = {
       account: _d.type === 'account' ? _d.account : undefined,
       mobile: _d.type === 'phone' ? _d.phone : undefined,

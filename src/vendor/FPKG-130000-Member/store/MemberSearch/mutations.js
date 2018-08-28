@@ -8,18 +8,20 @@ import {
   GOT_UPPER_MEMBER_LIST,
   GOT_ADDED_POINT_LIST,
   GOT_SUBTRACTED_POINT_LIST,
+  CLEAR_MEMBER_SEARCHED_DATA,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
+  [CLEAR_MEMBER_SEARCHED_DATA](state) {
+    state.isSearched = false
+    state.personalInfo = null
+    state.pointInfo = null
+    state.commissionInfo = null
+    state.bankAccInfo = null
+  },
   [GOT_SINGLE_MEMBER](state, result) {
     state.isSearched = true
-    if(result.info.length === 0) { // 若搜尋無資料時
-      state = Object.assign({}, state, {
-        personalInfo: null,
-        pointInfo: null,
-        commissionInfo: null,
-        bankAccInfo: null,
-      })
+    if(result.length === 0) {
       return
     }
     state.personalInfo = {
