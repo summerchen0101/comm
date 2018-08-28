@@ -63,7 +63,7 @@ const actions = {
       
     }
   },
-  async [EDIT_USER]({commit, dispatch}, _d) {
+  async [EDIT_USER]({commit, dispatch, rootState}, _d) {
     let data = {
       account: _d.account,
       name: _d.nick,
@@ -76,6 +76,9 @@ const actions = {
     }
     let res = await apiHub('put', `api/v1/user/${_d.id}`, data)
     if(res.code === 200001) {
+      if(rootState.Account.userInfo.account === _d.account) {
+        Router.push({name: 'Logout'})
+      }
       dispatch(GET_USER_LIST)
       commit(SWITCH_USER_DIALOG, false)
       
