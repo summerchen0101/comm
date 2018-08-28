@@ -52,7 +52,7 @@ export const codeValidator = (rules, value, cb) => {
  */
 export const Vphone = {
   test: (val) => /^09\d{8}$/.test(val),
-  msg: "手機格式有誤",
+  msg: "09+8位數字",
 }
 
 export const phoneValidator = (rules, value, cb) => {
