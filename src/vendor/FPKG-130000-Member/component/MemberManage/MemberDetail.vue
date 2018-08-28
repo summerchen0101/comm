@@ -191,6 +191,7 @@ export default {
         pw: "",
         pw_confirm: "",
         memberDepositLimit: 5000,
+        point: 0,
         memo: "",
         isLevelActive: false,
         startLevel: 1,
