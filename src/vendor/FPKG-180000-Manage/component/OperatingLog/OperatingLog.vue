@@ -129,7 +129,8 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val)
+          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val) ||
+          dateAfter(moment(new Date()), val)
         }
       }
     },
