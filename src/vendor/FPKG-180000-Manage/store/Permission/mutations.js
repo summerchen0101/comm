@@ -25,6 +25,7 @@ const mutations = {
       count: t.user_count,
       createdAt: t.created_at,
       operation: t.operation,
+      allowModify: t.act,
     }))
     state.perGroupPager = {
       page: result.current_page,
