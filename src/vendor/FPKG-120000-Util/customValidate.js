@@ -13,7 +13,7 @@ export const Vpoint = {
  */
 export const Vaccount = {
   test: (val) => /^\w{8,12}$/.test(val),
-  msg: "8~12位數字或英文字母",
+  msg: "半形8~12位數字或英文字母",
 }
 
 export const accountValidator = (rules, value, cb) => {
