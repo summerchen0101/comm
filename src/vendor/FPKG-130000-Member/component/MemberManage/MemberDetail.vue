@@ -29,13 +29,13 @@
         </el-col>
         <el-col :span="8">
           <el-form-item label="密碼">
-            <el-input v-model="form.pw"></el-input>
+            <el-input type="password" v-model="form.pw"></el-input>
             <Validation name="密碼" :target="$v.form.pw" :patternMsg="VmemberPw.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="密碼確認">
-            <el-input v-model="form.pw_confirm"></el-input>
+            <el-input type="password" v-model="form.pw_confirm"></el-input>
             <Validation name="密碼確認" :target="$v.form.pw_confirm"></Validation>
           </el-form-item>
         </el-col>
