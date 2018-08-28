@@ -26,7 +26,7 @@
     </el-tree>
     <SubmitBar>
       <el-button @click="$router.go(-1)">取消</el-button>
-      <el-button type="info" @click="onClear">清除</el-button>
+      <!-- <el-button type="info" @click="onClear">清除</el-button> -->
       <el-button type="primary" @click="onSubmit">確定</el-button>
     </SubmitBar>
   </div>
