@@ -13,10 +13,10 @@
       ref="marqueeForm"
       >
       <el-form-item label="標題" prop="title">
-        <el-input v-model.trim="form.title"></el-input>
+        <el-input v-model.trim="form.title" placeholder="20字為限"></el-input>
       </el-form-item>
       <el-form-item label="描述" prop="desc">
-        <el-input type="textarea" v-model.trim="form.desc"></el-input>
+        <el-input type="textarea" v-model.trim="form.desc" placeholder="100字為限"></el-input>
       </el-form-item>
       <el-form-item label="開始時間" prop="startAt">
         <el-date-picker
@@ -75,10 +75,11 @@ export default {
         ],
         title: [
           { required: true, message: '標題為必填', trigger: 'blur' },
+          { max: 20, message: '最多為20字內', trigger: 'blur' },
         ],
         desc: [
           { required: true, message: '內容為必填', trigger: 'blur' },
-          { max: 100, message: '最多為100字', trigger: 'blur' },
+          { max: 100, message: '最多為100字內', trigger: 'blur' },
         ],
         startAt: [
           { required: true, message: '開始時間為必填', trigger: 'blur' },
