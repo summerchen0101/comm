@@ -54,14 +54,14 @@ import {
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { codeValidator, startAtValidator, endAtValidator } from '@/vendor/FPKG-120000-Util/customValidate';
-import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 
 let initForm = {
         id: "",
         title: "",
         desc: "",
-        startAt: startAtDay(new Date()),
-        endAt: endAtDay(new Date()),
+        startAt: moment(new Date()).add(5, 'minutes'),
+        endAt: moment(new Date()).add(1, 'days').add(5, 'minutes'),
         forever: false,
       }
 export default {
@@ -136,7 +136,7 @@ export default {
     },
 
     onStartAtChanged() {
-      this.form.endAt = endAtDay(this.form.startAt)
+      // this.form.endAt = moment(this.form.startAt).add(1, "days")
     }
   },
   
