@@ -12,7 +12,7 @@ export const Vpoint = {
  * lineID驗證: 僅可正整數
  */
 export const VlineID = {
-  test: (val) => /^[1-9a-z_.-]{1,20}$/.test(val),
+  test: (val) => /^[0-9a-z_.-]{1,20}$/.test(val),
   msg: "半形小寫英文字母或數字及符號「.」「-」「_」共20位內",
 }
 
