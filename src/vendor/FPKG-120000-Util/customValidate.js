@@ -156,12 +156,28 @@ export function startAtValidator(rules, value, cb) {
     cb()
   }
 }
+
 /**
  * 結束時間驗證
  */
 export function endAtValidator(rules, value, cb) {
   if(dateBefore(this.form.startAt, value)) {
     cb("結束時間需晚於開始時間")
+  }else {
+    cb()
+  }
+}
+
+/**
+ * 權限名稱驗證
+ */
+export const VpermissionName = {
+  test: (val) => /^.{1,20}$/.test(val),
+  msg: "1~20個字元(不限英數中)",
+}
+export function permissionNameValidator(rules, value, cb) {
+  if(!VpermissionName.test(value)) {
+    cb(VpermissionName.msg)
   }else {
     cb()
   }

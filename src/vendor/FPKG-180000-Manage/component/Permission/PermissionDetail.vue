@@ -41,6 +41,7 @@ import {
   GET_PERMISSION,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { permissionNameValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   components: {
@@ -59,7 +60,8 @@ export default {
       },
       formRules: {
         name: [
-          {required: true, message: "名稱為必填", trigger: 'blur'}
+          { required: true, message: "名稱為必填", trigger: 'blur' },
+          { validator: permissionNameValidator.bind(this), trigger: 'blur' },
         ]
       },
       defaultProps: {
@@ -101,11 +103,18 @@ export default {
       this.$refs.tree.setCheckedKeys([]);
     },
     onSubmit() {
-      this.form.funcKeys = this.$refs.tree.getCheckedKeys()
-      this.$store.dispatch(this.$route.params.id ? 
-                              MODIFY_PERMISSION_GROUP : 
-                              CREATE_PERMISSION_GROUP
-                              , this.form)
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.form.funcKeys = this.$refs.tree.getCheckedKeys()
+          this.$store.dispatch(this.$route.params.id ? 
+                                  MODIFY_PERMISSION_GROUP : 
+                                  CREATE_PERMISSION_GROUP
+                                  , this.form)
+        }
+        else {
+          this.$alert("表單填寫未完整或格式有誤", "錯誤提示")
+        }
+      });
     },
     async getPermission(id) {
       await this.$store.dispatch(GET_PERMISSION, id)
