@@ -33,7 +33,7 @@
         width="150">
         <template slot-scope="scope">
           <el-button size="mini" type="info" @click="onClickEdit(scope.row)" :disabled="!scope.row.allowModify">修改</el-button>
-          <el-button size="mini" type="danger" @click="onClickDel(scope.row.id)" :disabled="!scope.row.allowModify">刪除</el-button>
+          <el-button size="mini" type="danger" @click="onClickDel(scope.row)" :disabled="!scope.row.allowModify">刪除</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -91,13 +91,17 @@ export default {
     onClickEdit(item) {
       this.$router.push({name: 'ModifyPermission', params: {id: item.id}})
     },
-    onClickDel(id) {
+    onClickDel(item) {
+      if(item.count > 0) {
+        this.$alert("此權限尚包含帳號無法刪除", "錯誤提示")
+        return
+      }
       this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch(DEL_PERMISSION_GROUP, id)
+        this.$store.dispatch(DEL_PERMISSION_GROUP, item.id)
       }).catch(() => {        
       });
     },
