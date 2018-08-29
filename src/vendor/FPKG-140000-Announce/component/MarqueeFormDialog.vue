@@ -30,8 +30,10 @@
         <el-date-picker
           v-model="form.endAt"
           :picker-options="endAtOption"
+          :disabled="form.forever"
           type="datetime">
         </el-date-picker>
+        <el-checkbox class="mb-0 ml-3" v-model="form.forever">長期</el-checkbox>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -60,6 +62,7 @@ let initForm = {
         desc: "",
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
+        forever: false,
       }
 export default {
   data() {

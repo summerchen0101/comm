@@ -31,6 +31,7 @@ const actions = {
     let data = {
       title: _d.title,
       description: _d.desc,
+      forever: _d.forever ? 1 : 2,
       start_at: startAtDay(_d.startAt),
       end_at: endAtDay(_d.endAt),
     }
@@ -45,6 +46,7 @@ const actions = {
     let data = {
       title: _d.title,
       description: _d.desc,
+      forever: _d.forever ? 1 : 2,
       start_at: startAtDay(_d.startAt),
       end_at: endAtDay(_d.endAt),
     }

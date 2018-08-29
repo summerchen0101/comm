@@ -12,6 +12,7 @@ const mutations = {
       id: t.id,
       title: t.title,
       desc: t.description,
+      forever: t.forever == 1,
       startAt: t.start_at,
       endAt: t.end_at,
       operation: t.operation,
