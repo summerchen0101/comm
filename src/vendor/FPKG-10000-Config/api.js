@@ -32,7 +32,7 @@ export async function apiHub(method, url, data, params) {
     //   // alert(`API Error: ${_response.status}`)
     // }
     if(_response.data.code) {
-      Router.app.handleErrCode(_response.data.code)
+      Router.app.handleErrCode(_response.data.code, url)
     }
     
     return _response.data
@@ -45,8 +45,3 @@ export async function apiHub(method, url, data, params) {
   
 }
 
-
-
-function handleError() {
-  
-}

@@ -28,10 +28,17 @@ export function onCopyText() {
   });
 }
 
-export function handleErrCode(code) {
+export function handleErrCode(code, url) {
+  var msg = ""
   if(code !== 200001) {
-      let msg =  errCode[code] || '未知錯誤碼'
-      this.$alert(msg, '錯誤提示');
+    if(typeof errCode[code] === 'object') {
+      msg =  errCode[code][url]
+    }else if(typeof errCode[code] === 'string'){
+      msg =  errCode[code]
+    }else {
+      msg = "未知錯誤碼"
+    }
+    this.$alert(msg, '錯誤提示');
   }
   return
 }
