@@ -42,7 +42,7 @@
           <CommissionInfo></CommissionInfo>
         </el-col>
       </el-row>
-      <p class="noData">(暫無資料)</p>
+      <p v-else class="noData">(暫無資料)</p>
     </div>
     
   </div>
