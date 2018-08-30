@@ -8,7 +8,7 @@ import {
   SWITCH_MARQUEE_DIALOG,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-import { startAtDay, endAtDay } from '@/vendor/FPKG-120000-Util/time.js'
+import { toDateTime } from '@/vendor/FPKG-120000-Util/time.js'
 
 
 import Router from '@/router'
@@ -32,8 +32,8 @@ const actions = {
       title: _d.title,
       description: _d.desc,
       forever: _d.forever ? 1 : 2,
-      start_at: startAtDay(_d.startAt),
-      end_at: endAtDay(_d.endAt),
+      start_at: toDateTime(_d.startAt),
+      end_at: toDateTime(_d.endAt),
     }
     let res = await apiHub('post', 'api/v1/marquee', data)
     if(res.code === 200001) {
@@ -47,8 +47,8 @@ const actions = {
       title: _d.title,
       description: _d.desc,
       forever: _d.forever ? 1 : 2,
-      start_at: startAtDay(_d.startAt),
-      end_at: endAtDay(_d.endAt),
+      start_at: toDateTime(_d.startAt),
+      end_at: toDateTime(_d.endAt),
     }
     let res = await apiHub('put', `api/v1/marquee/${_d.id}`, data)
     if(res.code === 200001) {
