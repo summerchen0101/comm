@@ -24,7 +24,7 @@ const mutations = {
         account: t.account,
         nick: t.name,
         group: t.group,
-        permission: t.group.name,
+        permission: t.group,
         loginAt: t.login_at,
         createdAt: t.created_at,
         status: t.active,

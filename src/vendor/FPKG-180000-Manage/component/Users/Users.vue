@@ -40,7 +40,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="permission"
+        prop="permission.name"
         label="權限">
       </el-table-column>
       <el-table-column
@@ -163,8 +163,9 @@ export default {
     onGetItem(item) {
       this.SWITCH_USER_DIALOG(true)
       let formData = Object.assign({},
-      this.$refs.UserFormDialog.form,
-      item
+        this.$refs.UserFormDialog.form,
+        item,
+        { perGroup: item.permission.id }
       )
       this.$hub.$emit("Manage:userFormUpdate", formData)
     },
