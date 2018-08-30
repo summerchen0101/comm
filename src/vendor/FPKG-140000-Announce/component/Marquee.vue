@@ -106,6 +106,7 @@ export default {
     },
     onGetItem(item) {
       this.SWITCH_MARQUEE_DIALOG(true)
+      this.$router.push({name: this.$route.name, query: {edit: item.id}})
       let formData = Object.assign({},
       this.$refs.MarqueeFormDialog.form,
       item

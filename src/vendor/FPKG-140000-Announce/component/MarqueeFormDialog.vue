@@ -2,6 +2,8 @@
   <el-dialog
     :title="form.id ? '編輯跑馬燈' : '新增跑馬燈'"
     :before-close="() => SWITCH_MARQUEE_DIALOG(false)"
+    @open="resetForm"
+    @close="onCloseDialog"
     :visible.sync="dialogVisible"
     width="50%">
     <el-form 
@@ -67,8 +69,26 @@ let initForm = {
 export default {
   data() {
     return {
-      form: Object.assign({}, initForm),
-      formRules: {
+      form: {},
+      startAtOption: {
+        disabledDate: (val) => {
+          return dateBefore(startAtDay(new Date()), val)
+        }
+      },
+      endAtOption: {
+        disabledDate: (val) => {
+          return dateBefore(startAtDay(this.form.startAt), val) 
+        }
+      },
+    }
+  },
+  computed: {
+    ...mapState({
+      dialogVisible: state => state.Announce.Marquee.dialogVisible,
+      marqueeList: state => state.Announce.Marquee.marqueeList,
+    }),
+    formRules() {
+      return {
         code: [
           { required: true, message: '代碼為必填', trigger: 'blur' },
           { validator: codeValidator, trigger: 'blur' },
@@ -86,26 +106,11 @@ export default {
           { validator: startAtValidator.bind(this), trigger: 'blur' },
         ],
         endAt: [
-          { required: true, message: '結束時間為必填', trigger: 'blur' },
+          { required: !this.form.forever, message: '結束時間為必填', trigger: 'blur' },
           { validator: endAtValidator.bind(this), trigger: 'blur' },
         ],
-      },
-      startAtOption: {
-        disabledDate: (val) => {
-          return dateBefore(startAtDay(new Date()), val)
-        }
-      },
-      endAtOption: {
-        disabledDate: (val) => {
-          return dateBefore(this.form.startAt, val) 
-        }
-      },
+      }
     }
-  },
-  computed: {
-    ...mapState({
-      dialogVisible: state => state.Announce.Marquee.dialogVisible,
-    }),
   },
   methods: {
     ...mapMutations([
@@ -130,19 +135,31 @@ export default {
       setTimeout(() => this.$refs.marqueeForm.clearValidate())
       this.form = Object.assign({}, formData)
     },
-    clearForm() {
+    resetForm() {
       setTimeout(() => this.$refs.marqueeForm.clearValidate())
-      this.form = Object.assign({}, initForm)
+      if(this.$route.query.edit) {
+        let index = this.marqueeList.findIndex(t => t.id == this.$route.query.edit)
+        this.form = Object.assign({}, initForm, this.marqueeList[index])
+      }
+      else {
+        this.form = Object.assign({}, initForm, {
+          startAt: moment(new Date()).add(5, 'minutes'),
+          endAt: moment(new Date()).add(1, 'days').add(5, 'minutes'),
+        })
+      }
     },
 
     onStartAtChanged() {
       // this.form.endAt = moment(this.form.startAt).add(1, "days")
+    },
+    onCloseDialog() {
+      this.$router.push({name: this.$route.name, query: {}})
     }
   },
   
   created() {
     this.$hub.$on("Announce:marqueeFormUpdate", this.setForm)
-    this.$hub.$on("Announce:clearMarqueeForm", this.clearForm)
+    this.$hub.$on("Announce:clearMarqueeForm", this.resetForm)
   }
 }
 </script>
