@@ -30,7 +30,7 @@
           <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
       <el-form-item label="出款點數">
-        <el-input :value="dispense.dispensePoint" disabled></el-input>
+        <el-input :value="$root.toCurrency(dispense.dispensePoint)" disabled></el-input>
       </el-form-item>
 
       <!-- 訂單為「確定」狀態時顯示出款銀行資訊 -->

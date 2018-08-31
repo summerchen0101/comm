@@ -27,7 +27,7 @@
           <el-input :value="withdraw.bankInfo && withdraw.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
       <el-form-item label="提領點數">
-        <el-input :value="withdraw.withdrawPoint" disabled></el-input>
+        <el-input :value="$root.toCurrency(withdraw.withdrawPoint)" disabled></el-input>
       </el-form-item>
 
       <!-- 訂單為「確定」狀態時顯示手續費 -->

@@ -29,7 +29,7 @@
                 <span slot="label">最大贏額</span>
                 <span slot="label" class="text-danger"> ＊設置0為無限制</span>
                 <el-input v-model="form[g.gameType].maxWin" :disabled="!g.allowSetting">
-                  <template slot="append">{{toCurrencyDecimal(form[g.gameType].result)}}</template>
+                  <template slot="append">{{$root.toCurrencyDecimal(form[g.gameType].result)}}</template>
                 </el-input>
                 <Validation name="最大贏額" :target="$v.form[g.gameType].maxWin" :patternMsg="VmaxWin.msg"></Validation>
               </el-form-item>

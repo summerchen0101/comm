@@ -45,8 +45,8 @@
       </el-form>
     </SearchBar>
     <div class="CountBox">
-      <div class="total">總點數：{{toCurrency(withdrawInfo.total)}}</div>
-      <div class="count">總筆數：{{toCurrency(withdrawInfo.count)}}</div>
+      <div class="total">總點數：{{$root.toCurrency(withdrawInfo.total)}}</div>
+      <div class="count">總筆數：{{$root.toCurrency(withdrawInfo.count)}}</div>
     </div>
 
     <!-- 訂單列表 -->
@@ -69,9 +69,11 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="withdrawPoint"
         min-width="120"
         label="提領點數">
+        <template slot-scope="scope">
+          {{$root.toCurrency(scope.row.withdrawPoint)}}
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 3"

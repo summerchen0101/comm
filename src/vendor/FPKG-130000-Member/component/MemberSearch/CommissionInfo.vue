@@ -5,26 +5,26 @@
       <thead>
         <tr>
           <th>本週總有效投注額</th>
-          <td>{{toCurrencyDecimal(commissionInfo.totalValidityBetting)}}</td>
+          <td>{{$root.toCurrencyDecimal(commissionInfo.totalValidityBetting)}}</td>
         </tr>
         <tr>
           <th>本週個人有效投注額</th>
-          <td>{{toCurrencyDecimal(commissionInfo.selfValidityBetting)}}</td>
+          <td>{{$root.toCurrencyDecimal(commissionInfo.selfValidityBetting)}}</td>
         </tr>
         <tr>
           <th>本週直屬總有效投注額</th>
-          <td>{{toCurrencyDecimal(commissionInfo.directValidityBetting)}}</td>
+          <td>{{$root.toCurrencyDecimal(commissionInfo.directValidityBetting)}}</td>
         </tr>
         <tr>
           <th>當前每萬元返還</th>
           <td>
-            <span class="mr-3"><b>A</b>: {{toCurrency(commissionInfo.commisionUnit.A) || '-'}}</span>
-            <span><b>B</b>: {{toCurrency(commissionInfo.commisionUnit.B) || '-'}}</span>
+            <span class="mr-3"><b>A</b>: {{$root.toCurrency(commissionInfo.commisionUnit.A) || '-'}}</span>
+            <span><b>B</b>: {{$root.toCurrency(commissionInfo.commisionUnit.B) || '-'}}</span>
           </td>
         </tr>
         <tr>
           <th>本週總佣金</th>
-          <td>{{toCurrencyDecimal(commissionInfo.totalCommision)}}</td>
+          <td>{{$root.toCurrencyDecimal(commissionInfo.totalCommision)}}</td>
         </tr>
         <tr>
           <th>可提領佣金</th>
@@ -34,7 +34,7 @@
                 acc: personalInfo.account,
                 nick: personalInfo.nick,
               }}" target="_blank">
-              {{toCurrencyDecimal(commissionInfo.allowCommision)}}
+              {{$root.toCurrencyDecimal(commissionInfo.allowCommision)}}
             </router-link>
           </td>
         </tr>

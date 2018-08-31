@@ -42,7 +42,7 @@
                 nick: personalInfo.nick,
                 count: personalInfo.directMembers,
               }}" target="_blank">
-              {{toCurrencyDecimal(personalInfo.directMembers)}}
+              {{$root.toCurrencyDecimal(personalInfo.directMembers)}}
             </router-link>
           </td>
         </tr>
@@ -55,7 +55,7 @@
                 nick: personalInfo.nick,
                 count: personalInfo.upperMembers,
               }}" target="_blank">
-              {{toCurrencyDecimal(personalInfo.upperMembers)}}
+              {{$root.toCurrencyDecimal(personalInfo.upperMembers)}}
             </router-link>
           </td>
         </tr>

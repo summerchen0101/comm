@@ -65,7 +65,7 @@
       
       <!-- 共用 -->
       <el-form-item label="存款點數">
-        <el-input :value="deposit.depositPoint" disabled></el-input>
+        <el-input :value="$root.toCurrency(deposit.depositPoint)" disabled></el-input>
       </el-form-item>
 
       <!-- 訂單為「取消」狀態時顯示原因 -->

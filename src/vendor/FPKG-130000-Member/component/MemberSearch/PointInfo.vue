@@ -5,11 +5,11 @@
       <thead>
         <tr>
           <th>目前點數</th>
-          <td>{{toCurrencyDecimal(pointInfo.point)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.point)}}</td>
         </tr>
         <tr>
           <th>已入帳存款</th>
-          <td>{{toCurrencyDecimal(pointInfo.savedPoint)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.savedPoint)}}</td>
         </tr>
         <tr>
           <th>撥點</th>
@@ -19,7 +19,7 @@
                 acc: personalInfo.account,
                 nick: personalInfo.nick,
               }}" target="_blank">
-              {{toCurrencyDecimal(pointInfo.addedPoint)}}
+              {{$root.toCurrencyDecimal(pointInfo.addedPoint)}}
             </router-link>
           </td>
         </tr>
@@ -31,17 +31,17 @@
                 acc: personalInfo.account,
                 nick: personalInfo.nick,
               }}" target="_blank">
-              {{toCurrencyDecimal(pointInfo.subtractedPoint)}}
+              {{$root.toCurrencyDecimal(pointInfo.subtractedPoint)}}
             </router-link>
           </td>
         </tr>
         <tr>
           <th>申請中提款</th>
-          <td>{{toCurrencyDecimal(pointInfo.applyPoint)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.applyPoint)}}</td>
         </tr>
         <tr>
           <th>出款</th>
-          <td>{{toCurrencyDecimal(pointInfo.dispensePoint)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.dispensePoint)}}</td>
         </tr>
         <tr>
           <th>已提領佣金</th>
@@ -51,21 +51,21 @@
                 acc: personalInfo.account,
                 nick: personalInfo.nick,
               }}" target="_blank">
-              {{toCurrencyDecimal(pointInfo.withdrawnCommission)}}
+              {{$root.toCurrencyDecimal(pointInfo.withdrawnCommission)}}
             </router-link>
           </td>
         </tr>
         <tr>
           <th>會員結果</th>
-          <td>{{toCurrencyDecimal(pointInfo.memberResult)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.memberResult)}}</td>
         </tr>
         <tr>
           <th>未結帳投注</th>
-          <td>{{toCurrencyDecimal(pointInfo.unCheckBetting)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.unCheckBetting)}}</td>
         </tr>
         <tr>
           <th>點數驗證</th>
-          <td>{{toCurrencyDecimal(pointInfo.pointVerify)}}</td>
+          <td>{{$root.toCurrencyDecimal(pointInfo.pointVerify)}}</td>
         </tr>
       </thead>
     </table>

@@ -49,7 +49,7 @@
       <el-table-column
         label="撥點點數">
         <template slot-scope="scope">
-          {{toCurrencyDecimal(scope.row.point)}}
+          {{$root.toCurrencyDecimal(scope.row.point)}}
         </template>
       </el-table-column>
       <el-table-column

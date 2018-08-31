@@ -56,7 +56,7 @@
         </el-col>
         <el-col :span="4">
           <el-form-item label="錢包點數">
-            <el-input :value="toCurrencyDecimal(form.point)" disabled></el-input>
+            <el-input :value="$root.toCurrencyDecimal(form.point)" disabled></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="4" class="pointBtns">

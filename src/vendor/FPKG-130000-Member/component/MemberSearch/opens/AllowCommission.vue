@@ -23,17 +23,17 @@
       </el-table-column>
       <el-table-column label="當週業績">
         <template slot-scope="scope">
-          {{toCurrencyDecimal(scope.row.totalValidityBetting)}}
+          {{$root.toCurrencyDecimal(scope.row.totalValidityBetting)}}
         </template>
       </el-table-column>
       <el-table-column label="當週總佣金">
         <template slot-scope="scope">
-          {{toCurrencyDecimal(scope.row.totalCommision)}}
+          {{$root.toCurrencyDecimal(scope.row.totalCommision)}}
         </template>
       </el-table-column>
       <el-table-column label="當週我的佣金">
         <template slot-scope="scope">
-          {{toCurrencyDecimal(scope.row.allowCommision)}}
+          {{$root.toCurrencyDecimal(scope.row.allowCommision)}}
         </template>
       </el-table-column>
     </el-table>

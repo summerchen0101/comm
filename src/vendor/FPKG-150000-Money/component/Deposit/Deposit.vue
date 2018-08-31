@@ -45,8 +45,8 @@
       </el-form>
     </SearchBar>
     <div class="CountBox">
-      <div class="total">總點數：{{toCurrency(depositInfo.total)}}</div>
-      <div class="count">總筆數：{{toCurrency(depositInfo.count)}}</div>
+      <div class="total">總點數：{{$root.toCurrency(depositInfo.total)}}</div>
+      <div class="count">總筆數：{{$root.toCurrency(depositInfo.count)}}</div>
     </div>
 
     <!-- 訂單列表 -->
@@ -69,9 +69,11 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="depositPoint"
         min-width="120"
         label="存款點數">
+        <template slot-scope="scope">
+          {{$root.toCurrency(scope.row.depositPoint)}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="payTypeName"

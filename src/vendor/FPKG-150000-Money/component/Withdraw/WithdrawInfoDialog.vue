@@ -22,7 +22,7 @@
           <el-input :value="withdraw.bankInfo && withdraw.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
       <el-form-item label="提領點數">
-        <el-input :value="withdraw.withdrawPoint" disabled></el-input>
+        <el-input :value="$root.toCurrency(withdraw.withdrawPoint)" disabled></el-input>
       </el-form-item>
 
       <el-form-item v-if="withdraw.status == 3" label="原因" prop="reason">

@@ -32,14 +32,18 @@
         label="銀行帳號">
       </el-table-column>
       <el-table-column
-        prop="checkingPoint"
         min-width="120"
         label="審核中存點">
+        <template slot-scope="scope">
+          {{$root.toCurrency(scope.row.checkingPoint)}}
+        </template>
       </el-table-column>
       <el-table-column
-        prop="savedPoint"
         min-width="120"
         label="已入帳存點">
+        <template slot-scope="scope">
+          {{$root.toCurrency(scope.row.savedPoint)}}
+        </template>
       </el-table-column>
       <el-table-column
         fixed="right"

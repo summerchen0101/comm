@@ -15,11 +15,11 @@
         <tbody>
           <tr>
             <td>-</td>
-            <td>{{toCurrency(totalInfo.count)}}</td>
-            <td>{{toCurrencyDecimal(totalInfo.betAmount)}}</td>
-            <td>{{toCurrencyDecimal(totalInfo.realAmount)}}</td>
-            <td>{{toCurrencyDecimal(totalInfo.winAmount)}}</td>
-            <td class="text-danger">{{toCurrencyDecimal(totalInfo.result)}}</td>
+            <td>{{$root.toCurrency(totalInfo.count)}}</td>
+            <td>{{$root.toCurrencyDecimal(totalInfo.betAmount)}}</td>
+            <td>{{$root.toCurrencyDecimal(totalInfo.realAmount)}}</td>
+            <td>{{$root.toCurrencyDecimal(totalInfo.winAmount)}}</td>
+            <td class="text-danger">{{$root.toCurrencyDecimal(totalInfo.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -43,11 +43,11 @@
                 {{r.gameType}}
               </router-link>
             </td>
-            <td>{{toCurrency(r.count)}}</td>
-            <td>{{toCurrencyDecimal(r.betAmount)}}</td>
-            <td>{{toCurrencyDecimal(r.realAmount)}}</td>
-            <td>{{toCurrencyDecimal(r.winAmount)}}</td>
-            <td class="text-danger">{{toCurrencyDecimal(r.result)}}</td>
+            <td>{{$root.toCurrency(r.count)}}</td>
+            <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
+            <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
+            <td class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>

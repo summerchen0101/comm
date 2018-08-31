@@ -7,23 +7,23 @@
         <div class="reviewBoxs">
           <div class="box">
             <span class="label text-primary">存款待審數</span>
-            <span class="number">{{toCurrency(reviews.deposit)}}</span>
+            <span class="number">{{$root.toCurrency(reviews.deposit)}}</span>
           </div>
           <div class="box">
             <span class="label text-primary">提款待審數</span>
-            <span class="number">{{toCurrency(reviews.withdraw)}}</span>
+            <span class="number">{{$root.toCurrency(reviews.withdraw)}}</span>
           </div>
           <div class="box">
             <span class="label text-primary">出款待審數</span>
-            <span class="number">{{toCurrency(reviews.dispense)}}</span>
+            <span class="number">{{$root.toCurrency(reviews.dispense)}}</span>
           </div>
           <div class="box">
             <span class="label text-primary">銀行待審數</span>
-            <span class="number">{{toCurrency(reviews.bank)}}</span>
+            <span class="number">{{$root.toCurrency(reviews.bank)}}</span>
           </div>
           <div class="box">
             <span class="label text-primary">簡訊點數</span>
-            <span class="number">{{toCurrency(reviews.sms)}}</span>
+            <span class="number">{{$root.toCurrency(reviews.sms)}}</span>
           </div>
           <div class="reload pointer" @click="getReviewList">
             <span class="count">{{count}}</span>

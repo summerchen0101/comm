@@ -65,7 +65,7 @@
           </tr>
           <tr>
             <th>會員結果</th>
-            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{toCurrencyDecimal(bettingInfo.betResult)}}</td>
+            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</td>
             <td v-else>暫無資料</td>
           </tr>
         </tbody>
