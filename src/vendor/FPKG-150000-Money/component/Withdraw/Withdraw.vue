@@ -2,7 +2,7 @@
   <div id="Withdraw">
     <el-select v-model="searchForm.status">
       <el-option
-        v-for="opt in statusOpts"
+        v-for="opt in statusOpts.filter(t => t.id !== 2)"
         :key="opt.id"
         :label="opt.name"
         :value="opt.id">
