@@ -26,7 +26,8 @@
         width="180"
         label="結束時間">
         <template slot-scope="scope">
-          <span>{{toShortDateTime(scope.row.endAt)}}</span>
+          <span v-if="scope.row.forever">長期</span>
+          <span v-else>{{toShortDateTime(scope.row.endAt)}}</span>
         </template>
       </el-table-column>
       <el-table-column
