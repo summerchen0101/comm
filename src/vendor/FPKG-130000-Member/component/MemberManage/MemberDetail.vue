@@ -255,7 +255,7 @@ export default {
       this.$store.commit(SWITCH_POINT_DIALOG, true)
     },
     onSubmit() {
-      if(this.form.pw) { // 若密碼有填的話則驗證
+      if(this.form.pw || this.form.pw_confirm) { // 若密碼或確認密碼有填的話則驗證
         this.$v.pwValidGroup.$touch()
         if(this.$v.pwValidGroup.$invalid) {
           return
