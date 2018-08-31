@@ -42,7 +42,7 @@ export const memberLevel = [
 ]
 export const gameType = [
   {
-    label: '電子遊藝', 
+    label: '3D電子遊藝', 
     value: 1,
     children: [
       {label: "黃金財神", value: 4},

@@ -95,7 +95,7 @@ export default {
         {name: null, title: "注單查詢"},
       ],
       searchForm: {
-        type: 1,
+        type: 2,
         number: ""
       },
       searchFormRules: {
