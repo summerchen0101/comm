@@ -29,6 +29,7 @@ export function onCopyText() {
 }
 
 export function handleErrCode(code, url) {
+  console.log("handleErrCode", code, url)
   var msg = ""
   if(code !== 200001) {
     if(typeof errCode[code] === 'object') {
@@ -38,11 +39,14 @@ export function handleErrCode(code, url) {
     }else {
       msg = "未知錯誤碼"
     }
-    if(code === 401001){
+    if(code === 401001){ // 登入失敗
       this.$alert(msg, '錯誤提示').then(res => {
         location.reload()
       })
-    } // 登入失敗
+    } 
+    else {
+      this.$alert(msg, '錯誤提示')
+    }
     
   }
   return
