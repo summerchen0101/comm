@@ -26,7 +26,7 @@
         <el-form-item label="銀行帳號">
           <el-input :value="withdraw.bankInfo && withdraw.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
-      <el-form-item label="提款點數">
+      <el-form-item label="提領點數">
         <el-input :value="withdraw.withdrawPoint" disabled></el-input>
       </el-form-item>
 

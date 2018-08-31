@@ -71,7 +71,7 @@
       <el-table-column
         prop="withdrawPoint"
         min-width="120"
-        label="提款點數">
+        label="提領點數">
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
