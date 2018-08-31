@@ -38,7 +38,12 @@ export function handleErrCode(code, url) {
     }else {
       msg = "未知錯誤碼"
     }
-    this.$alert(msg, '錯誤提示');
+    if(code === 401001){
+      this.$alert(msg, '錯誤提示').then(res => {
+        location.reload()
+      })
+    } // 登入失敗
+    
   }
   return
 }
