@@ -75,6 +75,7 @@
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
+        key="reason"
         prop="reason"
         min-width="120"
         class-name="red"
@@ -89,12 +90,14 @@
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
+        key="operator"
         prop="operator"
         min-width="120"
         label="審核人員">
       </el-table-column>
       <el-table-column
         v-if="listType == 1"
+        key="control"
         fixed="right"
         width="150"
         label="操作">
