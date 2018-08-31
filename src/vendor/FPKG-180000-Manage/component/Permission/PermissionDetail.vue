@@ -25,7 +25,7 @@
       :props="defaultProps">
     </el-tree>
     <SubmitBar>
-      <el-button @click="$router.go(-1)">取消</el-button>
+      <el-button @click="onCancel">取消</el-button>
       <!-- <el-button type="info" @click="onClear">清除</el-button> -->
       <el-button type="primary" @click="onSubmit">確定</el-button>
     </SubmitBar>
@@ -115,6 +115,15 @@ export default {
           this.$alert("表單填寫未完整或格式有誤", "錯誤提示")
         }
       });
+    },
+    onCancel() {
+      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$router.go(-1)
+      }).catch(() => {});
     },
     async getPermission(id) {
       await this.$store.dispatch(GET_PERMISSION, id)

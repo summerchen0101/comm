@@ -148,7 +148,7 @@
       </el-form-item>
     </el-form>
     <SubmitBar>
-      <el-button @click="$router.push({name: 'MemberManage'})">取消</el-button>
+      <el-button @click="onCancel">取消</el-button>
       <el-button type="primary" @click="onSubmit">確定</el-button>
     </SubmitBar>
 
@@ -272,6 +272,15 @@ export default {
         return
       }
       this.$store.dispatch(EDIT_MEMBER, this.form)
+    },
+    onCancel() {
+      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$router.go(-1)
+      }).catch(() => {});
     },
     onPointModifyChanged() {
       this.form.point = this.$numeral(this.member.point).value() + this.$numeral(this.pointModify.add.point).value() - this.$numeral(this.pointModify.subtract.point).value()
