@@ -10,6 +10,7 @@ import {
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
+import { toDateTime } from '@/vendor/FPKG-120000-Util/time'
 
 
 import Router from '@/router'
@@ -17,8 +18,8 @@ import Router from '@/router'
 const actions = {
   async [GET_DISPENSE_INFO]({commit}, _d) {
     let params = {
-      // start_time: _d.startTime,
-      // end_time: _d.endTime,
+      start_time: _d.status !== 1 ? toDateTime(_d.startAt) : undefined,
+      end_time: _d.status !== 1 ? toDateTime(_d.endAt) : undefined,
       no: _d.number || undefined,
       account: _d.account || undefined,
     }
@@ -29,8 +30,8 @@ const actions = {
   },
   async [GET_DISPENSE_LIST]({commit}, _d) {
     let params = {
-      // start_time: _d.startTime,
-      // end_time: _d.endTime,
+      start_time: _d.status !== 1 ? toDateTime(_d.startAt) : undefined,
+      end_time: _d.status !== 1 ? toDateTime(_d.endAt) : undefined,
       no: _d.number || undefined,
       account: _d.account || undefined,
       page: _d.page || undefined
@@ -43,7 +44,6 @@ const actions = {
     }
   },
   async [SET_DISPENSE_STATUS]({dispatch, commit}, _d) {
-    console.log(_d)
     let data = {
       review_user_id: _d.operatorId,
       action: _d.action == 'confirm' ? 1 : 2,
