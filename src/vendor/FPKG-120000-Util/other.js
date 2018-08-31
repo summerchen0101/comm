@@ -29,7 +29,6 @@ export function onCopyText() {
 }
 
 export function handleErrCode(code, url) {
-  console.log("handleErrCode", code, url)
   var msg = ""
   if(code !== 200001) {
     if(typeof errCode[code] === 'object') {
