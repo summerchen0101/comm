@@ -15,16 +15,19 @@
 
       <el-form-item label="銀行代碼">
           <el-input :value="dispense.bankInfo && dispense.bankInfo.bankCode" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="分行名稱">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.branchName" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="戶名">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.accountName" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="銀行帳號">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
-        </el-form-item>
+      </el-form-item>
+      <el-form-item label="分行名稱">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.branchName" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="戶名">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.accountName" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="銀行帳號">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="提款點數">
+        <el-input :value="$root.toCurrency(dispense.withdrawPoint)" disabled></el-input>
+      </el-form-item>
       <el-form-item label="出款點數">
         <el-input :value="$root.toCurrency(dispense.dispensePoint)" disabled></el-input>
       </el-form-item>
@@ -76,6 +79,7 @@ export default {
         {title: '分行名稱', content: this.dispense.bankInfo.branchName},
         {title: '戶名', content: this.dispense.bankInfo.accountName},
         {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
+        {title: '提款點數', content: this.dispense.withdrawPoint},
         {title: '出款點數', content: this.dispense.dispensePoint},
       ]
     }
