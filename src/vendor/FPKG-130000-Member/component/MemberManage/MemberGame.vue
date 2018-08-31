@@ -114,7 +114,7 @@ export default {
       })
     },
     onReset(e, gameType) {
-      this.form[gameType].maxWin = 0
+      this.form[gameType].result = 0
       this.form[gameType].clear = true
       e.currentTarget.blur()
     }
