@@ -28,9 +28,10 @@
               <el-form-item>
                 <span slot="label">最大贏額</span>
                 <span slot="label" class="text-danger"> ＊設置0為無限制</span>
-                <el-input v-model.number="form[g.gameType].maxWin" :disabled="!g.allowSetting">
-                <template slot="append">{{toCurrencyDecimal(form[g.gameType].result)}}</template>
-              </el-input>
+                <el-input v-model="form[g.gameType].maxWin" :disabled="!g.allowSetting">
+                  <template slot="append">{{toCurrencyDecimal(form[g.gameType].result)}}</template>
+                </el-input>
+                <Validation name="最大贏額" :target="$v.form[g.gameType].maxWin" :patternMsg="VmaxWin.msg"></Validation>
               </el-form-item>
             </el-col>
             <el-col :span="4" style="margin-top: 34px">
@@ -58,6 +59,8 @@ import {
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
+import { required } from 'vuelidate/lib/validators'
+import { VmaxWin } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -68,6 +71,22 @@ export default {
       initSetting: null,
       form: null,
       isSaved: false,
+      VmaxWin
+    }
+  },
+  validations() {
+    var form = {}
+    this.gameSetting.forEach(g => {
+      form[g.gameType] = {}
+      if(g.hasMaxWin) {
+        form[g.gameType].maxWin = { 
+          required,
+          pattern: VmaxWin.test
+        }
+      }
+    })
+    return {
+      form
     }
   },
   computed: {
@@ -107,6 +126,10 @@ export default {
       this.initSetting = this.$lodash.cloneDeep(this.form)
     },
     onSubmit() {
+      this.$v.form.$touch()
+      if(this.$v.form.$invalid) {
+        return
+      }
       this.isSaved = true
       this.$store.dispatch(EDIT_MEMBER_GAME_SETTING, {
         id: this.$route.params.id,

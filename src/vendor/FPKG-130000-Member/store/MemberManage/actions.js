@@ -55,7 +55,7 @@ const actions = {
       game_kind: g.gameType,
       switch: g.status,
       model: g.template,
-      max_win: g.maxWin,
+      max_win: parseInt(g.maxWin),
     }))})
     if(res.code === 200001) {
       Router.push({name: "MemberManage"})

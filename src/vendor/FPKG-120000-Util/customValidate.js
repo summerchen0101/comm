@@ -41,6 +41,14 @@ export const Vcaptcha = {
 }
 
 /**
+ * 最大贏額驗證: 僅數字
+ */
+export const VmaxWin = {
+  test: (val) => /^[0-9]*$/.test(val),
+  msg: "最大贏額格式有誤",
+}
+
+/**
  * 代碼驗證: 3~6位大寫英文字母
  */
 export const Vcode = {
