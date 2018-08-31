@@ -19,7 +19,7 @@
         width="180"
         label="開始時間">
         <template slot-scope="scope">
-          <span>{{toShortDateTime(scope.row.startAt)}}</span>
+          <span>{{toShortDateTimeNoSecond(scope.row.startAt)}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -27,7 +27,7 @@
         label="結束時間">
         <template slot-scope="scope">
           <span v-if="scope.row.forever">長期</span>
-          <span v-else>{{toShortDateTime(scope.row.endAt)}}</span>
+          <span v-else>{{toShortDateTimeNoSecond(scope.row.endAt)}}</span>
         </template>
       </el-table-column>
       <el-table-column

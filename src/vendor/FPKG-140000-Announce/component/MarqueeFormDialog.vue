@@ -23,6 +23,7 @@
       <el-form-item label="開始時間" prop="startAt">
         <el-date-picker
           v-model="form.startAt"
+          format="MM-dd HH:mm"
           :picker-options="startAtOption"
           @change="onStartAtChanged"
           type="datetime">
@@ -31,6 +32,7 @@
       <el-form-item label="結束時間" prop="endAt">
         <el-date-picker
           v-model="form.endAt"
+          format="MM-dd HH:mm"
           :picker-options="endAtOption"
           :disabled="form.forever"
           type="datetime">
