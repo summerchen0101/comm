@@ -10,6 +10,7 @@
           </el-col>
           <el-col :span="18">
             <el-input v-model.trim="searchForm.account" placeholder="搜尋帳號" :disabled="searchForm.type !== 'account'"></el-input>
+            <Validation name="會員" :target="$v.searchForm.account"></Validation>
           </el-col>
         </el-form-item>
         <el-form-item prop="phone">
@@ -18,6 +19,7 @@
           </el-col>
           <el-col :span="18">
             <el-input v-model.trim="searchForm.phone" placeholder="搜尋手機號碼" :disabled="searchForm.type !== 'phone'"></el-input>
+            <Validation name="手機" :target="$v.searchForm.phone" :patternMsg="Vphone.msg"></Validation>
           </el-col>
         </el-form-item>
         <el-form-item class="float-right mr-0">
@@ -59,6 +61,8 @@ import PersonalInfo from './PersonalInfo'
 import PointInfo from './PointInfo'
 import CommissionInfo from './CommissionInfo'
 import BankAccInfo from './BankAccInfo'
+import { Vphone } from '@/vendor/FPKG-120000-Util/customValidate';
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -69,6 +73,7 @@ export default {
   },
   data() {
     return {
+      Vphone,
       breadcrumbPath: [
         {name: "Home", title: "首頁"},
         {name: null, title: "會員資訊"},
@@ -78,14 +83,40 @@ export default {
         type: "account",
         account: "",
         phone: ""
+      },
+    }
+  },
+  validations() {
+    if(this.searchForm.type === 'account') {
+      return {
+        searchForm: {
+          account: {
+            required,
+          },
+        },
       }
     }
+    else if(this.searchForm.type === 'phone') {
+      return {
+        searchForm: {
+          phone: {
+            required,
+            pattern: Vphone.test
+          },
+        },
+      }
+    }
+    
   },
   beforeDestroy() {
     this.$store.commit(CLEAR_MEMBER_SEARCHED_DATA)
   },
   methods: {
     onSearchSubmit() {
+      this.$v.searchForm.$touch()
+      if(this.$v.searchForm.$invalid) {
+        return
+      }
       this.$store.dispatch(GET_SINGLE_MEMBER, this.searchForm)
     }
   },

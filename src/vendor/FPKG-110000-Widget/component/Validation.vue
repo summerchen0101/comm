@@ -1,5 +1,5 @@
 <template>
-  <div class="el-form-item__error my">
+  <div v-if="target" class="el-form-item__error my">
     <label v-if="target.required === false && target.$dirty === true" class="validation-error-label">
       <i class="el-icon-error"></i> {{name}}為必填
     </label>
