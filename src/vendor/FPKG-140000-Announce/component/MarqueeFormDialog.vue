@@ -71,7 +71,14 @@ let initForm = {
 export default {
   data() {
     return {
-      form: {},
+      form: {
+        id: "",
+        title: "",
+        desc: "",
+        startAt: moment(new Date()).add(5, 'minutes'),
+        endAt: moment(new Date()).add(1, 'days').add(5, 'minutes'),
+        forever: false,
+      },
       startAtOption: {
         disabledDate: (val) => {
           return dateBefore(startAtDay(new Date()), val)
@@ -141,12 +148,16 @@ export default {
       setTimeout(() => this.$refs.marqueeForm.clearValidate())
       if(this.$route.query.edit) {
         let index = this.marqueeList.findIndex(t => t.id == this.$route.query.edit)
-        this.form = Object.assign({}, initForm, this.marqueeList[index])
+        this.form = Object.assign({}, this.marqueeList[index])
       }
       else {
-        this.form = Object.assign({}, initForm, {
+        this.form = Object.assign({}, {
+          id: "",
+          title: "",
+          desc: "",
           startAt: moment(new Date()).add(5, 'minutes'),
           endAt: moment(new Date()).add(1, 'days').add(5, 'minutes'),
+          forever: false,
         })
       }
     },
