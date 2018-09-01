@@ -102,6 +102,7 @@ export default {
             endAt: toDate(f.endAt),
             account: f.account
           }})
+          this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
         }
       });
     }

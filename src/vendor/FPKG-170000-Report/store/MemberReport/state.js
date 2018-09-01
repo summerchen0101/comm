@@ -2,6 +2,7 @@
 
 
 const state = {
+  isSearched: false,
   Member: {
     info: null,
     report: [],

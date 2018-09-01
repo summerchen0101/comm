@@ -1,5 +1,5 @@
 <template>
-  <div v-if="info" id="MemberReportInfo">
+  <div id="MemberReportInfo">
     <div class="table-responsive mt-4">
       <table class="table table-bordered">
         <thead>
@@ -12,7 +12,7 @@
             <th width="12%">會員結果</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="info">
           <tr>
             <td>{{info.account}}</td>
             <td>{{$root.toCurrency(info.count)}}</td>
@@ -20,6 +20,11 @@
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.winAmount)}}</td>
             <td class="text-danger">{{$root.toCurrencyDecimal(info.result)}}</td>
+          </tr>
+        </tbody>
+        <tbody v-else>
+          <tr>
+            <td colspan="6" class="text-center">暫無資料</td>
           </tr>
         </tbody>
       </table>
@@ -36,7 +41,7 @@
             <th width="12%">會員結果</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="report.length > 0">
           <tr v-for="r,i in report" :key="i">
             <td>
               <router-link :to="{name: 'MemberGameReport', params: Object.assign({}, $route.params, {gameTypeId: r.gameTypeId})}">
@@ -49,13 +54,16 @@
             <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
             <td class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</td>
           </tr>
-          <tr v-if="report.length === 0">
+        </tbody>
+        <tbody v-else>
+          <tr>
             <td colspan="6" class="text-center">暫無資料</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+    
 </template>
 
 <script>
@@ -83,6 +91,7 @@ export default {
   },
   computed: {
     ...mapState({
+      isSearched: state => state.Report.MemberReport.isSearched,
       info: state => state.Report.MemberReport.Member.info,
       report: state => state.Report.MemberReport.Member.report
     }),

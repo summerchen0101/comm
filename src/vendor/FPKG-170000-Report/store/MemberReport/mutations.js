@@ -1,6 +1,7 @@
 
 
 import { 
+  CLEAR_MEMBER_REPORT,
   GOT_MEMBER_REPORT,
   GOT_MEMBER_GAME_REPORT_INFO,
   GOT_MEMBER_GAME_REPORT_DETAIL,
@@ -8,7 +9,18 @@ import {
 import { gameType } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
+  [CLEAR_MEMBER_REPORT](state) {
+    state.isSearched = false
+    state.Member = {
+      info: null,
+      report: [],
+    }
+  },
   [GOT_MEMBER_REPORT](state, result) {
+    state.isSearched = true
+    if(result.length === 0) {
+      return
+    }
     let s = result.summary
     state.Member.info = {
       account: s.account,

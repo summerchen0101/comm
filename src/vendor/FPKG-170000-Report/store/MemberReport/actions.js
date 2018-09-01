@@ -1,5 +1,6 @@
 
 import { 
+  CLEAR_MEMBER_REPORT,
   GET_MEMBER_REPORT,
   GOT_MEMBER_REPORT,
   GET_MEMBER_GAME_REPORT,
@@ -16,6 +17,7 @@ import Router from '@/router'
 
 const actions = {
   async [GET_MEMBER_REPORT]({commit}, _d) {
+    commit(CLEAR_MEMBER_REPORT)
     let params = {
       start_date: toDate(_d.startAt),
       end_date: toDate(_d.endAt),
