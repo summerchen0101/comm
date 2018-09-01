@@ -30,7 +30,7 @@
         </el-form-item>
       </el-form>
     </SearchBar>
-    
+    <p class="help-text">＊一次可查的時間範圍為2個月</p>
     <router-view></router-view>
   </div>
 </template>
@@ -67,7 +67,7 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(2, 'month')), val)
+          return dateAfter(new Date(), val) 
         }
       }
     },
