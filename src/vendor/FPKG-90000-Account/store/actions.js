@@ -4,6 +4,7 @@ import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
   CHANGE_LOGIN_STATUS, 
+  CLEAR_MENU, 
   DO_LOGOUT, 
   DO_LOGIN, 
   CLEAR_SESSION,
@@ -49,11 +50,11 @@ const actions = {
     }
   },
   async [DO_LOGOUT]({ commit }, data) {
-    console.log(DO_LOGOUT)
     let res = await apiHub("post", "api/v1/user/logout", data)
     if(res.code === 200001) {
       commit(CLEAR_USER_INFO)
       commit(CLEAR_SESSION)
+      commit(CLEAR_MENU)
       Router.push({name: "Login"})
       console.log("登出成功")
     }

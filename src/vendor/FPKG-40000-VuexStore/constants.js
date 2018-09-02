@@ -39,6 +39,7 @@ export const RESET_CURRENT_THEME = "RESET_CURRENT_THEME"
 
 // mutations
 export const SET_MENU = "SET_MENU"
+export const CLEAR_MENU = "CLEAR_MENU"
 export const SWITCH_MOBILE_MENU = "SWITCH_MOBILE_MENU"
 export const SWITCH_WEB_SYS_MENU = "SWITCH_WEB_SYS_MENU"
 export const SET_THEME = "SET_THEME"
