@@ -35,7 +35,10 @@ const mutations = {
     }
   },
   [GOT_PERMISSION](state, result) {
-    state.permission = result
+    state.permission = {
+      ...result,
+      permissions: result.permissions.filter(t => t.func_key > 99) // 過濾掉母選單，已免element-ui的tree自動勾選母選單下所有子選單
+    }
   },
 }
 

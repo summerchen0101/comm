@@ -105,7 +105,9 @@ export default {
     onSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.form.funcKeys = this.$refs.tree.getCheckedKeys()
+          this.form.funcKeys = this.$lodash(this.$refs.tree.getCheckedKeys())
+                                        .concat(this.$refs.tree.getHalfCheckedKeys())
+                                        .orderBy(t => t)
           this.$store.dispatch(this.$route.params.id ? 
                                   MODIFY_PERMISSION_GROUP : 
                                   CREATE_PERMISSION_GROUP
