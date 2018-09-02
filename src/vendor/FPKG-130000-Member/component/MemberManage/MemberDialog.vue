@@ -25,8 +25,7 @@
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="SWITCH_MEMBER_DIALOG(false)">取 消</el-button>
-      <el-button v-if="form.id" type="primary" @click="onEditSubmit">修 改</el-button>
-      <el-button v-else type="primary" @click="onCreateSubmit">新 增</el-button>
+      <el-button type="primary" @click="onCreateSubmit">新 增</el-button>
     </span>
   </el-dialog>
 </template>
