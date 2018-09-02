@@ -17,16 +17,16 @@ export const VlineID = {
 }
 
 /**
- * 帳號驗證: 8~12位數字或英文字母
+ * 管理角色帳號驗證: 8~12位數字或英文字母
  */
-export const Vaccount = {
+export const VuserAccount = {
   test: (val) => /^\w{8,12}$/.test(val),
   msg: "半形8~12位數字或英文字母",
 }
 
-export const accountValidator = (rules, value, cb) => {
-  if(value && !Vaccount.test(value)) {
-    cb(Vaccount.msg)
+export const userAccountValidator = (rules, value, cb) => {
+  if(value && !VuserAccount.test(value)) {
+    cb(VuserAccount.msg)
   }else {
     cb()
   }
