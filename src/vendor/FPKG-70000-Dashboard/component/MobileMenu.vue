@@ -4,7 +4,7 @@
       :router="true"
       @select="onSelected"
       @open="handleOpen"
-      @close="handleClose">
+      @closed="handleClose">
       <template v-for="m1, i1 in menu">
         <el-submenu v-if="m1.children" :index="`${i1+1}`" :key="m1.path">
           <template slot="title">

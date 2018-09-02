@@ -3,7 +3,7 @@
     :title="form.id ? '編輯跑馬燈' : '新增跑馬燈'"
     :before-close="() => SWITCH_MARQUEE_DIALOG(false)"
     @open="resetForm"
-    @close="onCloseDialog"
+    @closed="onCloseDialog"
     :visible.sync="dialogVisible"
     width="50%">
     <el-form 

@@ -3,7 +3,7 @@
     <el-menu
       router
       @open="handleOpen"
-      @close="handleClose">
+      @closed="handleClose">
       <template v-for="m1, i1 in targetMenu && targetMenu.children">
         <el-submenu v-if="m1.children" :index="`${i1+1}`" :key="m1.path">
           <template slot="title">
