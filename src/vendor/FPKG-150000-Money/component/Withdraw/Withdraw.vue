@@ -11,6 +11,7 @@
     <SearchBar>
       <el-form :inline="true" 
                 ref="searchForm"
+                status-icon
                 :model="searchForm"
                 :rules="searchFormRules">
         <el-form-item label="時間" v-if="searchForm.status !== 1">
@@ -31,10 +32,10 @@
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="編號">
+        <el-form-item label="編號" prop="number">
           <el-input v-model="searchForm.number" placeholder="搜尋訂單編號"></el-input>
         </el-form-item>
-        <el-form-item label="會員">
+        <el-form-item label="會員" prop="account">
           <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
         </el-form-item>
         <el-form-item class="float-right mr-0">
@@ -144,6 +145,7 @@ import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import WithdrawDialog from '@/vendor/FPKG-150000-Money/component/Withdraw/WithdrawDialog.vue'
 import WithdrawInfoDialog from '@/vendor/FPKG-150000-Money/component/Withdraw/WithdrawInfoDialog.vue'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -167,7 +169,7 @@ export default {
       },
       searchFormRules: {
         account: [
-          { min: 4, max: 12, message: '至少需4~12碼英數字', trigger: 'blur' },
+          { validator: memberAccountValidator, trigger: 'blur' },
         ],
       },
     }

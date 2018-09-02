@@ -33,6 +33,22 @@ export const accountValidator = (rules, value, cb) => {
 }
 
 /**
+ * 會員帳號驗證: 4~12位數字或英文字母
+ */
+export const VmemberAccount = {
+  test: (val) => /^\w{4,12}$/.test(val),
+  msg: "半形4~12位數字或英文字母",
+}
+
+export const memberAccountValidator = (rules, value, cb) => {
+  if(value && !VmemberAccount.test(value)) {
+    cb(VmemberAccount.msg)
+  }else {
+    cb()
+  }
+}
+
+/**
  * 圖形驗證碼驗證: 4位
  */
 export const Vcaptcha = {
