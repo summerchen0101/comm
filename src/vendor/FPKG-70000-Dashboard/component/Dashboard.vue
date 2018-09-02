@@ -14,6 +14,7 @@
     
   </div>
   <div class="center">
+    <PasswdDialog></PasswdDialog>
     <LoadingCover></LoadingCover>
     <router-view/>
     

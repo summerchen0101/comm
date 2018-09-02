@@ -11,7 +11,7 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown> -->
-    <span class="username mr-3">{{userInfo.name}}</span>
+    <span class="username mr-3 pointer" @click="onUserNameClicked">{{userInfo.name}}</span>
     <router-link :to="{name: 'Logout'}" style="color: #fff"><font-awesome-icon icon="sign-out-alt" /></router-link>
     <!-- <el-dropdown trigger="click" style="cursor: pointer" @command="onClick">
       <span class="username">{{userInfo.name}}</span>
@@ -26,7 +26,7 @@
 
 <script>
 import HeaderSysMenu from './HeaderSysMenu.vue'
-import { USER_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { USER_INFO, SWITCH_PASSWD_DIALOG } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
@@ -49,10 +49,12 @@ export default {
     },
     matchRoute(name) {
       return this.$route.matched.findIndex(r => r.name === name) > -1
+    },
+    onUserNameClicked() {
+      this.$store.commit(SWITCH_PASSWD_DIALOG, true)
     }
   },
   mounted() {
-    console.log(this.$route)
   }
   
   

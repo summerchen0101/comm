@@ -80,12 +80,14 @@ export const SET_USER_AUTH = "SET_USER_AUTH"
 // actions
 export const GET_CAPTCH = "GET_CAPTCH"
 export const GET_HISTORY = "GET_HISTORY"
+export const EDIT_USER_PASSWD = "EDIT_USER_PASSWD"
 
 // mutations
 export const GOT_CAPTCH = "GOT_CAPTCH"
 export const CLEAR_CAPTCH = "CLEAR_CAPTCH"
 export const SWITCH_LOADING_COVER = "SWITCH_LOADING_COVER"
 export const SET_BREADCRUMB = "SET_BREADCRUMB"
+export const SWITCH_PASSWD_DIALOG = "SWITCH_PASSWD_DIALOG"
 export const SWITCH_HISTORY_DIALOG = "SWITCH_HISTORY_DIALOG"
 export const GOT_HISTORY = "GOT_HISTORY"
 

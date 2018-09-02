@@ -7,6 +7,7 @@ import {
   SET_BREADCRUMB, 
   SWITCH_HISTORY_DIALOG ,
   GOT_HISTORY ,
+  SWITCH_PASSWD_DIALOG ,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -25,6 +26,9 @@ const mutations = {
     state.breadcrumb = breadcrumb
   },
 
+  [SWITCH_PASSWD_DIALOG](state, status) {
+    state.passwdDialogVisible = status
+  },
   [SWITCH_HISTORY_DIALOG](state, status) {
     state.historyDialogVisible = status
   },
