@@ -25,7 +25,7 @@ export const Vaccount = {
 }
 
 export const accountValidator = (rules, value, cb) => {
-  if(!Vaccount.test(value)) {
+  if(value && !Vaccount.test(value)) {
     cb(Vaccount.msg)
   }else {
     cb()
@@ -73,7 +73,7 @@ export const Vcode = {
 }
 
 export const codeValidator = (rules, value, cb) => {
-  if(!Vcode.test(value)) {
+  if(value && !Vcode.test(value)) {
     cb(Vcode.msg)
   }else {
     cb()
@@ -88,7 +88,7 @@ export const Vphone = {
 }
 
 export const phoneValidator = (rules, value, cb) => {
-  if(!Vphone.test(value)) {
+  if(value && !Vphone.test(value)) {
     cb(Vphone.msg)
   }else {
     cb()
@@ -112,7 +112,7 @@ export const VipColumn = {
 }
 
 export const ipColumnValidator = (rules, value, cb) => {
-  if(!VipColumn.test(value)) {
+  if(value && !VipColumn.test(value)) {
     cb(VipColumn.msg)
   }else {
     cb()
@@ -120,7 +120,7 @@ export const ipColumnValidator = (rules, value, cb) => {
 }
 
 export const firstIpColumnValidator = (rules, value, cb) => {
-  if(!VfirstIpColumn.test(value)) {
+  if(value && !VfirstIpColumn.test(value)) {
     cb(VfirstIpColumn.msg)
   }else {
     cb()
@@ -174,7 +174,7 @@ export function pwConfirmValidator(rules, value, cb) {
  * 開始時間驗證
  */
 export function startAtValidator(rules, value, cb) {
-  if(!this.form.forever && dateAfter(this.form.endAt, value)) {
+  if(value && !this.form.forever && dateAfter(this.form.endAt, value)) {
     cb("開始時間需早於結束時間")
   }else {
     cb()
@@ -185,7 +185,7 @@ export function startAtValidator(rules, value, cb) {
  * 結束時間驗證
  */
 export function endAtValidator(rules, value, cb) {
-  if(!this.form.forever && dateBefore(this.form.startAt, value)) {
+  if(value && !this.form.forever && dateBefore(this.form.startAt, value)) {
     cb("結束時間需晚於開始時間")
   }else {
     cb()
@@ -200,7 +200,7 @@ export const VpermissionName = {
   msg: "1~20個字元(不限英數中)",
 }
 export function permissionNameValidator(rules, value, cb) {
-  if(!VpermissionName.test(value)) {
+  if(value && !VpermissionName.test(value)) {
     cb(VpermissionName.msg)
   }else {
     cb()
