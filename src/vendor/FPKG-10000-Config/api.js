@@ -22,6 +22,9 @@ export async function apiHub(method, url, data, params) {
         if(status === 500) {
           alert(`API Error`)
         }
+        else if(status === 401) {
+          Router.push({name: 'Login'})
+        }
         // return (status >= 200 && status < 300) || status === 422
         return true
       },
