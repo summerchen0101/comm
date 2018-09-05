@@ -1,5 +1,5 @@
 
-import { 
+import {
   GET_MEMBER_LIST,
   GOT_MEMBER_LIST,
   VERIFY_MEMBER,
@@ -14,7 +14,6 @@ import {
   EDIT_MEMBER_GAME_SETTING,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-
 
 import Router from '@/router'
 
@@ -87,7 +86,7 @@ const actions = {
       lost_point: state.pointModify.subtract.point,
       lost_reason: state.pointModify.subtract.memo,
       review_user_id: rootState.Account.userInfo.id,
-      
+
       brokerage_level_active: _d.isLevelActive ? 1 : 2,
       brokerage_level_id: _d.startLevel.toString(),
       brokerage_start: _d.commisionStartAt,
@@ -97,7 +96,9 @@ const actions = {
     }
     let res = await apiHub("put", `api/v1/member/${_d.id}`, data)
     if(res.code === 200001) {
-      Router.push({name: "MemberManage"})
+      Router.app.$alert("資料修改成功", '提示').then(res => {
+        location.reload()
+      })
     }
   },
 }
