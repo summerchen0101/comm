@@ -1,7 +1,7 @@
 <template>
   <div id="OperatingLog">
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
@@ -73,8 +73,10 @@
         label="對象">
       </el-table-column>
       <el-table-column
-        prop="content"
         label="操作內容">
+        <template slot-scope="scope">
+         <div class="pre-wrap">{{renderOperationContent(scope.row.content)}}</div>
+        </template>
       </el-table-column>
     </el-table>
     <Paginator v-if="operatingPager"
@@ -85,9 +87,9 @@
 </template>
 
 <script>
-import { 
-  SET_BREADCRUMB, 
-  GET_OPERATING_OPTIONS, 
+import {
+  SET_BREADCRUMB,
+  GET_OPERATING_OPTIONS,
   GET_USER_OPTIONS,
   GET_OPERATING_LOG_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
@@ -130,14 +132,14 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateAfter(new Date(), val) 
+          return dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
         }
       }
     },
@@ -154,7 +156,10 @@ export default {
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_OPERATING_LOG_LIST, {...this.searchForm, page})
-    }
+    },
+    renderOperationContent(contents) {
+      return this.$lodash.join(this.$lodash.map(contents, this.$lodash.trim), '\r\n');
+    },
   },
 
   async mounted() {
@@ -167,7 +172,12 @@ export default {
 </script>
 
 <style lang="stylus">
-#OperatingLog 
+#OperatingLog
   .el-input--small .el-input__inner
     placeholder(#666)
+
+  .pre-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 </style>
