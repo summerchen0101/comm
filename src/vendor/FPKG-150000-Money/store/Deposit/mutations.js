@@ -1,6 +1,6 @@
 
 
-import { 
+import {
   GOT_DEPOSIT_INFO,
   GOT_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
@@ -27,6 +27,7 @@ const mutations = {
         status: t.status,
         reason: t.reason,
         operator: t.review_user,
+        createdAt: t.created_at,
         depositAt: t.deposit_at,
         expireAt: t.expire_at,
         bankInfo: {
@@ -34,7 +35,7 @@ const mutations = {
           branchName: bankInfo.branch,
           accountName: bankInfo.name,
           bankAccount: bankInfo.account,
-          
+
           tradeNo: bankInfo.no,
           paymentNo: bankInfo.payment_no,
           storeName: bankInfo.from,
