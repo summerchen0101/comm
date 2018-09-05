@@ -119,9 +119,9 @@
         fixed="right"
         width="150"
         label="操作">
-        <template slot-scope="scope">
+        <template slot-scope="scope" v-if="[4].indexOf(scope.row.payTypeId) > -1">
           <!-- 「銀行大額轉帳」時需顯示「確定」鍵 -->
-          <el-button v-if="[4].indexOf(scope.row.payTypeId) > -1" size="mini" type="success" @click="onConfirm(scope.row)">通過</el-button>
+          <el-button size="mini" type="success" @click="onConfirm(scope.row)">通過</el-button>
           <el-button size="mini" type="danger" @click="onCancel(scope.row)">未過</el-button>
         </template>
       </el-table-column>

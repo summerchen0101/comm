@@ -1,7 +1,7 @@
 
-import { 
-  GET_CAPTCH, 
-  GOT_CAPTCH, 
+import {
+  GET_CAPTCH,
+  GOT_CAPTCH,
   GET_HISTORY,
   GOT_HISTORY,
   EDIT_USER_PASSWD,
@@ -24,8 +24,8 @@ const actions = {
     let res = await apiHub('get', 'api/v1/user_operation/detail', null, params)
     if(res.code === 200001) {
       commit(GOT_HISTORY, {
-        result: res.result, 
-        lang: rootState.Global.lang, 
+        result: res.result,
+        lang: rootState.Global.lang,
         title
       })
       commit(SWITCH_HISTORY_DIALOG, true)
@@ -37,9 +37,11 @@ const actions = {
       password: _d.pw,
       password_confirmation: _d.pw_confirm,
     }
-    let res = await apiHub('get', 'api/v1/auth_user', null, params)
+    let res = await apiHub('put', 'api/v1/auth_user', null, params)
     if(res.code === 200001) {
-      Router.app.$alert("修改完成", "提示")
+      Router.app.$alert("密碼修改成功", '提示').then(res => {
+        Router.push({name: "Login"})
+      })
       commit(SWITCH_PASSWD_DIALOG, false)
     }
   }

@@ -7,28 +7,30 @@
       <span class="el-dialog__title">{{dispense.number}} 審核</span>
       <el-button type="info" class="float-right" @click="onCopyText">複製資訊</el-button>
     </div>
-    <el-form label-width="80px" 
-              ref="dispenseForm" 
-              :model="form" 
-              label-position="left" 
+    <el-form label-width="80px"
+              ref="dispenseForm"
+              :model="form"
+              label-position="left"
               :rules="formRules"
               >
       <el-form-item label="帳號">
         <el-input :value="dispense.account" disabled></el-input>
       </el-form-item>
-      
       <el-form-item label="銀行代碼">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.bankCode" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="分行名稱">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.branchName" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="戶名">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.accountName" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="銀行帳號">
-          <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
-        </el-form-item>
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.bankCode" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="分行名稱">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.branchName" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="戶名">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.accountName" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="銀行帳號">
+        <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="提領點數">
+        <el-input :value="$root.toCurrency(dispense.withdrawPoint)" disabled></el-input>
+      </el-form-item>
       <el-form-item label="出款點數">
         <el-input :value="$root.toCurrency(dispense.dispensePoint)" disabled></el-input>
       </el-form-item>
@@ -53,9 +55,9 @@
 </template>
 
 <script>
-import { 
-  SWITCH_DISPENSE_DIALOG, 
-  GET_DISPENSE_LIST, 
+import {
+  SWITCH_DISPENSE_DIALOG,
+  GET_DISPENSE_LIST,
   SET_DISPENSE,
   USER_INFO,
   SET_DISPENSE_STATUS,
@@ -121,10 +123,10 @@ export default {
           })
         }
       });
-      
+
     }
   },
-  
+
   created() {
     this.$hub.$on("dispense:clearForm", this.clearForm)
   }
