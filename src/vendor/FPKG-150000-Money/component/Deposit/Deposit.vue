@@ -77,9 +77,12 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="payTypeName"
         min-width="120"
         label="付款類型">
+         <template slot-scope="scope">
+           <span>{{scope.row.payTypeName}}</span>
+           <span>{{scope.row.payTypeAtm}}</span>
+         </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 3"

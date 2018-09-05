@@ -1,8 +1,8 @@
 export const payType = [
   {label: '超商付款', value: 1},
-  {label: '銀行轉帳(小額)', value: 2},
+  {label: 'ATM', value: 2},
   {label: '信用卡', value: 3},
-  {label: '銀行轉帳(大額)', value: 4},
+  {label: '銀行卡', value: 4},
 ]
 export const status = [
   {label: '啟用', value: 1},
@@ -42,7 +42,7 @@ export const memberLevel = [
 ]
 export const gameType = [
   {
-    label: '3D電子遊藝', 
+    label: '3D電子遊藝',
     value: 1,
     children: [
       {label: "黃金財神", value: 4},
@@ -60,10 +60,10 @@ export const gameType = [
       {label: "中秋烤肉趣", value: 24},
       {label: "夜市好好食", value: 25},
       {label: "luckymoney", value: 27},
-    ] 
+    ]
   },
   {
-    label: '彩球', 
+    label: '彩球',
     value: 2,
     children: [
       {label: "六合彩", value: 1},
@@ -71,6 +71,6 @@ export const gameType = [
       {label: "今彩539", value: 3},
       {label: "38樂合彩", value: 4},
       {label: "大福彩", value: 5},
-    ] 
+    ]
   },
 ]

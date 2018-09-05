@@ -23,6 +23,7 @@ const mutations = {
         nick: t.nickname,
         payTypeName: payTypeIndex > -1 ? payType[payTypeIndex].label : '-',
         payTypeId: t.payway_id,
+        payTypeAtm: t.payway_id == 2 ? '/' + t.operation_bank_info.bank : '',
         depositPoint: t.credit,
         status: t.status,
         reason: t.reason,
