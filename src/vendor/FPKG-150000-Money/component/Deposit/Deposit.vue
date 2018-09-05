@@ -20,7 +20,7 @@
             format="yyyy-MM-dd HH:mm"
             :picker-options="startAtOption"
             type="datetime"
-            @change="onStartAtChanged"
+            @change="onDateTimeAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
@@ -29,6 +29,7 @@
             format="yyyy-MM-dd HH:mm"
             :picker-options="endAtOption"
             type="datetime"
+            @change="onDateTimeAtChanged"
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
@@ -159,7 +160,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import DepositDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositDialog.vue'
 import DepositInfoDialog from '@/vendor/FPKG-150000-Money/component/Deposit/DepositInfoDialog.vue'
-import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
+import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getMoneyFirstDay } from '@/vendor/FPKG-120000-Util/time'
 import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
@@ -200,7 +201,7 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val) || dateAfter(new Date(), val)
+          return dateBefore(getMoneyFirstDay(), val) || dateAfter(new Date(), val)
         }
       }
     },
@@ -233,12 +234,11 @@ export default {
       this.SET_DEPOSIT(deposit)
       this.SWITCH_DEPOSIT_INFO_DIALOG(true)
     },
-    onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
+    onDateTimeAtChanged() {
+      // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
       }
-
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_DEPOSIT_LIST, {

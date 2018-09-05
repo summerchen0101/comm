@@ -1,7 +1,7 @@
 <template>
   <div id="OperatingLog">
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
@@ -12,7 +12,7 @@
             format="MM-dd HH:mm"
             :picker-options="startAtOption"
             type="datetime"
-            @change="onStartAtChanged">
+            @change="onDateTimeAtChanged">
           </el-date-picker>
           -
           <el-date-picker
@@ -20,6 +20,7 @@
             v-model="searchForm.endAt"
             format="MM-dd HH:mm"
             :picker-options="endAtOption"
+            @change="onDateTimeAtChanged"
             type="datetime">
           </el-date-picker>
         </el-form-item>
@@ -73,8 +74,10 @@
         label="對象">
       </el-table-column>
       <el-table-column
-        prop="content"
         label="操作內容">
+        <template slot-scope="scope">
+         <div class="pre-wrap">{{renderOperationContent(scope.row.content)}}</div>
+        </template>
       </el-table-column>
     </el-table>
     <Paginator v-if="operatingPager"
@@ -85,14 +88,14 @@
 </template>
 
 <script>
-import { 
-  SET_BREADCRUMB, 
-  GET_OPERATING_OPTIONS, 
+import {
+  SET_BREADCRUMB,
+  GET_OPERATING_OPTIONS,
   GET_USER_OPTIONS,
   GET_OPERATING_LOG_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 
@@ -130,31 +133,42 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateAfter(new Date(), val) 
+          return dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          let lastDate = getRangeLastDate(this.searchForm.startAt)
+          return val.getTime() > lastDate.getTime() || dateAfter(new Date(), val)
         }
       }
     },
   },
   methods: {
-    onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
+    onDateTimeAtChanged() {
+      // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
+        return
       }
+      // 判斷期間
+      let lastDate = getRangeLastDate(this.searchForm.startAt)
+      if (dateAfter(lastDate, this.searchForm.endAt)) {
+        this.searchForm.endAt = endAtDay(lastDate)
+      }
+
     },
     onSearchSubmit() {
       this.$store.dispatch(GET_OPERATING_LOG_LIST, this.searchForm)
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_OPERATING_LOG_LIST, {...this.searchForm, page})
-    }
+    },
+    renderOperationContent(contents) {
+      return this.$lodash.join(this.$lodash.map(contents, this.$lodash.trim), '\r\n');
+    },
   },
 
   async mounted() {
@@ -167,7 +181,12 @@ export default {
 </script>
 
 <style lang="stylus">
-#OperatingLog 
+#OperatingLog
   .el-input--small .el-input__inner
     placeholder(#666)
+
+  .pre-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 </style>
