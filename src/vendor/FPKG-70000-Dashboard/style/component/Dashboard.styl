@@ -2,19 +2,19 @@
   display: flex
   flex-direction column
   height: 100vh
-  #header 
+  #header
     min-height: $headerH
     z-index 999
     .fixed-container
       background-color: darken($TME-100-main-color, 10%)
       padding: 0 20px
       display flex
-      position: fixed 
-      width: 100% 
-      top: 0 
+      position: fixed
+      width: 100%
+      top: 0
       left: 0
 
-  #footer 
+  #footer
     padding: 0 20px
     background-color: darken($TME-100-main-color, 10%)
     color: $footer-text-color
@@ -22,14 +22,14 @@
 
   .center
     background-color: #fff
-    &:after 
+    &:after
       clear both
     #main
       color: $main-text-color
       overflow-y: auto
       float: left
       height: 'calc(100vh - (%s + %s))' % ($headerH $footerH)
-      width: calc(100vw - 200px)
+      width: calc(100vw - 215px)
       @media screen and (max-width: 900px)
         width: 100%
       .main-container
