@@ -25,7 +25,7 @@
       <el-form-item label="銀行帳號">
         <el-input :value="dispense.bankInfo && dispense.bankInfo.bankAccount" disabled></el-input>
       </el-form-item>
-      <el-form-item label="提款點數">
+      <el-form-item label="提領點數">
         <el-input :value="$root.toCurrency(dispense.withdrawPoint)" disabled></el-input>
       </el-form-item>
       <el-form-item label="出款點數">
@@ -51,9 +51,9 @@
 </template>
 
 <script>
-import { 
-  SWITCH_DISPENSE_INFO_DIALOG, 
-  GET_DISPENSE_LIST, 
+import {
+  SWITCH_DISPENSE_INFO_DIALOG,
+  GET_DISPENSE_LIST,
   SET_DISPENSE,
   USER_INFO,
   SET_DISPENSE_STATUS,
@@ -90,7 +90,7 @@ export default {
     ]),
     onCopyText,
   },
-  
+
   created() {
   }
 }
