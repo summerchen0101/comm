@@ -1,6 +1,6 @@
 import moment from '@/vendor/FPKG-30000-Plugin/moment'
 import _ from 'lodash'
-export default moment 
+export default moment
 export const toDateTime = (dt) => dt ? moment(dt).format('YYYY-MM-DD HH:mm:ss') : "-"
 export const toShortDateTime = (dt) => dt ? moment(dt).format('MM-DD HH:mm:ss') : "-"
 export const toShortDateTimeNoSecond = (dt) => dt ? moment(dt).format('MM-DD HH:mm') : "-"
@@ -31,6 +31,12 @@ export const getWeeksOfMonths = (monthCount) => {
               arr.push(getWeekRange(week))
               return arr
             }, [])
+}
+export const getRangeLastDate = (defaultAt, days = 60) => {
+  let tmpStartAt = new Date(defaultAt)
+  let tmpEndAt = new Date(tmpStartAt)
+  tmpEndAt.setDate(tmpStartAt.getDate() + days)
+  return tmpEndAt
 }
 // console.log(`${moment().format('YYYY')}-${moment().startOf('year').diff(moment().startOf('year'), 'weeks')+1}`)
 

@@ -1,7 +1,7 @@
 <template>
   <div id="GameReport">
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
@@ -11,7 +11,7 @@
             format="yyyy-MM-dd"
             :picker-options="startAtOption"
             type="date"
-            @change="onStartAtChanged"
+            @change="onDateAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
@@ -20,6 +20,7 @@
             format="yyyy-MM-dd"
             :picker-options="endAtOption"
             type="date"
+            @change="onDateAtChanged"
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
@@ -37,7 +38,7 @@
 
 <script>
 import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
-import moment, { toDate, startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { toDate, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
 export default {
@@ -67,25 +68,31 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateAfter(new Date(), val) 
+          return dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          let lastDate = getRangeLastDate(this.searchForm.startAt)
+          return val.getTime() > lastDate.getTime() || dateAfter(new Date(), val)
         }
       }
     },
   },
   methods: {
-    onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
+    onDateAtChanged() {
+      // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
+        return
       }
-      
+      // 判斷期間
+      let lastDate = getRangeLastDate(this.searchForm.startAt)
+      if (dateAfter(lastDate, this.searchForm.endAt)) {
+        this.searchForm.endAt = toDate(lastDate)
+      }
     },
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
@@ -107,13 +114,13 @@ export default {
 </script>
 
 <style lang="stylus">
-#GameReport 
+#GameReport
   .el-date-editor.el-input, .el-date-editor.el-input__inner
     width: 160px
-  table 
-    th, td 
+  table
+    th, td
       font-size: 13px
       color: #555
-    th 
-      background-color: #eee 
+    th
+      background-color: #eee
 </style>
