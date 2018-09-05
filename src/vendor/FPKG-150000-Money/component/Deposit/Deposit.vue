@@ -9,7 +9,7 @@
       </el-option>
     </el-select>
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 status-icon
                 :model="searchForm"
@@ -77,9 +77,12 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="payTypeName"
         min-width="120"
         label="付款類型">
+         <template slot-scope="scope">
+           <span>{{scope.row.payTypeName}}</span>
+           <span>{{scope.row.payTypeAtm}}</span>
+         </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
@@ -93,7 +96,7 @@
         min-width="150"
         label="申請時間">
          <template slot-scope="scope">
-           <span>{{toShortDateTime(scope.row.depositAt)}}</span>
+           <span>{{toShortDateTime(scope.row.createdAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column
@@ -143,10 +146,10 @@
 </template>
 
 <script>
-import { 
-  SET_BREADCRUMB, 
-  GET_STATUS_OPTIONS, 
-  GET_DEPOSIT_INFO, 
+import {
+  SET_BREADCRUMB,
+  GET_STATUS_OPTIONS,
+  GET_DEPOSIT_INFO,
   GET_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
   SET_DEPOSIT,
@@ -204,7 +207,7 @@ export default {
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
         }
       }
     },
@@ -235,7 +238,7 @@ export default {
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
         this.searchForm.endAt = ""
       }
-      
+
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_DEPOSIT_LIST, {
@@ -251,7 +254,7 @@ export default {
           this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
         }
       });
-      
+
     }
   },
   created() {
