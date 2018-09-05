@@ -9,7 +9,7 @@
       </el-option>
     </el-select>
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 status-icon
                 :model="searchForm"
@@ -20,7 +20,7 @@
             format="yyyy-MM-dd HH:mm"
             :picker-options="startAtOption"
             type="datetime"
-            @change="onStartAtChanged"
+            @change="onDateTimeAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
@@ -29,6 +29,7 @@
             format="yyyy-MM-dd HH:mm"
             :picker-options="endAtOption"
             type="datetime"
+            @change="onDateTimeAtChanged"
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
@@ -130,10 +131,10 @@
 </template>
 
 <script>
-import { 
-  SET_BREADCRUMB, 
-  GET_STATUS_OPTIONS, 
-  GET_WITHDRAW_INFO, 
+import {
+  SET_BREADCRUMB,
+  GET_STATUS_OPTIONS,
+  GET_WITHDRAW_INFO,
   GET_WITHDRAW_LIST,
   SWITCH_WITHDRAW_DIALOG,
   SET_WITHDRAW,
@@ -144,7 +145,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import WithdrawDialog from '@/vendor/FPKG-150000-Money/component/Withdraw/WithdrawDialog.vue'
 import WithdrawInfoDialog from '@/vendor/FPKG-150000-Money/component/Withdraw/WithdrawInfoDialog.vue'
-import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getMoneyFirstDay } from '@/vendor/FPKG-120000-Util/time.js'
 import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
@@ -185,14 +186,14 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val) || dateAfter(new Date(), val)
+          return dateBefore(getMoneyFirstDay(), val) || dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
         }
       }
     },
@@ -218,12 +219,11 @@ export default {
       this.SET_WITHDRAW(withdraw)
       this.SWITCH_WITHDRAW_INFO_DIALOG(true)
     },
-    onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
+    onDateTimeAtChanged() {
+      // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
       }
-      
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_WITHDRAW_LIST, {
@@ -239,7 +239,7 @@ export default {
           this.$store.dispatch(GET_WITHDRAW_LIST, this.searchForm)
         }
       });
-      
+
     }
   },
   created() {
