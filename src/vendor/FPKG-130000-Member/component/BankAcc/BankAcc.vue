@@ -10,7 +10,7 @@
         </el-option>
       </el-select>
     </PageTitle>
-    <SearchBar v-if="searchForm.status !== 1">
+    <SearchBar>
       <el-form :inline="true"
                 ref="searchForm"
                 status-icon
