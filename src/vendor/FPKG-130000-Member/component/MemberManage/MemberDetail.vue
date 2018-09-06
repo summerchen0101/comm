@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import { 
+import {
   SET_BREADCRUMB,
   GET_MEMBER,
   GET_MEMBER_DEPOSIT_LIMIT_OPTIONS,
@@ -206,15 +206,15 @@ export default {
   },
   validations: {
     form: {
-      pw: { 
+      pw: {
         required,
         pattern: VmemberPw.test,
       },
-      pw_confirm: { 
-        required, 
+      pw_confirm: {
+        required,
         sameAs: sameAs('pw')
       },
-      lineID: { 
+      lineID: {
         pattern: VlineID.test
       },
       commisionEndAt: {
@@ -274,16 +274,36 @@ export default {
       this.$store.dispatch(EDIT_MEMBER, this.form)
     },
     onCancel() {
-      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
-        confirmButtonText: '確定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$router.go(-1)
-      }).catch(() => {});
+      if (this.onChecFieldChanged() == true) {
+        this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$router.push({name: 'MemberManage'})
+        }).catch(() => {});
+      } else {
+        this.$router.push({name: 'MemberManage'})
+      }
     },
     onPointModifyChanged() {
       this.form.point = this.$numeral(this.member.point).value() + this.$numeral(this.pointModify.add.point).value() - this.$numeral(this.pointModify.subtract.point).value()
+    },
+    // 檢查畫面欄位是否有異動
+    onChecFieldChanged() {
+      if (this.form.pw != '' || this.form.pw_confirm != '') {
+        return true
+      }
+      let checkResult = false
+      let tmpOld = this.member
+      let tmpNew = this.form
+      _.forEach(['nick', 'status', 'lineID', 'memberDepositLimit', 'memo', 'point', 'isLevelActive', 'startLevel', 'commisionStartAt', 'commisionEndAt'], function(field) {
+        if (tmpNew[field] != tmpOld[field]) {
+          checkResult = true
+          return
+        }
+      })
+      return checkResult
     }
   },
   async mounted() {
@@ -299,7 +319,7 @@ export default {
 </script>
 
 <style lang="stylus">
-#MemberDetail 
+#MemberDetail
   .pointBtns
     margin-top: 33px
     margin-left: -27px
