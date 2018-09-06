@@ -1,7 +1,7 @@
 <template>
   <div id="BankAcc">
     <PageTitle>
-      <el-select slot="btns" v-model="searchForm.status" @change="onSearchChanged">
+      <el-select slot="btns" v-model="searchForm.status">
         <el-option
           v-for="opt in statusOpts"
           :key="opt.id"
@@ -10,6 +10,25 @@
         </el-option>
       </el-select>
     </PageTitle>
+    <SearchBar v-if="searchForm.status !== 1">
+      <el-form :inline="true"
+                ref="searchForm"
+                status-icon
+                :model="searchForm"
+                :rules="searchFormRules">
+        <el-form-item label="會員" prop="account">
+          <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
+        </el-form-item>
+        <el-form-item label="銀行帳號" prop="backAccount">
+          <el-input v-model="searchForm.bankAccount" placeholder="搜尋銀行帳號"></el-input>
+        </el-form-item>
+        <el-form-item class="float-right mr-0">
+          <el-button type="primary" @click="onSearchSubmit">
+            <font-awesome-icon icon="search" />
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </SearchBar>
     <el-table
       :data="bankAccList"
       stripe
@@ -97,7 +116,7 @@
 </template>
 
 <script>
-import { 
+import {
   SET_BREADCRUMB,
   GET_STATUS_OPTIONS,
   GET_BANK_ACC_LIST,
@@ -108,6 +127,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 import BankAccDialog from '@/vendor/FPKG-130000-Member/component/BankAcc/BankAccDialog.vue'
+import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -122,8 +142,15 @@ export default {
         {name: null, title: "銀行帳戶管理"},
       ],
       searchForm: {
-        status: 1
-      }
+        status: 1,
+        account: "",
+        bankAccount: "",
+      },
+      searchFormRules: {
+        account: [
+          { validator: memberAccountValidator, trigger: 'blur' },
+        ],
+      },
     }
   },
   computed: {
@@ -137,13 +164,10 @@ export default {
   methods: {
     onCheckHistory(id) {
       this.$store.dispatch(GET_HISTORY, {
-          funcKey: this.$attrs.funcKey, 
+          funcKey: this.$attrs.funcKey,
           id,
           title: "銀行帳戶修改歷程"
         })
-    },
-    onSearchChanged() {
-      this.$store.dispatch(GET_BANK_ACC_LIST, this.searchForm)
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_BANK_ACC_LIST, {
@@ -157,6 +181,13 @@ export default {
         ...item
       })
       this.$store.commit(SWITCH_BANK_ACC_DIALOG, true)
+    },
+    async onSearchSubmit() {
+      this.$refs.searchForm.validate((valid) => {
+        if (valid) {
+          this.$store.dispatch(GET_BANK_ACC_LIST, this.searchForm)
+        }
+      });
     }
   },
   mounted() {
