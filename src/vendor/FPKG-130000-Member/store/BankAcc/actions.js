@@ -1,5 +1,5 @@
 
-import { 
+import {
   GET_BANK_ACC_LIST,
   GOT_BANK_ACC_LIST,
   EDIT_BANK_ACC,
@@ -14,7 +14,12 @@ import Router from '@/router'
 
 const actions = {
   async [GET_BANK_ACC_LIST]({commit}, _d = {}) {
-    let res = await apiHub("get", `api/v1/bank_account/${_d.status}/list`, {page: _d.page || 1})
+    let params = {
+      account: _d.account || undefined,
+      bank_account: _d.bankAccount || undefined,
+      page: _d.page || 1,
+    }
+    let res = await apiHub("get", `api/v1/bank_account/${_d.status}/list`, null, params)
     if(res.code === 200001) {
       commit(CHANGE_BANK_ACC_LIST_TYPE, _d.status)
       commit(GOT_BANK_ACC_LIST, res.result)
