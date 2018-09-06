@@ -12,7 +12,7 @@
     </table>
 
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm">
         <el-form-item label="時間" v-if="searchForm.status !== 1">
@@ -21,7 +21,7 @@
             format="MM-dd HH:mm"
             :picker-options="startAtOption"
             type="datetime"
-            @change="onStartAtChanged"
+            @change="onDateTimeAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
@@ -30,6 +30,7 @@
             format="MM-dd HH:mm"
             :picker-options="endAtOption"
             type="datetime"
+            @change="onDateTimeAtChanged"
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
@@ -76,7 +77,7 @@
 import { GET_SUBTRACTED_POINT_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
-import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time'
+import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getMoneyFirstDay} from '@/vendor/FPKG-120000-Util/time'
 
 export default {
   mixins: [commonTool],
@@ -98,33 +99,32 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(2, 'month').startOf('month')), val)
+          return dateBefore(getMoneyFirstDay(), val) || dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
         }
       }
     },
   },
   methods: {
-    onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
+    onDateTimeAtChanged() {
+      // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
       }
-      
     },
     onSearchSubmit() {
       this.$store.dispatch(GET_SUBTRACTED_POINT_LIST, {...this.searchForm, id: this.$route.params.id})
     },
     onPageChanged(page) {
-      this.$store.dispatch(GET_SUBTRACTED_POINT_LIST, { 
-        id: this.$route.params.id, 
-        page 
+      this.$store.dispatch(GET_SUBTRACTED_POINT_LIST, {
+        id: this.$route.params.id,
+        page
       })
     },
   },
@@ -138,12 +138,12 @@ export default {
 <style lang="stylus">
 #SubtractedPoint
   margin: 30px auto
-  table 
+  table
     // margin-bottom: 25px
-    th, td 
+    th, td
       font-size: 13px
       color: #555
-    th 
-      background-color: #eee 
+    th
+      background-color: #eee
       width: 170px
 </style>
