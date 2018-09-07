@@ -62,7 +62,7 @@ const mutations = {
         ip: r.ip,
         betTarget: r.game_type,
         schedule: r.schedule,
-        betAmount: r.bet_amount,
+        betAmount: r.bet_total,
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
