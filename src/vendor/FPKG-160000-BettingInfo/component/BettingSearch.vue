@@ -1,7 +1,7 @@
 <template>
   <div id="BettingSearch">
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
@@ -25,7 +25,10 @@
         <tbody>
           <tr>
             <th>注單編號</th>
-            <td>{{bettingInfo.number || "暫無資料"}}</td>
+            <td>
+              {{bettingInfo.number || "暫無資料"}}
+              <span v-if="bettingInfo.betStatus != ''" class="el-tag el-tag--danger">{{bettingInfo.betStatus}}</span>
+            </td>
           </tr>
           <tr>
             <th>下注時間</th>
@@ -53,25 +56,43 @@
           </tr>
           <tr>
             <th>投注金額</th>
-            <td>{{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}</td> 
+            <td>
+              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+                {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}
+              </span>
+              <span v-else>-</span>
+            </td>
           </tr>
           <tr>
             <th>有效金額</th>
-            <td>{{typeof bettingInfo.realAmount === 'number' ?  toCurrencyDecimal(bettingInfo.realAmount) : "暫無資料"}}</td>            
+            <td>
+              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+                {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.realAmount) : "暫無資料"}}
+              </span>
+              <span v-else>-</span>
+            </td>
           </tr>
           <tr>
             <th>中獎金額</th>
-            <td>{{typeof bettingInfo.winAmount === 'number' ?  toCurrencyDecimal(bettingInfo.winAmount) : "暫無資料"}}</td>
+            <td>
+              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+                {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.winAmount) : "暫無資料"}}
+              </span>
+              <span v-else>-</span>
+            </td>
           </tr>
           <tr>
             <th>會員結果</th>
-            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</td>
+            <td class="text-danger" v-if="typeof bettingInfo.betResult === 'number'">
+              <span v-if="bettingInfo.betResult > 0" class="text-success">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</span>
+              <span v-if="bettingInfo.betResult <= 0" class="text-danger">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</span>
+            </td>
             <td v-else>暫無資料</td>
           </tr>
         </tbody>
       </table>
     </div>
-    
+
   </div>
 </template>
 
@@ -124,7 +145,7 @@ export default {
       });
     }
   },
-  
+
 
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
@@ -134,4 +155,9 @@ export default {
 
 <style lang="stylus">
 @import '../style/component/BettingSearch'
+.el-tag {
+  padding: 0 5px;
+  height: 24px;
+  line-height: 22px;
+}
 </style>

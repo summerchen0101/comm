@@ -6,7 +6,7 @@ import {
   GOT_GAME_PLAY_REPORT_INFO,
   GOT_GAME_PLAY_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { gameType, lotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
   [GOT_GAME_TOTAL_REPORT](state, result) {
@@ -69,6 +69,7 @@ const mutations = {
   [GOT_GAME_PLAY_REPORT_DETAIL](state, result) {
 
     state.gamePlayReport = result.data.map(r => {
+      let status = r.status ? r.status : 0;
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -77,11 +78,12 @@ const mutations = {
         schedule: r.schedule,
         account: r.account,
         nick: r.nickname,
-
         betAmount: r.bet_amount,
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
+        status: status,
+        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == status)].label,
       }
     })
     state.gamePlayReportPager = {
