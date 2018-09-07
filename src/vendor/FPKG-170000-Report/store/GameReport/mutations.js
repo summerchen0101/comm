@@ -1,6 +1,6 @@
 
 
-import { 
+import {
   GOT_GAME_TOTAL_REPORT,
   GOT_GAME_TYPE_REPORT,
   GOT_GAME_PLAY_REPORT_INFO,
@@ -74,6 +74,7 @@ const mutations = {
         betTime: r.bet_time,
         ip: r.ip,
         betTarget: r.game_type,
+        schedule: r.schedule,
         account: r.account,
         nick: r.nickname,
 
@@ -90,7 +91,7 @@ const mutations = {
       perpage: result.per_page,
     }
   },
-  
+
 
 }
 

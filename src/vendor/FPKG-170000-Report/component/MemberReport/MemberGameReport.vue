@@ -44,7 +44,10 @@
               <span>{{toShortDateTime(r.betTime)}}</span><br>
               <span class="text-info">{{r.ip}}</span>
             </td>
-            <td>{{r.betTarget}}</td>
+            <td>
+              {{showGame(r.betTarget)}}
+              <span v-if="r.schedule"><br>{{r.schedule}}</span>
+            </td>
             <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
@@ -77,6 +80,7 @@ export default {
       //   {name: null, title: this.$route.params.account},
       //   {name: null, title: gameType[gameTypeIndex].label},
       // ],
+      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children
     }
   },
   watch: {
@@ -107,6 +111,13 @@ export default {
         account: params.account,
         gameTypeId: params.gameTypeId
       })
+    },
+    showGame (betTarget) {
+      let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)
+      if (gameTypeIndex > -1) {
+        return this.gameType[gameTypeIndex].label
+      }
+      return betTarget
     }
   },
   created() {

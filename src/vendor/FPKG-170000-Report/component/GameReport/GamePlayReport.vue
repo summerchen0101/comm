@@ -49,7 +49,10 @@
               <span v-if="r.account">{{r.account}}({{r.nick}})</span>
               <span v-else>-</span>
             </td>
-            <td>{{r.betTarget}}</td>
+            <td>
+              {{showGame(r.betTarget)}}
+              <span v-if="r.schedule"><br>{{r.schedule}}</span>
+            </td>
             <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
@@ -79,6 +82,7 @@ export default {
   data() {
     return {
       gameTypeIndex: gameType.findIndex(g => g.value == this.$route.params.gameTypeId),
+      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children,
       page: 1
     }
   },
@@ -117,6 +121,13 @@ export default {
     onPageChanged(page) {
       this.page = page
       this.getGamePlayReport()
+    },
+    showGame (betTarget) {
+      let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)
+      if (gameTypeIndex > -1) {
+        return this.gameType[gameTypeIndex].label
+      }
+      return betTarget
     }
   },
   created() {
