@@ -54,46 +54,50 @@
             <th>投注內容</th>
             <td>{{bettingInfo.betTarget || "暫無資料"}}</td>
           </tr>
-          <tr>
-            <th>投注金額</th>
-            <td>
-              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+          <template v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+            <tr>
+              <th>投注金額</th>
+              <td>
                 {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}
-              </span>
-              <span v-else>-</span>
-            </td>
-          </tr>
-          <tr>
-            <th>有效金額</th>
-            <td>
-              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+              </td>
+            </tr>
+            <tr>
+              <th>有效金額</th>
+              <td>
                 {{typeof bettingInfo.realAmount === 'number' ?  toCurrencyDecimal(bettingInfo.realAmount) : "暫無資料"}}
-              </span>
-              <span v-else>-</span>
-            </td>
-          </tr>
-          <tr>
-            <th>中獎金額</th>
-            <td>
-              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
+              </td>
+            </tr>
+            <tr>
+              <th>中獎金額</th>
+              <td>
                 {{typeof bettingInfo.winAmount === 'number' ?  toCurrencyDecimal(bettingInfo.winAmount) : "暫無資料"}}
-              </span>
-              <span v-else>-</span>
-            </td>
-          </tr>
-          <tr>
-            <th>會員結果</th>
-            <td>
-              <span v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
-                <span v-if="typeof bettingInfo.betResult === 'number'">
-                  <span v-if="bettingInfo.betResult > 0" class="text-success">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</span>
-                  <span v-if="bettingInfo.betResult <= 0" class="text-danger">{{$root.toCurrencyDecimal(bettingInfo.betResult)}}</span>
-                </span>
-                <span v-else>暫無資料</span>
-              </span>
-              <span v-else>-</span>
-            </td>
-          </tr>
+              </td>
+            </tr>
+            <tr>
+              <th>會員結果</th>
+              <td>
+                <span :class="$root.handleResultColor(bettingInfo.betResult)">{{typeof bettingInfo.betResult === 'number' ?  toCurrencyDecimal(bettingInfo.betResult) : "暫無資料"}}</span>
+              </td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr>
+              <th>投注金額</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>有效金額</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>中獎金額</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>會員結果</th>
+              <td>-</td>
+            </tr>
+          </template>
         </tbody>
       </table>
     </div>

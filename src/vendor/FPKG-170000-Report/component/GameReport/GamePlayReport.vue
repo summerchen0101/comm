@@ -44,10 +44,8 @@
         <tbody>
           <tr v-for="r,i in report" :key="i">
             <td>
-              {{r.number}}
-              <div v-if="r.betStatus != ''">
-                <span class="el-tag el-tag--danger">{{r.betStatus}}</span>
-              </div>
+              <div>{{r.number}}</div>
+              <div v-if="r.betStatus != ''" class="el-tag el-tag--danger">{{r.betStatus}}</div>
             </td>
             <td>
               <span>{{toShortDateTime(r.betTime)}}</span><br>
@@ -58,19 +56,21 @@
               <span v-else>-</span>
             </td>
             <td>
-              {{showGame(r.betTarget)}}
-              <span v-if="r.schedule"><br>{{r.schedule}}</span>
+              <div>{{showGame(r.betTarget)}}</div>
+              <div v-if="r.schedule">{{r.schedule}}</div>
             </td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.betAmount)}}</span><span v-else>-</span></td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.realAmount)}}</span><span v-else>-</span></td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.winAmount)}}</span><span v-else>-</span></td>
-            <td>
-              <span v-if="r.status != 2 && r.status != 3">
-                <span v-if="r.result > 0" class="text-success">{{$root.toCurrencyDecimal(r.result)}}</span>
-                <span v-if="r.result <= 0" class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</span>
-              </span>
-              <span v-else>-</span>
-            </td>
+            <template v-if="r.status != 2 && r.status != 3">
+              <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
+              <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
+              <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
+              <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
+            </template>
+            <template v-else>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+            </template>
           </tr>
         </tbody>
       </table>

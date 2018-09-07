@@ -42,11 +42,11 @@ export function handleErrCode(code, url) {
       this.$alert(msg, '錯誤提示').then(res => {
         location.reload()
       })
-    } 
+    }
     else {
       this.$alert(msg, '錯誤提示')
     }
-    
+
   }
   return
 }
@@ -59,3 +59,5 @@ export function filterMenu(dM, pM) {
     return pM.findIndex(pm => pm.func_key === dm.funcKey) > -1 || dm.funcKey === 0
   })
 }
+
+export const handleResultColor =  (result) => (result > 0) ? 'text-success' : ((result == 0) ? '' : 'text-danger')
