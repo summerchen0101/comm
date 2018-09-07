@@ -67,7 +67,7 @@ const mutations = {
         winAmount: r.winnings,
         result: r.payoff,
         status: status,
-        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == r.status)].label,
+        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == status)].label,
       }
     })
     state.Game.pager = {
