@@ -53,10 +53,16 @@
               {{showGame(r.betTarget)}}
               <span v-if="r.schedule"><br>{{r.schedule}}</span>
             </td>
-            <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
-            <td class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</td>
+            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.betAmount)}}</span><span v-else>-</span></td>
+            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.realAmount)}}</span><span v-else>-</span></td>
+            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.winAmount)}}</span><span v-else>-</span></td>
+            <td>
+              <span v-if="r.status != 2 && r.status != 3">
+                <span v-if="r.result > 0" class="text-success">{{$root.toCurrencyDecimal(r.result)}}</span>
+                <span v-if="r.result < 0" class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</span>
+              </span>
+              <span v-else>-</span>
+            </td>
           </tr>
         </tbody>
       </table>

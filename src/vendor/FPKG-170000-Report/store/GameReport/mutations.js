@@ -69,6 +69,7 @@ const mutations = {
   [GOT_GAME_PLAY_REPORT_DETAIL](state, result) {
 
     state.gamePlayReport = result.data.map(r => {
+      let status = r.status ? r.status : 0;
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -81,7 +82,8 @@ const mutations = {
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
-        betStatus: r.status ? lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == r.status)].label : '',
+        status: status,
+        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == status)].label,
       }
     })
     state.gamePlayReportPager = {

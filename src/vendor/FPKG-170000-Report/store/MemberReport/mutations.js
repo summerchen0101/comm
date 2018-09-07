@@ -55,7 +55,7 @@ const mutations = {
   },
   [GOT_MEMBER_GAME_REPORT_DETAIL](state, result) {
     state.Game.report = result.data.map(r => {
-      let gameTypeIndex = gameType.findIndex(g => g.value == r.game_kind)
+      let status = r.status ? r.status : 0;
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -66,7 +66,8 @@ const mutations = {
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
-        betStatus: r.status ? lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == r.status)].label : '',
+        status: status,
+        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == r.status)].label,
       }
     })
     state.Game.pager = {

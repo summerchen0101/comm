@@ -30,6 +30,7 @@ export const memberLevelActive = [
   {label: '停用', value: 2},
 ]
 export const lotteryWagerStatus = [
+  {label: '', value: 0},
   {label: '', value: 1},
   {label: '已撤單', value: 2},
   {label: '已刪單', value: 3},
