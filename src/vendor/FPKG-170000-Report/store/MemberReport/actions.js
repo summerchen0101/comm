@@ -1,5 +1,5 @@
 
-import { 
+import {
   CLEAR_MEMBER_REPORT,
   GET_MEMBER_REPORT,
   GOT_MEMBER_REPORT,

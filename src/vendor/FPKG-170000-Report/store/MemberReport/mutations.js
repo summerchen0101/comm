@@ -1,6 +1,6 @@
 
 
-import { 
+import {
   CLEAR_MEMBER_REPORT,
   GOT_MEMBER_REPORT,
   GOT_MEMBER_GAME_REPORT_INFO,
@@ -61,7 +61,7 @@ const mutations = {
         betTime: r.bet_time,
         ip: r.ip,
         betTarget: r.game_type,
-
+        schedule: r.schedule,
         betAmount: r.bet_amount,
         realAmount: r.effective_amount,
         winAmount: r.winnings,

@@ -56,10 +56,12 @@ export const gameType = [
       {label: "白蛇傳", value: 19},
       {label: "世足賽", value: 20},
       {label: "夏日假期", value: 21},
-      {label: "sicbosingle", value: 22},
+      {label: "萬聖節", value: 22},
       {label: "中秋烤肉趣", value: 24},
       {label: "夜市好好食", value: 25},
-      {label: "luckymoney", value: 27},
+      {label: "上古神獸", value: 26},
+      {label: "招財錢母", value: 27},
+      {label: "萬聖來搗蛋", value: 28},
     ]
   },
   {
