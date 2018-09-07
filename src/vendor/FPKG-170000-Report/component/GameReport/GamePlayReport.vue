@@ -40,7 +40,12 @@
         </thead>
         <tbody>
           <tr v-for="r,i in report" :key="i">
-            <td>{{r.number}}</td>
+            <td>
+              {{r.number}}
+              <div v-if="r.betStatus != ''">
+                <span class="el-tag el-tag--danger">{{r.betStatus}}</span>
+              </div>
+            </td>
             <td>
               <span>{{toShortDateTime(r.betTime)}}</span><br>
               <span class="text-info">{{r.ip}}</span>
@@ -140,4 +145,9 @@ export default {
 </script>
 
 <style lang="stylus">
+.el-tag {
+  padding: 0 5px;
+  height: 24px;
+  line-height: 22px;
+}
 </style>

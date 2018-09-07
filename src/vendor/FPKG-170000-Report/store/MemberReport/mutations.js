@@ -6,7 +6,7 @@ import {
   GOT_MEMBER_GAME_REPORT_INFO,
   GOT_MEMBER_GAME_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { gameType, lotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
   [CLEAR_MEMBER_REPORT](state) {
@@ -66,6 +66,7 @@ const mutations = {
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
+        betStatus: r.status ? lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == r.status)].label : '',
       }
     })
     state.Game.pager = {
