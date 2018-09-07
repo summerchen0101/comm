@@ -148,7 +148,7 @@
       </el-form-item>
     </el-form>
     <SubmitBar>
-      <el-button @click="onCancel">取消</el-button>
+      <el-button @click="$router.push({name: 'MemberManage'})">取消</el-button>
       <el-button type="primary" @click="onSubmit">確定</el-button>
     </SubmitBar>
 
@@ -184,6 +184,7 @@ export default {
     return {
       VmemberPw,
       VlineID,
+      initSetting: null,
       form: {
         id: this.$route.params.id,
         account: "",
@@ -273,38 +274,9 @@ export default {
       }
       this.$store.dispatch(EDIT_MEMBER, this.form)
     },
-    onCancel() {
-      if (this.onChecFieldChanged() == true) {
-        this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
-          confirmButtonText: '確定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$router.push({name: 'MemberManage'})
-        }).catch(() => {});
-      } else {
-        this.$router.push({name: 'MemberManage'})
-      }
-    },
     onPointModifyChanged() {
       this.form.point = this.$numeral(this.member.point).value() + this.$numeral(this.pointModify.add.point).value() - this.$numeral(this.pointModify.subtract.point).value()
     },
-    // 檢查畫面欄位是否有異動
-    onChecFieldChanged() {
-      if (this.form.pw != '' || this.form.pw_confirm != '') {
-        return true
-      }
-      let checkResult = false
-      let tmpOld = this.member
-      let tmpNew = this.form
-      _.forEach(['nick', 'status', 'lineID', 'memberDepositLimit', 'memo', 'point', 'isLevelActive', 'startLevel', 'commisionStartAt', 'commisionEndAt'], function(field) {
-        if (tmpNew[field] != tmpOld[field]) {
-          checkResult = true
-          return
-        }
-      })
-      return checkResult
-    }
   },
   async mounted() {
     this.$hub.$on("Member:pointModifyChanged", this.onPointModifyChanged)
@@ -314,6 +286,21 @@ export default {
     this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
     await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
     this.form = Object.assign({}, this.form, this.member)
+    this.initSetting = this.$lodash.cloneDeep(this.form)
+  },
+  beforeRouteLeave(to, from, next) {
+    if (!this.$lodash.isEqual(this.initSetting, this.form) && !this.isSaved) {
+      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        next()
+      }).catch(() => {
+      });
+    } else {
+      next()
+    }
   }
 }
 </script>
