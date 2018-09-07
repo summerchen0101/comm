@@ -55,6 +55,7 @@ const actions = {
       switch: g.status,
       model: g.template,
       max_win: parseInt(g.maxWin),
+      clear: g.clear,
     }))})
     if(res.code === 200001) {
       Router.push({name: "MemberManage"})
