@@ -70,6 +70,10 @@
         </tbody>
       </table>
     </div>
+    <Paginator v-if="pager"
+              :on-page-changed="onPageChanged"
+              :count="pager.count"
+              :perpage="pager.perpage"></Paginator>
   </div>
 </template>
 
@@ -94,7 +98,8 @@ export default {
       //   {name: null, title: this.$route.params.account},
       //   {name: null, title: gameType[gameTypeIndex].label},
       // ],
-      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children
+      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children,
+      page: 1
     }
   },
   watch: {
@@ -103,7 +108,8 @@ export default {
   computed: {
     ...mapState({
       info: state => state.Report.MemberReport.Game.info,
-      report: state => state.Report.MemberReport.Game.report
+      report: state => state.Report.MemberReport.Game.report,
+      pager: state => state.Report.MemberReport.Game.pager,
     }),
     breadcrumbPath() {
       let gameTypeIndex = gameType.findIndex(g => g.value == this.$route.params.gameTypeId)
@@ -123,8 +129,13 @@ export default {
         startAt: params.startAt,
         endAt: params.endAt,
         account: params.account,
-        gameTypeId: params.gameTypeId
+        gameTypeId: params.gameTypeId,
+        page: this.page
       })
+    },
+    onPageChanged(page) {
+      this.page = page
+      this.getGameReport()
     },
     showGame (betTarget) {
       let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)
