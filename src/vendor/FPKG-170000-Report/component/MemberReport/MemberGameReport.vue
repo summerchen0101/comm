@@ -43,33 +43,37 @@
         <tbody>
           <tr v-for="r,i in report" :key="i">
             <td>
-              {{r.number}}
-              <div v-if="r.betStatus != ''">
-                <span class="el-tag el-tag--danger">{{r.betStatus}}</span>
-              </div>
+              <div>{{r.number}}</div>
+              <div v-if="r.betStatus != ''" class="el-tag el-tag--danger">{{r.betStatus}}</div>
             </td>
             <td>
               <span>{{toShortDateTime(r.betTime)}}</span><br>
               <span class="text-info">{{r.ip}}</span>
             </td>
             <td>
-              {{showGame(r.betTarget)}}
-              <span v-if="r.schedule"><br>{{r.schedule}}</span>
+              <div>{{showGame(r.betTarget)}}</div>
+              <div v-if="r.schedule">{{r.schedule}}</div>
             </td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.betAmount)}}</span><span v-else>-</span></td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.realAmount)}}</span><span v-else>-</span></td>
-            <td><span v-if="r.status != 2 && r.status != 3">{{$root.toCurrencyDecimal(r.winAmount)}}</span><span v-else>-</span></td>
-            <td>
-              <span v-if="r.status != 2 && r.status != 3">
-                <span v-if="r.result > 0" class="text-success">{{$root.toCurrencyDecimal(r.result)}}</span>
-                <span v-if="r.result <= 0" class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</span>
-              </span>
-              <span v-else>-</span>
-            </td>
+            <template v-if="r.status != 2 && r.status != 3">
+              <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
+              <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
+              <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
+              <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
+            </template>
+            <template v-else>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+              <td><span>-</span></td>
+            </template>
           </tr>
         </tbody>
       </table>
     </div>
+    <Paginator v-if="pager"
+              :on-page-changed="onPageChanged"
+              :count="pager.count"
+              :perpage="pager.perpage"></Paginator>
   </div>
 </template>
 
@@ -94,7 +98,8 @@ export default {
       //   {name: null, title: this.$route.params.account},
       //   {name: null, title: gameType[gameTypeIndex].label},
       // ],
-      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children
+      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children,
+      page: 1
     }
   },
   watch: {
@@ -103,7 +108,8 @@ export default {
   computed: {
     ...mapState({
       info: state => state.Report.MemberReport.Game.info,
-      report: state => state.Report.MemberReport.Game.report
+      report: state => state.Report.MemberReport.Game.report,
+      pager: state => state.Report.MemberReport.Game.pager,
     }),
     breadcrumbPath() {
       let gameTypeIndex = gameType.findIndex(g => g.value == this.$route.params.gameTypeId)
@@ -123,8 +129,13 @@ export default {
         startAt: params.startAt,
         endAt: params.endAt,
         account: params.account,
-        gameTypeId: params.gameTypeId
+        gameTypeId: params.gameTypeId,
+        page: this.page
       })
+    },
+    onPageChanged(page) {
+      this.page = page
+      this.getGameReport()
     },
     showGame (betTarget) {
       let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)

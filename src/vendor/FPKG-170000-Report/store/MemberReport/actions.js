@@ -48,6 +48,7 @@ const actions = {
       start_date: toDate(_d.startAt),
       end_date: toDate(_d.endAt),
       account: _d.account,
+      page: _d.page,
     }
     let res = await apiHub("get", `api/v1/statement/member/${_d.gameTypeId}/list`, null, params)
     if(res.code === 200001) {

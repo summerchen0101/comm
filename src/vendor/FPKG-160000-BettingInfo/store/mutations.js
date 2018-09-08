@@ -19,7 +19,7 @@ const mutations = {
       nick: result.nickname,
       gameType: gameTypeIndex > -1 ? gameType[gameTypeIndex].label : null,
       betTarget: betTargetIndex > -1 ? gameType[gameTypeIndex].children[betTargetIndex].label: null,
-      betAmount: result.bet_total,
+      betAmount: (result.game_kind == 2) ? result.bet_total : result.bet_amount,
       realAmount: result.effective_amount,
       winAmount: result.winnings,
       betResult: result.payoff,
