@@ -9,7 +9,7 @@
             <th width="12%">投注金額</th>
             <th width="12%">有效金額</th>
             <th width="12%">中獎金額</th>
-            <th width="12%">遊戲結果</th>
+            <th width="12%">會員結果</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
             <th width="12%">投注金額</th>
             <th width="12%">有效金額</th>
             <th width="12%">中獎金額</th>
-            <th width="12%">遊戲結果</th>
+            <th width="12%">會員結果</th>
           </tr>
         </thead>
         <tbody>
