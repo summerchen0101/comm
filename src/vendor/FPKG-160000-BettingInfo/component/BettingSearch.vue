@@ -54,13 +54,13 @@
             <th>投注內容</th>
             <td>{{bettingInfo.betTarget || "暫無資料"}}</td>
           </tr>
+          <tr>
+            <th>投注金額</th>
+            <td>
+              {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}
+            </td>
+          </tr>
           <template v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
-            <tr>
-              <th>投注金額</th>
-              <td>
-                {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}
-              </td>
-            </tr>
             <tr>
               <th>有效金額</th>
               <td>
@@ -81,10 +81,6 @@
             </tr>
           </template>
           <template v-else>
-            <tr>
-              <th>投注金額</th>
-              <td>-</td>
-            </tr>
             <tr>
               <th>有效金額</th>
               <td>-</td>
