@@ -20,8 +20,7 @@
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.winAmount)}}</td>
             <td>
-              <span v-if="info.result > 0" class="text-success">{{$root.toCurrencyDecimal(info.result)}}</span>
-              <span v-if="info.result <= 0" class="text-danger">{{$root.toCurrencyDecimal(info.result)}}</span>
+              <span :class="$root.handleResultColor(info.result)">{{$root.toCurrencyDecimal(info.result)}}</span>
             </td>
           </tr>
         </tbody>

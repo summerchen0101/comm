@@ -19,7 +19,7 @@
             <td>{{$root.toCurrencyDecimal(info.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.winAmount)}}</td>
-            <td class="text-danger">{{$root.toCurrencyDecimal(info.result)}}</td>
+            <td :class="$root.handleResultColor(info.result)">{{$root.toCurrencyDecimal(info.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -49,7 +49,7 @@
             <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
-            <td class="text-danger">{{$root.toCurrencyDecimal(r.result)}}</td>
+            <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
           </tr>
         </tbody>
       </table>
