@@ -20,8 +20,7 @@
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.winAmount)}}</td>
             <td>
-              <span v-if="info.result > 0" class="text-success">{{$root.toCurrencyDecimal(info.result)}}</span>
-              <span v-if="info.result <= 0" class="text-danger">{{$root.toCurrencyDecimal(info.result)}}</span>
+              <span :class="$root.handleResultColor(info.result)">{{$root.toCurrencyDecimal(info.result)}}</span>
             </td>
           </tr>
         </tbody>
@@ -54,14 +53,13 @@
               <div>{{showGame(r.betTarget)}}</div>
               <div v-if="r.schedule">{{r.schedule}}</div>
             </td>
+            <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
             <template v-if="r.status != 2 && r.status != 3">
-              <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
               <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
               <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
               <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
             </template>
             <template v-else>
-              <td><span>-</span></td>
               <td><span>-</span></td>
               <td><span>-</span></td>
               <td><span>-</span></td>

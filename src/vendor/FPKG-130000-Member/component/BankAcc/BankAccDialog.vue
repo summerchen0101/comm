@@ -6,10 +6,10 @@
     @closed="clearForm"
     :visible.sync="dialogVisible"
     width="50%">
-    <el-form 
-      label-width="80px" 
+    <el-form
+      label-width="80px"
       label-position="left"
-      status-icon 
+      status-icon
       :model="form"
       :rules="formRules"
       ref="bankAccForm"
@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import { 
-  SWITCH_BANK_ACC_DIALOG, 
-  GET_BANK_ACC_LIST, 
-  GET_BANK_ACC, 
-  EDIT_BANK_ACC, 
+import {
+  SWITCH_BANK_ACC_DIALOG,
+  GET_BANK_ACC_LIST,
+  GET_BANK_ACC,
+  EDIT_BANK_ACC,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
@@ -96,7 +96,7 @@ export default {
           { required: true, message: '銀行帳號為必填', trigger: 'blur' },
         ],
         reason: [
-          { required: ['cancel', 'info'].indexOf(this.bankAcc.type) > -1, message: '銀行帳號為必填', trigger: 'blur' },
+          { required: ['cancel', 'info'].indexOf(this.bankAcc.type) > -1, message: '原因為必填', trigger: 'blur' },
         ],
       }
     }
@@ -140,7 +140,7 @@ export default {
       });
     }
   },
-  
+
   created() {
     this.$hub.$on("Member:bankAccFormUpdate", this.setForm)
     this.$hub.$on("Member:clearBankAccForm", this.clearForm)

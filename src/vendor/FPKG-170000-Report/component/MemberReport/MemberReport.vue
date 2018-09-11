@@ -102,7 +102,7 @@ export default {
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          // this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
+          this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
           let f = this.searchForm
           this.$router.push({name: "MemberReportInfo", params: {
             startAt: toDate(f.startAt),

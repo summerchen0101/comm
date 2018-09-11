@@ -7,7 +7,7 @@
           <th>帳號(暱稱)</th>
           <td>
             <router-link :to="{name: 'MemberDetail', params: {
-                id: personalInfo.id, 
+                id: personalInfo.id,
                 acc: personalInfo.account
               }}" target="_blank">{{personalInfo.account}}({{personalInfo.nick}})</router-link>
           </td>
@@ -42,7 +42,7 @@
                 nick: personalInfo.nick,
                 count: personalInfo.directMembers,
               }}" target="_blank">
-              {{$root.toCurrencyDecimal(personalInfo.directMembers)}}
+              {{personalInfo.directMembers}}
             </router-link>
           </td>
         </tr>
@@ -55,7 +55,7 @@
                 nick: personalInfo.nick,
                 count: personalInfo.upperMembers,
               }}" target="_blank">
-              {{$root.toCurrencyDecimal(personalInfo.upperMembers)}}
+              {{personalInfo.upperMembers}}
             </router-link>
           </td>
         </tr>

@@ -57,7 +57,7 @@
         </tr>
         <tr>
           <th>會員結果</th>
-          <td>{{$root.toCurrencyDecimal(pointInfo.memberResult)}}</td>
+          <td :class="$root.handleResultColor(pointInfo.memberResult)">{{$root.toCurrencyDecimal(pointInfo.memberResult)}}</td>
         </tr>
         <tr>
           <th>未結帳投注</th>
