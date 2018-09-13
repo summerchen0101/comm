@@ -23,8 +23,11 @@
         <el-form-item label="銀行帳號">
           <el-input :value="form.bankInfo && form.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
+        <el-form-item label="存款帳號">
+          <el-input :value="form.bankInfo && form.bankInfo.depositTo" disabled></el-input>
+        </el-form-item>
       </template>
-      
+
       <!-- 超商 -->
       <template v-if="form.payTypeId === 1">
         <!-- <el-form-item label="繳費超商">
@@ -37,7 +40,7 @@
           <el-input :value="form.bankInfo && form.bankInfo.tradeNo" disabled></el-input>
         </el-form-item>
       </template>
-      
+
       <!-- 小額 -->
       <template v-if="form.payTypeId === 2">
         <el-form-item label="銀行代碼">
@@ -57,7 +60,7 @@
           <el-input :value="form.bankInfo && form.bankInfo.tradeNo" disabled></el-input>
         </el-form-item>
       </template>
-      
+
       <!-- 共用 -->
       <el-form-item label="存款點數">
         <el-input :value="$root.toCurrency(form.depositPoint)" disabled></el-input>
@@ -75,9 +78,9 @@
 </template>
 
 <script>
-import { 
-  SWITCH_DEPOSIT_INFO_DIALOG, 
-  GET_DEPOSIT_LIST, 
+import {
+  SWITCH_DEPOSIT_INFO_DIALOG,
+  GET_DEPOSIT_LIST,
   SET_DEPOSIT,
   USER_INFO,
   SET_DEPOSIT_STATUS,
@@ -100,7 +103,7 @@ export default {
       SWITCH_DEPOSIT_INFO_DIALOG
     ]),
   },
-  
+
   created() {
   }
 }

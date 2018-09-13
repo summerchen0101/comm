@@ -1,6 +1,6 @@
 
 
-import { GOT_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { GOT_BETTING_INFO, CLEAR_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { gameType, lotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
 
 
@@ -26,7 +26,10 @@ const mutations = {
       status: status,
       betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == status)].label,
     }
-  }
+  },
+  [CLEAR_BETTING_INFO](state) {
+    state.bettingInfo = null
+  },
 }
 
 export default mutations

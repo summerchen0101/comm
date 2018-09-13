@@ -1,7 +1,7 @@
 
-import { 
-  GET_BETTING_INFO, 
-  GOT_BETTING_INFO 
+import {
+  GET_BETTING_INFO,
+  GOT_BETTING_INFO,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 

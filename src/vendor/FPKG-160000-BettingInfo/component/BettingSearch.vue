@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { gameType } from '@/vendor/FPKG-10000-Config/enum'
 import { mapState } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
@@ -143,15 +143,19 @@ export default {
   methods: {
     onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
-        console.log(valid)
         if (valid) {
           this.$store.dispatch(GET_BETTING_INFO, this.searchForm)
         }
       });
     }
   },
-
-
+  created() {
+    this.searchForm = {
+      type: 2,
+      number: ""
+    };
+    this.$store.commit(CLEAR_BETTING_INFO)
+  },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
   }

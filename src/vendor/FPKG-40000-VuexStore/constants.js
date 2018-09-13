@@ -269,7 +269,7 @@ export const GET_BETTING_INFO = "GET_BETTING_INFO"
 
 // mutations
 export const GOT_BETTING_INFO = "GOT_BETTING_INFO"
-
+export const CLEAR_BETTING_INFO = "CLEAR_BETTING_INFO"
 
 /*
   FPKG-170000-Report: MemberReport

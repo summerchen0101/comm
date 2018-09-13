@@ -4,16 +4,16 @@
     :before-close="() => SWITCH_DEPOSIT_DIALOG(false)"
     :visible.sync="dialogVisible"
     width="500px">
-    <el-form label-width="80px" 
-              ref="depositForm" 
-              :model="form" 
-              label-position="left" 
+    <el-form label-width="80px"
+              ref="depositForm"
+              :model="form"
+              label-position="left"
               :rules="formRules"
               >
       <el-form-item label="帳號">
         <el-input :value="deposit.account" disabled></el-input>
       </el-form-item>
-      
+
       <!-- 銀行大額(銀行卡) -->
       <template v-if="deposit.payTypeId === 4">
         <el-form-item label="銀行代碼">
@@ -28,8 +28,11 @@
         <el-form-item label="銀行帳號">
           <el-input :value="deposit.bankInfo && deposit.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
+        <el-form-item label="存款帳號">
+          <el-input :value="deposit.bankInfo && deposit.bankInfo.depositTo" disabled></el-input>
+        </el-form-item>
       </template>
-      
+
       <!-- 超商 -->
       <template v-if="deposit.payTypeId === 1">
         <!-- <el-form-item label="繳費超商">
@@ -42,7 +45,7 @@
           <el-input :value="deposit.bankInfo && deposit.bankInfo.tradeNo" disabled></el-input>
         </el-form-item>
       </template>
-      
+
       <!-- 小額 -->
       <template v-if="deposit.payTypeId === 2">
         <el-form-item label="銀行代碼">
@@ -62,7 +65,7 @@
           <el-input :value="deposit.bankInfo && deposit.bankInfo.tradeNo" disabled></el-input>
         </el-form-item>
       </template>
-      
+
       <!-- 共用 -->
       <el-form-item label="存款點數">
         <el-input :value="$root.toCurrency(deposit.depositPoint)" disabled></el-input>
@@ -82,9 +85,9 @@
 </template>
 
 <script>
-import { 
-  SWITCH_DEPOSIT_DIALOG, 
-  GET_DEPOSIT_LIST, 
+import {
+  SWITCH_DEPOSIT_DIALOG,
+  GET_DEPOSIT_LIST,
   SET_DEPOSIT,
   USER_INFO,
   SET_DEPOSIT_STATUS,
@@ -134,10 +137,10 @@ export default {
           })
         }
       });
-      
+
     }
   },
-  
+
   created() {
     this.$hub.$on("deposit:clearForm", this.clearForm)
   }

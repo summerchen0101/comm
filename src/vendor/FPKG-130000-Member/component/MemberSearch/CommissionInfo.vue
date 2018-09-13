@@ -18,7 +18,7 @@
         <tr>
           <th>當前每萬元返還</th>
           <td>
-            <span class="mr-3" v-for="item in commissionInfo.commisionUnit">
+            <span class="mr-3" v-for="item in commissionInfo.commisionUnit" :key="item.id">
               <b>{{item.group}}</b>: {{$root.toCurrency(item.amount) || '-'}}
             </span>
           </td>
