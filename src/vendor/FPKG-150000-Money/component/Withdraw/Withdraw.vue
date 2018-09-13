@@ -1,6 +1,6 @@
 <template>
   <div id="Withdraw">
-    <el-select v-model="searchForm.status">
+    <el-select v-model="searchForm.status" @change="oninitSearchSubmit">
       <el-option
         v-for="opt in statusOpts.filter(t => t.id !== 2)"
         :key="opt.id"
@@ -231,7 +231,16 @@ export default {
         page
       })
     },
-
+    oninitSearchSubmit() {
+      this.searchForm = {
+        status: this.searchForm.status,
+        number: "",
+        account: "",
+        startAt: startAtDay(new Date()),
+        endAt: endAtDay(new Date()),
+      };
+      this.onSearchSubmit()
+    },
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
