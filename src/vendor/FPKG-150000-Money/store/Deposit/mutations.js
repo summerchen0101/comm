@@ -36,7 +36,7 @@ const mutations = {
           branchName: bankInfo.branch,
           accountName: bankInfo.name,
           bankAccount: bankInfo.account,
-
+          depositTo: bankInfo.deposit_to,
           tradeNo: bankInfo.no,
           paymentNo: bankInfo.payment_no,
           storeName: bankInfo.from,
