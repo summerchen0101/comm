@@ -7,19 +7,27 @@
         <div class="reviewBoxs">
           <div class="box">
             <span class="label text-primary">存款待審數</span>
-            <span class="number">{{$root.toCurrency(reviews.deposit)}}</span>
+            <router-link :to="{name: 'Deposit'}">
+              <span class="number">{{$root.toCurrency(reviews.deposit)}}</span>
+            </router-link>
           </div>
           <div class="box">
             <span class="label text-primary">提款待審數</span>
-            <span class="number">{{$root.toCurrency(reviews.withdraw)}}</span>
+            <router-link :to="{name: 'Withdraw'}">
+              <span class="number">{{$root.toCurrency(reviews.withdraw)}}</span>
+            </router-link>
           </div>
           <div class="box">
             <span class="label text-primary">出款待審數</span>
-            <span class="number">{{$root.toCurrency(reviews.dispense)}}</span>
+            <router-link :to="{name: 'Dispense'}">
+              <span class="number">{{$root.toCurrency(reviews.dispense)}}</span>
+            </router-link>
           </div>
           <div class="box">
             <span class="label text-primary">銀行待審數</span>
-            <span class="number">{{$root.toCurrency(reviews.bank)}}</span>
+            <router-link :to="{name: 'BankAcc'}">
+              <span class="number">{{$root.toCurrency(reviews.bank)}}</span>
+            </router-link>
           </div>
           <div class="box">
             <span class="label text-primary">簡訊點數</span>
@@ -32,7 +40,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 </template>
 
@@ -87,34 +95,34 @@ export default {
 <style lang="stylus">
 #Dashboard .center #Home #main
   width: 100%
-#Home 
+#Home
   .reviewBoxs
-    display: flex 
+    display: flex
     margin-left: -20px
     > .reload
       margin-left: 10px
       height: 40px
       width: 40px
-      &:hover 
+      &:hover
         color: #666
-      .count 
+      .count
         margin-right: 5px
         font-size: 12px
-    > .box 
+    > .box
       flex: 1
-      // border: 1px solid #ccc 
+      // border: 1px solid #ccc
       border-radius: 8px
       background-color: #efefefa3
-      display: flex 
-      justify-content space-around 
+      display: flex
+      justify-content space-around
       align-items center
       height 100px
       margin-left: 20px
-      .label 
+      .label
         //
-      .number 
+      .number
         font-size: 32px
         color: #666
         // font-weight: bold
-        
+
 </style>
