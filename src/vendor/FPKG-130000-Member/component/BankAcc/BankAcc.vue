@@ -1,7 +1,7 @@
 <template>
   <div id="BankAcc">
     <PageTitle>
-      <el-select slot="btns" v-model="searchForm.status"　@change="oninitSearchSubmit">
+      <el-select slot="btns" v-model="searchForm.status" @change="oninitSearchSubmit">
         <el-option
           v-for="opt in statusOpts"
           :key="opt.id"

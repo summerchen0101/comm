@@ -48,7 +48,7 @@
           </tr>
           <tr>
             <th>遊戲</th>
-            <td>{{bettingInfo.gameType || "暫無資料"}}</td>
+            <td>{{bettingInfo.gameType || "暫無資料"}} {{ bettingInfo.betSchedule }}</td>
           </tr>
           <tr>
             <th>投注內容</th>

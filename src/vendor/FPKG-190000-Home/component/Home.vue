@@ -5,34 +5,36 @@
       <Breadcrumb></Breadcrumb>
       <div class="main-container">
         <div class="reviewBoxs">
-          <div class="box">
-            <span class="label text-primary">存款待審數</span>
-            <router-link :to="{name: 'Deposit'}">
+          <router-link :to="{name: 'Deposit'}">
+            <div class="box box-margin">
+              <span class="label text-primary">存款待審數</span>
               <span class="number">{{$root.toCurrency(reviews.deposit)}}</span>
-            </router-link>
-          </div>
-          <div class="box">
-            <span class="label text-primary">提款待審數</span>
-            <router-link :to="{name: 'Withdraw'}">
+            </div>
+          </router-link>
+          <router-link :to="{name: 'Withdraw'}">
+            <div class="box box-margin">
+              <span class="label text-primary">提款待審數</span>
               <span class="number">{{$root.toCurrency(reviews.withdraw)}}</span>
-            </router-link>
-          </div>
-          <div class="box">
-            <span class="label text-primary">出款待審數</span>
-            <router-link :to="{name: 'Dispense'}">
+            </div>
+          </router-link>
+          <router-link :to="{name: 'Dispense'}">
+            <div class="box box-margin">
+              <span class="label text-primary">出款待審數</span>
               <span class="number">{{$root.toCurrency(reviews.dispense)}}</span>
-            </router-link>
-          </div>
-          <div class="box">
-            <span class="label text-primary">銀行待審數</span>
-            <router-link :to="{name: 'BankAcc'}">
-              <span class="number">{{$root.toCurrency(reviews.bank)}}</span>
-            </router-link>
-          </div>
-          <div class="box">
-            <span class="label text-primary">簡訊點數</span>
-            <span class="number">{{$root.toCurrency(reviews.sms)}}</span>
-          </div>
+            </div>
+          </router-link>
+          <router-link :to="{name: 'BankAcc'}">
+            <div class="box box-margin">
+              <span class="label text-primary">銀行待審數</span>
+                <span class="number">{{$root.toCurrency(reviews.bank)}}</span>
+            </div>
+          </router-link>
+          <a href="https://www.twsms.com/" target="_blank">
+            <div class="box box-margin">
+              <span class="label text-primary">簡訊點數</span>
+              <span class="number">{{$root.toCurrency(reviews.sms)}}</span>
+            </div>
+          </a>
           <div class="reload pointer" @click="getReviewList">
             <span class="count">{{count}}</span>
             <font-awesome-icon icon="sync-alt" :spin="isLoading" />
@@ -108,8 +110,9 @@ export default {
       .count
         margin-right: 5px
         font-size: 12px
-    > .box
+    > a , .box
       flex: 1
+      text-decoration: none
       // border: 1px solid #ccc
       border-radius: 8px
       background-color: #efefefa3
@@ -117,12 +120,14 @@ export default {
       justify-content space-around
       align-items center
       height 100px
-      margin-left: 20px
+      &:hover
+        background-color: #dddddd
       .label
         //
       .number
         font-size: 32px
         color: #666
         // font-weight: bold
-
+    > a
+      margin-left: 20px
 </style>
