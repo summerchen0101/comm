@@ -7,7 +7,7 @@
                 :rules="searchFormRules">
         <el-form-item label="類型">
           <el-select v-model="searchForm.type" prop="type">
-            <el-option v-for="t in gameTypeOpts" :key="t.value" :label="t.label" :value="t.value"></el-option>
+            <el-option v-for="t in gameTypeOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="注單編號" prop="number">
@@ -102,8 +102,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GET_GAME_TYPE_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
@@ -114,7 +113,6 @@ export default {
   },
   data() {
     return {
-      gameTypeOpts: gameType,
       breadcrumbPath: [
         {name: "Home", title: "首頁"},
         {name: null, title: "注單資訊"},
@@ -136,7 +134,8 @@ export default {
   },
   computed: {
     ...mapState({
-      bettingInfo: state => state.BettingInfo.bettingInfo
+      bettingInfo: state => state.BettingInfo.bettingInfo,
+      gameTypeOpts: state => state.Global.gameTypeOpts
     })
   },
 
@@ -156,8 +155,9 @@ export default {
     };
     this.$store.commit(CLEAR_BETTING_INFO)
   },
-  mounted() {
+  async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
   }
 }
 </script>

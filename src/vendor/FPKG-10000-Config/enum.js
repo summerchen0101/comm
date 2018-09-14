@@ -81,4 +81,9 @@ export const gameType = [
       {label: "大福彩", value: 5},
     ]
   },
+  {
+    label: '金璽彩票',
+    value: 3,
+    children: []
+  }
 ]
