@@ -28,7 +28,7 @@
         <el-form-item label="銀行帳號">
           <el-input :value="deposit.bankInfo && deposit.bankInfo.bankAccount" disabled></el-input>
         </el-form-item>
-        <el-form-item label="存款帳號">
+        <el-form-item label="匯款帳戶">
           <el-input :value="deposit.bankInfo && deposit.bankInfo.depositTo" disabled></el-input>
         </el-form-item>
       </template>

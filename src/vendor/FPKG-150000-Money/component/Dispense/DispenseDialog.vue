@@ -100,7 +100,8 @@ export default {
         {title: '分行名稱', content: this.dispense.bankInfo.branchName},
         {title: '戶名', content: this.dispense.bankInfo.accountName},
         {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
-        {title: '出款點數', content: this.dispense.dispensePoint},
+        {title: '提領點數', content: this.$root.toCurrency(this.dispense.withdrawPoint)},
+        {title: '出款點數', content: this.$root.toCurrency(this.dispense.dispensePoint)},
       ]
     }
   },
