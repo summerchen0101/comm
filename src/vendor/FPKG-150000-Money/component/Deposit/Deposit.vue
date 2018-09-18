@@ -86,14 +86,6 @@
          </template>
       </el-table-column>
       <el-table-column
-        v-if="listType == 3"
-        key="reason"
-        prop="reason"
-        min-width="120"
-        class-name="red"
-        label="原因">
-      </el-table-column>
-      <el-table-column
         min-width="150"
         label="申請時間">
          <template slot-scope="scope">
@@ -106,6 +98,14 @@
         <template slot-scope="scope">
            <span>{{toShortDateTime(scope.row.expireAt)}}</span>
          </template>
+      </el-table-column>
+      <el-table-column
+        v-if="listType == 3"
+        key="reason"
+        prop="reason"
+        min-width="120"
+        class-name="red"
+        label="原因">
       </el-table-column>
       <el-table-column
         v-if="listType != 1"
