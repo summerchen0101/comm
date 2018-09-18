@@ -1,8 +1,13 @@
 # 抽水平台
 
-## Project setup
+### Project setup
 ```
 yarn install
+```
+
+### Setting .env
+```
+cp .env.example .env
 ```
 
 ### Compiles and hot-reloads for development
