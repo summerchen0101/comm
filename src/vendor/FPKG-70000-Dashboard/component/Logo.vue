@@ -12,7 +12,7 @@
       </el-dropdown-menu>
     </el-dropdown>
     <span class="pointer" @click="$router.push({name: 'Home'})">
-      LOGO COMPONENT
+      眾發後台管理
     </span>
   </div>
 </template>

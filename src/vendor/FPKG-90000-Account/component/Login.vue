@@ -1,7 +1,7 @@
 <template>
   <div id="Login">
     <div class="login-box">
-      <div class="logo">LOGO</div>
+      <div class="logo">眾發</div>
       <div class="login-form">
         <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
           <b-form-group>
@@ -67,16 +67,16 @@ export default {
         captcha: "",
         captchaUuid: "",
       },
-      
+
     }
   },
   validations: {
     form: {
-      account: { 
+      account: {
         required,
         pattern: VuserAccount.test,
       },
-      password: { 
+      password: {
         required,
         pattern: VuserPw.test,
       },
@@ -108,7 +108,7 @@ export default {
   },
 
   mounted() {
-    
+
   }
 }
 </script>
