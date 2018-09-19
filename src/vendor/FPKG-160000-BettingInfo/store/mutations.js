@@ -19,16 +19,17 @@ const mutations = {
         betTarget = tmpList[tmpList.findIndex(t => t.id == result.game_type)].name
       }
       switch (result.game_kind) {
-        case '2':
+        case '2': {
           betAmount = result.bet_total
           betTarget += ' ' + result.schedule
           break;
-        case '3':
+        }
+        case '3': {
           let gruopIndex = tmpList.play_type_group.findIndex(t => t.id == result.play_type_group)
           let playIndex = tmpList.play_type.findIndex(t => t.id == result.play_type)
           betTarget += ' ' + result.schedule + ' ' + tmpList.play_type_group[gruopIndex].name + ' ' + tmpList.play_type[playIndex].name
           break;
-        default:
+        }
       }
     }
     state.bettingInfo = {
