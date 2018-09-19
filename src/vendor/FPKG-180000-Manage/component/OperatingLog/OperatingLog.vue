@@ -93,6 +93,7 @@ import {
   GET_OPERATING_OPTIONS,
   GET_USER_OPTIONS,
   GET_OPERATING_LOG_LIST,
+  CLEAR_OPERATING_LOG_LIST
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
@@ -169,10 +170,20 @@ export default {
     renderOperationContent(contents) {
       return this.$lodash.join(this.$lodash.map(contents, this.$lodash.trim), '\r\n');
     },
+    initLayout() {
+      this.searchForm = {
+        startAt: startAtDay(new Date()),
+        endAt: endAtDay(new Date()),
+        users: [],
+        funcTargets: []
+      };
+      this.$store.commit(CLEAR_OPERATING_LOG_LIST)
+    }
   },
 
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.initLayout()
     await this.$store.dispatch(GET_USER_OPTIONS)
     await this.$store.dispatch(GET_OPERATING_OPTIONS)
     // this.searchForm.funcTargets = this.operatingOpts.map(opt => opt.id)

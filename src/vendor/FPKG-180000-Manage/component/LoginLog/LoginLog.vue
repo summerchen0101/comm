@@ -1,7 +1,7 @@
 <template>
   <div id="LoginLog">
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
@@ -78,11 +78,12 @@
 </template>
 
 <script>
-import { 
-  SET_BREADCRUMB, 
-  GET_OPERATING_OPTIONS, 
+import {
+  SET_BREADCRUMB,
+  GET_OPERATING_OPTIONS,
   GET_USER_OPTIONS,
   GET_LOGIN_LOG_LIST,
+  CLEAR_LOGIN_LOG_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
@@ -103,7 +104,6 @@ export default {
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
         users: [],
-        funcTargets: []
       },
       searchFormRules: {
         account: [
@@ -121,14 +121,14 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val) || dateAfter(new Date(), val) 
+          return dateBefore(startAtDay(moment(new Date()).subtract(9, 'day')), val) || dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) 
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
         }
       }
     },
@@ -145,11 +145,19 @@ export default {
     },
     onPageChanged(page) {
       this.$store.dispatch(GET_LOGIN_LOG_LIST, {...this.searchForm, page})
+    },
+    initLayout() {
+      this.searchForm = {
+        startAt: startAtDay(new Date()),
+        endAt: endAtDay(new Date()),
+        users: []
+      };
+      this.$store.commit(CLEAR_LOGIN_LOG_LIST)
     }
   },
-
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    this.initLayout()
     await this.$store.dispatch(GET_USER_OPTIONS)
   }
 }

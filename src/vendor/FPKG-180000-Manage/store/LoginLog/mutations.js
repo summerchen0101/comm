@@ -1,7 +1,8 @@
 
 
-import { 
+import {
   GOT_LOGIN_LOG_LIST,
+  CLEAR_LOGIN_LOG_LIST
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { loginStatus } from '@/vendor/FPKG-10000-Config/enum.js'
 
@@ -26,6 +27,10 @@ const mutations = {
       totalPages: result.last_page,
       perpage: result.per_page,
     }
+  },
+  [CLEAR_LOGIN_LOG_LIST](state) {
+    state.loginList = null
+    state.loginPager = null
   }
 }
 

@@ -1,8 +1,9 @@
 
 
-import { 
+import {
   GOT_OPERATION_OPTIONS,
   GOT_OPERATING_LOG_LIST,
+  CLEAR_OPERATING_LOG_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -25,6 +26,10 @@ const mutations = {
       totalPages: result.last_page,
       perpage: result.per_page,
     }
+  },
+  [CLEAR_OPERATING_LOG_LIST](state) {
+    state.operatingList = null
+    state.operatingPager = null
   }
 }
 
