@@ -48,7 +48,7 @@
           </tr>
           <tr>
             <th>遊戲</th>
-            <td>{{bettingInfo.gameType || "暫無資料"}} {{ bettingInfo.betSchedule }}</td>
+            <td>{{bettingInfo.gameType || "暫無資料"}}</td>
           </tr>
           <tr>
             <th>投注內容</th>
@@ -76,7 +76,10 @@
             <tr>
               <th>會員結果</th>
               <td>
-                <span :class="$root.handleResultColor(bettingInfo.betResult)">{{typeof bettingInfo.betResult === 'number' ?  toCurrencyDecimal(bettingInfo.betResult) : "暫無資料"}}</span>
+                <span v-if="typeof bettingInfo.betResult === 'number'" :class="$root.handleResultColor(bettingInfo.betResult)">
+                  {{ toCurrencyDecimal(bettingInfo.betResult) }}
+                </span>
+                <span v-else>暫無資料</span>
               </td>
             </tr>
           </template>
@@ -102,7 +105,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GET_GAME_TYPE_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GET_GAME_TYPE_OPTIONS, GET_GAME_LIST_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
@@ -135,7 +138,8 @@ export default {
   computed: {
     ...mapState({
       bettingInfo: state => state.BettingInfo.bettingInfo,
-      gameTypeOpts: state => state.Global.gameTypeOpts
+      gameTypeOpts: state => state.Global.gameTypeOpts,
+      gameListOpts: state => state.Global.gameListOpts
     })
   },
 
@@ -143,6 +147,7 @@ export default {
     onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
+          this.searchForm.gameListOpts = _.find(this.gameListOpts, ['id', this.searchForm.type])
           this.$store.dispatch(GET_BETTING_INFO, this.searchForm)
         }
       });
@@ -158,6 +163,7 @@ export default {
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
+    await this.$store.dispatch(GET_GAME_LIST_OPTIONS)
   }
 }
 </script>

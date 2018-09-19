@@ -37,14 +37,9 @@ export async function apiHub(method, url, data, params) {
     if(_response.data.code) {
       Router.app.handleErrCode(_response.data.code, url)
     }
-    
     return _response.data
   }catch(err) {
     console.log(err)
   }
-
-
-
-  
 }
 
