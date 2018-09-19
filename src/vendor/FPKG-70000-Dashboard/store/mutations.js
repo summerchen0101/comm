@@ -1,7 +1,7 @@
-import { 
-  SWITCH_MOBILE_MENU, 
-  SWITCH_WEB_SYS_MENU, 
-  SET_THEME, 
+import {
+  SWITCH_MOBILE_MENU,
+  SWITCH_WEB_SYS_MENU,
+  SET_THEME,
   SET_MENU,
   CLEAR_MENU,
 } from '@/vendor/FPKG-40000-VuexStore/constants'

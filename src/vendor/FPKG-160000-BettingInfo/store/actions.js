@@ -15,6 +15,7 @@ const actions = {
     }
     let res = await apiHub("get", `api/v1/wager/${_d.type}`, null, params)
     if(res.code === 200001) {
+      res.result.gameListOpts = _d.gameListOpts
       commit(GOT_BETTING_INFO, res.result)
     }
   }

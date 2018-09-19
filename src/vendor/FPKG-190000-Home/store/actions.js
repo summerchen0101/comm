@@ -1,5 +1,5 @@
 
-import { 
+import {
   GET_REVIEW_LIST,
   GOT_REVIEW_LIST,
   SWITCH_REVIEW_LOADING_STATUS,

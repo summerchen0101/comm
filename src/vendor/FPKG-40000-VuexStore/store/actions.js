@@ -1,5 +1,5 @@
 
-import { 
+import {
   GET_BANK_LIST,
   GOT_BANK_LIST,
   GET_FEE_LIST,
@@ -18,9 +18,11 @@ import {
   GOT_GAME_TYPE_OPTIONS,
   GET_GAME_TEMPLATE_OPTIONS,
   GOT_GAME_TEMPLATE_OPTIONS,
+  GET_GAME_LIST_OPTIONS,
+  GOT_GAME_LIST_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-
+import { apiHub, apiJson } from '@/vendor/FPKG-10000-Config/api'
+import { gameType } from '@/vendor/FPKG-10000-Config/enum'
 
 import Router from '@/router'
 
@@ -83,6 +85,12 @@ const actions = {
         gameType: id,
         options: res.result
       })
+    }
+  },
+  async [GET_GAME_LIST_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/game_list')
+    if(res.code === 200001) {
+      commit(GOT_GAME_LIST_OPTIONS, res.result)
     }
   },
 }
