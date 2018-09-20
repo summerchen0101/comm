@@ -1,25 +1,26 @@
-import { 
-  SET_THEME, 
-  GET_USER_INFO, 
+import {
+  SET_THEME,
+  GET_USER_INFO,
   SET_USER_INFO,
   CLEAR_USER_INFO,
-  CHANGE_LOGIN_STATUS, 
-  CLEAR_MENU, 
-  DO_LOGOUT, 
-  DO_LOGIN, 
+  CHANGE_LOGIN_STATUS,
+  CLEAR_MENU,
+  DO_LOGOUT,
+  DO_LOGIN,
   CLEAR_SESSION,
   EDIT_USER_PASSWORD,
   SET_USER_AUTH,
   SET_MENU,
 
-  GET_ACCOUNT_LIST, 
-  GOT_ACCOUNT_LIST, 
-  GET_ACCOUNT, 
-  ADD_ACCOUNT, 
-  GOT_ACCOUNT, 
+  GET_ACCOUNT_LIST,
+  GOT_ACCOUNT_LIST,
+  GET_ACCOUNT,
+  ADD_ACCOUNT,
+  GOT_ACCOUNT,
   EDIT_ACCOUNT,
   DEL_ACCOUNT,
   SWITCH_ACCOUNT_DIALOG,
+  GET_GAME_LIST_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { Vcode } from '@/vendor/FPKG-120000-Util/customValidate';
@@ -46,6 +47,7 @@ const actions = {
       storage.session("auth", res.result.token)
       commit(SET_USER_AUTH)
       await dispatch(GET_USER_INFO)
+      await dispatch(GET_GAME_LIST_OPTIONS)
       Router.push({name: 'Home'})
     }
   },
