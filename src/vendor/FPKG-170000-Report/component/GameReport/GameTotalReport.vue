@@ -40,7 +40,7 @@
           <tr v-for="r,i in totalReport" :key="i">
             <td>
               <router-link :to="{name: 'GameTypeReport', params: Object.assign({}, $route.params, {gameTypeId: r.gameTypeId})}">
-                {{r.gameType}}
+                {{showGame(r.gameTypeId)}}
               </router-link>
             </td>
             <td>{{$root.toCurrency(r.count)}}</td>
@@ -59,9 +59,9 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_GAME_TOTAL_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_GAME_TOTAL_REPORT, GET_GAME_TYPE_OPTIONS, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
@@ -83,8 +83,11 @@ export default {
   computed: {
     ...mapState({
       totalInfo: state => state.Report.GameReport.totalInfo,
-      totalReport: state => state.Report.GameReport.totalReport
+      totalReport: state => state.Report.GameReport.totalReport,
     }),
+    ...mapGetters({
+      gameList: GAME_LIST
+    })
   },
   methods: {
     getGameReport() {
@@ -93,6 +96,9 @@ export default {
         startAt: params.startAt,
         endAt: params.endAt,
       })
+    },
+    showGame(gameTypeId) {
+      return this.gameList[gameTypeId - 1].name
     }
   },
   created() {

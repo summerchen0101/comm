@@ -19,9 +19,7 @@ const mutations = {
       result: s.payoff,
     }
     state.totalReport = result.list.map(r => {
-      let gameTypeIndex = gameType.findIndex(g => g.value == r.game_kind)
       return {
-        gameType: gameTypeIndex > -1 ? gameType[gameTypeIndex].label : r.game_kind,
         gameTypeId: r.game_kind,
         count: r.wager_count,
         betAmount: r.bet_amount,

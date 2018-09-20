@@ -6,7 +6,7 @@
       <thead>
         <tr>
           <th>帳號(暱稱)</th>
-          <th>直屬會員數</th>
+          <th>代理會員數</th>
         </tr>
         <tr>
           <td>{{$route.params.acc}} ({{$route.params.nick}})</td>
@@ -15,7 +15,7 @@
       </thead>
     </table>
     <SearchBar>
-      <el-form :inline="true" 
+      <el-form :inline="true"
                 ref="searchForm"
                 :model="searchForm">
         <el-form-item prop="account" label="會員">
@@ -114,9 +114,9 @@ export default {
       this.$store.dispatch(GET_UPPER_MEMBER_LIST, {...this.searchForm, id: this.$route.params.id})
     },
     onPageChanged(page) {
-      this.$store.dispatch(GET_UPPER_MEMBER_LIST, { 
-        id: this.$route.params.id, 
-        page 
+      this.$store.dispatch(GET_UPPER_MEMBER_LIST, {
+        id: this.$route.params.id,
+        page
       })
     },
   },
@@ -131,13 +131,13 @@ export default {
 <style lang="stylus">
 #UpperMembers
   margin: 30px auto
-  table 
+  table
     // margin-bottom: 25px
-    th, td 
+    th, td
       font-size: 13px
       color: #555
-    th 
-      background-color: #eee 
+    th
+      background-color: #eee
       width: 170px
 </style>
 

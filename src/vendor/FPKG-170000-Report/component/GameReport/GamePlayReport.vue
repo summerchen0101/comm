@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{getGamePlayName(info.gamePlayId)}}</td>
+            <td>{{nowGame}}</td>
             <td>{{$root.toCurrency(info.count)}}</td>
             <td>{{$root.toCurrencyDecimal(info.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
@@ -55,7 +55,7 @@
               <span v-else>-</span>
             </td>
             <td>
-              <div>{{showGame(r.betTarget)}}</div>
+              <div>{{getGamePlayName(r.betTarget)}}</div>
               <div v-if="r.schedule">{{r.schedule}}</div>
             </td>
             <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
@@ -81,10 +81,9 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_GAME_PLAY_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_GAME_PLAY_REPORT, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
-import { mapState } from 'vuex';
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
@@ -93,9 +92,9 @@ export default {
   },
   data() {
     return {
-      gameTypeIndex: gameType.findIndex(g => g.value == this.$route.params.gameTypeId),
-      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children,
-      page: 1
+      nowGame: '',
+      page: 1,
+      selList: {}
     }
   },
   watch: {
@@ -107,15 +106,21 @@ export default {
       report: state => state.Report.GameReport.gamePlayReport,
       pager: state => state.Report.GameReport.gamePlayReportPager,
     }),
+    ...mapGetters({
+      gameList: GAME_LIST
+    }),
     breadcrumbPath() {
-      let gamePlayIndex = gameType[this.gameTypeIndex].children.findIndex(g => g.value == this.$route.params.gamePlayId)
+      let self = this
+      let gameList = self.gameList[this.$route.params.gameTypeId - 1]
+      self.selList = gameList.list.game_type
+      self.nowGame = self.selList[this.$route.params.gamePlayId - 1].name
       return [
         {name: "Home", title: "首頁"},
         {name: null, title: "報表查詢"},
         {name: null, title: "遊戲報表"},
         {name: "GameTotalReport", title: "遊戲報表", params: {...this.$route.params}},
-        {name: "GameTypeReport", title: gameType[this.gameTypeIndex].label, params: {...this.$route.params}},
-        {name: null, title: gameType[this.gameTypeIndex].children[gamePlayIndex].label},
+        {name: "GameTypeReport", title: gameList.name, params: {...this.$route.params}},
+        {name: null, title: self.nowGame},
       ]
     }
   },
@@ -126,21 +131,13 @@ export default {
         page: this.page
       })
     },
-    getGamePlayName(gamePlayId) {
-      var gamePlayIndex = gameType[this.gameTypeIndex].children.findIndex(g => g.value == gamePlayId)
-      return gamePlayIndex > -1 ? gameType[this.gameTypeIndex].children[gamePlayIndex].label : gamePlayId
-    },
     onPageChanged(page) {
       this.page = page
       this.getGamePlayReport()
     },
-    showGame (betTarget) {
-      let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)
-      if (gameTypeIndex > -1) {
-        return this.gameType[gameTypeIndex].label
-      }
-      return betTarget
-    }
+    getGamePlayName(gamePlayId) {
+      return this.selList[gamePlayId - 1].name
+    },
   },
   created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)

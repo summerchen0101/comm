@@ -76,10 +76,9 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_MEMBER_GAME_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_MEMBER_GAME_REPORT, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
-import { mapState } from 'vuex';
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
@@ -96,8 +95,8 @@ export default {
       //   {name: null, title: this.$route.params.account},
       //   {name: null, title: gameType[gameTypeIndex].label},
       // ],
-      gameType: gameType[gameType.findIndex(g => g.value == this.$route.params.gameTypeId)].children,
-      page: 1
+      page: 1,
+      selList: {}
     }
   },
   watch: {
@@ -109,14 +108,19 @@ export default {
       report: state => state.Report.MemberReport.Game.report,
       pager: state => state.Report.MemberReport.Game.pager,
     }),
+    ...mapGetters({
+      gameList: GAME_LIST
+    }),
     breadcrumbPath() {
-      let gameTypeIndex = gameType.findIndex(g => g.value == this.$route.params.gameTypeId)
+      let self = this
+      let tmp = self.gameList[this.$route.params.gameTypeId - 1]
+      self.selList = tmp.list
       return [
         {name: "Home", title: "首頁"},
         {name: null, title: "報表查詢"},
         {name: null, title: "會員報表"},
         {name: "MemberReportInfo", title: this.$route.params.account, params: this.$route.params},
-        {name: null, title: gameType[gameTypeIndex].label},
+        {name: null, title: tmp.name},
       ]
     }
   },
@@ -135,19 +139,15 @@ export default {
       this.page = page
       this.getGameReport()
     },
-    showGame (betTarget) {
-      let gameTypeIndex = this.gameType.findIndex(g => g.value == betTarget)
-      if (gameTypeIndex > -1) {
-        return this.gameType[gameTypeIndex].label
-      }
-      return betTarget
+    showGame(betTarget) {
+      return this.selList.game_type[betTarget - 1].name;
     }
   },
-  created() {
-    this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+  async created() {
+    await this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
   },
-  mounted() {
-    this.getGameReport()
+  async mounted() {
+    await this.getGameReport()
   }
 }
 </script>

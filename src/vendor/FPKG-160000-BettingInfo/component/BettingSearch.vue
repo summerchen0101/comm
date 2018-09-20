@@ -7,7 +7,7 @@
                 :rules="searchFormRules">
         <el-form-item label="類型">
           <el-select v-model="searchForm.type" prop="type">
-            <el-option v-for="t in gameTypeOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
+            <el-option v-for="t in gameList" :key="t.id" :label="t.name" :value="t.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="注單編號" prop="number">
@@ -105,8 +105,8 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GET_GAME_TYPE_OPTIONS, GET_GAME_LIST_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { mapState } from 'vuex';
+import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 
@@ -137,9 +137,10 @@ export default {
   },
   computed: {
     ...mapState({
-      bettingInfo: state => state.BettingInfo.bettingInfo,
-      gameTypeOpts: state => state.Global.gameTypeOpts,
-      gameListOpts: state => state.Global.gameListOpts
+      bettingInfo: state => state.BettingInfo.bettingInfo
+    }),
+    ...mapGetters({
+      gameList: GAME_LIST
     })
   },
 
@@ -147,7 +148,7 @@ export default {
     onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          this.searchForm.gameListOpts = _.find(this.gameListOpts, ['id', this.searchForm.type])
+          this.searchForm.gameList = this.gameList[this.searchForm.type - 1];
           this.$store.dispatch(GET_BETTING_INFO, this.searchForm)
         }
       });
@@ -162,8 +163,6 @@ export default {
   },
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
-    await this.$store.dispatch(GET_GAME_LIST_OPTIONS)
   }
 }
 </script>

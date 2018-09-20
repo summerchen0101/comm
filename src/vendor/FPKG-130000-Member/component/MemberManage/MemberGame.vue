@@ -15,7 +15,7 @@
         </el-col>
         <el-col :span="8" v-if="form[g.gameType].template">
           <el-form-item>
-            <a slot="label" href="">{{toOption(gameTypeOpts, g.gameType)}}範本設定</a>
+            <span>{{toOption(gameTypeOpts, g.gameType)}}範本設定</span>
             <el-select v-model="form[g.gameType].template" style="width: 100%" :disabled="!g.allowSetting">
               <el-option v-for="opt in gameTplOpts[g.gameType]" :label="opt.name" :value="opt.name" :key="opt.name"></el-option>
             </el-select>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { 
+import {
   SET_BREADCRUMB,
   GET_MEMBER_STATUS_OPTIONS,
   GET_GAME_TYPE_OPTIONS,
@@ -79,7 +79,7 @@ export default {
     this.gameSetting.forEach(g => {
       form[g.gameType] = {}
       if(g.hasMaxWin) {
-        form[g.gameType].maxWin = { 
+        form[g.gameType].maxWin = {
           required,
           pattern: VmaxWin.test
         }
@@ -162,12 +162,12 @@ export default {
       }).then(() => {
         next()
       }).catch(() => {
-                
+
       });
     }else {
       next()
     }
-    
+
   }
 }
 </script>
@@ -180,7 +180,7 @@ export default {
     border-top: 1px solid #eee
     border-bottom: 1px solid #eee
     margin-top: -1px
-    h4 
+    h4
       font-size: 18px
       margin-bottom: 0
 </style>

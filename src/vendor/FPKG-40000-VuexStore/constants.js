@@ -4,6 +4,7 @@
 */
 
 // getters
+export const GAME_LIST = "GAME_LIST"
 
 // actions
 export const GET_BANK_LIST = "GET_BANK_LIST"

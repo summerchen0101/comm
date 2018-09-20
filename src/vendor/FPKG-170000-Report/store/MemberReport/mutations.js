@@ -6,7 +6,7 @@ import {
   GOT_MEMBER_GAME_REPORT_INFO,
   GOT_MEMBER_GAME_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { gameType, lotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
+import { lotteryWagerStatus, ifaloLotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
 
 const mutations = {
   [CLEAR_MEMBER_REPORT](state) {
@@ -31,9 +31,7 @@ const mutations = {
       result: s.payoff,
     }
     state.Member.report = result.list.map(r => {
-      let gameTypeIndex = gameType.findIndex(g => g.value == r.game_kind)
       return {
-        gameType: gameTypeIndex > -1 ? gameType[gameTypeIndex].label : r.game_kind,
         gameTypeId: r.game_kind,
         count: r.wager_count,
         betAmount: r.bet_amount,
@@ -55,7 +53,16 @@ const mutations = {
   },
   [GOT_MEMBER_GAME_REPORT_DETAIL](state, result) {
     state.Game.report = result.data.map(r => {
-      let status = r.status ? r.status : 0;
+      let status = 0;
+      let betStatus = ''
+      if (r.status) {
+        status = r.status;
+        if (r.game_type == '2') {
+          betStatus = lotteryWagerStatus[status - 1].label
+        } else if(r.game_type == '3') {
+          betStatus = ifaloLotteryWagerStatus[status - 1].label
+        }
+      }
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -67,7 +74,7 @@ const mutations = {
         winAmount: r.winnings,
         result: r.payoff,
         status: status,
-        betStatus: lotteryWagerStatus[lotteryWagerStatus.findIndex(g => g.value == status)].label,
+        betStatus: betStatus,
       }
     })
     state.Game.pager = {
