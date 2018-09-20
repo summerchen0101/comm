@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{info.gameType}}</td>
+            <td>{{nowGame}}</td>
             <td>{{$root.toCurrency(info.count)}}</td>
             <td>{{$root.toCurrencyDecimal(info.betAmount)}}</td>
             <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
@@ -42,7 +42,7 @@
               <router-link :to="{name: 'GamePlayReport', params: Object.assign({}, $route.params, {
                   gamePlayId: r.gamePlayId
                 })}">
-                {{r.gamePlay}}
+                {{showGame(r.gamePlayId)}}
               </router-link>
             </td>
             <td>{{$root.toCurrency(r.count)}}</td>
@@ -58,10 +58,9 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_GAME_TYPE_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_GAME_TYPE_REPORT, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
-import { mapState } from 'vuex';
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
@@ -70,7 +69,8 @@ export default {
   },
   data() {
     return {
-      gameTypeIndex: gameType.findIndex(g => g.value == this.$route.params.gameTypeId)
+      nowGame: '',
+      selList: {}
     }
   },
   watch: {
@@ -79,14 +79,21 @@ export default {
   computed: {
     ...mapState({
       info: state => state.Report.GameReport.gameTypeInfo,
-      report: state => state.Report.GameReport.gameTypeReport
+      report: state => state.Report.GameReport.gameTypeReport,
+    }),
+    ...mapGetters({
+      gameList: GAME_LIST
     }),
     breadcrumbPath() {
+      let self = this
+      let gameList = self.gameList[this.$route.params.gameTypeId - 1]
+      self.selList = gameList.list.game_type
+      self.nowGame = gameList.name;
       return [
         {name: "Home", title: "首頁"},
         {name: null, title: "報表查詢"},
         {name: "GameTotalReport", title: "遊戲報表", params: {...this.$route.params}},
-        {name: null, title: gameType[this.gameTypeIndex].label},
+        {name: null, title: self.nowGame},
       ]
     }
   },
@@ -98,6 +105,9 @@ export default {
         endAt: params.endAt,
         gameTypeId: params.gameTypeId
       })
+    },
+    showGame(betTarget) {
+      return this.selList[betTarget - 1].name
     }
   },
   created() {

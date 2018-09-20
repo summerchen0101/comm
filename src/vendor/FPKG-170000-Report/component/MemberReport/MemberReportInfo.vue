@@ -45,7 +45,7 @@
           <tr v-for="r,i in report" :key="i">
             <td>
               <router-link :to="{name: 'MemberGameReport', params: Object.assign({}, $route.params, {gameTypeId: r.gameTypeId})}">
-                {{r.gameType}}
+                {{gameList[r.gameTypeId - 1].name}}
               </router-link>
             </td>
             <td>{{$root.toCurrency(r.count)}}</td>
@@ -67,9 +67,9 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_MEMBER_REPORT, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
 
 export default {
@@ -93,8 +93,11 @@ export default {
     ...mapState({
       isSearched: state => state.Report.MemberReport.isSearched,
       info: state => state.Report.MemberReport.Member.info,
-      report: state => state.Report.MemberReport.Member.report
+      report: state => state.Report.MemberReport.Member.report,
     }),
+    ...mapGetters({
+      gameList: GAME_LIST
+    })
   },
   methods: {
     getMemberReport() {
@@ -104,7 +107,7 @@ export default {
         endAt: params.endAt,
         account: params.account,
       })
-    }
+    },
   },
   created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)

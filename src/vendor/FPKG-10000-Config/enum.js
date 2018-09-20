@@ -30,10 +30,17 @@ export const memberLevelActive = [
   {label: '停用', value: 2},
 ]
 export const lotteryWagerStatus = [
-  {label: '', value: 0},
   {label: '', value: 1},
   {label: '取消', value: 2},
   {label: '取消', value: 3},
+]
+export const ifaloLotteryWagerStatus = [
+  {label: '', value: 1},
+  {label: '', value: 2},
+  {label: '取消', value: 3},
+  {label: '', value: 4},
+  {label: '', value: 5},
+  {label: '', value: 6},
 ]
 export const memberLevel = [
   {label: '2', value: 2},
@@ -48,7 +55,7 @@ export const memberLevel = [
 ]
 export const gameType = [
   {
-    label: '法老王3D電子遊藝',
+    label: '法老王3D電子遊藝x',
     gameCode: 'casino',
     value: 1,
     children: [
@@ -72,7 +79,7 @@ export const gameType = [
     ]
   },
   {
-    label: '法老王彩球',
+    label: '法老王彩球x',
     gameCode: 'lottery',
     value: 2,
     children: [
@@ -84,13 +91,13 @@ export const gameType = [
     ]
   },
   {
-    label: '法老王彩票',
+    label: '法老王彩票x',
     gameCode: 'ifalo_lottery',
     value: 3,
     children: []
   },
   {
-    label: '法老王黃金期權',
+    label: '法老王黃金期權x',
     gameCode: 'ifalo_golden',
     value: 4,
     children: []
