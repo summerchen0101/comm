@@ -1,5 +1,5 @@
 
-import { 
+import {
   GET_GAME_TOTAL_REPORT,
   GOT_GAME_TOTAL_REPORT,
   GET_GAME_TYPE_REPORT,
@@ -59,6 +59,7 @@ const actions = {
     }
     let res = await apiHub("get", `api/v1/statement/game/${_d.gameTypeId}/${_d.gamePlayId}/list`, null, params)
     if(res.code === 200001) {
+      res.result.gamePlayId = _d.gamePlayId
       commit(GOT_GAME_PLAY_REPORT_DETAIL, res.result)
     }
   },
