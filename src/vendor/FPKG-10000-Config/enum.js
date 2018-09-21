@@ -55,7 +55,7 @@ export const memberLevel = [
 ]
 export const gameType = [
   {
-    label: '法老王3D電子遊藝x',
+    label: '法老王3D電子遊藝',
     gameCode: 'casino',
     value: 1,
     children: [
@@ -79,7 +79,7 @@ export const gameType = [
     ]
   },
   {
-    label: '法老王彩球x',
+    label: '法老王彩球',
     gameCode: 'lottery',
     value: 2,
     children: [
@@ -91,13 +91,13 @@ export const gameType = [
     ]
   },
   {
-    label: '法老王彩票x',
+    label: '法老王彩票',
     gameCode: 'ifalo_lottery',
     value: 3,
     children: []
   },
   {
-    label: '法老王黃金期權x',
+    label: '法老王黃金期權',
     gameCode: 'ifalo_golden',
     value: 4,
     children: []
