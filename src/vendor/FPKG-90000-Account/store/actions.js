@@ -20,7 +20,7 @@ import {
   EDIT_ACCOUNT,
   DEL_ACCOUNT,
   SWITCH_ACCOUNT_DIALOG,
-  GET_GAME_LIST_OPTIONS,
+  SET_GAME_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import { Vcode } from '@/vendor/FPKG-120000-Util/customValidate';
@@ -47,7 +47,7 @@ const actions = {
       storage.session("auth", res.result.token)
       commit(SET_USER_AUTH)
       await dispatch(GET_USER_INFO)
-      await dispatch(GET_GAME_LIST_OPTIONS)
+      await dispatch(SET_GAME_LIST)
       Router.push({name: 'Home'})
     }
   },

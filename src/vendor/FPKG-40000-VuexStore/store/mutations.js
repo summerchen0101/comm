@@ -10,7 +10,6 @@ import {
   GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GOT_GAME_TYPE_OPTIONS,
   GOT_GAME_TEMPLATE_OPTIONS,
-  GOT_GAME_LIST_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -40,9 +39,6 @@ const mutations = {
   },
   [GOT_GAME_TEMPLATE_OPTIONS](state, {gameType, options}) {
     state.gameTplOpts[gameType] = options
-  },
-  [GOT_GAME_LIST_OPTIONS](state, list) {
-    state.gameListOpts = list
   },
 }
 
