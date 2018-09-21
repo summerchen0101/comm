@@ -18,11 +18,10 @@ import {
   GOT_GAME_TYPE_OPTIONS,
   GET_GAME_TEMPLATE_OPTIONS,
   GOT_GAME_TEMPLATE_OPTIONS,
-  GET_GAME_LIST_OPTIONS,
-  GOT_GAME_LIST_OPTIONS,
+  SET_GAME_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { apiHub, apiJson } from '@/vendor/FPKG-10000-Config/api'
-import { gameType } from '@/vendor/FPKG-10000-Config/enum'
+import { apiHub } from '@/vendor/FPKG-10000-Config/api'
+import storage from 'store2'
 
 import Router from '@/router'
 
@@ -87,10 +86,10 @@ const actions = {
       })
     }
   },
-  async [GET_GAME_LIST_OPTIONS]({commit}) {
+  async [SET_GAME_LIST]({commit}) {
     let res = await apiHub('get', 'api/v1/dropdown/game_list')
     if(res.code === 200001) {
-      commit(GOT_GAME_LIST_OPTIONS, res.result)
+      storage.session("gameList", res.result)
     }
   },
 }

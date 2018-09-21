@@ -24,8 +24,6 @@ const mutations = {
         }
         case '3': {
           betTarget += ' ' + result.schedule
-          // betTarget += ' ' + tmpList.play_type_group[result.play_type_group - 1].name
-          // betTarget += ' ' + tmpList.play_type[result.play_type - 1].name
           betStatus = ifaloLotteryWagerStatus[status - 1].label
           break;
         }
@@ -37,7 +35,7 @@ const mutations = {
       ip: result.ip,
       account: result.account,
       nick: result.nickname,
-      gameType: result.wager_id ? result.gameListOpts['name'] : '',
+      gameType: result.wager_id ? result.gameList['name'] : '',
       playType: result.platy_type,
       playTypeGroup: result.play_type_group,
       betTarget: betTarget,
