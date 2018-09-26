@@ -7,6 +7,7 @@ const state = {
   statusOpts: [],
   userStatusOpts: [],
   memberStatusOpts: [],
+  memberGameStatusOpts: [],
   memberDepositLimitOpts: [],
   gameTypeOpts: [],
   gameTplOpts: {},
