@@ -16,10 +16,10 @@
           <tr>
             <td>-</td>
             <td>{{$root.toCurrency(totalInfo.count)}}</td>
-            <td>{{$root.toCurrencyDecimal(totalInfo.betAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(totalInfo.realAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(totalInfo.winAmount)}}</td>
-            <td :class="$root.handleResultColor(totalInfo.result)">{{$root.toCurrencyDecimal(totalInfo.result)}}</td>
+            <td>{{$root.toCurrencyFloor(totalInfo.betAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(totalInfo.realAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(totalInfo.winAmount)}}</td>
+            <td :class="$root.handleResultColor(totalInfo.result)">{{$root.toCurrencyFloor(totalInfo.result)}}</td>
           </tr>
         </tbody>
       </table>
@@ -44,10 +44,10 @@
               </router-link>
             </td>
             <td>{{$root.toCurrency(r.count)}}</td>
-            <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
-            <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
+            <td>{{$root.toCurrencyFloor(r.betAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(r.realAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(r.winAmount)}}</td>
+            <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.result)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>

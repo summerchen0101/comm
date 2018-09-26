@@ -16,11 +16,11 @@
           <tr>
             <td>{{info.account}}</td>
             <td>{{$root.toCurrency(info.count)}}</td>
-            <td>{{$root.toCurrencyDecimal(info.betAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(info.realAmount)}}</td>
-            <td>{{$root.toCurrencyDecimal(info.winAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(info.betAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(info.realAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(info.winAmount)}}</td>
             <td>
-              <span :class="$root.handleResultColor(info.result)">{{$root.toCurrencyDecimal(info.result)}}</span>
+              <span :class="$root.handleResultColor(info.result)">{{$root.toCurrencyFloor(info.result)}}</span>
             </td>
           </tr>
         </tbody>
@@ -53,11 +53,11 @@
               <div>{{showGame(r.betTarget)}}</div>
               <div v-if="r.schedule">{{r.schedule}}</div>
             </td>
-            <td>{{$root.toCurrencyDecimal(r.betAmount)}}</td>
+            <td>{{$root.toCurrencyFloor(r.betAmount)}}</td>
             <template v-if="r.status != 2 && r.status != 3">
-              <td>{{$root.toCurrencyDecimal(r.realAmount)}}</td>
-              <td>{{$root.toCurrencyDecimal(r.winAmount)}}</td>
-              <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyDecimal(r.result)}}</td>
+              <td>{{$root.toCurrencyFloor(r.realAmount)}}</td>
+              <td>{{$root.toCurrencyFloor(r.winAmount)}}</td>
+              <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.result)}}</td>
             </template>
             <template v-else>
               <td><span>-</span></td>

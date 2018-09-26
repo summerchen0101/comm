@@ -12,6 +12,8 @@ import {
   GOT_USER_STATUS_OPTIONS,
   GET_MEMBER_STATUS_OPTIONS,
   GOT_MEMBER_STATUS_OPTIONS,
+  GET_MEMBER_GAME_STATUS_OPTIONS,
+  GOT_MEMBER_GAME_STATUS_OPTIONS,
   GET_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GET_GAME_TYPE_OPTIONS,
@@ -57,6 +59,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: "member"})
     if(res.code === 200001) {
       commit(GOT_MEMBER_STATUS_OPTIONS, res.result)
+    }
+  },
+  async [GET_MEMBER_GAME_STATUS_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/active', null, {type: "game"})
+    if(res.code === 200001) {
+      commit(GOT_MEMBER_GAME_STATUS_OPTIONS, res.result)
     }
   },
   async [GET_DISPENSE_ACC_OPTIONS]({commit}) {

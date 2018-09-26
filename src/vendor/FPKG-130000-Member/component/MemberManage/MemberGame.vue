@@ -51,7 +51,7 @@
 <script>
 import {
   SET_BREADCRUMB,
-  GET_MEMBER_STATUS_OPTIONS,
+  GET_MEMBER_GAME_STATUS_OPTIONS,
   GET_GAME_TYPE_OPTIONS,
   GET_MEMBER_GAME_SETTING,
   GET_GAME_TEMPLATE_OPTIONS,
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     ...mapState({
-      statusOpts: state => state.Global.memberStatusOpts,
+      statusOpts: state => state.Global.memberGameStatusOpts,
       gameTypeOpts: state => state.Global.gameTypeOpts,
       gameTplOpts: state => state.Global.gameTplOpts,
       member: state => state.Member.MemberManage.member,
@@ -144,7 +144,7 @@ export default {
   },
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    await this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
+    await this.$store.dispatch(GET_MEMBER_GAME_STATUS_OPTIONS)
     await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
     await this.$store.dispatch(GET_MEMBER_GAME_SETTING, this.$route.params.id)
     this.createGameForm()
