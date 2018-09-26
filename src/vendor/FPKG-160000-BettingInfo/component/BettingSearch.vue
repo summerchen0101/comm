@@ -57,27 +57,27 @@
           <tr>
             <th>投注金額</th>
             <td>
-              {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyDecimal(bettingInfo.betAmount) : "暫無資料"}}
+              {{typeof bettingInfo.betAmount === 'number' ?  toCurrencyFloor(bettingInfo.betAmount) : "暫無資料"}}
             </td>
           </tr>
           <template v-if="bettingInfo.status != 2 && bettingInfo.status != 3">
             <tr>
               <th>有效金額</th>
               <td>
-                {{typeof bettingInfo.realAmount === 'number' ?  toCurrencyDecimal(bettingInfo.realAmount) : "暫無資料"}}
+                {{typeof bettingInfo.realAmount === 'number' ?  toCurrencyFloor(bettingInfo.realAmount) : "暫無資料"}}
               </td>
             </tr>
             <tr>
               <th>中獎金額</th>
               <td>
-                {{typeof bettingInfo.winAmount === 'number' ?  toCurrencyDecimal(bettingInfo.winAmount) : "暫無資料"}}
+                {{typeof bettingInfo.winAmount === 'number' ?  toCurrencyFloor(bettingInfo.winAmount) : "暫無資料"}}
               </td>
             </tr>
             <tr>
               <th>會員結果</th>
               <td>
                 <span v-if="typeof bettingInfo.betResult === 'number'" :class="$root.handleResultColor(bettingInfo.betResult)">
-                  {{ toCurrencyDecimal(bettingInfo.betResult) }}
+                  {{ toCurrencyFloor(bettingInfo.betResult) }}
                 </span>
                 <span v-else>暫無資料</span>
               </td>
