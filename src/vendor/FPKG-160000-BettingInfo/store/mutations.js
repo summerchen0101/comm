@@ -1,30 +1,29 @@
 
 
 import { GOT_BETTING_INFO, CLEAR_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { lotteryWagerStatus, ifaloLotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
+import { showCancelLabel } from '@/vendor/FPKG-120000-Util/other'
 import Router from '@/router'
 
 const mutations = {
   [GOT_BETTING_INFO](state, result) {
+    const gameTypeId = Number(result.game_kind);
     let status = result.status ? result.status : 0
     // 整理注單要顯示的資訊
     let betTarget = null
     let betAmount = ''
     let betStatus = ''
-    if (result.game_kind) {
+    if (gameTypeId) {
       let tmpList = result.gameList.list
       betAmount = result.bet_amount
       betTarget = tmpList.game_type[result.game_type - 1].name
-      switch (result.game_kind) {
-        case '2': {
+      switch (gameTypeId) {
+        case 2: {
           betAmount = result.bet_total
           betTarget += ' ' + result.schedule
-          betStatus = lotteryWagerStatus[status - 1].label
           break;
         }
-        case '3': {
+        case 3: {
           betTarget += ' ' + result.schedule
-          betStatus = ifaloLotteryWagerStatus[status - 1].label
           break;
         }
       }
@@ -44,7 +43,7 @@ const mutations = {
       winAmount: result.winnings,
       betResult: result.payoff,
       status: status,
-      betStatus: betStatus,
+      betStatus: showCancelLabel(gameTypeId, status),
     }
   },
   [CLEAR_BETTING_INFO](state) {

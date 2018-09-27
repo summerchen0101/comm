@@ -80,7 +80,7 @@ export const gameType = [
   },
   {
     label: '法老王彩球',
-    gameCode: 'lottery',
+    gameCode: 'lotteryx',
     value: 2,
     children: [
       {label: "六合彩", value: 1},
@@ -91,13 +91,13 @@ export const gameType = [
     ]
   },
   {
-    label: '法老王彩票',
+    label: '法老王彩票x',
     gameCode: 'ifalo_lottery',
     value: 3,
     children: []
   },
   {
-    label: '法老王黃金期權',
+    label: '法老王黃金期權x',
     gameCode: 'ifalo_golden',
     value: 4,
     children: []

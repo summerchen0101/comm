@@ -59,7 +59,7 @@ const actions = {
     }
     let res = await apiHub("get", `api/v1/statement/game/${_d.gameTypeId}/${_d.gamePlayId}/list`, null, params)
     if(res.code === 200001) {
-      res.result.gamePlayId = _d.gamePlayId
+      res.result.gameTypeId = _d.gameTypeId
       commit(GOT_GAME_PLAY_REPORT_DETAIL, res.result)
     }
   },

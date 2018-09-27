@@ -7,6 +7,7 @@ import {
   GOT_MEMBER_GAME_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { lotteryWagerStatus, ifaloLotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
+import { showCancelLabel } from '@/vendor/FPKG-120000-Util/other'
 
 const mutations = {
   [CLEAR_MEMBER_REPORT](state) {
@@ -52,17 +53,9 @@ const mutations = {
     }
   },
   [GOT_MEMBER_GAME_REPORT_DETAIL](state, result) {
+    const gameTypeId = result.gameTypeId;
     state.Game.report = result.data.map(r => {
-      let status = 0;
-      let betStatus = ''
-      if (r.status) {
-        status = r.status;
-        if (r.game_type == '2') {
-          betStatus = lotteryWagerStatus[status - 1].label
-        } else if(r.game_type == '3') {
-          betStatus = ifaloLotteryWagerStatus[status - 1].label
-        }
-      }
+      let status = (r.status) ? r.status : 0;
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -74,7 +67,7 @@ const mutations = {
         winAmount: r.winnings,
         result: r.payoff,
         status: status,
-        betStatus: betStatus,
+        betStatus: showCancelLabel(gameTypeId, status),
       }
     })
     state.Game.pager = {
