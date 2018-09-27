@@ -5,8 +5,9 @@ import {
   GOT_GAME_TYPE_REPORT,
   GOT_GAME_PLAY_REPORT_INFO,
   GOT_GAME_PLAY_REPORT_DETAIL,
+  GAME_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { gameType, lotteryWagerStatus, ifaloLotteryWagerStatus } from '@/vendor/FPKG-10000-Config/enum'
+import { showCancelLabel } from '@/vendor/FPKG-120000-Util/other'
 
 const mutations = {
   [GOT_GAME_TOTAL_REPORT](state, result) {
@@ -31,9 +32,8 @@ const mutations = {
   },
   [GOT_GAME_TYPE_REPORT](state, result) {
     let s = result.summary
-    let gameTypeIndex = gameType.findIndex(g => g.value == s.game_kind)
     state.gameTypeInfo = {
-      gameType: gameTypeIndex > -1 ? gameType[gameTypeIndex].label : s.game_kind,
+      gameType: s.game_kind,
       count: s.wager_count,
       betAmount: s.bet_amount,
       realAmount: s.effective_amount,
@@ -41,12 +41,10 @@ const mutations = {
       result: s.payoff,
     }
     state.gameTypeReport = result.list.map(r => {
-      let gamePlayIndex = gameType[gameTypeIndex].children.findIndex(g => g.value == r.game_type)
       return {
         gamePlayId: r.game_type,
-        gamePlay: gamePlayIndex > -1 ? gameType[gameTypeIndex].children[gamePlayIndex].label : r.game_type,
+        gamePlay: r.game_type,
         count: r.wager_count,
-
         betAmount: r.bet_amount,
         realAmount: r.effective_amount,
         winAmount: r.winnings,
@@ -65,22 +63,9 @@ const mutations = {
     }
   },
   [GOT_GAME_PLAY_REPORT_DETAIL](state, result) {
-
+    const gameTypeId = result.gameTypeId;
     state.gamePlayReport = result.data.map(r => {
-      let status = r.status ? r.status : 0;
-      let betStatus = ''
-      if (r.wager_id) {
-        switch (r.gamePlayId) {
-          case '2': {
-            betStatus = lotteryWagerStatus[status - 1].label
-            break;
-          }
-          case '3': {
-            betStatus = ifaloLotteryWagerStatus[status - 1].label
-            break;
-          }
-        }
-      }
+      let status = (r.status) ? r.status : 0
       return {
         number: r.wager_id,
         betTime: r.bet_time,
@@ -94,7 +79,7 @@ const mutations = {
         winAmount: r.winnings,
         result: r.payoff,
         status: status,
-        betStatus: betStatus,
+        betStatus: showCancelLabel(gameTypeId, status),
       }
     })
     state.gamePlayReportPager = {

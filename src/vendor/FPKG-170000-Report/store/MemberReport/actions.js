@@ -52,6 +52,7 @@ const actions = {
     }
     let res = await apiHub("get", `api/v1/statement/member/${_d.gameTypeId}/list`, null, params)
     if(res.code === 200001) {
+      res.result.gameTypeId = _d.gameTypeId
       commit(GOT_MEMBER_GAME_REPORT_DETAIL, res.result)
     }
   },
