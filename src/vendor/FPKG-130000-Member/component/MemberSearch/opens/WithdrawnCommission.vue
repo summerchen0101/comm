@@ -17,8 +17,10 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="point"
         label="佣金點數">
+        <template slot-scope="scope">
+          {{$root.toCurrencyDecimal(scope.row.point)}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="createdAt"
@@ -53,9 +55,9 @@ export default {
   },
   methods: {
     onPageChanged(page) {
-      this.$store.dispatch(GET_WITHDRAWN_COMMISSION_LIST, { 
-        id: this.$route.params.id, 
-        page 
+      this.$store.dispatch(GET_WITHDRAWN_COMMISSION_LIST, {
+        id: this.$route.params.id,
+        page
       })
     },
   },
@@ -69,13 +71,13 @@ export default {
 <style lang="stylus">
 #WithdrawnCommission
   margin: 30px auto
-  table 
+  table
     // margin-bottom: 25px
-    th, td 
+    th, td
       font-size: 13px
       color: #555
-    th 
-      background-color: #eee 
+    th
+      background-color: #eee
       width: 170px
 </style>
 
