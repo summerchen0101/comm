@@ -97,7 +97,7 @@ const actions = {
   async [SET_GAME_LIST]({commit}) {
     let res = await apiHub('get', 'api/v1/dropdown/game_list')
     if(res.code === 200001) {
-      storage.session("gameList", res.result)
+      storage.local("gameList", res.result)
     }
   },
 }

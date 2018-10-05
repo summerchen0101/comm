@@ -1,11 +1,11 @@
 
-import { 
-  CHANGE_LOGIN_STATUS, 
-  SET_USER_INFO, 
-  CLEAR_SESSION, 
+import {
+  CHANGE_LOGIN_STATUS,
+  SET_USER_INFO,
+  CLEAR_SESSION,
   CLEAR_USER_INFO,
-  GOT_ACCOUNT_LIST, 
-  GOT_ACCOUNT, 
+  GOT_ACCOUNT_LIST,
+  GOT_ACCOUNT,
   SWITCH_ACCOUNT_DIALOG,
   SET_USER_AUTH,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
@@ -20,7 +20,7 @@ const mutations = {
     state.userInfo = userInfo
   },
   [SET_USER_AUTH](state) {
-    state.auth = storage.session("auth")
+    state.auth = storage.local("auth")
   },
   [CLEAR_USER_INFO](state, userInfo) {
     state.userInfo = {}
@@ -33,7 +33,7 @@ const mutations = {
   [GOT_ACCOUNT_LIST](state, data) {
     if(data.list === null) {
       state.accountList = []
-    } 
+    }
     else {
       state.accountList = data.list.map(t => ({
         guid: t.p5_ant_guid,

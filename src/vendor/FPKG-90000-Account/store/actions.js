@@ -44,7 +44,7 @@ const actions = {
     }
     let res = await apiHub("post", `api/v1/user/login/${_d.captchaUuid}`, data)
     if(res.code === 200001) {
-      storage.session("auth", res.result.token)
+      storage.local("auth", res.result.token)
       commit(SET_USER_AUTH)
       await dispatch(GET_USER_INFO)
       await dispatch(SET_GAME_LIST)
