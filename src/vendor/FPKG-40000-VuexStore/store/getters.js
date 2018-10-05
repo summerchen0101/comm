@@ -5,7 +5,7 @@ import storage from 'store2'
 
 const getters = {
   [GAME_LIST](state) {
-    return storage.session("gameList")
+    return storage.local("gameList")
   },
 };
 
