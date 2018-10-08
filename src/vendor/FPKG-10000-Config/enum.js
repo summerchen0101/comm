@@ -29,19 +29,6 @@ export const memberLevelActive = [
   {label: '啟用', value: 1},
   {label: '停用', value: 2},
 ]
-export const lotteryWagerStatus = [
-  {label: '', value: 1},
-  {label: '取消', value: 2},
-  {label: '取消', value: 3},
-]
-export const ifaloLotteryWagerStatus = [
-  {label: '', value: 1},
-  {label: '', value: 2},
-  {label: '取消', value: 3},
-  {label: '', value: 4},
-  {label: '', value: 5},
-  {label: '', value: 6},
-]
 export const memberLevel = [
   {label: '2', value: 2},
   {label: '3', value: 3},

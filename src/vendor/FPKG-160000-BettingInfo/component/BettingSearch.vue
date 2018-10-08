@@ -27,7 +27,7 @@
             <th>注單編號</th>
             <td>
               {{bettingInfo.number || "暫無資料"}}
-              <span v-if="bettingInfo.betStatus != ''" class="el-tag el-tag--danger">{{bettingInfo.betStatus}}</span>
+              <WagerCancel :cancel="bettingInfo.cancel"></WagerCancel>
             </td>
           </tr>
           <tr>
@@ -108,11 +108,12 @@
 import { SET_BREADCRUMB, GET_BETTING_INFO, CLEAR_BETTING_INFO, GAME_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
-
+import WagerCancel from '@/vendor/FPKG-110000-Widget/component/WagerCancel.vue'
 
 export default {
   mixins: [commonTool],
   components: {
+    WagerCancel
   },
   data() {
     return {

@@ -44,7 +44,7 @@
           <tr v-for="r,i in report" :key="i">
             <td>
               <div>{{r.number}}</div>
-              <div v-if="r.betStatus != ''" class="el-tag el-tag--danger">{{r.betStatus}}</div>
+              <WagerCancel :cancel="r.cancel"></WagerCancel>
             </td>
             <td>
               <span>{{toShortDateTime(r.betTime)}}</span><br>
@@ -85,10 +85,12 @@ import { SET_BREADCRUMB, GET_GAME_PLAY_REPORT, GAME_LIST } from '@/vendor/FPKG-4
 import moment, { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState, mapGetters } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
+import WagerCancel from '@/vendor/FPKG-110000-Widget/component/WagerCancel.vue'
 
 export default {
   mixins: [commonTool],
   components: {
+    WagerCancel
   },
   data() {
     return {

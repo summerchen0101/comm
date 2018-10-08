@@ -62,20 +62,3 @@ export function filterMenu(dM, pM) {
 
 // 處理會員結果數字顏色顯示
 export const handleResultColor =  (result) => (result > 0) ? 'text-success' : ((result == 0) ? '' : 'text-danger')
-
-// 顯示取消標籤(取消注單)
-export function showCancelLabel(gameTypeId, status) {
-  let showLabel = ''
-    if (status) {
-    switch(Number(gameTypeId)) {
-      case 2:
-        showLabel = Enums['lotteryWagerStatus'][status - 1].label
-        break;
-      case 3:
-        showLabel = Enums['ifaloLotteryWagerStatus'][status - 1].label
-        break;
-      default:
-    }
-  }
-  return showLabel
-}
