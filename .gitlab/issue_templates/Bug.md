@@ -1,5 +1,5 @@
 /label ~BugFix ~ToDo ~QA
-/assign @Mckey
+/assign @will
 /milestone %"v1"
 
 #### 作業系統／瀏覽器版本 OS/Browsers version
