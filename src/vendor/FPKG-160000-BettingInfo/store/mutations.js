@@ -1,13 +1,11 @@
 
 
 import { GOT_BETTING_INFO, CLEAR_BETTING_INFO } from '@/vendor/FPKG-40000-VuexStore/constants'
-import { showCancelLabel } from '@/vendor/FPKG-120000-Util/other'
 import Router from '@/router'
 
 const mutations = {
   [GOT_BETTING_INFO](state, result) {
     const gameTypeId = Number(result.game_kind);
-    let status = result.status ? result.status : 0
     // 整理注單要顯示的資訊
     let betTarget = null
     let betAmount = ''
@@ -42,8 +40,8 @@ const mutations = {
       realAmount: result.effective_amount,
       winAmount: result.winnings,
       betResult: result.payoff,
-      status: status,
-      betStatus: showCancelLabel(gameTypeId, status),
+      status: (result.status) ? result.status : 0,
+      cancel: result.cancel,
     }
   },
   [CLEAR_BETTING_INFO](state) {
