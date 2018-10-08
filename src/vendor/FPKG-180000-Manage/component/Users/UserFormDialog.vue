@@ -34,10 +34,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="密碼" prop="pw">
-        <el-input type="password" v-model.trim="form.pw"></el-input>
+        <el-input type="password" v-model.trim="form.pw" placeholder="8-12英數字"></el-input>
       </el-form-item>
       <el-form-item label="確認密碼" prop="pw_confirm">
-        <el-input type="password" v-model.trim="form.pw_confirm"></el-input>
+        <el-input type="password" v-model.trim="form.pw_confirm" placeholder="8-12英數字"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
