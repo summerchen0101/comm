@@ -65,6 +65,14 @@ export const VmaxWin = {
 }
 
 /**
+ * 最低下注額驗證: 僅數字
+ */
+export const VminBet = {
+  test: (val) => /^[0-9]*$/.test(val) && val >= 100,
+  msg: "最低下注額格式有誤或低於100",
+}
+
+/**
  * 代碼驗證: 3~6位大寫英文字母
  */
 export const Vcode = {
