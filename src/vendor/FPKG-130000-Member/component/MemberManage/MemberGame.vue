@@ -20,7 +20,6 @@
               <el-option v-for="opt in gameTplOpts[g.gameType]" :label="opt.name" :value="opt.name" :key="opt.name"></el-option>
             </el-select>
           </el-form-item>
-
         </el-col>
         <el-col :span="8" v-if="form[g.gameType].hasMaxWin">
           <el-row :gutter="10">
@@ -36,6 +35,18 @@
             </el-col>
             <el-col :span="4" style="margin-top: 34px">
               <el-button :type="form[g.gameType].clear ? 'danger' : 'info'" @click="onReset($event, g.gameType)" :disabled="!g.allowSetting">重置<i v-if="form[g.gameType].clear" class="el-icon-circle-check el-icon--right"></i></el-button>
+            </el-col>
+          </el-row>
+        </el-col>
+        <el-col :span="8" v-if="form[g.gameType].hasMinBet">
+          <el-row :gutter="10">
+            <el-col :span="20">
+              <el-form-item>
+                <span slot="label">最低下注額</span>
+                <span slot="label" class="text-danger"> ＊運彩最低下注額需≥100</span>
+                <el-input v-model="form[g.gameType].minBet" :disabled="!g.allowSetting"></el-input>
+                <Validation name="最低下注額" :target="$v.form[g.gameType].minBet" :patternMsg="VminBet.msg"></Validation>
+              </el-form-item>
             </el-col>
           </el-row>
         </el-col>
@@ -60,7 +71,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 import { required } from 'vuelidate/lib/validators'
-import { VmaxWin } from '@/vendor/FPKG-120000-Util/customValidate'
+import { VmaxWin, VminBet } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -71,7 +82,8 @@ export default {
       initSetting: null,
       form: null,
       isSaved: false,
-      VmaxWin
+      VmaxWin,
+      VminBet
     }
   },
   validations() {
@@ -82,6 +94,12 @@ export default {
         form[g.gameType].maxWin = {
           required,
           pattern: VmaxWin.test
+        }
+      }
+      if(g.hasMinBet) {
+        form[g.gameType].minBet = {
+          required,
+          pattern: VminBet.test
         }
       }
     })
