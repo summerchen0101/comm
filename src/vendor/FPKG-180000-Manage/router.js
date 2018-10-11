@@ -1,3 +1,5 @@
+import {getPath} from '@/vendor/FPKG-120000-Util/menu'
+
 export const Users = {
   path: '/manage/users',
   name: 'Users',
@@ -52,7 +54,7 @@ export const Manage = {
   title: "後台管理",
   props: { funcKey: 16 },
   component: () => import('./component/Manage.vue'),
-  redirect: "/manage/users",
+  redirect: () => getPath(16),
   children: [
     Users,
     Permission,

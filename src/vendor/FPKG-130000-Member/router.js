@@ -1,3 +1,5 @@
+import {getPath} from '@/vendor/FPKG-120000-Util/menu'
+
 export const MemberManage = {
   path: '/member/manage',
   name: 'MemberManage',
@@ -42,7 +44,7 @@ export const Member = {
   title: "會員資訊",
   props: {funcKey: 11},
   component: () => import('./component/Member.vue'),
-  redirect: "/member/manage",
+  redirect: () => getPath(11),
   children: [
     MemberManage,
     MemberDetail,
