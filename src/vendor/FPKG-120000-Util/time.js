@@ -3,6 +3,7 @@ import _ from 'lodash'
 export default moment
 export const toDateTime = (dt) => dt ? moment(dt).format('YYYY-MM-DD HH:mm:ss') : "-"
 export const toShortDateTime = (dt) => dt ? moment(dt).format('MM-DD HH:mm:ss') : "-"
+export const toExpireDateTime = (dt) => dt ? moment(dt).format('MM-DD') + ' 23:59:59' : "-"
 export const toShortDateTimeNoSecond = (dt) => dt ? moment(dt).format('MM-DD HH:mm') : "-"
 export const toDate = (dt) => dt ? moment(dt).format('YYYY-MM-DD') : "-"
 export const toShortDate = (dt) => dt ? moment(dt).format('MM-DD') : "-"
