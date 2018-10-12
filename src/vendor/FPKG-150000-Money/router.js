@@ -1,4 +1,4 @@
-
+import {getPath} from '@/vendor/FPKG-120000-Util/menu'
 
 export const Deposit = {
   name: "Deposit",
@@ -45,7 +45,7 @@ export const Money = {
   title: "存提管理",
   props: { funcKey: 13 },
   component: () => import('./component/Money.vue'),
-  redirect: '/money/deposit',
+  redirect: () => getPath(13),
   children: [
     Deposit,
     DepositAcc,

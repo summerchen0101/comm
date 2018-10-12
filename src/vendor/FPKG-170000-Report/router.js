@@ -1,3 +1,5 @@
+import {getPath} from '@/vendor/FPKG-120000-Util/menu'
+
 export const MemberReport = {
   path: '/report/member',
   name: 'MemberReport',
@@ -46,7 +48,7 @@ export const Report = {
   path: '/report',
   name: 'Report',
   title: "報表查詢",
-  redirect: "/report/member",
+  redirect:() => getPath(15),
   props: { funcKey: 15 },
   component: () => import('./component/Report.vue'),
   children: [
