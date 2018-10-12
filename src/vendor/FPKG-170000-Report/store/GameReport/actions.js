@@ -11,7 +11,7 @@ import {
   GOT_GAME_PLAY_REPORT_DETAIL,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
-import { toDate } from '@/vendor/FPKG-120000-Util/time.js'
+import { toDate, toDateTime } from '@/vendor/FPKG-120000-Util/time.js'
 
 
 import Router from '@/router'
@@ -19,8 +19,8 @@ import Router from '@/router'
 const actions = {
   async [GET_GAME_TOTAL_REPORT]({commit}, _d) {
     let params = {
-      start_date: toDate(_d.startAt),
-      end_date: toDate(_d.endAt),
+      start_date: toDateTime(_d.startAt).substr(0, 16),
+      end_date: toDateTime(_d.endAt).substr(0, 16),
     }
     let res = await apiHub("get", "api/v1/statement/game", null, params)
     if(res.code === 200001) {
@@ -29,8 +29,8 @@ const actions = {
   },
   async [GET_GAME_TYPE_REPORT]({commit}, _d) {
     let params = {
-      start_date: toDate(_d.startAt),
-      end_date: toDate(_d.endAt),
+      start_date: toDateTime(_d.startAt).substr(0, 16),
+      end_date: toDateTime(_d.endAt).substr(0, 16),
     }
     let res = await apiHub("get", `api/v1/statement/game/${_d.gameTypeId}/gametype`, null, params)
     if(res.code === 200001) {
@@ -43,8 +43,8 @@ const actions = {
   },
   async [GET_GAME_PLAY_REPORT_INFO]({commit}, _d) {
     let params = {
-      start_date: toDate(_d.startAt),
-      end_date: toDate(_d.endAt),
+      start_date: toDateTime(_d.startAt).substr(0, 16),
+      end_date: toDateTime(_d.endAt).substr(0, 16),
     }
     let res = await apiHub("get", `api/v1/statement/game/${_d.gameTypeId}/${_d.gamePlayId}/summary`, null, params)
     if(res.code === 200001) {
@@ -53,8 +53,8 @@ const actions = {
   },
   async [GET_GAME_PLAY_REPORT_DETAIL]({commit}, _d) {
     let params = {
-      start_date: toDate(_d.startAt),
-      end_date: toDate(_d.endAt),
+      start_date: toDateTime(_d.startAt).substr(0, 16),
+      end_date: toDateTime(_d.endAt).substr(0, 16),
       page: _d.page
     }
     let res = await apiHub("get", `api/v1/statement/game/${_d.gameTypeId}/${_d.gamePlayId}/list`, null, params)

@@ -7,6 +7,7 @@ import {
   GOT_DISPENSE_ACC_OPTIONS,
   GOT_USER_STATUS_OPTIONS,
   GOT_MEMBER_STATUS_OPTIONS,
+  GOT_MEMBER_LAYER_OPTIONS,
   GOT_MEMBER_GAME_STATUS_OPTIONS,
   GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS,
   GOT_GAME_TYPE_OPTIONS,
@@ -31,6 +32,9 @@ const mutations = {
   },
   [GOT_MEMBER_STATUS_OPTIONS](state, list) {
     state.memberStatusOpts = list
+  },
+  [GOT_MEMBER_LAYER_OPTIONS](state, list) {
+    state.memberLayerOpts = list
   },
   [GOT_MEMBER_GAME_STATUS_OPTIONS](state, list) {
     state.memberGameStatusOpts = list

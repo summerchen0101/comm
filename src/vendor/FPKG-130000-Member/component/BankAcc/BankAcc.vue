@@ -17,7 +17,7 @@
                 :model="searchForm"
                 :rules="searchFormRules">
         <el-form-item label="會員" prop="account">
-          <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
+          <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
         <el-form-item label="銀行帳號" prop="backAccount">
           <el-input v-model="searchForm.bankAccount" placeholder="搜尋銀行帳號"></el-input>
