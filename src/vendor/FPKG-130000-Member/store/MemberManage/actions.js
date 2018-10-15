@@ -73,6 +73,7 @@ const actions = {
       switch: g.status,
       model: g.template,
       max_win: parseInt(g.maxWin),
+      min_bet: parseInt(g.minBet),
       clear: g.clear,
     }))})
     if(res.code === 200001) {

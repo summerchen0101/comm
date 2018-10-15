@@ -96,7 +96,7 @@
         min-width="150"
         label="截止時間">
         <template slot-scope="scope">
-           <span>{{toShortDateTime(scope.row.expireAt)}}</span>
+           <span>{{toExpireDateTime(scope.row.expireAt)}}</span>
          </template>
       </el-table-column>
       <el-table-column

@@ -116,9 +116,11 @@ const mutations = {
       status: g.switch,
       template: g.model,
       maxWin: g.max_win,
+      minBet: g.min_bet,
       result: g.payoff,
       allowSetting: g.act == 'true',
-      hasMaxWin: typeof g.max_win === 'number'
+      hasMaxWin: typeof g.max_win === 'number',
+      hasMinBet: typeof g.min_bet === 'number'
     }))
   },
   [SET_MEMBER_POINT_MODIFY](state, _d) {
