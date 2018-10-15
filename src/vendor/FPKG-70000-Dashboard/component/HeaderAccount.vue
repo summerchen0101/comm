@@ -1,7 +1,7 @@
 <template>
-  <div style="margin-left:32px; padding-top:16px;">
+  <div style="margin-left:32px; margin-top:16px;">
     <el-form :inline="true" ref="searchForm">
-      <el-form-item prop="account">
+      <el-form-item prop="account" style="margin-bottom:2px;">
         <el-col :span="6">
           <label style="color:#fff;">會員</label>
         </el-col>

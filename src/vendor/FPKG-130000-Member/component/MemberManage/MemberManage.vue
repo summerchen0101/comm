@@ -118,6 +118,7 @@ import {
   GET_HISTORY,
   VERIFY_MEMBER,
   SWITCH_MEMBER_DIALOG,
+  FINISH_MEMBER_SEARCH_LIST
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import { toOption } from '@/vendor/FPKG-120000-Util/other';
@@ -202,6 +203,8 @@ export default {
     this.$store.dispatch(GET_MEMBER_LAYER_OPTIONS)
     if (!this.memberSearch) {
       this.$store.dispatch(GET_MEMBER_LIST, this.searchForm)
+    }else {
+      this.$store.dispatch(FINISH_MEMBER_SEARCH_LIST)
     }
   },
 }

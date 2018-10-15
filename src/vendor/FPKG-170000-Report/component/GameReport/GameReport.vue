@@ -116,7 +116,7 @@ export default {
 <style lang="stylus">
 #GameReport {
   .el-date-editor.el-input, .el-date-editor.el-input__inner {
-    width: 160px;
+    width: 180px;
   }
 
   table {

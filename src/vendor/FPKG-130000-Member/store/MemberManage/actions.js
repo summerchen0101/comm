@@ -4,6 +4,7 @@ import {
   GOT_MEMBER_SEARCH_KEY,
   GET_MEMBER_SEARCH_LIST,
   GOT_MEMBER_SEARCH_LIST,
+  FINISH_MEMBER_SEARCH_LIST,
   GET_MEMBER_LIST,
   GOT_MEMBER_LIST,
   VERIFY_MEMBER,
@@ -24,6 +25,9 @@ import Router from '@/router'
 const actions = {
   [SET_MEMBER_SEARCH_KEY]({commit}, key = '') {
     commit(GOT_MEMBER_SEARCH_KEY, key)
+  },
+  [FINISH_MEMBER_SEARCH_LIST]({commit}, key = '') {
+    commit(FINISH_MEMBER_SEARCH_LIST, key)
   },
   async [GET_MEMBER_SEARCH_LIST]({commit}, _d = {}) {
     let params = {
