@@ -62,11 +62,13 @@ export default {
 </script>
 
 <style lang="stylus">
-.el-dropdown-menu__item.sys-menu-active,
-.el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus
-  color: $TME-100-second-color
-.sys-menu-icon
-  display: inline-block 
-  width: 14px
-  text-align: center
+.el-dropdown-menu__item.sys-menu-active, .el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus {
+  color: $TME-100-second-color;
+}
+
+.sys-menu-icon {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+}
 </style>

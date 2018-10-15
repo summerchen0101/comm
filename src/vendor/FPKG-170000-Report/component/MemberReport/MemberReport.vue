@@ -8,24 +8,24 @@
         <el-form-item label="結帳日期">
           <el-date-picker
             v-model="searchForm.startAt"
-            format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm"
             :picker-options="startAtOption"
-            type="date"
+            type="datetime"
             @change="onDateAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
           <el-date-picker
             v-model="searchForm.endAt"
-            format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm"
             :picker-options="endAtOption"
-            type="date"
+            type="datetime"
             @change="onDateAtChanged"
             placeholder="結束時間">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="會員" prop="account">
-          <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
+          <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
@@ -42,7 +42,7 @@
 
 <script>
 import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
-import moment, { toDate, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
+import moment, { toDate, toDateTime, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
 export default {
@@ -96,7 +96,7 @@ export default {
       // 判斷期間
       let lastDate = getRangeLastDate(this.searchForm.startAt)
       if (dateAfter(lastDate, this.searchForm.endAt)) {
-        this.searchForm.endAt = toDate(lastDate)
+        this.searchForm.endAt = toDateTime(lastDate)
       }
     },
     async onSearchSubmit() {
@@ -105,8 +105,8 @@ export default {
           this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
           let f = this.searchForm
           this.$router.push({name: "MemberReportInfo", params: {
-            startAt: toDate(f.startAt),
-            endAt: toDate(f.endAt),
+            startAt: toDateTime(f.startAt).substr(0, 16),
+            endAt: toDateTime(f.endAt).substr(0, 16),
             account: f.account
           }})
           this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
@@ -121,13 +121,20 @@ export default {
 </script>
 
 <style lang="stylus">
-#MemberReport
-  .el-date-editor.el-input, .el-date-editor.el-input__inner
-    width: 160px
-  table
-    th, td
-      font-size: 13px
-      color: #555
-    th
-      background-color: #eee
+#MemberReport {
+  .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 160px;
+  }
+
+  table {
+    th, td {
+      font-size: 13px;
+      color: #555;
+    }
+
+    th {
+      background-color: #eee;
+    }
+  }
+}
 </style>

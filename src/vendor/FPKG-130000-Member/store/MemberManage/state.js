@@ -2,6 +2,8 @@
 
 
 const state = {
+  memberSearchKey: '',
+  memberSearch: false,
   memberList: [],
   memberPager: null,
   verifyInfo: {

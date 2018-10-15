@@ -3,7 +3,7 @@
   <div id="header">
     <div class="fixed-container">
       <Logo></Logo>
-
+      <HeaderAccount></HeaderAccount>
       <!-- Web -->
       <HeaderMenuInfo></HeaderMenuInfo>
 
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import HeaderAccount from './HeaderAccount.vue'
 import HeaderMenuInfo from './HeaderMenuInfo.vue'
 import MobileHeaderMenuInfo from './MobileHeaderMenuInfo.vue'
 import Logo from './Logo.vue'
@@ -36,6 +37,7 @@ import { SET_THEME } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 export default {
   components: {
+    HeaderAccount,
     HeaderMenuInfo,
     MobileHeaderMenuInfo,
     FooterInfo,
@@ -47,6 +49,4 @@ export default {
 
 
 <style lang="stylus">
-
-
 </style>

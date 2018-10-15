@@ -21,7 +21,11 @@
             <el-option v-for="t in statusOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
           </el-select>
         </el-form-item>
-        
+        <el-form-item label="層級">
+          <el-select v-model="searchForm.layer" prop="layer">
+            <el-option v-for="t in layerOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
             <font-awesome-icon icon="search" />
@@ -108,7 +112,9 @@
 import { 
   SET_BREADCRUMB, 
   GET_MEMBER_STATUS_OPTIONS,
+  GET_MEMBER_LAYER_OPTIONS,
   GET_MEMBER_LIST,
+  GET_MEMBER_SEARCH_LIST,
   GET_HISTORY,
   VERIFY_MEMBER,
   SWITCH_MEMBER_DIALOG,
@@ -135,8 +141,8 @@ export default {
       searchForm: {
         account: "",
         phone: "",
-        status: 0
-
+        status: 0,
+        layer: 0
       },
       searchFormRules: {
 
@@ -147,6 +153,9 @@ export default {
   computed: {
     ...mapState({
       statusOpts: state => state.Global.memberStatusOpts,
+      layerOpts: state => state.Global.memberLayerOpts,
+      memberSearchKey: state => state.Member.MemberManage.memberSearchKey,
+      memberSearch: state => state.Member.MemberManage.memberSearch,
       memberList: state => state.Member.MemberManage.memberList,
       memberPager: state => state.Member.MemberManage.memberPager,
     })
@@ -172,7 +181,12 @@ export default {
       }
     },
     onPageChanged(page) {
-      this.$store.dispatch(GET_MEMBER_LIST, { ...this.searchForm, page })
+      if (this.memberSearch) {
+        this.$store.dispatch(GET_MEMBER_SEARCH_LIST, { search: this.memberSearchKey, page })
+      }
+      else {
+        this.$store.dispatch(GET_MEMBER_LIST, { ...this.searchForm, page })
+      }
     },
     onCheckHistory(id) {
       this.$store.dispatch(GET_HISTORY, {
@@ -185,8 +199,11 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
-    this.$store.dispatch(GET_MEMBER_LIST, this.searchForm)
-  }
+    this.$store.dispatch(GET_MEMBER_LAYER_OPTIONS)
+    if (!this.memberSearch) {
+      this.$store.dispatch(GET_MEMBER_LIST, this.searchForm)
+    }
+  },
 }
 </script>
 
