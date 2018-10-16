@@ -6,11 +6,11 @@
           <label style="color:#fff;">會員</label>
         </el-col>
         <el-col :span="18">
-          <el-input v-model.trim="searchKey" placeholder="帳號/手機號碼"></el-input>
+          <el-input style="height:32px;" v-model.trim="searchKey" placeholder="帳號/手機號碼"></el-input>
         </el-col>
       </el-form-item>
       <el-form-item class="float-right">
-        <el-button type="primary" @click="onSearchSubmit">
+        <el-button style="height:32px;" type="primary" @click="onSearchSubmit">
           <font-awesome-icon icon="search" />
         </el-button>
       </el-form-item>
@@ -40,4 +40,3 @@ export default {
   },
 }
 </script>
-
