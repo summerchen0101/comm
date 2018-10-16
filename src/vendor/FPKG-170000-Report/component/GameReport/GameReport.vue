@@ -5,7 +5,7 @@
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
-        <el-form-item label="結帳日期">
+        <el-form-item label="結帳時間">
           <el-date-picker
             v-model="searchForm.startAt"
             format="yyyy-MM-dd HH:mm"
