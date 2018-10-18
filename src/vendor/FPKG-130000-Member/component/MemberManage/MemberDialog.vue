@@ -17,10 +17,10 @@
         <el-input v-model.trim="form.phone"></el-input>
       </el-form-item>
       <el-form-item label="密碼" prop="pw">
-        <el-input type="password" v-model.trim="form.pw" placeholder="8-12英數字"></el-input>
+        <el-input type="password" v-model.trim="form.pw" placeholder="6-20英數字"></el-input>
       </el-form-item>
       <el-form-item label="密碼確認" prop="pw_confirm">
-        <el-input type="password" v-model.trim="form.pw_confirm" placeholder="8-12英數字"></el-input>
+        <el-input type="password" v-model.trim="form.pw_confirm" placeholder="6-20英數字"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -98,5 +98,4 @@ export default {
 </script>
 
 <style lang="stylus">
-
 </style>
