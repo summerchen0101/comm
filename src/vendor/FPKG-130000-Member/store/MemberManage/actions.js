@@ -1,5 +1,10 @@
 
 import {
+  SET_MEMBER_SEARCH_KEY,
+  GOT_MEMBER_SEARCH_KEY,
+  GET_MEMBER_SEARCH_LIST,
+  GOT_MEMBER_SEARCH_LIST,
+  FINISH_MEMBER_SEARCH_LIST,
   GET_MEMBER_LIST,
   GOT_MEMBER_LIST,
   VERIFY_MEMBER,
@@ -18,11 +23,28 @@ import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import Router from '@/router'
 
 const actions = {
+  [SET_MEMBER_SEARCH_KEY]({commit}, key = '') {
+    commit(GOT_MEMBER_SEARCH_KEY, key)
+  },
+  [FINISH_MEMBER_SEARCH_LIST]({commit}, key = '') {
+    commit(FINISH_MEMBER_SEARCH_LIST, key)
+  },
+  async [GET_MEMBER_SEARCH_LIST]({commit}, _d = {}) {
+    let params = {
+      search: _d.search,
+      page: _d.page
+    }
+    let res = await apiHub("get", "api/v1/member", null, params)
+    if(res.code === 200001) {
+      commit(GOT_MEMBER_SEARCH_LIST, res.result)
+    }
+  },
   async [GET_MEMBER_LIST]({commit}, _d = {}) {
     let params = {
       account: _d.account,
       mobile: _d.phone,
       active: _d.status,
+      layer: _d.layer,
       page: _d.page,
     }
     let res = await apiHub("get", "api/v1/member", null, params)

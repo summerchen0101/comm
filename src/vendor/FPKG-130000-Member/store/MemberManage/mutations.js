@@ -1,7 +1,10 @@
 
 
-import {
-  GOT_MEMBER_LIST,
+import { 
+  GOT_MEMBER_SEARCH_KEY,
+  GOT_MEMBER_SEARCH_LIST,
+  FINISH_MEMBER_SEARCH_LIST,
+  GOT_MEMBER_LIST, 
   GOT_VERIFY_INFO,
   CLOSE_VERIFY_DIALOG,
   SWITCH_MEMBER_DIALOG,
@@ -15,7 +18,37 @@ import Router from '@/router'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
 const mutations = {
+  [GOT_MEMBER_SEARCH_KEY](state, key) {
+    state.memberSearchKey = key
+  },
+  [GOT_MEMBER_SEARCH_LIST](state, result) {
+    state.memberSearch = true
+    if(Router.history.current.fullPath === "/member/manage"){
+      state.memberSearch = false
+    }
+    state.memberList = result.data.map(t => ({
+      id: t.id,
+      account: t.account,
+      nick: t.nickname,
+      phone: t.mobile,
+      point: t.balance,
+      status: t.active,
+      isVerified: t.mobile_verify,
+      createdAt: t.created_at,
+      operation: t.operation,
+    }))
+    state.memberPager = {
+      page: result.current_page,
+      count: result.total,
+      totalPages: result.last_page,
+      perpage: result.per_page,
+    }
+  },
+  [FINISH_MEMBER_SEARCH_LIST](state, result){
+    state.memberSearch = false
+  },
   [GOT_MEMBER_LIST](state, result) {
+    state.memberSearch = false
     state.memberList = result.data.map(t => ({
       id: t.id,
       account: t.account,

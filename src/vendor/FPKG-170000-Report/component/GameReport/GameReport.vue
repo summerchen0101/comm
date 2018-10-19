@@ -5,21 +5,21 @@
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
-        <el-form-item label="結帳日期">
+        <el-form-item label="結帳時間">
           <el-date-picker
             v-model="searchForm.startAt"
-            format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm"
             :picker-options="startAtOption"
-            type="date"
+            type="datetime"
             @change="onDateAtChanged"
             placeholder="開始時間">
           </el-date-picker>
           -
           <el-date-picker
             v-model="searchForm.endAt"
-            format="yyyy-MM-dd"
+            format="yyyy-MM-dd HH:mm"
             :picker-options="endAtOption"
-            type="date"
+            type="datetime"
             @change="onDateAtChanged"
             placeholder="結束時間">
           </el-date-picker>
@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
-import moment, { toDate, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
+import { SET_BREADCRUMB, GET_GAME_TOTAL_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import moment, { toDate, toDateTime, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
 export default {
@@ -91,17 +91,17 @@ export default {
       // 判斷期間
       let lastDate = getRangeLastDate(this.searchForm.startAt)
       if (dateAfter(lastDate, this.searchForm.endAt)) {
-        this.searchForm.endAt = toDate(lastDate)
+        this.searchForm.endAt = toDateTime(lastDate)
       }
     },
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          // this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
+          this.$store.dispatch(GET_GAME_TOTAL_REPORT, this.searchForm)
           let f = this.searchForm
           this.$router.push({name: "GameTotalReport", params: {
-            startAt: toDate(f.startAt),
-            endAt: toDate(f.endAt),
+            startAt: toDateTime(f.startAt).substr(0, 16),
+            endAt: toDateTime(f.endAt).substr(0, 16),
           }})
         }
       });
@@ -114,13 +114,20 @@ export default {
 </script>
 
 <style lang="stylus">
-#GameReport
-  .el-date-editor.el-input, .el-date-editor.el-input__inner
-    width: 160px
-  table
-    th, td
-      font-size: 13px
-      color: #555
-    th
-      background-color: #eee
+#GameReport {
+  .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 180px;
+  }
+
+  table {
+    th, td {
+      font-size: 13px;
+      color: #555;
+    }
+
+    th {
+      background-color: #eee;
+    }
+  }
+}
 </style>

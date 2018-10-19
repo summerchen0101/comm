@@ -91,11 +91,15 @@ export default {
 </script>
 
 <style lang="stylus">
-#HistoryDialog
-  .el-table 
-    th 
-      background-color: #eee
-    td p 
-      margin-bottom: 0
+#HistoryDialog {
+  .el-table {
+    th {
+      background-color: #eee;
+    }
 
+    td p {
+      margin-bottom: 0;
+    }
+  }
+}
 </style>

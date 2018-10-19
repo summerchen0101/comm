@@ -37,7 +37,7 @@
           <el-input v-model="searchForm.number" placeholder="搜尋訂單編號"></el-input>
         </el-form-item>
         <el-form-item label="會員" prop="account">
-          <el-input v-model="searchForm.account" placeholder="搜尋帳號"></el-input>
+          <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
@@ -274,5 +274,5 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../style/component/Dispense'
+@import '../../style/component/Dispense';
 </style>

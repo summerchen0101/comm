@@ -29,13 +29,13 @@
         </el-col>
         <el-col :span="8">
           <el-form-item label="密碼">
-            <el-input type="password" v-model="form.pw" placeholder="8-12英數字"></el-input>
+            <el-input type="password" v-model="form.pw" placeholder="6-20英數字"></el-input>
             <Validation name="密碼" :target="$v.form.pw" :patternMsg="VmemberPw.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="密碼確認">
-            <el-input type="password" v-model="form.pw_confirm" placeholder="8-12英數字"></el-input>
+            <el-input type="password" v-model="form.pw_confirm" placeholder="6-20英數字"></el-input>
             <Validation name="密碼確認" :target="$v.form.pw_confirm"></Validation>
           </el-form-item>
         </el-col>
@@ -306,10 +306,14 @@ export default {
 </script>
 
 <style lang="stylus">
-#MemberDetail
-  .pointBtns
-    margin-top: 33px
-    margin-left: -27px
-    button
-      padding: 9px 10px
+#MemberDetail {
+  .pointBtns {
+    margin-top: 33px;
+    margin-left: -27px;
+
+    button {
+      padding: 9px 10px;
+    }
+  }
+}
 </style>
