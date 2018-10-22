@@ -67,7 +67,7 @@
                 {{typeof bettingInfo.realAmount === 'number' ?  toCurrencyFloor(bettingInfo.realAmount) : "暫無資料"}}
               </td>
             </tr>
-            <tr>
+            <tr v-if="fix">
               <th>中獎金額</th>
               <td>
                 {{typeof bettingInfo.winAmount === 'number' ?  toCurrencyFloor(bettingInfo.winAmount) : "暫無資料"}}
@@ -88,7 +88,7 @@
               <th>有效金額</th>
               <td>-</td>
             </tr>
-            <tr>
+            <tr v-if="fix">
               <th>中獎金額</th>
               <td>-</td>
             </tr>
@@ -169,7 +169,8 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../style/component/BettingSearch'
+@import '../style/component/BettingSearch';
+
 .el-tag {
   padding: 0 5px;
   height: 24px;

@@ -8,7 +8,7 @@
             <th width="12%">筆數</th>
             <th width="12%">投注金額</th>
             <th width="12%">有效金額</th>
-            <th width="12%">中獎金額</th>
+            <th v-if="fix" width="12%">中獎金額</th>
             <th width="12%">會員結果</th>
           </tr>
         </thead>
@@ -18,7 +18,7 @@
             <td>{{$root.toCurrency(totalInfo.count)}}</td>
             <td>{{$root.toCurrencyFloor(totalInfo.betAmount)}}</td>
             <td>{{$root.toCurrencyFloor(totalInfo.realAmount)}}</td>
-            <td>{{$root.toCurrencyFloor(totalInfo.winAmount)}}</td>
+            <td v-if="fix">{{$root.toCurrencyFloor(totalInfo.winAmount)}}</td>
             <td :class="$root.handleResultColor(totalInfo.result)">{{$root.toCurrencyFloor(totalInfo.result)}}</td>
           </tr>
         </tbody>
@@ -32,7 +32,7 @@
             <th width="12%">筆數</th>
             <th width="12%">投注金額</th>
             <th width="12%">有效金額</th>
-            <th width="12%">中獎金額</th>
+            <th v-if="fix" width="12%">中獎金額</th>
             <th width="12%">會員結果</th>
           </tr>
         </thead>
@@ -46,7 +46,7 @@
             <td>{{$root.toCurrency(r.count)}}</td>
             <td>{{$root.toCurrencyFloor(r.betAmount)}}</td>
             <td>{{$root.toCurrencyFloor(r.realAmount)}}</td>
-            <td>{{$root.toCurrencyFloor(r.winAmount)}}</td>
+            <td v-if="fix">{{$root.toCurrencyFloor(r.winAmount)}}</td>
             <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.result)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
