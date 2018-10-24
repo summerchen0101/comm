@@ -43,6 +43,20 @@ export const GameReport = {
     },
   ]
 }
+export const CommissionReport = {
+  path: '/report/commission',
+  name: 'CommissionReport',
+  title: "佣金報表",
+  props: { funcKey: 1503 },
+  component: () => import('./component/CommissionReport/CommissionReport.vue'),
+  children: [
+    {
+      path: '/report/commission/search/:startAt/:endAt',
+      name: 'CommissionTotalReport',
+      component: () => import('./component/CommissionReport/CommissionTotalReport.vue'),
+    },
+  ]
+}
 
 export const Report = {
   path: '/report',
@@ -54,6 +68,7 @@ export const Report = {
   children: [
     MemberReport,
     GameReport,
+    CommissionReport,
   ]
 }
 

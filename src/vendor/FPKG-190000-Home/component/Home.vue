@@ -35,6 +35,12 @@
               <span class="number">{{$root.toCurrency(reviews.sms)}}</span>
             </div>
           </a>
+          <a>
+            <div class="box box-margin">
+              <span class="label text-primary">會員在線人數</span>
+              <span class="number">{{$root.toCurrency(reviews.online)}}</span>
+            </div>
+          </a>
           <div class="reload pointer" @click="getReviewList">
             <span class="count">{{count}}</span>
             <font-awesome-icon icon="sync-alt" :spin="isLoading" />
@@ -95,39 +101,59 @@ export default {
 </script>
 
 <style lang="stylus">
-#Dashboard .center #Home #main
-  width: 100%
-#Home
-  .reviewBoxs
-    display: flex
-    margin-left: -20px
-    > .reload
-      margin-left: 10px
-      height: 40px
-      width: 40px
-      &:hover
-        color: #666
-      .count
-        margin-right: 5px
-        font-size: 12px
-    > a , .box
-      flex: 1
-      text-decoration: none
+#Dashboard .center #Home #main {
+  width: 100%;
+}
+
+#Home {
+  .reviewBoxs {
+    display: flex;
+    margin-left: -20px;
+
+    > .reload {
+      margin-left: 10px;
+      height: 40px;
+      width: 40px;
+
+      &:hover {
+        color: #666;
+      }
+
+      .count {
+        margin-right: 5px;
+        font-size: 12px;
+      }
+    }
+
+    > a, .box {
+      flex: 1;
+      text-decoration: none;
       // border: 1px solid #ccc
-      border-radius: 8px
-      background-color: #efefefa3
-      display: flex
-      justify-content space-around
-      align-items center
-      height 100px
-      &:hover
-        background-color: #dddddd
-      .label
-        //
-      .number
-        font-size: 32px
-        color: #666
+      border-radius: 8px;
+      background-color: #efefefa3;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100px;
+
+      &:hover {
+        background-color: #dddddd;
+      }
+
+      .label {
+        // 
+      }
+
+      .number {
+        font-size: 32px;
+        color: #666;
         // font-weight: bold
-    > a
-      margin-left: 20px
+      }
+    }
+
+    > a {
+      margin-left: 20px;
+    }
+  }
+}
 </style>
