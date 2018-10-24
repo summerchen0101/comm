@@ -114,6 +114,12 @@ export default [
         path: "/report/game",
         funcKey: 1502,
       },
+      {
+        name: "CommissionReport",
+        title: "佣金報表",
+        path: "/report/commission",
+        funcKey: 1503,
+      },
     ]
   },
   {
