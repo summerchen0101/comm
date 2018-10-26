@@ -167,7 +167,7 @@ export const CHANGE_BANK_ACC_LIST_TYPE = "CHANGE_BANK_ACC_LIST_TYPE"
 
 
 /*
-  FPKG-140000-Announce: Marquee
+  FPKG-140000-Announce: Marquee, Mail
 */
 
 // actions
@@ -175,11 +175,17 @@ export const GET_MARQUEE_LIST = "GET_MARQUEE_LIST"
 export const DEL_MARQUEE = "DEL_MARQUEE"
 export const ADD_MARQUEE = "ADD_MARQUEE"
 export const EDIT_MARQUEE = "EDIT_MARQUEE"
+export const GET_MAIL_LIST = "GET_MAIL_LIST"
+export const GET_MAIL = "GET_MAIL"
+export const ADD_MAIL = "ADD_MAIL"
+export const EDIT_MAIL = "EDIT_MAIL"
+export const SEND_MAIL = "SEND_MAIL"
 
 // mutations
 export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
 export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
-
+export const GOT_MAIL_LIST = "GOT_MAIL_LIST"
+export const SET_MAIL_DIALOG_VISIBLE = "SET_MAIL_DIALOG_VISIBLE"
 
 /*
   FPKG-150000-Money: DepositAcc

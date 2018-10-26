@@ -39,6 +39,12 @@ export default [
         path: "/announce/marquee",
         funcKey: 1201,
       },
+      {
+        name: "Mail",
+        title: "站內訊息管理",
+        path: "/announce/mail",
+        funcKey: 1202,
+      },
     ]
   },
   {

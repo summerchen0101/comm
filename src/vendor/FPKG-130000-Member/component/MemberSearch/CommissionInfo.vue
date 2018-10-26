@@ -28,6 +28,10 @@
           <td>{{$root.toCurrencyDecimal(commissionInfo.totalCommision)}}</td>
         </tr>
         <tr>
+          <th>本週我的佣金</th>
+          <td>{{$root.toCurrencyDecimal(commissionInfo.self_brokerage)}}</td>
+        </tr>
+        <tr>
           <th>可提領佣金</th>
           <td>
             <router-link :to="{name: 'MemberAllowCommission', params: {
