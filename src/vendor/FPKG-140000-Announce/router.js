@@ -6,6 +6,13 @@ export const Marquee = {
   component: () => import('./component/Marquee.vue')
 }
 
+export const Mail = {
+  path: '/announce/mail',
+  name: 'Mail',
+  title: "訊息管理",
+  props: { funcKey: 1202 },
+  component: () => import('./component/Mail.vue')
+}
 
 export const Announce = {
   path: '/announce',
@@ -15,7 +22,8 @@ export const Announce = {
   redirect: '/announce/marquee',
   component: () => import('./component/Announce.vue'),
   children: [
-    Marquee
+    Marquee,
+    Mail
   ]
 }
 
