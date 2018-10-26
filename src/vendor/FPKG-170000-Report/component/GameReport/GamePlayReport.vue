@@ -97,6 +97,7 @@ export default {
       nowGame: '',
       page: 1,
       selList: {},
+      fix: false
     }
   },
   watch: {

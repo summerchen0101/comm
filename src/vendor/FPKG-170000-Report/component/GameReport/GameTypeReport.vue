@@ -70,7 +70,8 @@ export default {
   data() {
     return {
       nowGame: '',
-      selList: {}
+      selList: {},
+      fix: false
     }
   },
   watch: {
