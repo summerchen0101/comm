@@ -61,7 +61,7 @@
             </template>
             <template v-else>
               <td><span>-</span></td>
-              <td><span>-</span></td>
+              <td v-if="fix"><span>-</span></td>
               <td><span>-</span></td>
             </template>
           </tr>
@@ -98,7 +98,8 @@ export default {
       //   {name: null, title: gameType[gameTypeIndex].label},
       // ],
       page: 1,
-      selList: {}
+      selList: {},
+      fix: false
     }
   },
   watch: {

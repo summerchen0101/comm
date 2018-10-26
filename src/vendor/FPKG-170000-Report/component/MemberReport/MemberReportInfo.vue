@@ -84,6 +84,7 @@ export default {
         {name: null, title: "會員報表"},
         {name: null, title: this.$route.params.account},
       ],
+      fix: false
     }
   },
   watch: {
