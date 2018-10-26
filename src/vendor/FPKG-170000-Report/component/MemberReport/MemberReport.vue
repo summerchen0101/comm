@@ -88,6 +88,7 @@ export default {
   },
   methods: {
     onDateAtChanged() {
+      if (!this.searchForm.startAt || !this.searchForm.endAt) return
       // 若結束時間大於開始時間則改同為開始時間
       if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
         this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
