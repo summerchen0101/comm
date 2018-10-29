@@ -2,7 +2,7 @@
 
 
 const state = {
-  summary: {},
+  summary: null,
   list: [],
   weeks: []
 };

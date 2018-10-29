@@ -60,7 +60,6 @@ export default {
     onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(GET_COMMISSION_TOTAL_REPORT, this.searchForm)
           this.$router.push({name: "CommissionTotalReport", params: {
             startAt: this.searchForm.startAt,
             endAt: this.searchForm.endAt,
@@ -73,11 +72,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_COMMISSION_WEEKS)
     if (this.weeks.length > 0) {
-      if (this.weeks.length > 1) {
-        this.searchForm.startAt = this.weeks[this.weeks.length-2].value
-      }else {
-        this.searchForm.startAt = this.weeks[this.weeks.length-1].value
-      }
+      this.searchForm.startAt = this.weeks[this.weeks.length-1].value
       this.searchForm.endAt = this.weeks[this.weeks.length-1].value
     }
   }

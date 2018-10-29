@@ -8,8 +8,8 @@ const mutations = {
     state.weeks = result
   },
   [GOT_COMMISSION_TOTAL_REPORT] (state, result) {
-    state.totalInfo = result.summary
-    state.totalReport = result.list
+    state.summary = result.summary
+    state.list = result.list
   }
 }
 
