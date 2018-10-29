@@ -3,11 +3,11 @@
     <SearchBar>
       <el-form ref="searchForm" :inline="true" :model="searchForm" :rules="searchFormRules">
         <el-form-item label="結帳日期">
-          <el-select v-model="searchForm.startAt">
+          <el-select v-model="searchForm.startAt" @change="changeWeek">
             <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
            ~ 
-          <el-select v-model="searchForm.endAt">
+          <el-select v-model="searchForm.endAt" @change="changeWeek">
             <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
         </el-form-item>
@@ -57,10 +57,17 @@ export default {
     }),
   },
   methods: {
+    changeWeek() {
+      console.log(this.searchForm)
+      if (this.searchForm.startAt > this.searchForm.endAt ) {
+        const a = this.searchForm.startAt
+        this.searchForm.startAt = this.searchForm.endAt
+        this.searchForm.endAt = a
+      }
+    },
     onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(GET_COMMISSION_TOTAL_REPORT, this.searchForm)
           this.$router.push({name: "CommissionTotalReport", params: {
             startAt: this.searchForm.startAt,
             endAt: this.searchForm.endAt,
@@ -73,11 +80,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_COMMISSION_WEEKS)
     if (this.weeks.length > 0) {
-      if (this.weeks.length > 1) {
-        this.searchForm.startAt = this.weeks[this.weeks.length-2].value
-      }else {
-        this.searchForm.startAt = this.weeks[this.weeks.length-1].value
-      }
+      this.searchForm.startAt = this.weeks[this.weeks.length-1].value
       this.searchForm.endAt = this.weeks[this.weeks.length-1].value
     }
   }

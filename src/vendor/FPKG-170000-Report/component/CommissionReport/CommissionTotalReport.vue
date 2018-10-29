@@ -1,5 +1,5 @@
 <template>
-  <div v-if="totalInfo" id="CommissionReportInfo">
+  <div v-if="summary" id="CommissionReportInfo">
     <div class="table-responsive mt-4">
       <table class="table table-bordered">
         <thead>
@@ -15,11 +15,11 @@
         <tbody>
           <tr>
             <td>-</td>
-            <td>{{$root.toCurrency(totalInfo.brokerage_count)}}</td>
-            <td>{{$root.toCurrencyFloor(totalInfo.feat)}}</td>
-            <td>{{$root.toCurrencyFloor(totalInfo.surplus)}}</td>
-            <td>{{$root.toCurrencyFloor(totalInfo.brokerage)}}</td>
-            <td :class="$root.handleResultColor(totalInfo.deficit)">{{$root.toCurrencyFloor(totalInfo.deficit)}}</td>
+            <td>{{$root.toCurrency(summary.brokerage_count)}}</td>
+            <td>{{$root.toCurrencyFloor(summary.feat)}}</td>
+            <td>{{$root.toCurrencyFloor(summary.surplus)}}</td>
+            <td>{{$root.toCurrencyFloor(summary.brokerage)}}</td>
+            <td :class="$root.handleResultColor(summary.deficit)">{{$root.toCurrencyFloor(summary.deficit)}}</td>
           </tr>
         </tbody>
       </table>
@@ -37,15 +37,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="i in totalReport" :key="i.game_kind">
+          <tr v-for="i in list" :key="i.game_kind">
             <td>{{showGame(i.game_kind)}}</td>
             <td>{{$root.toCurrency(i.brokerage_count)}}</td>
             <td>{{$root.toCurrencyFloor(i.feat)}}</td>
-            <td>{{$root.toCurrencyFloor(i.brokerage)}}</td>
             <td>{{$root.toCurrencyFloor(i.surplus)}}</td>
+            <td>{{$root.toCurrencyFloor(i.brokerage)}}</td>
             <td :class="$root.handleResultColor(i.deficit)">{{$root.toCurrencyFloor(i.deficit)}}</td>
           </tr>
-          <tr v-if="totalReport.length === 0">
+          <tr v-if="list.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>
           </tr>
         </tbody>
@@ -70,8 +70,7 @@ export default {
         {name: "Home", title: "首頁"},
         {name: null, title: "報表查詢"},
         {name: null, title: "佣金報表"},
-      ],
-      fix: false
+      ]
     }
   },
   watch: {
@@ -79,8 +78,8 @@ export default {
   },
   computed: {
     ...mapState({
-      totalInfo: state => state.Report.CommissionReport.totalInfo,
-      totalReport: state => state.Report.CommissionReport.totalReport,
+      summary: state => state.Report.CommissionReport.summary,
+      list: state => state.Report.CommissionReport.list,
     }),
     ...mapGetters({
       gameList: GAME_LIST
@@ -93,6 +92,7 @@ export default {
         startAt: params.startAt,
         endAt: params.endAt,
       })
+      this.$forceUpdate()
     },
     showGame(gameTypeId) {
       return this.gameList[gameTypeId - 1].name
