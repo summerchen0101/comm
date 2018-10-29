@@ -66,7 +66,7 @@
             </template>
             <template v-else>
               <td><span>-</span></td>
-              <td><span>-</span></td>
+              <td v-if="fix"><span>-</span></td>
               <td><span>-</span></td>
             </template>
           </tr>
