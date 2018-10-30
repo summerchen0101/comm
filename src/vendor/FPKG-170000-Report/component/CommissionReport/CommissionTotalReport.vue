@@ -7,7 +7,7 @@
             <th width="40%">總計</th>
             <th width="12%">總筆數</th>
             <th width="12%">總有效金額</th>
-            <th width="12%">總最高換算</th>
+            <th width="12%">總最高給付</th>
             <th width="12%">總實際給付</th>
             <th width="12%">總差值</th>
           </tr>
@@ -31,7 +31,7 @@
             <th width="40%">遊戲</th>
             <th width="12%">筆數</th>
             <th width="12%">有效金額</th>
-            <th width="12%">最高換算</th>
+            <th width="12%">最高給付</th>
             <th width="12%">實際給付</th>
             <th width="12%">差值</th>
           </tr>
