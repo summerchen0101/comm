@@ -3,11 +3,11 @@
     <SearchBar>
       <el-form ref="searchForm" :inline="true" :model="searchForm" :rules="searchFormRules">
         <el-form-item label="結帳日期">
-          <el-select v-model="searchForm.startAt" @change="changeWeek">
+          <el-select v-model="searchForm.startAt" @change="changeWeek1">
             <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
            ~ 
-          <el-select v-model="searchForm.endAt" @change="changeWeek">
+          <el-select v-model="searchForm.endAt" @change="changeWeek2">
             <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
         </el-form-item>
@@ -57,12 +57,14 @@ export default {
     }),
   },
   methods: {
-    changeWeek() {
-      console.log(this.searchForm)
+    changeWeek1() {
       if (this.searchForm.startAt > this.searchForm.endAt ) {
-        const a = this.searchForm.startAt
-        this.searchForm.startAt = this.searchForm.endAt
-        this.searchForm.endAt = a
+        this.searchForm.endAt = this.searchForm.startAt
+      }
+    },
+    changeWeek2() {
+      if (this.searchForm.startAt > this.searchForm.endAt ) {
+         this.searchForm.endAt = this.searchForm.startAt
       }
     },
     onSearchSubmit() {
