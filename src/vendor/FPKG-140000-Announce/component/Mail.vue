@@ -28,6 +28,13 @@
     </el-table>
     <Paginator v-if="result" :count="result.total" :perpage="result.perpage" :on-page-changed="changePage"></Paginator>
     <MailFormDialog :title="title" :id="id" :form.sync="form"></MailFormDialog>
+    <el-dialog :visible="dialogVisible" :before-close="()=>cancelSend()" width="50%">
+      <div>確定傳送訊息？</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="cancelSend()">取 消</el-button>
+        <el-button type="primary" @click="()=>{dialogVisible = false; submitSend()}">送 出</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -60,6 +67,8 @@ export default {
         title: '',
         description: ''
       },
+      dialogVisible: false,
+      sendId: 0,
       breadcrumbPath: [
         { name: 'Home', title: '首頁' },
         { name: null, title: '公告管理' },
@@ -88,8 +97,15 @@ export default {
       this.setFormData({ send_type: 3, target_account: '', title: '', description: '' })
       this.showDialog()
     },
-    async sendMail(id) {
-      await this.$store.dispatch(SEND_MAIL, id)
+    sendMail(id) {
+      this.sendId = id
+      this.dialogVisible = true
+    },
+    cancelSend() {
+      this.dialogVisible = false
+    },
+    async submitSend() {
+      await this.$store.dispatch(SEND_MAIL, this.sendId)
       await this.$store.dispatch(GET_MAIL_LIST, result.current_page)
     },
     async editMail(id) {
@@ -111,6 +127,7 @@ export default {
     }
   },
   async mounted() {
+    this.dialogVisible = false
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_MAIL_LIST)
   }
