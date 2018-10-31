@@ -28,8 +28,8 @@
     </el-table>
     <Paginator v-if="result" :count="result.total" :perpage="result.perpage" :on-page-changed="changePage"></Paginator>
     <MailFormDialog :title="title" :id="id" :form.sync="form"></MailFormDialog>
-    <el-dialog :visible="dialogVisible" :before-close="()=>cancelSend()" width="50%">
-      <div>確定傳送訊息？</div>
+    <el-dialog :visible="dialogVisible" title="提示" :before-close="()=>cancelSend()" width="40%">
+      <div><i class="el-icon-warning" style="color:orange; font-size:24px;"></i> 送出訊息後將無法再修改內容！確定要送出訊息？</div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="cancelSend()">取 消</el-button>
         <el-button type="primary" @click="()=>{dialogVisible = false; submitSend()}">送 出</el-button>
