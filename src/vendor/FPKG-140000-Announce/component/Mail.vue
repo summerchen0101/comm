@@ -26,7 +26,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <Paginator v-if="result" :count="result.total" :perpage="result.perpage" :on-page-changed="changePage"></Paginator>
+    <Paginator v-if="result" :count="result.total" :perpage="result.per_page" :on-page-changed="changePage"></Paginator>
     <MailFormDialog :title="title" :id="id" :form.sync="form"></MailFormDialog>
     <el-dialog :visible="dialogVisible" title="提示" :before-close="()=>cancelSend()" width="40%">
       <div><i class="el-icon-warning" style="color:orange; font-size:24px;"></i> 送出訊息後將無法再修改內容！確定要送出訊息？</div>
