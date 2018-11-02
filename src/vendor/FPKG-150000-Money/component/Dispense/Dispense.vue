@@ -110,11 +110,12 @@
         v-if="listType == 1"
         key="control"
         fixed="right"
-        width="150"
+        width="240"
         label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="success" @click="onConfirm(scope.row)">確定</el-button>
           <el-button size="mini" type="danger" @click="onCancel(scope.row)">取消</el-button>
+          <el-button size="mini" type="warning" @click="onBack(scope.row)">駁回</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -218,6 +219,11 @@ export default {
     },
     onCancel(dispense) {
       this.$refs.DispenseDialog.type = 'cancel'
+      this.SET_DISPENSE(dispense)
+      this.SWITCH_DISPENSE_DIALOG(true)
+    },
+    onBack(dispense) {
+      this.$refs.DispenseDialog.type = 'back'
       this.SET_DISPENSE(dispense)
       this.SWITCH_DISPENSE_DIALOG(true)
     },

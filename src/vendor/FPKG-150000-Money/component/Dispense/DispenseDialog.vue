@@ -50,6 +50,7 @@
       <el-button @click="SWITCH_DISPENSE_DIALOG(false)">取 消</el-button>
       <el-button v-if="type === 'confirm'" type="success" @click="onChangeStatus('confirm')">通 過</el-button>
       <el-button v-else-if="type === 'cancel'" type="danger" @click="onChangeStatus('cancel')">未 通 過</el-button>
+      <el-button v-else-if="type === 'back'" type="warning" @click="onChangeStatus('back')">駁 回</el-button>
     </span>
   </el-dialog>
 </template>
@@ -135,5 +136,4 @@ export default {
 </script>
 
 <style lang="stylus">
-
 </style>

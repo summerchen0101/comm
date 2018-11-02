@@ -46,7 +46,7 @@ const actions = {
   async [SET_DISPENSE_STATUS]({dispatch, commit}, _d) {
     let data = {
       review_user_id: _d.operatorId,
-      action: _d.action == 'confirm' ? 1 : 2,
+      action: _d.action == 'confirm' ? 1 : _d.action === 'back' ? 3 : 2,
       reason: _d.action == 'cancel' ? _d.reason : undefined,
       dispense_account_id: _d.action == 'confirm' ? _d.dispenseAcc : undefined
     }
