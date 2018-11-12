@@ -75,6 +75,7 @@ export default {
         {name: null, title: "報表查詢"},
         {name: null, title: "遊戲報表"},
       ],
+      fix: false
     }
   },
   watch: {

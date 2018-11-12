@@ -167,7 +167,7 @@ export const CHANGE_BANK_ACC_LIST_TYPE = "CHANGE_BANK_ACC_LIST_TYPE"
 
 
 /*
-  FPKG-140000-Announce: Marquee
+  FPKG-140000-Announce: Marquee, Mail
 */
 
 // actions
@@ -175,11 +175,17 @@ export const GET_MARQUEE_LIST = "GET_MARQUEE_LIST"
 export const DEL_MARQUEE = "DEL_MARQUEE"
 export const ADD_MARQUEE = "ADD_MARQUEE"
 export const EDIT_MARQUEE = "EDIT_MARQUEE"
+export const GET_MAIL_LIST = "GET_MAIL_LIST"
+export const GET_MAIL = "GET_MAIL"
+export const ADD_MAIL = "ADD_MAIL"
+export const EDIT_MAIL = "EDIT_MAIL"
+export const SEND_MAIL = "SEND_MAIL"
 
 // mutations
 export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
 export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
-
+export const GOT_MAIL_LIST = "GOT_MAIL_LIST"
+export const SET_MAIL_DIALOG_VISIBLE = "SET_MAIL_DIALOG_VISIBLE"
 
 /*
   FPKG-150000-Money: DepositAcc
@@ -315,6 +321,17 @@ export const GOT_GAME_TYPE_REPORT = "GOT_GAME_TYPE_REPORT"
 export const GOT_GAME_PLAY_REPORT_INFO = "GOT_GAME_PLAY_REPORT_INFO"
 export const GOT_GAME_PLAY_REPORT_DETAIL = "GOT_GAME_PLAY_REPORT_DETAIL"
 
+/*
+  FPKG-170000-Report: CommissionReport
+*/
+
+// actions
+export const GET_COMMISSION_WEEKS = "GET_COMMISSION_WEEKS"
+export const GET_COMMISSION_TOTAL_REPORT = "GET_COMMISSION_TOTAL_REPORT"
+
+// mutations
+export const GOT_COMMISSION_WEEKS = "GOT_COMMISSION_WEEKS"
+export const GOT_COMMISSION_TOTAL_REPORT = "GOT_COMMISSION_TOTAL_REPORT"
 
 /*
   FPKG-180000-Manage: Users

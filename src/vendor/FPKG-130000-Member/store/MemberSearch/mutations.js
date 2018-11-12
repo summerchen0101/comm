@@ -60,6 +60,7 @@ const mutations = {
       commisionUnit: result.brokerage.feedback, // 當前每萬元返還
       totalCommision: result.brokerage.total_brokerage, // 本週總佣金
       allowCommision: result.brokerage.brokerage, // 可提領佣金
+      self_brokerage: result.brokerage.self_brokerage
     }
     state.bankAccInfo = result.bank_account_info.map(b => ({
       bankAccount: b.bank_account,

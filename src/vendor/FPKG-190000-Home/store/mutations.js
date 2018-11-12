@@ -11,6 +11,7 @@ const mutations = {
       dispense: result.dispense,
       bank: result.bank,
       sms: result.message,
+      online: result.online,
     }
   },
   [SWITCH_REVIEW_LOADING_STATUS](state, status) {

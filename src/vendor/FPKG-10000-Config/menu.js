@@ -39,6 +39,12 @@ export default [
         path: "/announce/marquee",
         funcKey: 1201,
       },
+      {
+        name: "Mail",
+        title: "站內訊息管理",
+        path: "/announce/mail",
+        funcKey: 1202,
+      },
     ]
   },
   {
@@ -113,6 +119,12 @@ export default [
         title: "遊戲報表",
         path: "/report/game",
         funcKey: 1502,
+      },
+      {
+        name: "CommissionReport",
+        title: "佣金報表",
+        path: "/report/commission",
+        funcKey: 1503,
       },
     ]
   },

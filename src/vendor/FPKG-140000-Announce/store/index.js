@@ -5,10 +5,12 @@ import actions from './actions'
 import getters from './getters'
 
 import Marquee from './Marquee'
+import Mail from './Mail'
 
 const store = {
   modules: {
-    Marquee
+    Marquee,
+    Mail
   },
   state,
   getters,
