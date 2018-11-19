@@ -20,6 +20,8 @@ import {
 } from '@/vendor/FPKG-130000-Member/router'
 
 import { Deposit, Withdraw, Dispense } from '@/vendor/FPKG-150000-Money/router'
+import { NoService } from '@/vendor/FPKG-190000-Home/router'
+import axios from 'axios'
 
 Vue.use(Router)
 
@@ -43,10 +45,25 @@ const RouterSetting = new Router({
     Deposit,
     Withdraw,
     Dispense,
+    NoService
   ]
 })
 
+let tw = null
+
 RouterSetting.beforeEach(async (to, from, next) => {
+  if (tw === null) {
+    if (process.env.VUE_APP_API_ENV !== 'production') {
+      tw = false
+    }
+    else {
+      tw = true
+      const res = await axios.get('http://www.geoplugin.net/json.gp')
+      if (res && res.data && res.data.geoplugin_countryCode !== 'TW') {
+        tw = false
+      }
+    }
+  }
 
   const Store = RouterSetting.app.$store
 
@@ -57,7 +74,13 @@ RouterSetting.beforeEach(async (to, from, next) => {
   }
 
   // 進入內頁時若未登入 Y-> 獲取使用者資訊
-  if(Store.getters.IS_LOGIN !== true && to.name !== 'Login') {
+  if (to.name === "NoService") {
+    next()
+  }
+  else if (tw) {
+    next({name: "NoService"})
+  }
+  else if(Store.getters.IS_LOGIN !== true && to.name !== 'Login') {
     await Store.dispatch(GET_USER_INFO)
     // 能取得登入資訊 Y-> 開啟畫面 N-> 無則倒回登入頁
     if(Store.getters.IS_LOGIN) {
