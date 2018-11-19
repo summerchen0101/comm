@@ -58,8 +58,8 @@ RouterSetting.beforeEach(async (to, from, next) => {
     }
     else {
       tw = true
-      const res = await axios.get('http://www.geoplugin.net/json.gp')
-      if (res && res.data && res.data.geoplugin_countryCode !== 'TW') {
+      const res = await axios.get('https://ipapi.co/json/')
+      if (res && res.data && res.data.country !== 'TW') {
         tw = false
       }
     }
