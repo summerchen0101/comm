@@ -37,6 +37,7 @@ export default {
     'api/v1/member': "手機已存在",
     'api/v1/group': "權限名稱已存在",
     'api/v1/user': "帳號名稱已存在",
+    'api/v1/whitelist': "已有相同ＩＰ",
   },
   422003: "不可異動",
   422004: "不可刪除",
