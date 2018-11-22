@@ -114,5 +114,5 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../style/component/Login'
+@import '../style/component/Login';
 </style>
