@@ -1,6 +1,6 @@
 <template>
   <div id="Deposit">
-    <el-select v-model="searchForm.status"  @change="oninitSearchSubmit">
+    <el-select v-model="searchForm.status"  @change="onInitSearchSubmit">
       <el-option
         v-for="opt in statusOpts"
         :key="opt.id"
@@ -259,7 +259,7 @@ export default {
         page
       })
     },
-    oninitSearchSubmit() {
+    onInitSearchSubmit() {
       this.searchForm = {
         status: this.searchForm.status,
         number: "",

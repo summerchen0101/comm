@@ -1,7 +1,7 @@
 <template>
   <div id="BankAcc">
     <PageTitle>
-      <el-select slot="btns" v-model="searchForm.status" @change="oninitSearchSubmit">
+      <el-select slot="btns" v-model="searchForm.status" @change="onInitSearchSubmit">
         <el-option
           v-for="opt in statusOpts"
           :key="opt.id"
@@ -182,7 +182,7 @@ export default {
       })
       this.$store.commit(SWITCH_BANK_ACC_DIALOG, true)
     },
-    oninitSearchSubmit() {
+    onInitSearchSubmit() {
       this.searchForm = {
         status: this.searchForm.status,
         account: "",
