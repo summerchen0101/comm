@@ -23,6 +23,8 @@ import {
   GET_GAME_TEMPLATE_OPTIONS,
   GOT_GAME_TEMPLATE_OPTIONS,
   SET_GAME_LIST,
+  GET_PAYWAY_OPTIONS,
+  GOT_PAYWAY_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import storage from 'store2'
@@ -106,6 +108,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/game_list')
     if(res.code === 200001) {
       storage.local("gameList", res.result)
+    }
+  },
+  async [GET_PAYWAY_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/payway')
+    if(res.code === 200001) {
+      commit(GOT_PAYWAY_OPTIONS, res.result)
     }
   },
 }
