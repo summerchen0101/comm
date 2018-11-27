@@ -20,6 +20,7 @@ const mutations = {
       createdAt: t.created_at,
       accountName: t.name,
       bankAccount: t.bank_account,
+      isDuplicated: t.account_color,
       operator: t.review_user,
       operation: t.operation,
       reason: t.reason,

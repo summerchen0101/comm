@@ -58,8 +58,10 @@
       </el-table-column>
       <el-table-column
         width="180"
-        prop="bankAccount"
         label="銀行帳號">
+        <template slot-scope="scope">
+           <span :class="scope.row.isDuplicated ? 'text-danger' : undefined">{{scope.row.bankAccount}}</span>
+         </template>
       </el-table-column>
       <el-table-column
         min-width="150"
