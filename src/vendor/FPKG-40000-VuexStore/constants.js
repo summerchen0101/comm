@@ -182,6 +182,7 @@ export const GET_MAIL = "GET_MAIL"
 export const ADD_MAIL = "ADD_MAIL"
 export const EDIT_MAIL = "EDIT_MAIL"
 export const SEND_MAIL = "SEND_MAIL"
+export const DELETE_MAIL = "DELETE_MAIL"
 
 // mutations
 export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
