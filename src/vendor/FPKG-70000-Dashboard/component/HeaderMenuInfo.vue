@@ -71,7 +71,6 @@ export default {
   },
   filters: {
     currency: function(value) {
-      value = 100000.00099
       if (!value) return 0;
       const texts = value.toString().split(".");
       let text = texts[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, "$1,");
