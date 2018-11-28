@@ -14,7 +14,7 @@
       >
       <el-form-item label="銀行代碼" prop="bankCode">
         <el-select v-model="form.bankCode">
-          <el-option v-for="b in bankList" :key="b.code" :value="b.code" :label="b.name"></el-option>
+          <el-option v-for="b in bankList" :key="b.bank_id" :value="b.code" :label="b.name"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="分行名稱" prop="branchName">
@@ -96,17 +96,18 @@ export default {
     ]),
     
     onCreateSubmit() {
-      console.log(this.form)
       this.$refs.depositAccForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(ADD_DEPOSIT_ACC, this.form)
+          let bank = this.bankList.find(b => b.code === this.form.bankCode)
+          this.$store.dispatch(ADD_DEPOSIT_ACC, {...this.form, bankID: bank.bank_id})
         }
       });
     },
     onEditSubmit() {
       this.$refs.depositAccForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(EDIT_DEPOSIT_ACC, this.form)
+          let bank = this.bankList.find(b => b.code === this.form.bankCode)
+          this.$store.dispatch(EDIT_DEPOSIT_ACC, {...this.form, bankID: bank.bank_id})
         }
       });
     },
