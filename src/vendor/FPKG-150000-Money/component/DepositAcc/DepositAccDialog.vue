@@ -107,7 +107,7 @@ export default {
       this.$refs.depositAccForm.validate((valid) => {
         if (valid) {
           let bank = this.bankList.find(b => b.bank_id === this.form.bankID)
-          this.$store.dispatch(ADD_DEPOSIT_ACC, {...this.form, bankCode: bank.code})
+          this.$store.dispatch(EDIT_DEPOSIT_ACC, {...this.form, bankCode: bank.code})
         }
       });
     },
