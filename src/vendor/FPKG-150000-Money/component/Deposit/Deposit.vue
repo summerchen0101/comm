@@ -264,6 +264,7 @@ export default {
         status: this.searchForm.status,
         number: "",
         account: "",
+        payType: 0,
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
       };
