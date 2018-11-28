@@ -1,6 +1,5 @@
 /label ~BugFix ~ToDo ~QA
-/assign @will
-/milestone %"v1"
+/assign @Summer
 
 #### 作業系統／瀏覽器版本 OS/Browsers version
 
