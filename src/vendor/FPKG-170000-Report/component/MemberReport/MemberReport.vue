@@ -103,14 +103,22 @@ export default {
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
           let f = this.searchForm
-          this.$router.push({name: "MemberReportInfo", params: {
+          // 若新的搜尋資訊與原查詢相同，則直接呼叫報表API
+          let oldSearchData = this.$route.params
+          let newSearchData = {
             startAt: toDateTime(f.startAt).substr(0, 16),
             endAt: toDateTime(f.endAt).substr(0, 16),
             account: f.account
-          }})
-          this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
+          }
+          let isEqualSearch = this.$lodash.isEqual(oldSearchData, newSearchData)
+          if(isEqualSearch) {
+            this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
+          }else {
+            this.$router.push({name: "MemberReportInfo", params: newSearchData})
+            this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
+          }
+          
         }
       });
     }
