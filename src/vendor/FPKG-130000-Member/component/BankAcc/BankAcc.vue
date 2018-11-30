@@ -1,7 +1,7 @@
 <template>
   <div id="BankAcc">
     <PageTitle>
-      <el-select slot="btns" v-model="searchForm.status" @change="oninitSearchSubmit">
+      <el-select slot="btns" v-model="searchForm.status" @change="onInitSearchSubmit">
         <el-option
           v-for="opt in statusOpts"
           :key="opt.id"
@@ -58,8 +58,10 @@
       </el-table-column>
       <el-table-column
         width="180"
-        prop="bankAccount"
         label="銀行帳號">
+        <template slot-scope="scope">
+           <span :class="scope.row.isDuplicated ? 'text-danger' : undefined">{{scope.row.bankAccount}}</span>
+         </template>
       </el-table-column>
       <el-table-column
         min-width="150"
@@ -182,7 +184,7 @@ export default {
       })
       this.$store.commit(SWITCH_BANK_ACC_DIALOG, true)
     },
-    oninitSearchSubmit() {
+    onInitSearchSubmit() {
       this.searchForm = {
         status: this.searchForm.status,
         account: "",

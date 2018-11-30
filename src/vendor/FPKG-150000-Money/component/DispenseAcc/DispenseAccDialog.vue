@@ -13,8 +13,8 @@
       ref="dispenseAccForm"
       >
       <el-form-item label="銀行代碼" prop="bankCode">
-        <el-select v-model="form.bankCode">
-          <el-option v-for="b in bankList" :key="b.code" :value="b.code" :label="b.name"></el-option>
+        <el-select v-model="form.bankID">
+          <el-option v-for="b in bankList" :key="b.bank_id" :value="b.bank_id" :label="b.name"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="分行名稱" prop="branchName">
@@ -49,7 +49,7 @@ import { startAtDay, endAtDay, dateAfter , dateBefore} from '@/vendor/FPKG-12000
 
 let initForm = {
         id: "",
-        bankCode: null,
+        bankID: null,
         branchName: "",
         accountName: "",
         bankAccount: "",
@@ -59,7 +59,7 @@ export default {
     return {
       form: Object.assign({}, initForm),
       formRules: {
-        bankCode: [
+        bankID: [
           { required: true, message: '銀行代碼為必填', trigger: 'blur' },
         ],
         branchName: [
@@ -96,17 +96,18 @@ export default {
     ]),
     
     onCreateSubmit() {
-      console.log(this.form)
       this.$refs.dispenseAccForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(ADD_DISPENSE_ACC, this.form)
+          let bank = this.bankList.find(b => b.bank_id === this.form.bankID)
+          this.$store.dispatch(ADD_DISPENSE_ACC, {...this.form, bankCode: bank.code})
         }
       });
     },
     onEditSubmit() {
       this.$refs.dispenseAccForm.validate((valid) => {
         if (valid) {
-          this.$store.dispatch(EDIT_DISPENSE_ACC, this.form)
+          let bank = this.bankList.find(b => b.bank_id === this.form.bankID)
+          this.$store.dispatch(EDIT_DISPENSE_ACC, {...this.form, bankCode: bank.code})
         }
       });
     },

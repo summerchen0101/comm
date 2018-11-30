@@ -5,6 +5,7 @@ import {
   ADD_MAIL,
   EDIT_MAIL,
   SEND_MAIL,
+  DELETE_MAIL,
   SET_MAIL_DIALOG_VISIBLE
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
@@ -39,6 +40,12 @@ const actions = {
   },
   async [SEND_MAIL] ({ commit, dispatch }, id) {
     const res = await apiHub('put', `api/v1/inward/${id}/send`)
+    if (res.code === 200001) {
+      dispatch(GET_MAIL_LIST)
+    }
+  },
+  async [DELETE_MAIL] ({ commit, dispatch }, id) {
+    const res = await apiHub('delete', `api/v1/inward/${id}`)
     if (res.code === 200001) {
       dispatch(GET_MAIL_LIST)
     }

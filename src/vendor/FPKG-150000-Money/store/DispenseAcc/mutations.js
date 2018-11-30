@@ -12,6 +12,7 @@ const mutations = {
     state.dispenseAccList = result.data.map(t => ({
       id: t.id,
       bankCode: t.code,
+      bankID: t.bank_id,
       branchName: t.branch,
       accountName: t.name,
       bankAccount: t.account,

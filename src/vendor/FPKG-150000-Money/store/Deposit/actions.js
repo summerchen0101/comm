@@ -23,6 +23,7 @@ const actions = {
       end_time: _d.status != 1 ? toDateTime(_d.endAt): undefined,
       no: _d.number || undefined,
       account: _d.account || undefined,
+      payway_id: _d.payType,
     }
     let res = await apiHub("get", `api/v1/deposit/${_d.status}/summary`, null, params)
     if(res.code === 200001) {
@@ -37,7 +38,8 @@ const actions = {
         end_time: _d.status != 1 ? toDateTime(_d.endAt): undefined,
         no: _d.number || undefined,
         account: _d.account || undefined,
-        page: _d.page || undefined
+        page: _d.page || undefined,
+        payway_id: _d.payType,
       }
 
     }

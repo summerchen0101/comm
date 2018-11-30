@@ -34,6 +34,7 @@ const actions = {
       branch: _d.branchName,
       name: _d.accountName,
       account: _d.bankAccount,
+      bank_id: _d.bankID
     }
     let res = await apiHub('post', 'api/v1/dispense_account', data)
     if(res.code === 200001) {
@@ -48,6 +49,7 @@ const actions = {
       branch: _d.branchName,
       name: _d.accountName,
       account: _d.bankAccount,
+      bank_id: _d.bankID
     }
     let res = await apiHub('put', `api/v1/dispense_account/${_d.id}`, data)
     if(res.code === 200001) {

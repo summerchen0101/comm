@@ -1,6 +1,6 @@
 <template>
   <div id="Deposit">
-    <el-select v-model="searchForm.status"  @change="oninitSearchSubmit">
+    <el-select v-model="searchForm.status"  @change="onInitSearchSubmit">
       <el-option
         v-for="opt in statusOpts"
         :key="opt.id"
@@ -38,6 +38,16 @@
         </el-form-item>
         <el-form-item label="會員" prop="account">
           <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
+        </el-form-item>
+        <el-form-item label="類型" prop="account">
+          <el-select v-model="searchForm.payType">
+            <el-option
+              v-for="opt in payTypeOpts"
+              :key="opt.id"
+              :label="opt.name"
+              :value="opt.id">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
@@ -150,6 +160,7 @@
 import {
   SET_BREADCRUMB,
   GET_STATUS_OPTIONS,
+  GET_PAYWAY_OPTIONS,
   GET_DEPOSIT_INFO,
   GET_DEPOSIT_LIST,
   SWITCH_DEPOSIT_DIALOG,
@@ -180,6 +191,7 @@ export default {
         status: 1,
         number: "",
         account: "",
+        payType: 0,
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
       },
@@ -194,6 +206,7 @@ export default {
     ...mapState({
       listType: state => state.Money.Deposit.listType,
       statusOpts: state => state.Global.statusOpts,
+      payTypeOpts: state => state.Global.payTypeOpts,
       depositPager: state => state.Money.Deposit.depositPager,
       depositInfo: state => state.Money.Deposit.depositInfo,
       depositList: state => state.Money.Deposit.depositList,
@@ -246,11 +259,12 @@ export default {
         page
       })
     },
-    oninitSearchSubmit() {
+    onInitSearchSubmit() {
       this.searchForm = {
         status: this.searchForm.status,
         number: "",
         account: "",
+        payType: 0,
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
       };
@@ -274,6 +288,7 @@ export default {
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_PAYWAY_OPTIONS)
     this.$store.dispatch(GET_DEPOSIT_INFO, this.searchForm)
     this.$store.dispatch(GET_DEPOSIT_LIST, this.searchForm)
   }
