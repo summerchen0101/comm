@@ -15,6 +15,7 @@ const mutations = {
       desc: t.description || '-',
       count: t.user_count,
       createdAt: t.created_at,
+      updatedAt: t.updated_at,
       operation: t.operation
     }))
     state.ipPager = {

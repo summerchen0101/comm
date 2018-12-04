@@ -24,6 +24,7 @@ const mutations = {
       name: t.name,
       count: t.user_count,
       createdAt: t.created_at,
+      updatedAt: t.updated_at,
       operation: t.operation,
       allowModify: t.act,
     }))

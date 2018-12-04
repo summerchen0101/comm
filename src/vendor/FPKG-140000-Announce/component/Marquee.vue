@@ -31,6 +31,13 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="180"
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         label="操作"
         width="150">
@@ -64,7 +71,7 @@
 
 <script>
 import MarqueeFormDialog from '@/vendor/FPKG-140000-Announce/component/MarqueeFormDialog.vue';
-import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js';
 import { 
   GET_MARQUEE_LIST, 
   SWITCH_MARQUEE_DIALOG,

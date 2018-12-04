@@ -32,6 +32,12 @@
         label="銀行帳號">
       </el-table-column>
       <el-table-column
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         label="操作"
         width="180">
@@ -66,6 +72,7 @@
 
 <script>
 import DispenseAccDialog from '@/vendor/FPKG-150000-Money/component/DispenseAcc/DispenseAccDialog.vue';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js';
 import { 
   GET_DISPENSE_ACC_LIST, 
   SWITCH_DISPENSE_ACC_DIALOG,
@@ -77,6 +84,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
+  mixins: [commonTool],
   components: {
     DispenseAccDialog,
   },

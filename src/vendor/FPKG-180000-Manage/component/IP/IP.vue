@@ -30,6 +30,13 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="180"
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         label="操作"
         width="150">

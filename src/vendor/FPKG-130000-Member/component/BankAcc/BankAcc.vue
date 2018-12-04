@@ -57,18 +57,18 @@
         label="戶名">
       </el-table-column>
       <el-table-column
-        width="180"
+        width="140"
         label="銀行帳號">
         <template slot-scope="scope">
-           <span :class="scope.row.isDuplicated ? 'text-danger' : undefined">{{scope.row.bankAccount}}</span>
-         </template>
+          <span :class="scope.row.isDuplicated ? 'text-danger' : undefined">{{scope.row.bankAccount}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         min-width="150"
         label="申請時間">
-         <template slot-scope="scope">
-           <span>{{toDateTime(scope.row.createdAt)}}</span>
-         </template>
+        <template slot-scope="scope">
+          <span>{{toDateTime(scope.row.createdAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType != 1"
@@ -76,6 +76,12 @@
         width="120"
         prop="operator"
         label="審核人員">
+      </el-table-column>
+      <el-table-column
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         fixed="right"
