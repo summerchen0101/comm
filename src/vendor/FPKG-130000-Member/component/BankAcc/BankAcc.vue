@@ -64,6 +64,18 @@
         </template>
       </el-table-column>
       <el-table-column
+        label="圖片">
+        <template slot-scope="scope">
+          <el-tooltip v-if="scope.row.pic" placement="bottom" effect="dark">
+            <div slot="content">
+              <img style="max-width: 430px" :src="scope.row.pic" alt="">
+            </div>
+            <font-awesome-icon icon="file-image" prefix="far" size="lg" />
+          </el-tooltip>
+          <span v-else>-</span>
+         </template>
+      </el-table-column>
+      <el-table-column
         min-width="150"
         label="申請時間">
         <template slot-scope="scope">

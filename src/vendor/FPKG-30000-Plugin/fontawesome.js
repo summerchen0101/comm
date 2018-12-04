@@ -17,7 +17,8 @@ import {
   faChartBar,
   faUsers,
   faBars,
-  faSignOutAlt
+  faSignOutAlt,
+  faFileImage,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -37,7 +38,8 @@ library.add(
   faChartBar,
   faUsers,
   faBars,
-  faSignOutAlt
+  faSignOutAlt,
+  faFileImage,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
