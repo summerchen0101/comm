@@ -20,10 +20,12 @@ const mutations = {
         account: t.account,
         nick: t.nickname,
         withdrawPoint: t.credit,
+        actualWithdrawPoint: t.actual_credit,
         dispensePoint: t.dispense_credit,
         dispenseAcc: t.dispense_account_id,
         status: t.status,
         reason: t.reason,
+        notes: t.notes,
         operator: t.review_user,
         dispenseAt: t.created_at,
         updatedAt: t.updated_at,
@@ -36,8 +38,15 @@ const mutations = {
           tradeNo: bankInfo.no,
           paymentNo: bankInfo.payment_no,
           storeName: bankInfo.from,
+
+          pocketPoint: bankInfo.balance,
+          disallowWithdrawPoint: bankInfo.below_norm_credit,
+          allowWithdrawPoint: bankInfo.approve_norm_credit,
+          fee: bankInfo.fee,
+          disallowWithdrawFee: bankInfo.below_norm_fee,
+          freight: bankInfo.freight,
         },
-        type: t.member_withdrawal_limit_id
+        withdrawType: t.member_withdrawal_limit_id
       }
     })
     state.dispensePager = {

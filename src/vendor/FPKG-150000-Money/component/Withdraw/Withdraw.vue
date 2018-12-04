@@ -40,7 +40,7 @@
           <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
         <el-form-item label="類型">
-          <el-select v-model="searchForm.type" prop="type">
+          <el-select v-model="searchForm.withdrawType" prop="type">
             <el-option v-for="t in typeOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
           </el-select>
         </el-form-item>
@@ -86,7 +86,7 @@
         min-width="120"
         label="請款類型">
         <template slot-scope="scope">
-          {{toOption(typeOpts, scope.row.type)}}
+          {{$root.toOption(typeOpts, scope.row.withdrawType)}}
         </template>
       </el-table-column>
       <el-table-column
@@ -174,7 +174,7 @@ let initSearchForm = {
   account: "",
   startAt: startAtDay(new Date()),
   endAt: endAtDay(new Date()),
-  type: 0
+  withdrawType: 0
 }
 export default {
   mixins: [commonTool],
