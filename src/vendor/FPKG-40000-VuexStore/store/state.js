@@ -13,6 +13,7 @@ const state = {
   gameTypeOpts: [],
   payTypeOpts: [],
   pointTransferOpts: [],
+  withdrawTypeOpts: [],
   gameTplOpts: {},
   lang: 'zh-TW'
 };

@@ -39,6 +39,11 @@
         <el-form-item label="會員" prop="account">
           <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
+        <el-form-item label="類型">
+          <el-select v-model="searchForm.type" prop="type">
+            <el-option v-for="t in typeOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
             <font-awesome-icon icon="search" />
@@ -82,6 +87,13 @@
         label="出款點數">
         <template slot-scope="scope">
           {{$root.toCurrency(scope.row.dispensePoint)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        min-width="120"
+        label="請款類型">
+        <template slot-scope="scope">
+          {{toOption(typeOpts, scope.row.type)}}
         </template>
       </el-table-column>
       <el-table-column
@@ -155,6 +167,7 @@ import {
   SET_DISPENSE,
   SWITCH_DISPENSE_INFO_DIALOG,
   GET_DISPENSE_ACC_OPTIONS,
+  GET_WITHDRAW_TYPE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
@@ -163,6 +176,14 @@ import DispenseInfoDialog from '@/vendor/FPKG-150000-Money/component/Dispense/Di
 import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getMoneyFirstDay } from '@/vendor/FPKG-120000-Util/time.js'
 import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
+let initSearchForm = {
+  status: 1,
+  number: "",
+  account: "",
+  startAt: startAtDay(new Date()),
+  endAt: endAtDay(new Date()),
+  type: 0
+}
 export default {
   mixins: [commonTool],
   components: {
@@ -176,13 +197,10 @@ export default {
         {name: null, title: "存提管理"},
         {name: null, title: "出款管理"},
       ],
-      searchForm: {
-        status: 1,
-        number: "",
-        account: "",
+      searchForm: Object.assign({}, initSearchForm, {
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
-      },
+      }),
       searchFormRules: {
         account: [
           { validator: memberAccountValidator, trigger: 'blur' },
@@ -194,6 +212,7 @@ export default {
     ...mapState({
       listType: state => state.Money.Dispense.listType,
       statusOpts: state => state.Global.statusOpts,
+      typeOpts: state => state.Global.withdrawTypeOpts,
       dispensePager: state => state.Money.Dispense.dispensePager,
       dispenseInfo: state => state.Money.Dispense.dispenseInfo,
       dispenseList: state => state.Money.Dispense.dispenseList,
@@ -252,13 +271,11 @@ export default {
       })
     },
     onInitSearchSubmit() {
-      this.searchForm = {
+      this.searchForm = Object.assign({}, initSearchForm, {
         status: this.searchForm.status,
-        number: "",
-        account: "",
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
-      };
+      })
       this.onSearchSubmit()
     },
     async onSearchSubmit() {
@@ -280,6 +297,7 @@ export default {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.dispatch(GET_DISPENSE_ACC_OPTIONS)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_WITHDRAW_TYPE_OPTIONS)
     this.$store.dispatch(GET_DISPENSE_INFO, this.searchForm)
     this.$store.dispatch(GET_DISPENSE_LIST, this.searchForm)
   }

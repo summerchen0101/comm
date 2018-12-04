@@ -39,6 +39,11 @@
         <el-form-item label="會員" prop="account">
           <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
         </el-form-item>
+        <el-form-item label="類型">
+          <el-select v-model="searchForm.type" prop="type">
+            <el-option v-for="t in typeOpts" :key="t.id" :label="t.name" :value="t.id"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item class="float-right mr-0">
           <el-button type="primary" @click="onSearchSubmit">
             <font-awesome-icon icon="search" />
@@ -75,6 +80,13 @@
         label="提領點數">
         <template slot-scope="scope">
           {{$root.toCurrency(scope.row.withdrawPoint)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        min-width="120"
+        label="請款類型">
+        <template slot-scope="scope">
+          {{toOption(typeOpts, scope.row.type)}}
         </template>
       </el-table-column>
       <el-table-column
@@ -146,7 +158,7 @@ import {
   SWITCH_WITHDRAW_DIALOG,
   SET_WITHDRAW,
   SWITCH_WITHDRAW_INFO_DIALOG,
-  GET_FEE_LIST,
+  GET_WITHDRAW_TYPE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
@@ -155,6 +167,14 @@ import WithdrawInfoDialog from '@/vendor/FPKG-150000-Money/component/Withdraw/Wi
 import moment, { startAtDay, endAtDay, dateAfter, dateBefore, getMoneyFirstDay } from '@/vendor/FPKG-120000-Util/time.js'
 import { memberAccountValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
+let initSearchForm = {
+  status: 1,
+  number: "",
+  account: "",
+  startAt: startAtDay(new Date()),
+  endAt: endAtDay(new Date()),
+  type: 0
+}
 export default {
   mixins: [commonTool],
   components: {
@@ -168,13 +188,10 @@ export default {
         {name: null, title: "存提管理"},
         {name: null, title: "提款管理"},
       ],
-      searchForm: {
-        status: 1,
-        number: "",
-        account: "",
+      searchForm: Object.assign({}, initSearchForm, {
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
-      },
+      }),
       searchFormRules: {
         account: [
           { validator: memberAccountValidator, trigger: 'blur' },
@@ -186,6 +203,7 @@ export default {
     ...mapState({
       listType: state => state.Money.Withdraw.listType,
       statusOpts: state => state.Global.statusOpts,
+      typeOpts: state => state.Global.withdrawTypeOpts,
       withdrawPager: state => state.Money.Withdraw.withdrawPager,
       withdrawInfo: state => state.Money.Withdraw.withdrawInfo,
       withdrawList: state => state.Money.Withdraw.withdrawList,
@@ -239,13 +257,11 @@ export default {
       })
     },
     onInitSearchSubmit() {
-      this.searchForm = {
+      this.searchForm = Object.assign({}, initSearchForm, {
         status: this.searchForm.status,
-        number: "",
-        account: "",
         startAt: startAtDay(new Date()),
         endAt: endAtDay(new Date()),
-      };
+      });
       this.onSearchSubmit()
     },
     async onSearchSubmit() {
@@ -265,8 +281,9 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_FEE_LIST)
+    // this.$store.dispatch(GET_FEE_LIST)
     this.$store.dispatch(GET_STATUS_OPTIONS)
+    this.$store.dispatch(GET_WITHDRAW_TYPE_OPTIONS)
     this.$store.dispatch(GET_WITHDRAW_INFO, this.searchForm)
     this.$store.dispatch(GET_WITHDRAW_LIST, this.searchForm)
   }

@@ -34,7 +34,8 @@ const mutations = {
           tradeNo: bankInfo.no,
           paymentNo: bankInfo.payment_no,
           storeName: bankInfo.from,
-        }
+        },
+        type: t.member_withdrawal_limit_id
       }
     })
     state.withdrawPager = {

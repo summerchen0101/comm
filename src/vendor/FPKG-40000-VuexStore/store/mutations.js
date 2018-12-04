@@ -14,6 +14,7 @@ import {
   GOT_GAME_TEMPLATE_OPTIONS,
   GOT_PAYWAY_OPTIONS,
   GOT_POINT_TRANSFER_OPTIONS,
+  GOT_WITHDRAW_TYPE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -55,6 +56,9 @@ const mutations = {
   },
   [GOT_POINT_TRANSFER_OPTIONS](state, list) {
     state.pointTransferOpts = list.filter(opt => opt.id !== 0)
+  },
+  [GOT_WITHDRAW_TYPE_OPTIONS](state, list) {
+    state.withdrawTypeOpts = list
   },
 }
 
