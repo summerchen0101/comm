@@ -120,7 +120,7 @@
       </el-table-column>
       <el-table-column
         v-if="listType == 1"
-        key="control"
+        key="control_1"
         fixed="right"
         width="150"
         label="操作">
@@ -131,6 +131,7 @@
       </el-table-column>
       <el-table-column
         v-else
+        key="control_2"
         fixed="right"
         width="80"
         label="操作">
