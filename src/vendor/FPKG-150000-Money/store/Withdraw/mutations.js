@@ -24,6 +24,7 @@ const mutations = {
         reason: t.reason,
         operator: t.review_user,
         withdrawAt: t.created_at,
+        updatedAt: t.updated_at,
         bankInfo: {
           bankCode: `${bankInfo.code}-${bankInfo.bank}`,
           branchName: bankInfo.branch,

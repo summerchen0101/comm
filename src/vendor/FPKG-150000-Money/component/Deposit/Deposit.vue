@@ -90,24 +90,24 @@
       <el-table-column
         min-width="120"
         label="付款類型">
-         <template slot-scope="scope">
-           <span>{{scope.row.payTypeName}}</span>
-           <span>{{scope.row.payTypeAtm}}</span>
-         </template>
+        <template slot-scope="scope">
+          <span>{{scope.row.payTypeName}}</span>
+          <span>{{scope.row.payTypeAtm}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         min-width="150"
         label="申請時間">
-         <template slot-scope="scope">
-           <span>{{toShortDateTime(scope.row.createdAt)}}</span>
-         </template>
+        <template slot-scope="scope">
+          <span>{{toShortDateTime(scope.row.createdAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         min-width="150"
         label="截止時間">
         <template slot-scope="scope">
-           <span>{{scope.row.expireAt}}</span>
-         </template>
+          <span>{{scope.row.expireAt}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
@@ -121,8 +121,15 @@
         v-if="listType != 1"
         key="operator"
         prop="operator"
-        min-width="120"
+        min-width="100"
         label="審核人員">
+      </el-table-column>
+      <el-table-column
+        width="120"
+        label="審核時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 1"
