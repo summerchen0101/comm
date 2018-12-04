@@ -30,6 +30,7 @@ const mutations = {
         operator: t.review_user,
         createdAt: t.created_at,
         depositAt: t.deposit_at,
+        updatedAt: t.updated_at,
         expireAt: t.expire_at,
         bankInfo: {
           bankCode: `${bankInfo.code}-${bankInfo.bank}`,

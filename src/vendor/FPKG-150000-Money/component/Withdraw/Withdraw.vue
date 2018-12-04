@@ -88,9 +88,9 @@
       <el-table-column
         min-width="150"
         label="申請時間">
-         <template slot-scope="scope">
-           <span>{{toShortDateTime(scope.row.withdrawAt)}}</span>
-         </template>
+        <template slot-scope="scope">
+          <span>{{toShortDateTime(scope.row.withdrawAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 3"
@@ -98,6 +98,13 @@
         prop="operator"
         min-width="120"
         label="審核人員">
+      </el-table-column>
+      <el-table-column
+        width="120"
+        label="審核時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         v-if="listType == 1"
