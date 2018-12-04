@@ -16,11 +16,12 @@ const mutations = {
       branchName: t.branch,
       accountName: t.name,
       bankAccount: t.account,
-      checkingPoint: t.debit || '-',
-      savedPoint: t.credit || '-',
+      checkingPoint: t.debit || "-",
+      savedPoint: t.credit || "-",
       isPrimary: t.active == 1,
       operation: t.operation,
-    }))
+      updatedAt: t.updated_at,
+    }));
     state.depositAccPager = {
       page: result.current_page,
       count: result.total,

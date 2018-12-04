@@ -15,6 +15,7 @@ const mutations = {
       forever: t.forever == 1,
       startAt: t.start_at,
       endAt: t.end_at,
+      updatedAt: t.updated_at,
       operation: t.operation,
     }))
     state.marqueePager = {

@@ -56,11 +56,18 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="100"
         label="狀態">
         <template slot-scope="scope">
           <span :class="{'text-danger': scope.row.status == 2, 'text-success': scope.row.status == 1}">
             {{scope.row.statusName}}
           </span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
         </template>
       </el-table-column>
       <el-table-column

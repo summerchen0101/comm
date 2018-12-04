@@ -18,6 +18,7 @@ const mutations = {
       bankName: t.bank,
       branchName: t.branch,
       createdAt: t.created_at,
+      updatedAt: t.updated_at,
       accountName: t.name,
       bankAccount: t.bank_account,
       isDuplicated: t.account_color,

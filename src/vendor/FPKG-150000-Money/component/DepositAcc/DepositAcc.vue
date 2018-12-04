@@ -46,6 +46,12 @@
         </template>
       </el-table-column>
       <el-table-column
+        label="更新時間">
+        <template slot-scope="scope">
+          <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         label="操作"
         width="280">
@@ -85,6 +91,7 @@
 
 <script>
 import DepositAccDialog from '@/vendor/FPKG-150000-Money/component/DepositAcc/DepositAccDialog.vue';
+import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js';
 import { 
   GET_DEPOSIT_ACC_LIST, 
   SWITCH_DEPOSIT_ACC_DIALOG,
@@ -98,6 +105,7 @@ import {
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
+  mixins: [commonTool],
   components: {
     DepositAccDialog,
   },

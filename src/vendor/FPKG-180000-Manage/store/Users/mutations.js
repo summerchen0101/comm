@@ -27,6 +27,7 @@ const mutations = {
         permission: t.group,
         loginAt: t.login_at,
         createdAt: t.created_at,
+        updatedAt: t.updated_at,
         status: t.active,
         statusName: statusIndex > -1 ? statusOpts[statusIndex].label : '?',
         ip: t.ip.map(t => t.id),

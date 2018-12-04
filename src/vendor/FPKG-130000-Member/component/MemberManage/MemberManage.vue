@@ -87,6 +87,14 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="180"
+        prop="modified_at"
+        label="更新時間">
+          <template slot-scope="scope">
+            <span>{{toShortDateTimeNoSecond(scope.row.modified_at)}}</span>
+          </template>
+      </el-table-column>
+      <el-table-column
         fixed="right"
         label="歷程"
         width="80">

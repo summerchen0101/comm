@@ -18,7 +18,8 @@ const mutations = {
       bankAccount: t.account,
       isPrimary: t.active == 1,
       operation: t.operation,
-    }))
+      updatedAt: t.updated_at,
+    }));
     state.dispenseAccPager = {
       page: result.current_page,
       count: result.total,

@@ -18,17 +18,16 @@ export async function apiHub(method, url, data, params) {
       headers: {
         Authorization: `Bearer ${Store.state.Account.auth}`
       },
-      validateStatus: (status) => {
-        if(status === 500) {
-          alert(`API Error`)
-        }
-        else if(status === 401) {
-          Router.push({name: 'Login'})
+      validateStatus: status => {
+        if (status === 500) {
+          alert(`API Error`);
+        } else if (status === 401) {
+          Router.push({ name: "Login" });
         }
         // return (status >= 200 && status < 300) || status === 422
-        return true
-      },
-    })
+        return true;
+      }
+    });
     Store.commit(SWITCH_LOADING_COVER, false)
     // if(_response.status === 422) {
     //   alert(`系統忙碌中: ${_response.status}`)

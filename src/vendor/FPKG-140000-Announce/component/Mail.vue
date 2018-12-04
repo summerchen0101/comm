@@ -18,6 +18,13 @@
         <span v-else>{{ toShortDateTimeNoSecond(scope.row.send_at) }}</span>
       </template>
     </el-table-column>
+    <el-table-column
+      width="120"
+      label="更新時間">
+      <template slot-scope="scope">
+        <span>{{toShortDateTimeNoSecond(scope.row.updated_at)}}</span>
+      </template>
+    </el-table-column>
     <el-table-column label="操作" width="320" align="center" fixed="right">
       <template slot-scope="scope">
         <el-button size="mini" type="success" @click="sendMail(scope.row.id)" :disabled="scope.row.send_at!=='-'">送出</el-button>
