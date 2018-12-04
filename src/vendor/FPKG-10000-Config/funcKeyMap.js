@@ -5,6 +5,7 @@ export default [
   {funcKey: 1101, id:'manage', title: '會員管理'},
   {funcKey: 1102, id:'search', title: '會員搜尋'},
   {funcKey: 1103, id:'bank', title: '銀行帳戶管理'},
+  {funcKey: 1104, id:'point', title: '會員點數歷程'},
   {funcKey: 12, id:'', title: '公告管理'},
   {funcKey: 1201, id:'', title: '跑馬燈管理'},
   {funcKey: 13, id:'money', title: '存提管理'},

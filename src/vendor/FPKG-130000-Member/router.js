@@ -30,6 +30,14 @@ export const MemberSearch = {
   component: () => import('./component/MemberSearch/MemberSearch.vue')
 }
 
+export const PointHistory = {
+  path: '/member/point-history',
+  name: 'PointHistory',
+  title: "會員點數歷程",
+  props: {funcKey: 1104},
+  component: () => import('./component/PointHistory/PointHistory.vue')
+}
+
 export const BankAcc = {
   path: '/member/bank',
   name: 'BankAcc',
@@ -50,6 +58,7 @@ export const Member = {
     MemberDetail,
     MemberGame,
     MemberSearch,
+    PointHistory,
     BankAcc,
   ]
 }

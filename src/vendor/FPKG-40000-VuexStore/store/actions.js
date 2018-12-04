@@ -25,6 +25,8 @@ import {
   SET_GAME_LIST,
   GET_PAYWAY_OPTIONS,
   GOT_PAYWAY_OPTIONS,
+  GET_POINT_TRANSFER_OPTIONS,
+  GOT_POINT_TRANSFER_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import storage from 'store2'
@@ -114,6 +116,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/payway')
     if(res.code === 200001) {
       commit(GOT_PAYWAY_OPTIONS, res.result)
+    }
+  },
+  async [GET_POINT_TRANSFER_OPTIONS]({commit}) {
+    let res = await apiHub('get', 'api/v1/dropdown/transfer_type')
+    if(res.code === 200001) {
+      commit(GOT_POINT_TRANSFER_OPTIONS, res.result)
     }
   },
 }

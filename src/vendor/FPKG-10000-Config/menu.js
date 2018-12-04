@@ -19,6 +19,12 @@ export default [
         funcKey: 1102,
       },
       {
+        name: "PointHistory",
+        title: "會員點數歷程",
+        path: "/member/point-history",
+        funcKey: 1104,
+      },
+      {
         name: "BankAcc",
         title: "銀行帳戶管理",
         path: "/member/bank",

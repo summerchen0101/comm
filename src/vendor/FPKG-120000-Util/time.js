@@ -14,6 +14,8 @@ export const dateBefore = (ta, tb) => moment(ta) > moment(tb)
 // 存提管理使用，取得可以搜尋最早起始時間
 export const getMoneyFirstDay = () =>moment().month(moment().month() - 2).startOf('month').valueOf()
 
+export const getTimeDiff = (startAt, endAt, type) => moment(startAt).diff(endAt, type, true)
+
 export const getWeekRange = (addWeek = 0) => {
   let start = moment().add('week', addWeek).startOf('week')
   let end = moment().add('week', addWeek).endOf('week')
