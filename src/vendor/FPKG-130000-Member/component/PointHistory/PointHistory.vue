@@ -185,7 +185,7 @@ export default {
   methods: {
     toWalletName(value) {
       if(typeof value === 'number') {
-        return this.$root.toOption(gameTypeOpts, scope.row.from)
+        return this.$root.toOption(this.gameTypeOpts, value)
       }
       else if(value === 'wallet') {
         return '主錢包'
