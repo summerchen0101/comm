@@ -100,7 +100,7 @@
       <el-table-column
         label="狀態">
         <template slot-scope="scope">
-          {{ toOption(typeOpts, scope.row.type) }}
+          {{ $root.toOption(typeOpts, scope.row.type) }}
          </template>
       </el-table-column>
       <el-table-column
@@ -184,7 +184,7 @@ export default {
   methods: {
     toWalletName(value) {
       if(typeof value === 'number') {
-        return toOption(gameTypeOpts, scope.row.from)
+        return this.$root.toOption(gameTypeOpts, scope.row.from)
       }
       else if(value === 'wallet') {
         return '主錢包'
