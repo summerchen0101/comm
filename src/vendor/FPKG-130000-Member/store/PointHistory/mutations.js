@@ -2,6 +2,7 @@
 
 import { 
   GOT_POINT_HISTORY_LIST,
+  CLEAR_POINT_HISTORY_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 
@@ -29,6 +30,10 @@ const mutations = {
       perpage: result.per_page,
     }
   },
+  [CLEAR_POINT_HISTORY_LIST](state) {
+    state.pointHistoryList  = []
+    state.pointHistoryPager  = null
+  }
 }
 
 export default mutations

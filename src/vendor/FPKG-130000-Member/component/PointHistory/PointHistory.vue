@@ -125,6 +125,7 @@ import {
   GET_GAME_TYPE_OPTIONS,
   GET_POINT_TRANSFER_OPTIONS,
   GET_POINT_HISTORY_LIST,
+  CLEAR_POINT_HISTORY_LIST,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
@@ -232,6 +233,9 @@ export default {
     await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
     await this.$store.dispatch(GET_POINT_TRANSFER_OPTIONS)
     this.setSearchForm()
+  },
+  beforeDestroy() {
+    this.$store.commit(CLEAR_POINT_HISTORY_LIST)
   }
 }
 </script>
