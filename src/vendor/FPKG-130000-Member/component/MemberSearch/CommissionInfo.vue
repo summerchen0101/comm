@@ -13,7 +13,11 @@
         </tr>
         <tr>
           <th>本週直屬總有效投注額</th>
-          <td>{{$root.toCurrencyDecimal(commissionInfo.directValidityBetting)}}</td>
+          <td>
+            <span class="mr-3" v-for="item in commissionInfo.directValidityBetting" :key="item.id">
+              <b>{{item.group}}</b>: {{$root.toCurrency(item.amount) || '-'}}
+            </span>
+          </td>
         </tr>
         <tr>
           <th>當前每萬元返還</th>
