@@ -9,6 +9,7 @@ import {
   CHANGED_WITHDRAW_LIST_TYPE,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
+import Router from '@/router'
 
 const mutations = {
   [GOT_WITHDRAW_LIST](state, result) {
@@ -19,7 +20,7 @@ const mutations = {
         number: t.no,
         account: t.account,
         nick: t.nickname,
-        withdrawPoint: t.credit,
+        withdrawPoint: Router.app.$numeral(t.credit).value(),
         actualWithdrawPoint: t.actual_credit,
         status: t.status,
         reason: t.reason,
@@ -39,9 +40,9 @@ const mutations = {
           pocketPoint: bankInfo.balance,
           disallowWithdrawPoint: bankInfo.below_norm_credit,
           allowWithdrawPoint: bankInfo.approve_norm_credit,
-          fee: bankInfo.fee,
-          disallowWithdrawFee: bankInfo.below_norm_fee,
-          freight: bankInfo.freight,
+          fee: Router.app.$numeral(bankInfo.fee).value(),
+          disallowWithdrawFee: Router.app.$numeral(bankInfo.below_norm_fee).value(),
+          freight: Router.app.$numeral(bankInfo.freight).value(),
         },
         withdrawType: t.member_withdrawal_limit_id
       }

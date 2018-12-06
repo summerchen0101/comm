@@ -19,8 +19,8 @@
           <el-form-item label="帳號">
             <el-input :value="withdraw.account" disabled></el-input>
           </el-form-item>
-          <el-form-item label="實際出款">
-            <el-input :value="withdraw.actualWithdrawPoint" disabled></el-input>
+          <el-form-item v-if="withdraw.bankInfo" label="實際出款">
+            <el-input :value="$root.toCurrency(currentActualWithdrawPoint)" disabled></el-input>
           </el-form-item>
           
           <!-- 僅「網路轉帳」及「臨櫃專存」時顯示銀行資訊 -->
@@ -50,19 +50,31 @@
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.pocketPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="未達流水點數">
-            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawPoint)" disabled></el-input>
+            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawPoint)" disabled></el-input> -->
+            <el-input value="-" disabled></el-input>
           </el-form-item>
           <el-form-item label="達流水可提領">
-            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.allowWithdrawPoint)" disabled></el-input>
+            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.allowWithdrawPoint)" disabled></el-input> -->
+            <el-input value="-" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款點數">
             <el-input :value="$root.toCurrency(withdraw.withdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款手續費">
-            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.fee)" disabled></el-input>
+            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.fee)" 
+                      :disabled="type !== 'confirm'" 
+                      @blur="getCurrentActualWithdrawPoint"></el-input> -->
+            <el-input v-model.number.trim="form.fee" 
+                      :disabled="type !== 'confirm'" 
+                      @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="未達流水手續費">
-            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawFee)" disabled></el-input>
+            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawFee)" 
+                      :disabled="type !== 'confirm'" 
+                      @blur="getCurrentActualWithdrawPoint"></el-input> -->
+            <el-input v-model.number.trim="form.disallowWithdrawFee" 
+                      :disabled="type !== 'confirm'" 
+                      @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="運費">
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.freight)" disabled></el-input>
@@ -91,14 +103,16 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 let initForm = {
         reason: "",
-        fee: 0
+        fee: 0,
+        disallowWithdrawFee: 0,
       }
 
 export default {
   data() {
     return {
       form: Object.assign({}, initForm),
-      type: ''
+      type: '',
+      currentActualWithdrawPoint: ""
     }
   },
   computed: {
@@ -113,7 +127,10 @@ export default {
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
         ]
       }
-    }
+    },
+  },
+  watch: {
+    "form": "getCurrentActualWithdrawPoint"
   },
   methods: {
     ...mapMutations([
@@ -134,7 +151,19 @@ export default {
           })
         }
       });
-      
+    },
+    getCurrentActualWithdrawPoint() {
+      console.log(
+        this.withdraw.withdrawPoint,
+        this.form.fee,
+        this.form.disallowWithdrawFee,
+        this.withdraw.bankInfo.freight,
+      )
+      this.currentActualWithdrawPoint = this.withdraw.withdrawPoint - (
+        this.form.fee +
+        this.form.disallowWithdrawFee +
+        this.withdraw.bankInfo.freight
+      )
     }
   },
   
