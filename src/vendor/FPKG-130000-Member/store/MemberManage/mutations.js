@@ -35,6 +35,7 @@ const mutations = {
       status: t.active,
       isVerified: t.mobile_verify,
       createdAt: t.created_at,
+      modified_at: t.modified_at,
       operation: t.operation,
     }))
     state.memberPager = {
