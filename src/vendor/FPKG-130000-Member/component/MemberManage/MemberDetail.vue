@@ -68,7 +68,7 @@
         <el-col :span="16">
           <el-form-item>
             <div slot="label">
-              <el-checkbox class="mb-0" v-model="form.isLevelActive">啟用</el-checkbox>
+              <el-checkbox class="mb-0" v-model="form.isLevelActive" :disabled="!member.allowSettingLevel">啟用</el-checkbox>
             </div>
             <el-row :gutter="20">
               <el-col :span="8">
