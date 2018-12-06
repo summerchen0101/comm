@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="t in commissionInfo.list">
+        <tr v-for="t,i in commissionInfo.list" :key="i">
           <td>{{t.group}}: {{t.feedback}}</td>
           <td>{{t.feat}}</td>
           <td>{{t.brokerage}}</td>

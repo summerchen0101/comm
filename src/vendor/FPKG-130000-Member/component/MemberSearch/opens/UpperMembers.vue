@@ -67,7 +67,8 @@
       <el-table-column
         label="下級總業績">
         <template slot-scope="scope">
-          <a v-for="t in scope.row.downlineBetting" 
+          <a v-for="t,i in scope.row.downlineBetting" 
+            :key="i"
             href=""
             @click.prevent="SET_COMMISSION_DIALOG(scope.row)"
             style="display: block; line-height: 18px">
