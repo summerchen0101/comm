@@ -99,6 +99,7 @@ const mutations = {
       lineID: result.line_id,
       memberDepositLimit: result.member_deposit_limit_id,
 
+      allowSettingLevel: result.brokerage_level_active_lock == "enable",
       isLevelActive: result.brokerage_level_active == 1,
       startLevel: result.brokerage_level_id,
       commisionStartAt: result.brokerage_start,
