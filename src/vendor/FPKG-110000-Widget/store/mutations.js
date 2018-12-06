@@ -6,8 +6,10 @@ import {
   CLEAR_CAPTCH, 
   SET_BREADCRUMB, 
   SWITCH_HISTORY_DIALOG ,
+  SET_COMMISSION_DIALOG ,
   GOT_HISTORY ,
   SWITCH_PASSWD_DIALOG ,
+  CLOSE_COMMISSION_DIALOG ,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -31,6 +33,14 @@ const mutations = {
   },
   [SWITCH_HISTORY_DIALOG](state, status) {
     state.historyDialogVisible = status
+  },
+  [CLOSE_COMMISSION_DIALOG](state, status) {
+    state.commissionDialogVisible = false
+  },
+  [SET_COMMISSION_DIALOG](state, member) {
+    state.commissionMember = member
+    state.commissionInfo = member.downlineBettingInfo
+    state.commissionDialogVisible = true
   },
   [GOT_HISTORY](state, {result, lang, title}) {
     state.historyTitle = title

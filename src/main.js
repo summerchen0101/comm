@@ -31,6 +31,7 @@ import LoadingCover from '@/vendor/FPKG-110000-Widget/component/LoadingCover.vue
 import SearchBar from '@/vendor/FPKG-110000-Widget/component/SearchBar.vue';
 import SubmitBar from '@/vendor/FPKG-110000-Widget/component/SubmitBar.vue';
 import HistoryDialog from '@/vendor/FPKG-110000-Widget/component/HistoryDialog.vue';
+import CommissionDialog from '@/vendor/FPKG-110000-Widget/component/CommissionDialog.vue';
 import PasswdDialog from '@/vendor/FPKG-110000-Widget/component/PasswdDialog.vue';
 import Validation from '@/vendor/FPKG-110000-Widget/component/Validation.vue';
 
@@ -44,6 +45,7 @@ Vue.component("SearchBar", SearchBar)
 Vue.component("SubmitBar", SubmitBar)
 Vue.component("PasswdDialog", PasswdDialog)
 Vue.component("HistoryDialog", HistoryDialog)
+Vue.component("CommissionDialog", CommissionDialog)
 Vue.component("Validation", Validation)
 Vue.config.productionTip = false
 

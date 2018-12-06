@@ -7,7 +7,10 @@ const state = {
   historyDialogVisible: false,
   historyList: [],
   historyPager: null,
-  historyTitle: ""
+  historyTitle: "",
+  commissionMember: null,
+  commissionInfo: null,
+  commissionDialogVisible: false,
 };
 
 

@@ -67,7 +67,12 @@
       <el-table-column
         label="下級總業績">
         <template slot-scope="scope">
-          {{$root.toCurrencyDecimal(scope.row.downlineBetting)}}
+          <a v-for="t in scope.row.downlineBetting" 
+            href=""
+            @click.prevent="SET_COMMISSION_DIALOG(scope.row)"
+            style="display: block; line-height: 18px">
+              {{t.group}}: {{t.amount}}
+          </a>
         </template>
       </el-table-column>
       <el-table-column
@@ -100,11 +105,12 @@
               :on-page-changed="onPageChanged"
               :count="directMemberPager.count"
               :perpage="directMemberPager.perpage"></Paginator>
+    <CommissionDialog v-if="$store.state.Widget.commissionDialogVisible"></CommissionDialog>
   </div>
 </template>
 
 <script>
-import { GET_MEMBER_STATUS_OPTIONS, GET_DIRECT_MEMBER_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { GET_MEMBER_STATUS_OPTIONS, GET_DIRECT_MEMBER_LIST, SET_COMMISSION_DIALOG } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 
@@ -129,6 +135,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations([
+      SET_COMMISSION_DIALOG
+    ]),
     onSearchSubmit() {
       this.$store.dispatch(GET_DIRECT_MEMBER_LIST, {...this.searchForm, id: this.$route.params.id})
     },
