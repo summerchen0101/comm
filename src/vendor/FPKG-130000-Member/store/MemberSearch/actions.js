@@ -68,7 +68,7 @@ const actions = {
       active: _d.status,
       page: _d.page,
     }
-    let res = await apiHub("get", `api/v1/member_search/${_d.id}/below/parent`, null, params)
+    let res = await apiHub("get", `api/v1/member_search/${_d.id}/below`, null, params)
     if(res.code === 200001) {
       commit(GOT_DIRECT_MEMBER_LIST, res.result)
     }
@@ -80,7 +80,7 @@ const actions = {
       active: _d.status,
       page: _d.page,
     }
-    let res = await apiHub("get", `api/v1/member_search/${_d.id}/below/upper`, null, params)
+    let res = await apiHub("get", `api/v1/member_search/${_d.id}/below`, null, params)
     if(res.code === 200001) {
       commit(GOT_UPPER_MEMBER_LIST, res.result)
     }

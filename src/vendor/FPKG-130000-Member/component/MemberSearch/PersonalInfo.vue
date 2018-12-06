@@ -46,7 +46,7 @@
             </router-link>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <th>代理會員數量</th>
           <td>
             <router-link :to="{name: 'MemberUpperMembers', params: {
@@ -58,7 +58,7 @@
               {{personalInfo.upperMembers}}
             </router-link>
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <th>會員存款條件</th>
           <td>{{toOption(memberDepositLimitOpts, personalInfo.dialyDepositLimit)}}</td>

@@ -53,7 +53,7 @@
         label="手機號碼">
       </el-table-column>
       <el-table-column
-        label="本週業績">
+        label="本週總業績">
         <template slot-scope="scope">
           {{$root.toCurrencyDecimal(scope.row.selfValidityBetting)}}
         </template>
@@ -62,6 +62,18 @@
         label="本週總佣金">
         <template slot-scope="scope">
           {{$root.toCurrencyDecimal(scope.row.allowCommision)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="下級總業績">
+        <template slot-scope="scope">
+          {{$root.toCurrencyDecimal(scope.row.downlineBetting)}}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="下線人數">
+        <template slot-scope="scope">
+          {{$root.toCurrency(scope.row.downlineCount)}}
         </template>
       </el-table-column>
       <el-table-column

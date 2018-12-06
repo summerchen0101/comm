@@ -103,8 +103,11 @@ const mutations = {
       phone: t.mobile,
       status: t.active,
       createdAt: t.created_at,
-      selfValidityBetting: t.feat,
-      allowCommision: t.brokerage,
+      selfValidityBetting: t.feat, // 業績
+      allowCommision: t.brokerage, // 佣金
+      downlineBetting: t.downline_feat, // 下級總業績
+      downlineCount: t.downline_count, // 下線人數
+      downlineBettingInfo: t.downline_feat_info, // 下級總業績光箱資訊
     }))
     state.directMemberPager = {
       page: result.current_page,
@@ -121,8 +124,11 @@ const mutations = {
       phone: t.mobile,
       status: t.active,
       createdAt: t.created_at,
-      selfValidityBetting: t.feat,
-      allowCommision: t.brokerage,
+      selfValidityBetting: t.feat, // 業績
+      allowCommision: t.brokerage, // 佣金
+      downlineBetting: t.downline_feat, // 下級總業績
+      downlineCount: t.downline_count, // 下線人數
+      downlineBettingInfo: t.downline_feat_info, // 下級總業績光箱資訊
     }))
     state.upperMemberPager = {
       page: result.current_page,
