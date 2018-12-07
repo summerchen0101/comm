@@ -112,7 +112,9 @@
         label="審核人員">
       </el-table-column>
       <el-table-column
+        v-if="listType != 1"
         width="120"
+        key="updateAt"
         label="審核時間">
         <template slot-scope="scope">
           <span>{{toShortDateTimeNoSecond(scope.row.updatedAt)}}</span>
