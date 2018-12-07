@@ -12,6 +12,8 @@ export const startAtDay = (t) => moment(t).startOf('day').format('YYYY-MM-DD HH:
 export const endAtDay = (t) => moment(t).endOf('day').format('YYYY-MM-DD HH:mm:ss')
 export const dateAfter = (ta, tb) => moment(ta) < moment(tb)
 export const dateBefore = (ta, tb) => moment(ta) > moment(tb)
+
+
 // 存提管理使用，取得可以搜尋最早起始時間
 export const getMoneyFirstDay = () =>moment().month(moment().month() - 2).startOf('month').valueOf()
 
