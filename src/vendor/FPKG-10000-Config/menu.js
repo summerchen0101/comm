@@ -135,6 +135,27 @@ export default [
     ]
   },
   {
+    name: "Platform",
+    title: "平台管理",
+    path: "/platform",
+    icon: "chart-bar",
+    funcKey: 17,
+    children: [
+      {
+        name: "PlatformGame",
+        title: "遊戲管理",
+        path: "/platform/game",
+        funcKey: 1701,
+      },
+      {
+        name: "PlatformAd",
+        title: "廣告管理",
+        path: "/platform/ad",
+        funcKey: 1702,
+      },
+    ]
+  },
+  {
     name: "Manage",
     title: "後台管理",
     path: "/manage",

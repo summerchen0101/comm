@@ -12,6 +12,7 @@ import BettingInfo from './vendor/FPKG-160000-BettingInfo/store'
 import Report from './vendor/FPKG-170000-Report/store'
 import Manage from './vendor/FPKG-180000-Manage/store'
 import Home from './vendor/FPKG-190000-Home/store'
+import Platform from './vendor/FPKG-200000-Platform/store'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ const store = {
     Manage,
     Member,
     Home,
+    Platform,
   },
 };
 

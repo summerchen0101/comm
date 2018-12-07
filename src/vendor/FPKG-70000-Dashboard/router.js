@@ -7,6 +7,7 @@ import { BettingInfo } from '@/vendor/FPKG-160000-BettingInfo/router.js'
 import { Report } from '@/vendor/FPKG-170000-Report/router.js'
 import { Manage } from '@/vendor/FPKG-180000-Manage/router.js'
 import { Home } from '@/vendor/FPKG-190000-Home/router.js'
+import { Platform } from '@/vendor/FPKG-200000-Platform/router.js'
 
 export default {
   path: '/dashboard',
@@ -21,5 +22,6 @@ export default {
     Manage,
     Member,
     Home,
+    Platform,
   ]
 }
