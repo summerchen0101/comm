@@ -6,6 +6,7 @@ export const toShortDateTime = (dt) => dt ? moment(dt).format('MM-DD HH:mm:ss') 
 export const toExpireDateTime = (dt) => dt ? moment(dt).format('MM-DD') + ' 23:59:59' : "-"
 export const toShortDateTimeNoSecond = (dt) => dt ? moment(dt).format('MM-DD HH:mm') : "-"
 export const toDate = (dt) => dt ? moment(dt).format('YYYY-MM-DD') : "-"
+export const toTime = (dt) => dt ? moment(dt).format('HH:mm:ss') : "-"
 export const toShortDate = (dt) => dt ? moment(dt).format('MM-DD') : "-"
 export const startAtDay = (t) => moment(t).startOf('day').format('YYYY-MM-DD HH:mm:ss')
 export const endAtDay = (t) => moment(t).endOf('day').format('YYYY-MM-DD HH:mm:ss')
