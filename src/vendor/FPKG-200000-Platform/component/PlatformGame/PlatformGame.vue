@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="g in gameMaintenanceList" :key="g.id">
+          <tr v-for="g in formList" :key="g.id">
             <th>{{g.name}}</th>
             <td>
               <el-radio-group v-model="g.active">
@@ -47,6 +47,7 @@ export default {
         {name: null, title: "平台管理"},
         {name: null, title: "遊戲管理"},
       ],
+      formList: []
     }
   },
   computed: {
@@ -55,23 +56,43 @@ export default {
     }),
   },
   methods: {
-    onSubmit() {
-      this.$store.dispatch(SET_GAME_MAINTENANCE_LIST, this.gameMaintenanceList)
+    async onSubmit() {
+      await this.$store.dispatch(SET_GAME_MAINTENANCE_LIST, this.gameMaintenanceList)
+      await this.$store.dispatch(GET_GAME_MAINTENANCE_LIST)
     },
     onCancel() {
-      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
-        confirmButtonText: '確定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        next()
-      }).catch(() => {
-      });
+      if(!this.$lodash.isEqual(this.formList, this.gameMaintenanceList)) {
+        this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.setFormList()
+        }).catch(() => {
+        });
+      }
+      
     },
+    setFormList() {
+      this.formList = this.$lodash.cloneDeep(this.gameMaintenanceList)
+    }
   },
-  created() {
+  async created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.$store.dispatch(GET_GAME_MAINTENANCE_LIST)
+    await this.$store.dispatch(GET_GAME_MAINTENANCE_LIST)
+    this.setFormList()
+  },
+  beforeRouteLeave(to, from, next) {
+    if(!this.$lodash.isEqual(this.formList, this.gameMaintenanceList)) {
+        this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          next()
+        }).catch(() => {
+        });
+      }
   }
 }
 </script>
