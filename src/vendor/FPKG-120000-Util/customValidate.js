@@ -214,3 +214,17 @@ export function permissionNameValidator(rules, value, cb) {
     cb()
   }
 }
+
+/**
+ * 維護後開啟時間驗證
+ */
+export function openTimeValidator(rules, value, cb) {
+  if(!value) {
+    cb("開啟時間為必填")
+  }
+  else if(!dateAfter(this.$moment(), value)) {
+    cb("開啟時間不可早於現在時間")
+  }else {
+    cb()
+  }
+}
