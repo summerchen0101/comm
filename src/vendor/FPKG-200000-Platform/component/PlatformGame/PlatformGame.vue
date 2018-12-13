@@ -72,8 +72,9 @@ export default {
     async onSubmit() {
       this.$refs.gameForm.validate(async (valid) => {
         if (valid) {
-          await this.$store.dispatch(SET_GAME_MAINTENANCE_LIST, this.gameMaintenanceList)
+          await this.$store.dispatch(SET_GAME_MAINTENANCE_LIST, this.gameForm.list)
           await this.$store.dispatch(GET_GAME_MAINTENANCE_LIST)
+          this.setFormList()
         } else {
           return false;
         }
@@ -94,6 +95,7 @@ export default {
       
     },
     setFormList() {
+      this.$refs.gameForm.clearValidate()
       this.gameForm.list = this.$lodash.cloneDeep(this.gameMaintenanceList)
     }
   },
