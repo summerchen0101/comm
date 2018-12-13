@@ -45,7 +45,8 @@
       <el-table-column
         label="帳號(暱稱)">
         <template slot-scope="scope">
-          {{scope.row.account}} ({{scope.row.nick}})
+          {{scope.row.account}} <br>
+          ({{scope.row.nick}})
         </template>
       </el-table-column>
       <el-table-column
@@ -82,9 +83,11 @@
           {{$root.toCurrency(scope.row.downlineCount)}}
         </template>
       </el-table-column>
-      <el-table-column
-        prop="createdAt"
-        label="建立日期">
+      <el-table-column label="建立日期">
+        <template slot-scope="scope">
+          {{$root.toDate(scope.row.createdAt)}} <br>
+          {{$root.toTime(scope.row.createdAt)}}
+        </template>
       </el-table-column>
       <el-table-column
         label="狀態">
