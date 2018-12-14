@@ -106,15 +106,18 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if(!this.$lodash.isEqual(this.gameForm.list, this.gameMaintenanceList)) {
-        this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
-          confirmButtonText: '確定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          next()
-        }).catch(() => {
-        });
-      }
+      this.$confirm('你確定放棄所有設定之變更嗎?', '提示', {
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        next()
+      }).catch(() => {
+      });
+    }
+    else {
+      next()
+    }
   }
 }
 </script>
