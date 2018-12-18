@@ -206,10 +206,14 @@ export default {
     onFilterChanged() {
       this.isSelectedAllFilters = this.searchForm.type.length > 0 && this.searchForm.type.length === this.typeOpts.length
       this.isIndeterminate = this.searchForm.type.length > 0 && this.searchForm.type.length !== this.typeOpts.length
+      this.onSearchSubmit()
     },
     onFilterAllChanged() {
       this.searchForm.type = this.isSelectedAllFilters ? this.typeOpts.map(opt => opt.id) : []
       this.isIndeterminate = this.searchForm.type.length > 0 && this.searchForm.type.length !== this.typeOpts.length
+      if(this.isSelectedAllFilters) {
+        this.onSearchSubmit()
+      }
     },
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
