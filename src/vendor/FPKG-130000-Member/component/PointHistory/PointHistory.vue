@@ -33,7 +33,7 @@
             <font-awesome-icon icon="search" />
           </el-button>
         </el-form-item>
-        <el-form-item label="類型" style="margin-top: 10px">
+        <el-form-item label="類型" prop="type" style="margin-top: 10px">
           <el-checkbox :indeterminate="isIndeterminate" v-model="isSelectedAllFilters" @change="onFilterAllChanged">全部</el-checkbox>
           <el-checkbox v-for="opt in typeOpts" 
                       :key="opt.id" 
@@ -155,6 +155,9 @@ export default {
         account: [
           { required: true, message: '帳號為必填', trigger: 'blur' },
           { validator: memberAccountValidator, trigger: 'blur' },
+        ],
+        type: [
+          { required: true, message: '篩選類型至少需勾選一個項目', trigger: 'blur' },
         ],
       },
     }
