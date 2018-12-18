@@ -33,7 +33,7 @@
             <font-awesome-icon icon="search" />
           </el-button>
         </el-form-item>
-        <el-form-item label="類型">
+        <el-form-item label="類型" style="margin-top: 10px">
           <el-checkbox :indeterminate="isIndeterminate" v-model="isSelectedAllFilters" @change="onFilterAllChanged">全部</el-checkbox>
           <el-checkbox v-for="opt in typeOpts" 
                       :key="opt.id" 
