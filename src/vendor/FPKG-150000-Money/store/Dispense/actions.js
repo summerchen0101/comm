@@ -49,8 +49,9 @@ const actions = {
     let data = {
       review_user_id: _d.operatorId,
       action: _d.action == 'confirm' ? 1 : _d.action === 'back' ? 3 : 2,
-      reason: _d.action == 'cancel' ? _d.reason : undefined,
-      dispense_account_id: _d.action == 'confirm' ? _d.dispenseAcc : undefined
+      reason: _d.action == _d.reason || undefined,
+      dispense_account_id: _d.dispenseAcc || undefined,
+      member_withdrawal_limit_id: _d.withdrawType || 0
     }
     let res = await apiHub("put", `api/v1/dispense/${_d.id}`, data)
     if(res.code === 200001) {
