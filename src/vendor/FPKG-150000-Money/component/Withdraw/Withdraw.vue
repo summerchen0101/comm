@@ -79,7 +79,7 @@
         min-width="120"
         label="提領點數">
         <template slot-scope="scope">
-          {{$root.toCurrency(scope.row.withdrawPoint)}}
+          {{$root.toCurrency(scope.row.bankInfo.withdrawPoint)}}
         </template>
       </el-table-column>
       <el-table-column

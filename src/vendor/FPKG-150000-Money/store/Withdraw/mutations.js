@@ -20,14 +20,15 @@ const mutations = {
         number: t.no,
         account: t.account,
         nick: t.nickname,
-        withdrawPoint: Router.app.$numeral(t.credit).value(),
-        actualWithdrawPoint: t.actual_credit,
         status: t.status,
         reason: t.reason,
         operator: t.review_user,
         withdrawAt: t.created_at,
         updatedAt: t.updated_at,
         bankInfo: {
+          withdrawPoint: Router.app.$numeral(bankInfo.credit).value(),
+          actualWithdrawPoint: bankInfo.actual_credit,
+
           bankCode: `${bankInfo.code}-${bankInfo.bank}`,
           branchName: bankInfo.branch,
           accountName: bankInfo.name,

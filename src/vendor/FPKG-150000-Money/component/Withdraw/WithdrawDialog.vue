@@ -58,7 +58,7 @@
             <el-input value="-" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款點數">
-            <el-input :value="$root.toCurrency(withdraw.withdrawPoint)" disabled></el-input>
+            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.withdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款手續費">
             <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.fee)" 
@@ -138,7 +138,9 @@ export default {
     ]),
     clearForm() {
       setTimeout(() => this.$refs.withdrawForm.clearValidate())
-      this.form = Object.assign({}, initForm)
+      this.form = Object.assign({}, initForm, {
+        fee: this.withdraw.bankInfo.fee
+      })
     },
     onChangeStatus(action) {
       this.$refs.withdrawForm.validate((valid) => {
@@ -154,12 +156,12 @@ export default {
     },
     getCurrentActualWithdrawPoint() {
       console.log(
-        this.withdraw.withdrawPoint,
+        this.withdraw.bankInfo.withdrawPoint,
         this.form.fee,
         this.form.disallowWithdrawFee,
         this.withdraw.bankInfo.freight,
       )
-      this.currentActualWithdrawPoint = this.withdraw.withdrawPoint - (
+      this.currentActualWithdrawPoint = this.withdraw.bankInfo.withdrawPoint - (
         this.form.fee +
         this.form.disallowWithdrawFee +
         this.withdraw.bankInfo.freight

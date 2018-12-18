@@ -19,8 +19,6 @@ const mutations = {
         number: t.no,
         account: t.account,
         nick: t.nickname,
-        withdrawPoint: t.credit,
-        actualWithdrawPoint: t.actual_credit,
         dispensePoint: t.dispense_credit,
         dispenseAcc: t.dispense_account_id,
         status: t.status,
@@ -30,6 +28,9 @@ const mutations = {
         dispenseAt: t.created_at,
         updatedAt: t.updated_at,
         bankInfo: {
+          withdrawPoint: bankInfo.credit,
+          actualWithdrawPoint: bankInfo.actual_credit,
+
           bankCode: `${bankInfo.code}-${bankInfo.bank}`,
           branchName: bankInfo.branch,
           accountName: bankInfo.name,

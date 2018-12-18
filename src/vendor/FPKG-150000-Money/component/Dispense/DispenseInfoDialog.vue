@@ -17,7 +17,7 @@
             <el-input :value="dispense.account" disabled></el-input>
           </el-form-item>
           <el-form-item label="實際出款">
-            <el-input :value="dispense.actualWithdrawPoint" disabled></el-input>
+            <el-input :value="$root.toCurrency(dispense.bankInfo && dispense.bankInfo.actualWithdrawPoint)" disabled></el-input>
           </el-form-item>
           
           <!-- 僅「網路轉帳」及「臨櫃專存」時顯示銀行資訊 -->
@@ -65,7 +65,7 @@
             <el-input :value="$root.toCurrency(dispense.bankInfo && dispense.bankInfo.allowWithdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款點數">
-            <el-input :value="$root.toCurrency(dispense.withdrawPoint)" disabled></el-input>
+            <el-input :value="$root.toCurrency(dispense.bankInfo && dispense.bankInfo.withdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款手續費">
             <el-input :value="$root.toCurrency(dispense.bankInfo && dispense.bankInfo.fee)" disabled></el-input>
@@ -113,7 +113,7 @@ export default {
     copyText() {
       return [
         {title: '帳號', content: this.dispense.account},
-        {title: '實際出款', content: this.dispense.actualWithdrawPoint},
+        {title: '實際出款', content: this.$root.toCurrency(this.dispense.bankInfo.actualWithdrawPoint)},
         {title: '銀行代碼', content: this.dispense.bankInfo.bankCode},
         {title: '分行名稱', content: this.dispense.bankInfo.branchName},
         {title: '戶名', content: this.dispense.bankInfo.accountName},

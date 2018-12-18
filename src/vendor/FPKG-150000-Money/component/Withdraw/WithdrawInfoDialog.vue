@@ -15,7 +15,7 @@
             <el-input :value="withdraw.account" disabled></el-input>
           </el-form-item>
           <el-form-item label="實際出款">
-            <el-input :value="withdraw.actualWithdrawPoint" disabled></el-input>
+            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.actualWithdrawPoint)" disabled></el-input>
           </el-form-item>
           
           <!-- 僅「網路轉帳」及「臨櫃專存」時顯示銀行資訊 -->
@@ -50,7 +50,7 @@
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.allowWithdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款點數">
-            <el-input :value="$root.toCurrency(withdraw.withdrawPoint)" disabled></el-input>
+            <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.withdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款手續費">
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.fee)" disabled></el-input>
