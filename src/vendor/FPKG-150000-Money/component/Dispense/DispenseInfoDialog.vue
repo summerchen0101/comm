@@ -45,7 +45,7 @@
           
           <!-- 現金專送：訂單為「成功」狀態時顯示備註 -->
           <el-form-item v-if="dispense.status == 1 && dispense.withdrawType === 3" label="備註" prop="notes">
-            <el-input type="textarea" :value="dispense.notes"></el-input>
+            <el-input type="textarea" :value="dispense.notes" disabled></el-input>
           </el-form-item>
 
           <!-- 訂單為「取消」狀態時顯示原因 -->
