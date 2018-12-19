@@ -22,7 +22,7 @@ const actions = {
       end_time: _d.status !== 1 ? toDateTime(_d.endAt) : undefined,
       no: _d.number || undefined,
       account: _d.account || undefined,
-      member_withdrawal_limit_id: _d.type || 0,
+      member_withdrawal_limit_id: _d.withdrawType || 0,
     }
     let res = await apiHub("get", `api/v1/dispense/${_d.status}/summary`, null, params)
     if(res.code === 200001) {
@@ -36,7 +36,7 @@ const actions = {
       no: _d.number || undefined,
       account: _d.account || undefined,
       page: _d.page || undefined,
-      member_withdrawal_limit_id: _d.type || 0,
+      member_withdrawal_limit_id: _d.withdrawType || 0,
     }
     let res = await apiHub("get", `api/v1/dispense/${_d.status}/list`, null, params)
     if(res.code === 200001) {

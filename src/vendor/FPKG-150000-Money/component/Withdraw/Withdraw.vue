@@ -9,6 +9,7 @@
       </el-option>
     </el-select>
     <SearchBar>
+      {{searchForm}}
       <el-form :inline="true"
                 ref="searchForm"
                 status-icon
