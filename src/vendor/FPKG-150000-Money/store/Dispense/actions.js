@@ -11,7 +11,7 @@ import {
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 import { toDateTime } from '@/vendor/FPKG-120000-Util/time'
-
+import { reviewAction } from '@/vendor/FPKG-10000-Config/enum'
 
 import Router from '@/router'
 
@@ -46,9 +46,10 @@ const actions = {
     }
   },
   async [SET_DISPENSE_STATUS]({dispatch, commit}, _d) {
+    let i = reviewAction.findIndex(t => t.code === _d.action)
     let data = {
       review_user_id: _d.operatorId,
-      action: _d.action == 'confirm' ? 1 : _d.action === 'back' ? 3 : 2,
+      action: reviewAction[i].value,
       reason: _d.reason || undefined,
       dispense_account_id: _d.dispenseAcc || undefined,
       member_withdrawal_limit_id: _d.withdrawType || 0

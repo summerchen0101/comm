@@ -8,6 +8,11 @@ export const status = [
   {label: '啟用', value: 1},
   {label: '停用', value: 2},
 ]
+export const reviewAction = [
+  {label: '通過', code: 'confirm', value: 1},
+  {label: '取消', code: 'cancel', value: 2},
+  {label: '駁回', code: 'back', value: 3},
+]
 export const loginStatus = [
   {label: '登入成功', value: 1},
   {label: '正常登出', value: 2},

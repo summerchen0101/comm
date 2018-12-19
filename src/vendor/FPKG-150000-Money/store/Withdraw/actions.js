@@ -11,6 +11,7 @@ import {
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import EventsHub from '@/vendor/FPKG-60000-EventsHub/EventsHub'
 import { toDateTime } from '@/vendor/FPKG-120000-Util/time'
+import { reviewAction } from '@/vendor/FPKG-10000-Config/enum'
 
 
 import Router from '@/router'
@@ -46,9 +47,10 @@ const actions = {
     }
   },
   async [SET_WITHDRAW_STATUS]({dispatch, commit}, _d) {
+    let i = reviewAction.findIndex(t => t.code === _d.action)
     let data = {
       review_user_id: _d.operatorId,
-      action: _d.action == 'confirm' ? 1 : 2,
+      action: reviewAction[i].value,
       reason: _d.action == 'cancel' ? _d.reason : undefined,
       fee: _d.action == 'confirm' ? _d.fee : undefined,
       below_norm_fee: _d.action == 'confirm' ? _d.disallowWithdrawFee : undefined,
