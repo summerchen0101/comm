@@ -158,6 +158,7 @@ export default {
     onCopyText,
     clearForm() {
       setTimeout(() => this.$refs.dispenseForm.clearValidate())
+      this.form = Object.assign({}, initForm)
     },
     onChangeStatus(action) {
       this.$refs.dispenseForm.validate((valid) => {
