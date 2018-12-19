@@ -60,13 +60,13 @@
           <el-form-item label="提款點數">
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.withdrawPoint)" disabled></el-input>
           </el-form-item>
-          <el-form-item label="提款手續費">
+          <el-form-item label="提款手續費" prop="fee">
             <el-input v-model.number.trim="form.fee" 
                       :disabled="type !== 'confirm'" 
                       type="number"
                       @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
-          <el-form-item label="未達流水手續費">
+          <el-form-item label="未達流水手續費" prop="disallowWithdrawFee">
             <el-input v-model.number.trim="form.disallowWithdrawFee" 
                       :disabled="type !== 'confirm'" 
                       type="number"
@@ -77,7 +77,6 @@
           </el-form-item>
         </el-col>
       </el-row>
-      
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="SWITCH_WITHDRAW_DIALOG(false)">取 消</el-button>
@@ -121,7 +120,13 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
-        ]
+        ],
+        fee: [
+          { required: true, message: '提款手續費有誤', trigger: 'blur' },
+        ],
+        disallowWithdrawFee: [
+          { required: true, message: '未達流水手續費有誤', trigger: 'blur' },
+        ],
       }
     },
   },
