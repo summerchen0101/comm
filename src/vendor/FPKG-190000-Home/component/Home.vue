@@ -70,7 +70,7 @@ export default {
       ],
       count: initCount,
       interval: null,
-      audio: new Audio('ball.mp3')
+      audio: new Audio(`${process.env.VUE_APP_STATIC_URL}/ball.mp3`)
     }
   },
   computed: {
