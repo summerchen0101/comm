@@ -61,19 +61,15 @@
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.withdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款手續費">
-            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.fee)" 
-                      :disabled="type !== 'confirm'" 
-                      @blur="getCurrentActualWithdrawPoint"></el-input> -->
             <el-input v-model.number.trim="form.fee" 
                       :disabled="type !== 'confirm'" 
+                      type="number"
                       @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="未達流水手續費">
-            <!-- <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawFee)" 
-                      :disabled="type !== 'confirm'" 
-                      @blur="getCurrentActualWithdrawPoint"></el-input> -->
             <el-input v-model.number.trim="form.disallowWithdrawFee" 
                       :disabled="type !== 'confirm'" 
+                      type="number"
                       @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="運費">
