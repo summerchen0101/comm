@@ -56,7 +56,9 @@
 import { SET_BREADCRUMB, GET_REVIEW_LIST } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool.js'
+import storage from 'store2'
 
+let initCount = 20
 export default {
   mixins: [commonTool],
   components: {
@@ -66,8 +68,9 @@ export default {
       breadcrumbPath: [
         {name: null, title: "首頁"},
       ],
-      count: 60,
-      interval: null
+      count: initCount,
+      interval: null,
+      audio: new Audio('ball.mp3')
     }
   },
   computed: {
@@ -79,7 +82,10 @@ export default {
   methods: {
     async getReviewList() {
       await this.$store.dispatch(GET_REVIEW_LIST)
-      this.count = 60
+      if(this.reviews.deposit || this.reviews.withdraw || this.reviews.dispense) {
+        this.audio.play()
+      }
+      this.count = initCount
     },
     async tick() {
       this.count--
@@ -91,12 +97,33 @@ export default {
   },
   mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    this.getReviewList()
     this.tick()
+    if(storage.session("show_audio_alert")) {
+      this.$alert("將為您開啟音效", "提示", {
+          confirmButtonText: '確定',
+          callback: action => {
+            storage.session("show_audio_alert", false)
+            this.getReviewList()
+          }
+        })
+    }else {
+      this.getReviewList()
+    }
   },
   beforeDestroy() {
     clearTimeout(this.interval)
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    if(!from.name) { // 沒有上一頁代表有「重整頁面」
+      storage.session("show_audio_alert", true)
+    }else {
+      storage.session("show_audio_alert", false)
+    }
+    next()
+  },
+  // beforeRouteLeave(to, from, next) {
+
+  // }
 }
 </script>
 
