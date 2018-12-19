@@ -51,10 +51,9 @@ Vue.config.productionTip = false
 
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool'
 
-new Vue({
+let myVue = new Vue({
   mixins: [commonTool],
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
-
