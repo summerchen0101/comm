@@ -82,7 +82,7 @@ export default {
   methods: {
     async getReviewList() {
       await this.$store.dispatch(GET_REVIEW_LIST)
-      if(this.reviews.deposit || this.reviews.withdraw || this.reviews.dispense) {
+      if(this.reviews.deposit || this.reviews.withdraw || this.reviews.dispense || this.reviews.bank) {
         this.audio.play()
       }
       this.count = initCount
