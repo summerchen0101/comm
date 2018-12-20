@@ -50,7 +50,7 @@ const actions = {
     let data = {
       review_user_id: _d.operatorId,
       action: reviewAction[i].value,
-      reason: _d.reason || undefined,
+      reason: _d.reason || _d.notes || undefined,
       dispense_account_id: _d.dispenseAcc || undefined,
       member_withdrawal_limit_id: _d.withdrawType || 0
     }
