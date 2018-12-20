@@ -111,16 +111,24 @@ export default {
       dialogVisible: state => state.Money.Dispense.dispenseInfoDialogVisible,
     }),
     copyText() {
-      return [
-        {title: '帳號', content: this.dispense.account},
-        {title: '實際出款', content: this.$root.toCurrency(this.dispense.bankInfo.actualWithdrawPoint)},
-        {title: '銀行代碼', content: this.dispense.bankInfo.bankCode},
-        {title: '分行名稱', content: this.dispense.bankInfo.branchName},
-        {title: '戶名', content: this.dispense.bankInfo.accountName},
-        {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
-        // {title: '提領點數', content: this.$root.toCurrency(this.dispense.withdrawPoint)},
-        // {title: '出款點數', content: this.$root.toCurrency(this.dispense.dispensePoint)},
-      ]
+      if(this.dispense.withdrawType === 3) {
+        return [
+          {title: '帳號', content: this.dispense.account},
+          {title: '實際出款', content: this.$root.toCurrency(this.dispense.bankInfo.actualWithdrawPoint)},
+        ]
+      }
+      else {
+        return [
+          {title: '帳號', content: this.dispense.account},
+          {title: '實際出款', content: this.$root.toCurrency(this.dispense.bankInfo.actualWithdrawPoint)},
+          {title: '銀行代碼', content: this.dispense.bankInfo.bankCode},
+          {title: '分行名稱', content: this.dispense.bankInfo.branchName},
+          {title: '戶名', content: this.dispense.bankInfo.accountName},
+          {title: '銀行帳號', content: this.dispense.bankInfo.bankAccount},
+          // {title: '提領點數', content: this.$root.toCurrency(this.dispense.withdrawPoint)},
+          // {title: '出款點數', content: this.$root.toCurrency(this.dispense.dispensePoint)},
+        ]
+      }
     }
   },
   methods: {
