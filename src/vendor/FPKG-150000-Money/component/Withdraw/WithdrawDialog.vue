@@ -62,14 +62,12 @@
           </el-form-item>
           <el-form-item label="提款手續費" prop="fee">
             <el-input v-model.number.trim="form.fee" 
-                      :disabled="type !== 'confirm'" 
-                      type="number"
+                      :disabled="type !== 'confirm'"
                       @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="未達流水手續費" prop="disallowWithdrawFee">
             <el-input v-model.number.trim="form.disallowWithdrawFee" 
                       :disabled="type !== 'confirm'" 
-                      type="number"
                       @blur="getCurrentActualWithdrawPoint"></el-input>
           </el-form-item>
           <el-form-item label="運費">
@@ -95,6 +93,7 @@ import {
   SET_WITHDRAW_STATUS,
   } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { feeValidator, disallowWithdrawFeeValidator } from '@/vendor/FPKG-120000-Util/customValidate'
 
 let initForm = {
         reason: "",
@@ -122,10 +121,12 @@ export default {
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
         ],
         fee: [
-          { required: true, message: '提款手續費有誤', trigger: 'blur' },
+          { required: true, message: '提款手續費為必填', trigger: 'blur' },
+          { validator: feeValidator, trigger: 'blur' },
         ],
         disallowWithdrawFee: [
-          { required: true, message: '未達流水手續費有誤', trigger: 'blur' },
+          { required: true, message: '未達流水手續費為必填', trigger: 'blur' },
+          { validator: disallowWithdrawFeeValidator, trigger: 'blur' },
         ],
       }
     },

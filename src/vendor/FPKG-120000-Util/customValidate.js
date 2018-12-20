@@ -216,6 +216,36 @@ export function permissionNameValidator(rules, value, cb) {
 }
 
 /**
+ * 提款手續費驗證
+ */
+export const Vfee = {
+  test: (val) => /^\+?[1-9]?[0-9]*$/.test(val),
+  msg: "提款手續費須為正整數",
+}
+export function feeValidator(rules, value, cb) {
+  if(value && !Vfee.test(value)) {
+    cb(Vfee.msg)
+  }else {
+    cb()
+  }
+}
+
+/**
+ * 未達流水手續費驗證
+ */
+export const VdisallowWithdrawFee = {
+  test: (val) => /^\+?[1-9]?[0-9]*$/.test(val),
+  msg: "未達流水手續費須為正整數",
+}
+export function disallowWithdrawFeeValidator(rules, value, cb) {
+  if(value && !VdisallowWithdrawFee.test(value)) {
+    cb(VdisallowWithdrawFee.msg)
+  }else {
+    cb()
+  }
+}
+
+/**
  * 維護後開啟時間驗證
  */
 export function openTimeValidator(rules, value, cb) {
