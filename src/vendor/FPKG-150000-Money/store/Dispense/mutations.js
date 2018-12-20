@@ -23,7 +23,7 @@ const mutations = {
         dispenseAcc: t.dispense_account_id,
         status: t.status,
         reason: t.reason,
-        notes: t.reason,
+        notes: t.remark,
         operator: t.review_user,
         dispenseAt: t.created_at,
         updatedAt: t.updated_at,
