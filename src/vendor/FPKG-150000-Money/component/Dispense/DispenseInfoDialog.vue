@@ -48,8 +48,8 @@
             <el-input type="textarea" :value="dispense.notes" disabled></el-input>
           </el-form-item>
 
-          <!-- 訂單為「取消」狀態時顯示原因 -->
-          <el-form-item v-if="dispense.status == 3" label="原因" prop="reason">
+          <!-- 訂單為「取消」狀態時顯示原因。 出款取消: 5 -->
+          <el-form-item v-if="dispense.status == 5" label="原因" prop="reason">
             <el-input type="textarea" :value="dispense.reason" disabled></el-input>
           </el-form-item>
           
