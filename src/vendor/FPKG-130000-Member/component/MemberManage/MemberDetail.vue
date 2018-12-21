@@ -218,35 +218,37 @@ export default {
       weekOpts: this.getWeeksOfMonths(6).map(w => ({...w, id: `${w.year}-${w.weekNum}`}))
     }
   },
-  validations: {
-    form: {
-      pw: {
-        required,
-        pattern: VmemberPw.test,
-      },
-      pw_confirm: {
-        required,
-        sameAs: sameAs('pw')
-      },
-      percent: {
-        required,
-        pattern: Vpercent.test
-      },
-      lineID: {
-        pattern: VlineID.test
-      },
-      commisionEndAt: {
-        date: (value, form) => {
-          if(form.commisionStartAt.replace('-', '') > value.replace('-', '')) {
-            return false
+  validations() {
+    return {
+      form: {
+        pw: {
+          required,
+          pattern: VmemberPw.test,
+        },
+        pw_confirm: {
+          required,
+          sameAs: sameAs('pw')
+        },
+        percent: {
+          required: !!(this.member && this.member.percentAllowModify),
+          pattern: Vpercent.test
+        },
+        lineID: {
+          pattern: VlineID.test
+        },
+        commisionEndAt: {
+          date: (value, form) => {
+            if(form.commisionStartAt.replace('-', '') > value.replace('-', '')) {
+              return false
+            }
+            return true
           }
-          return true
         }
-      }
-    },
-    basicGroup: ['form.lineID', 'form.percent'],
-    pwValidGroup: ['form.pw', 'form.pw_confirm'],
-    commisionDateValidGroup: ['form.commisionEndAt'],
+      },
+      basicGroup: ['form.lineID'],
+      pwValidGroup: ['form.pw', 'form.pw_confirm'],
+      commisionDateValidGroup: ['form.commisionEndAt'],
+    }
   },
   computed: {
     ...mapState({
@@ -262,7 +264,7 @@ export default {
         {name: "MemberManage", title: "會員管理"},
         {name: "MemberDetail", title: this.$route.params.acc},
       ]
-    }
+    },
   },
   methods: {
     ...mapMutations({
