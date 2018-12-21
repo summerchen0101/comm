@@ -4,12 +4,14 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th width="40%">總計</th>
-            <th width="12%">筆數</th>
-            <th width="12%">投注金額</th>
-            <th width="12%">有效金額</th>
-            <th v-if="fix" width="12%">中獎金額</th>
-            <th width="12%">會員結果</th>
+            <th width="30%">總計</th>
+            <th width="10%">筆數</th>
+            <th width="10%">投注金額</th>
+            <th width="10%">有效金額</th>
+            <th v-if="fix" width="10%">中獎金額</th>
+            <th width="10%">會員結果</th>
+            <th width="10%">公司結果</th>
+            <th width="10%">代理結果</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +22,8 @@
             <td>{{$root.toCurrencyFloor(totalInfo.realAmount)}}</td>
             <td v-if="fix">{{$root.toCurrencyFloor(totalInfo.winAmount)}}</td>
             <td :class="$root.handleResultColor(totalInfo.result)">{{$root.toCurrencyFloor(totalInfo.result)}}</td>
+            <td :class="$root.handleResultColor(totalInfo.payoffCompany)">{{$root.toCurrencyFloor(totalInfo.payoffCompany)}}</td>
+            <td :class="$root.handleResultColor(totalInfo.payoffAgent)">{{$root.toCurrencyFloor(totalInfo.payoffAgent)}}</td>
           </tr>
         </tbody>
       </table>
@@ -28,16 +32,18 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th width="40%">類別</th>
-            <th width="12%">筆數</th>
-            <th width="12%">投注金額</th>
-            <th width="12%">有效金額</th>
-            <th v-if="fix" width="12%">中獎金額</th>
-            <th width="12%">會員結果</th>
+            <th width="30%">類別</th>
+            <th width="10%">筆數</th>
+            <th width="10%">投注金額</th>
+            <th width="10%">有效金額</th>
+            <th v-if="fix" width="10%">中獎金額</th>
+            <th width="10%">會員結果</th>
+            <th width="10%">公司結果</th>
+            <th width="10%">代理結果</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="r,i in totalReport" :key="i">
+          <tr v-for="(r,i) in totalReport" :key="i">
             <td>
               <router-link :to="{name: 'GameTypeReport', params: Object.assign({}, $route.params, {gameTypeId: r.gameTypeId})}">
                 {{showGame(r.gameTypeId)}}
@@ -48,6 +54,8 @@
             <td>{{$root.toCurrencyFloor(r.realAmount)}}</td>
             <td v-if="fix">{{$root.toCurrencyFloor(r.winAmount)}}</td>
             <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.result)}}</td>
+            <td :class="$root.handleResultColor(r.payoffCompany)">{{$root.toCurrencyFloor(r.payoffCompany)}}</td>
+            <td :class="$root.handleResultColor(r.payoffAgent)">{{$root.toCurrencyFloor(r.payoffAgent)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
             <td colspan="6" class="text-center">暫無資料</td>
