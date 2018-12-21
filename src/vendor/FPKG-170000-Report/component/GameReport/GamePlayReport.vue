@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="r,i in report" :key="i">
+          <tr v-for="(r,i) in report" :key="i">
             <td>
               <div>{{r.number}}</div>
               <WagerCancel :cancel="r.cancel"></WagerCancel>

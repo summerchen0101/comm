@@ -17,6 +17,8 @@ const mutations = {
       realAmount: s.effective_amount,
       winAmount: s.winnings,
       result: s.payoff,
+      payoffCompany: s.payoff_company,
+      payoffAgent: s.payoff_agent,
     }
     state.totalReport = result.list.map(r => {
       return {
@@ -26,6 +28,8 @@ const mutations = {
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
+        payoffCompany: r.payoff_company,
+        payoffAgent: r.payoff_agent,
       }
     })
   },
@@ -38,6 +42,8 @@ const mutations = {
       realAmount: s.effective_amount,
       winAmount: s.winnings,
       result: s.payoff,
+      payoffCompany: s.payoff_company,
+      payoffAgent: s.payoff_agent,
     }
     state.gameTypeReport = result.list.map(r => {
       return {
@@ -48,6 +54,8 @@ const mutations = {
         realAmount: r.effective_amount,
         winAmount: r.winnings,
         result: r.payoff,
+        payoffCompany: r.payoff_company,
+        payoffAgent: r.payoff_agent,
       }
     })
   },
