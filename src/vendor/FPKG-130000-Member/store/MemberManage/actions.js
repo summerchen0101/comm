@@ -105,7 +105,7 @@ const actions = {
       password_confirmation: _d.pw_confirm || undefined,
       member_deposit_limit_id: _d.memberDepositLimit,
 
-      holding_preset: _d.percent || 0,
+      holding_preset: _d.percent >= 0 ? _d.percent : undefined,
 
       earn_point: state.pointModify.add.point,
       earn_reason: state.pointModify.add.memo,
