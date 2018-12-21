@@ -107,6 +107,10 @@ const mutations = {
       commisionStartAt: result.brokerage_start,
       commisionEndAt: result.brokerage_end,
 
+      percentAllowModify: result.holding_lock === 'enable',
+      currentWeekPercent: parseInt(result.holding),
+      percent: parseInt(result.holding_preset), // 下週生效的佔成
+
       memo: result.remark,
 
       bankAccList: result.bank_account_info.map(t => ({

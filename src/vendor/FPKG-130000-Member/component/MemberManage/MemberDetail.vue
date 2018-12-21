@@ -23,8 +23,12 @@
       </el-row>
       <el-row :gutter="40">
         <el-col :span="8">
-          <el-form-item label="手機號碼">
+          <!-- <el-form-item label="手機號碼">
             <el-input v-model="form.phone" disabled></el-input>
+          </el-form-item> -->
+          <el-form-item label="Line ID">
+            <el-input v-model="form.lineID"></el-input>
+            <Validation name="Line ID" :target="$v.form.lineID" :patternMsg="VlineID.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -42,9 +46,16 @@
       </el-row>
       <el-row :gutter="40">
         <el-col :span="8">
-          <el-form-item label="Line ID">
-            <el-input v-model="form.lineID"></el-input>
-            <Validation name="Line ID" :target="$v.form.lineID" :patternMsg="VlineID.msg"></Validation>
+          <el-form-item>
+            <slot name="label">
+              佔成設定 
+              <small v-if="member.percentAllowModify" class="text-danger">＊設定值下週才會生效</small>
+            </slot>
+            <el-input v-if="member.percentAllowModify" v-model.number.trim="form.percent">
+              <template slot="append">{{member.currentWeekPercent}}</template>
+            </el-input>
+            <el-input v-else :value="member.currentWeekPercent" disabled></el-input>
+            <Validation name="佔成" :target="$v.form.percent" :patternMsg="Vpercent.msg"></Validation>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -172,7 +183,7 @@ import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
 import PointModifyDialog from '@/vendor/FPKG-130000-Member/component/MemberManage/PointModifyDialog.vue';
 import { memberLevel } from '@/vendor/FPKG-10000-Config/enum';
 import { required, sameAs } from 'vuelidate/lib/validators'
-import { VmemberPw, VlineID } from '@/vendor/FPKG-120000-Util/customValidate'
+import { VmemberPw, VlineID, Vpercent } from '@/vendor/FPKG-120000-Util/customValidate'
 
 export default {
   mixins: [commonTool],
@@ -184,6 +195,7 @@ export default {
     return {
       VmemberPw,
       VlineID,
+      Vpercent,
       initSetting: null,
       form: {
         id: this.$route.params.id,
@@ -200,6 +212,7 @@ export default {
         startLevel: 1,
         commisionStartAt: "",
         commisionEndAt: "",
+        percent: 0,
       },
       memberLevelOpts: memberLevel,
       weekOpts: this.getWeeksOfMonths(6).map(w => ({...w, id: `${w.year}-${w.weekNum}`}))
@@ -215,6 +228,10 @@ export default {
         required,
         sameAs: sameAs('pw')
       },
+      percent: {
+        required,
+        pattern: Vpercent.test
+      },
       lineID: {
         pattern: VlineID.test
       },
@@ -227,7 +244,7 @@ export default {
         }
       }
     },
-    basicGroup: ['form.lineID'],
+    basicGroup: ['form.lineID', 'form.percent'],
     pwValidGroup: ['form.pw', 'form.pw_confirm'],
     commisionDateValidGroup: ['form.commisionEndAt'],
   },
@@ -277,16 +294,20 @@ export default {
     onPointModifyChanged() {
       this.form.point = this.$numeral(this.member.point).value() + this.$numeral(this.pointModify.add.point).value() - this.$numeral(this.pointModify.subtract.point).value()
     },
+    async getMemberDetail() {
+      await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
+      this.form = Object.assign({}, this.form, this.member)
+      this.initSetting = this.$lodash.cloneDeep(this.form)
+    }
   },
   async mounted() {
     this.$hub.$on("Member:pointModifyChanged", this.onPointModifyChanged)
+    this.$hub.$on("Member:updateMemberDetail", this.getMemberDetail)
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     this.$store.commit(CLEAR_MEMBER_POINT_MODIFY)
     this.$store.dispatch(GET_MEMBER_DEPOSIT_LIMIT_OPTIONS)
     this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
-    await this.$store.dispatch(GET_MEMBER, this.$route.params.id)
-    this.form = Object.assign({}, this.form, this.member)
-    this.initSetting = this.$lodash.cloneDeep(this.form)
+    this.getMemberDetail()
   },
   beforeRouteLeave(to, from, next) {
     if (!this.$lodash.isEqual(this.initSetting, this.form) && !this.isSaved) {

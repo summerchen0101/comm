@@ -105,6 +105,8 @@ const actions = {
       password_confirmation: _d.pw_confirm || undefined,
       member_deposit_limit_id: _d.memberDepositLimit,
 
+      holding_preset: _d.percent || 0,
+
       earn_point: state.pointModify.add.point,
       earn_reason: state.pointModify.add.memo,
       lost_point: state.pointModify.subtract.point,
@@ -121,7 +123,7 @@ const actions = {
     let res = await apiHub("put", `api/v1/member/${_d.id}`, data)
     if(res.code === 200001) {
       Router.app.$alert("資料修改成功", '提示').then(res => {
-        location.reload()
+        Router.app.$hub.$emit("Member:updateMemberDetail")
       })
     }
   },

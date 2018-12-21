@@ -17,6 +17,14 @@ export const VlineID = {
 }
 
 /**
+ * 佔成驗證: 僅可為數字0~100
+ */
+export const Vpercent = {
+  test: (val) => /^[0-9][0-9]?$|^100$/.test(val),
+  msg: "佔成僅可為0~100",
+}
+
+/**
  * 管理角色帳號驗證: 8~12位數字或英文字母
  */
 export const VuserAccount = {
