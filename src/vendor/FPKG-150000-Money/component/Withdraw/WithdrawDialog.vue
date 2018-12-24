@@ -41,6 +41,7 @@
           
           <!-- 訂單為「取消」狀態時顯示原因 -->
           <el-form-item v-if="type === 'cancel'" label="原因" prop="reason">
+            <span slot="label">原因 <small class="text-danger ml-1">字限100</small></span>
             <el-input type="textarea" v-model="form.reason"></el-input>
           </el-form-item>
           
@@ -119,6 +120,7 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
+          { max: 100, message: '字數最多為100字', trigger: 'blur' },
         ],
         fee: [
           { required: true, message: '提款手續費為必填', trigger: 'blur' },

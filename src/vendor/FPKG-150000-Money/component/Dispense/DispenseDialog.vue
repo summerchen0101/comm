@@ -49,11 +49,13 @@
 
           <!-- 現金專送：訂單為「通過」狀態時顯示備註 -->
           <el-form-item v-if="type === 'confirm' && dispense.withdrawType === 3" label="備註" prop="notes">
+            <span slot="label">備註 <small class="text-danger ml-1">字限100</small></span>
             <el-input type="textarea" v-model="form.notes"></el-input>
           </el-form-item>
 
           <!-- 訂單為「取消」狀態時顯示原因 -->
           <el-form-item v-if="type === 'cancel'" label="原因" prop="reason">
+            <span slot="label">原因 <small class="text-danger ml-1">字限100</small></span>
             <el-input type="textarea" v-model="form.reason"></el-input>
           </el-form-item>
           
@@ -129,9 +131,11 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
+          { max: 100, message: '字數最多為100字', trigger: 'blur' },
         ],
         notes: [
           { required: this.type === 'confirm' && this.dispense.withdrawType === 3, message: '備註為必填', trigger: 'blur' },
+          { max: 100, message: '字數最多為100字', trigger: 'blur' },
         ],
         dispenseAcc: [
           { required: this.type === 'confirm' && this.dispense.withdrawType === 1, message: '出款帳戶為必填', trigger: 'blur' },
