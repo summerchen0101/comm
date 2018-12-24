@@ -114,6 +114,7 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
+          { max: 100, message: '超過字數100限制', trigger: 'blur' },
         ]
       }
     }

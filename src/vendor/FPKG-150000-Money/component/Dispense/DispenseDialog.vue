@@ -131,11 +131,11 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
-          { max: 100, message: '字數最多為100字', trigger: 'blur' },
+          { max: 100, message: '超過字數100限制', trigger: 'blur' },
         ],
         notes: [
           { required: this.type === 'confirm' && this.dispense.withdrawType === 3, message: '備註為必填', trigger: 'blur' },
-          { max: 100, message: '字數最多為100字', trigger: 'blur' },
+          { max: 100, message: '超過字數100限制', trigger: 'blur' },
         ],
         dispenseAcc: [
           { required: this.type === 'confirm' && this.dispense.withdrawType === 1, message: '出款帳戶為必填', trigger: 'blur' },

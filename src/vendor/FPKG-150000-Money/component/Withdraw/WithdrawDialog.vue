@@ -120,7 +120,7 @@ export default {
       return {
         reason: [
           { required: this.type === 'cancel', message: '原因為必填', trigger: 'blur' },
-          { max: 100, message: '字數最多為100字', trigger: 'blur' },
+          { max: 100, message: '超過字數100限制', trigger: 'blur' },
         ],
         fee: [
           { required: true, message: '提款手續費為必填', trigger: 'blur' },
