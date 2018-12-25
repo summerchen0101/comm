@@ -72,7 +72,8 @@
       </el-form-item>
 
       <!-- 訂單為「取消」狀態時顯示原因 -->
-      <el-form-item v-if="type === 'cancel'" label="原因" prop="reason">
+      <el-form-item v-if="type === 'cancel'" prop="reason">
+        <span slot="label">原因 <br><small class="text-danger ml-2">字限100</small></span>
         <el-input type="textarea" v-model="form.reason"></el-input>
       </el-form-item>
     </el-form>
