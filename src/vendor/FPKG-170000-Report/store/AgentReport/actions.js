@@ -12,8 +12,8 @@ const actions = {
   async [GET_AGENT_REPORT] ({ commit }, _d) {
     commit(CLEAR_AGENT_REPORT)
     let params = {
-      start_date: toDateTime(_d.startAt).substr(0, 16),
-      end_date: toDateTime(_d.endAt).substr(0, 16),
+      brokerage_start: _d.startAt,
+      brokerage_end: _d.endAt,
       account: _d.account
     }
     let res = await apiHub('get', 'api/v1/statement/agent', null, params)

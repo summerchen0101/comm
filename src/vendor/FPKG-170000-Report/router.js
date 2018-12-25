@@ -65,7 +65,7 @@ export const AgentReport = {
   component: () => import('./component/AgentReport/AgentReport.vue'),
   children: [
     {
-      path: '/report/agent/search/:startAt/:endAt/:account',
+      path: '/report/agent/search/:startAt/:endAt/:account?',
       name: 'AgentReportInfo',
       component: () => import('./component/AgentReport/AgentReportInfo.vue'),
     },

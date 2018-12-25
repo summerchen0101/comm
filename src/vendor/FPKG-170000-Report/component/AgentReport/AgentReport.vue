@@ -5,24 +5,14 @@
                 ref="searchForm"
                 :model="searchForm"
                 :rules="searchFormRules">
-        <el-form-item label="結帳時間">
-          <el-date-picker
-            v-model="searchForm.startAt"
-            format="yyyy-MM-dd HH:mm"
-            :picker-options="startAtOption"
-            type="datetime"
-            @change="onDateAtChanged"
-            placeholder="開始時間">
-          </el-date-picker>
-          -
-          <el-date-picker
-            v-model="searchForm.endAt"
-            format="yyyy-MM-dd HH:mm"
-            :picker-options="endAtOption"
-            type="datetime"
-            @change="onDateAtChanged"
-            placeholder="結束時間">
-          </el-date-picker>
+        <el-form-item label="結帳日期">
+          <el-select v-model="searchForm.startAt" @change="onWeekChanged">
+            <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
+          </el-select>
+           ~ 
+          <el-select v-model="searchForm.endAt" @change="onWeekChanged">
+            <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="會員" prop="account">
           <el-input v-model="searchForm.account" placeholder="帳號/手機號碼"></el-input>
@@ -41,7 +31,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_AGENT_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_AGENT_REPORT, GET_COMMISSION_WEEKS_OPTIONS } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { toDate, toDateTime, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
@@ -57,12 +47,12 @@ export default {
       ],
       searchForm: {
         account: this.$route.params.account || "",
-        startAt: this.$route.params.startAt || startAtDay(new Date()),
-        endAt: this.$route.params.endAt || endAtDay(new Date()),
+        startAt: "",
+        endAt: "",
       },
       searchFormRules: {
         account: [
-          { required: true, message: '帳號為必填', trigger: 'blur' },
+          // { required: true, message: '帳號為必填', trigger: 'blur' },
           { min: 4, max: 12, message: '須為4~12位英數字', trigger: 'blur' },
         ],
       },
@@ -70,62 +60,55 @@ export default {
   },
   computed: {
     ...mapState({
+      weekOpts: state => state.Global.commissionWeeksOpts
     }),
-    startAtOption() {
-      return {
-        disabledDate: (val) => {
-          return dateAfter(new Date(), val)
-        }
-      }
-    },
-    endAtOption() {
-      return {
-        disabledDate: (val) => {
-          let lastDate = getRangeLastDate(this.searchForm.startAt)
-          return val.getTime() > lastDate.getTime() || dateAfter(new Date(), val)
-        }
-      }
-    },
   },
   methods: {
-    onDateAtChanged() {
-      if (!this.searchForm.startAt || !this.searchForm.endAt) return
-      // 若結束時間大於開始時間則改同為開始時間
-      if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
-        return
+    onWeekChanged() {
+      if (this.searchForm.startAt > this.searchForm.endAt ) {
+        this.searchForm.endAt = this.searchForm.startAt
       }
-      // 判斷期間
-      let lastDate = getRangeLastDate(this.searchForm.startAt)
-      if (dateAfter(lastDate, this.searchForm.endAt)) {
-        this.searchForm.endAt = toDateTime(lastDate)
-      }
+    },
+    setSearchForm() {
+      this.searchForm = Object.assign({}, this.searchForm, {
+        account: this.$route.params.account || "",
+        startAt: this.$route.params.startAt || this.weekOpts[this.weekOpts.length-1].value,
+        endAt: this.$route.params.endAt || this.weekOpts[this.weekOpts.length-1].value,
+      })
     },
     async onSearchSubmit() {
       this.$refs.searchForm.validate((valid) => {
         if (valid) {
-          let f = this.searchForm
-          // 若新的搜尋資訊與原查詢相同，則直接呼叫報表API
-          let oldSearchData = this.$route.params
-          let newSearchData = {
-            startAt: toDateTime(f.startAt).substr(0, 16),
-            endAt: toDateTime(f.endAt).substr(0, 16),
-            account: f.account
-          }
-          let isEqualSearch = this.$lodash.isEqual(oldSearchData, newSearchData)
-          if(isEqualSearch) {
-            this.$store.dispatch(GET_AGENT_REPORT, this.searchForm)
-          }else {
-            this.$router.push({name: "AgentReportInfo", params: newSearchData})
-            this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
-          }
-          
+          this.$router.push({name: "AgentReportInfo", params: {
+              startAt: this.searchForm.startAt,
+              endAt: this.searchForm.endAt,
+              account: this.searchForm.account || undefined,
+            }
+          })
         }
       });
+      // this.$refs.searchForm.validate((valid) => {
+      //   if (valid) {
+      //     let f = this.searchForm
+      //     // 若新的搜尋資訊與原查詢相同，則直接呼叫報表API
+      //     let oldSearchData = this.$route.params
+      //     let newSearchData = Object.assign({}, this.searchForm)
+      //     let isEqualSearch = this.$lodash.isEqual(oldSearchData, newSearchData)
+      //     if(isEqualSearch) {
+      //       this.$store.dispatch(GET_AGENT_REPORT, this.searchForm)
+      //     }else {
+      //       this.$router.push({name: "AgentReportInfo", params: newSearchData})
+      //       this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
+      //     }
+          
+      //   }
+      // });
     }
   },
-  created() {
+  async created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+    await this.$store.dispatch(GET_COMMISSION_WEEKS_OPTIONS)
+    this.setSearchForm()
   },
   beforeDestroy() {
     
