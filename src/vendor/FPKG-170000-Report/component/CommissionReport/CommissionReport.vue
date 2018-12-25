@@ -3,11 +3,11 @@
     <SearchBar>
       <el-form ref="searchForm" :inline="true" :model="searchForm" :rules="searchFormRules">
         <el-form-item label="結帳日期">
-          <el-select v-model="searchForm.startAt" @change="changeWeek1">
+          <el-select v-model="searchForm.startAt" @change="onWeekChanged">
             <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
            ~ 
-          <el-select v-model="searchForm.endAt" @change="changeWeek2">
+          <el-select v-model="searchForm.endAt" @change="onWeekChanged">
             <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
         </el-form-item>
@@ -57,14 +57,9 @@ export default {
     }),
   },
   methods: {
-    changeWeek1() {
+    onWeekChanged() {
       if (this.searchForm.startAt > this.searchForm.endAt ) {
         this.searchForm.endAt = this.searchForm.startAt
-      }
-    },
-    changeWeek2() {
-      if (this.searchForm.startAt > this.searchForm.endAt ) {
-         this.searchForm.endAt = this.searchForm.startAt
       }
     },
     onSearchSubmit() {
@@ -76,15 +71,18 @@ export default {
           }})
         }
       });
-    }
+    },
+    setSearchForm() {
+      this.searchForm = Object.assign({}, this.searchForm, {
+        startAt: this.$route.params.startAt || this.weekOpts[this.weekOpts.length-1].value,
+        endAt: this.$route.params.endAt || this.weekOpts[this.weekOpts.length-1].value,
+      })
+    },
   },
   async created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_COMMISSION_WEEKS_OPTIONS)
-    if (this.weekOpts.length > 0) {
-      this.searchForm.startAt = this.weekOpts[this.weekOpts.length-1].value
-      this.searchForm.endAt = this.weekOpts[this.weekOpts.length-1].value
-    }
+    this.setSearchForm()
   }
 }
 </script>
