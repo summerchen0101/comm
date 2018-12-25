@@ -132,6 +132,12 @@ export default [
         path: "/report/commission",
         funcKey: 1503,
       },
+      {
+        name: "AgentReport",
+        title: "代理報表",
+        path: "/report/agent",
+        funcKey: 1504,
+      },
     ]
   },
   {

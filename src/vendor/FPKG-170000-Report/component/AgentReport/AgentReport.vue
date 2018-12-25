@@ -1,5 +1,5 @@
 <template>
-  <div id="MemberReport">
+  <div id="AgentReport">
     <SearchBar>
       <el-form :inline="true"
                 ref="searchForm"
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_MEMBER_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_AGENT_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
 import moment, { toDate, toDateTime, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 import { mapState } from 'vuex';
 
@@ -53,7 +53,7 @@ export default {
       breadcrumbPath: [
         {name: "Home", title: "首頁"},
         {name: null, title: "報表查詢"},
-        {name: null, title: "會員報表"},
+        {name: null, title: "代理報表"},
       ],
       searchForm: {
         account: this.$route.params.account || "",
@@ -114,9 +114,9 @@ export default {
           }
           let isEqualSearch = this.$lodash.isEqual(oldSearchData, newSearchData)
           if(isEqualSearch) {
-            this.$store.dispatch(GET_MEMBER_REPORT, this.searchForm)
+            this.$store.dispatch(GET_AGENT_REPORT, this.searchForm)
           }else {
-            this.$router.push({name: "MemberReportInfo", params: newSearchData})
+            this.$router.push({name: "AgentReportInfo", params: newSearchData})
             this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath.concat({name: null, title: f.account}))
           }
           
@@ -126,12 +126,15 @@ export default {
   },
   created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
+  },
+  beforeDestroy() {
+    
   }
 }
 </script>
 
 <style lang="stylus">
-#MemberReport {
+#AgentReport {
   .el-date-editor.el-input, .el-date-editor.el-input__inner {
     width: 180px;
   }

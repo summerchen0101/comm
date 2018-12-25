@@ -57,6 +57,25 @@ export const CommissionReport = {
     },
   ]
 }
+export const AgentReport = {
+  path: '/report/agent',
+  name: 'AgentReport',
+  title: "代理報表",
+  props: { funcKey: 1504 },
+  component: () => import('./component/AgentReport/AgentReport.vue'),
+  children: [
+    {
+      path: '/report/agent/search/:startAt/:endAt/:account',
+      name: 'AgentReportInfo',
+      component: () => import('./component/AgentReport/AgentReportInfo.vue'),
+    },
+    // {
+    //   path: '/report/agent/search/:startAt/:endAt/:account/:gameTypeId',
+    //   name: 'AgentGameReport',
+    //   component: () => import('./component/AgentReport/AgentGameReport.vue'),
+    // },
+  ]
+}
 
 export const Report = {
   path: '/report',
@@ -67,6 +86,7 @@ export const Report = {
   component: () => import('./component/Report.vue'),
   children: [
     MemberReport,
+    AgentReport,
     GameReport,
     CommissionReport,
   ]
