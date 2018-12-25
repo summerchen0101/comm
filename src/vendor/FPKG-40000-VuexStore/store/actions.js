@@ -29,6 +29,8 @@ import {
   GOT_POINT_TRANSFER_OPTIONS,
   GET_WITHDRAW_TYPE_OPTIONS,
   GOT_WITHDRAW_TYPE_OPTIONS,
+  GET_COMMISSION_WEEKS_OPTIONS,
+  GOT_COMMISSION_WEEKS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { apiHub } from '@/vendor/FPKG-10000-Config/api'
 import storage from 'store2'
@@ -130,6 +132,12 @@ const actions = {
     let res = await apiHub('get', 'api/v1/dropdown/member_withdrawal_limit')
     if(res.code === 200001) {
       commit(GOT_WITHDRAW_TYPE_OPTIONS, res.result)
+    }
+  },
+  async [GET_COMMISSION_WEEKS_OPTIONS] ({ commit }) {
+    let res = await apiHub('get', 'api/v1/dropdown/statement_brokerage')
+    if (res.code === 200001) {
+      commit(GOT_COMMISSION_WEEKS_OPTIONS, res.result)
     }
   },
 }

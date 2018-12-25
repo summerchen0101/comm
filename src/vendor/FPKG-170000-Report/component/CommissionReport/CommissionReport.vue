@@ -4,11 +4,11 @@
       <el-form ref="searchForm" :inline="true" :model="searchForm" :rules="searchFormRules">
         <el-form-item label="結帳日期">
           <el-select v-model="searchForm.startAt" @change="changeWeek1">
-            <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
+            <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
            ~ 
           <el-select v-model="searchForm.endAt" @change="changeWeek2">
-            <el-option v-for="i in weeks" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
+            <el-option v-for="i in weekOpts" :label="`${i.option}`" :value="i.value" :key="i.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item class="float-right mr-0">
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { SET_BREADCRUMB, GET_COMMISSION_WEEKS, GET_COMMISSION_TOTAL_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { SET_BREADCRUMB, GET_COMMISSION_WEEKS_OPTIONS, GET_COMMISSION_TOTAL_REPORT } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState } from 'vuex';
 
 export default {
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapState({
-      weeks: state => state.Report.CommissionReport.weeks
+      weekOpts: state => state.Global.commissionWeeksOpts
     }),
   },
   methods: {
@@ -80,10 +80,10 @@ export default {
   },
   async created() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    await this.$store.dispatch(GET_COMMISSION_WEEKS)
-    if (this.weeks.length > 0) {
-      this.searchForm.startAt = this.weeks[this.weeks.length-1].value
-      this.searchForm.endAt = this.weeks[this.weeks.length-1].value
+    await this.$store.dispatch(GET_COMMISSION_WEEKS_OPTIONS)
+    if (this.weekOpts.length > 0) {
+      this.searchForm.startAt = this.weekOpts[this.weekOpts.length-1].value
+      this.searchForm.endAt = this.weekOpts[this.weekOpts.length-1].value
     }
   }
 }

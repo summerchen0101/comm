@@ -14,6 +14,7 @@ const state = {
   payTypeOpts: [],
   pointTransferOpts: [],
   withdrawTypeOpts: [],
+  commissionWeeksOpts: [],
   gameTplOpts: {},
   lang: 'zh-TW'
 };

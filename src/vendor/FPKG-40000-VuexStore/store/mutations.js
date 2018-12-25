@@ -15,6 +15,7 @@ import {
   GOT_PAYWAY_OPTIONS,
   GOT_POINT_TRANSFER_OPTIONS,
   GOT_WITHDRAW_TYPE_OPTIONS,
+  GOT_COMMISSION_WEEKS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -59,6 +60,9 @@ const mutations = {
   },
   [GOT_WITHDRAW_TYPE_OPTIONS](state, list) {
     state.withdrawTypeOpts = list
+  },
+  [GOT_COMMISSION_WEEKS_OPTIONS] (state, list) {
+    state.commissionWeeksOpts = list
   },
 }
 
