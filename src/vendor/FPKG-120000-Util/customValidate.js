@@ -21,7 +21,7 @@ export const VlineID = {
  */
 export const Vpercent = {
   test: (val) => /^[0-9][0-9]?$|^100$/.test(val),
-  msg: "佔成僅可為0~100",
+  msg: "超過範圍值霍格是有誤，佔成僅可為0~100數字",
 }
 
 /**

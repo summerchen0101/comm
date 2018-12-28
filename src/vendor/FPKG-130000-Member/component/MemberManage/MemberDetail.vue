@@ -4,8 +4,8 @@
     <el-form label-position="top">
       <el-row :gutter="40">
         <el-col :span="8">
-          <el-form-item label="帳號">
-            <el-input v-model="form.account" disabled></el-input>
+          <el-form-item label="帳號(手機號碼)">
+            <el-input :value="`${form.account} (${form.phone})`" disabled></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -284,6 +284,12 @@ export default {
       if(this.form.isLevelActive) { // 若有啟用會員等級
         this.$v.commisionDateValidGroup.$touch()
         if(this.$v.commisionDateValidGroup.$invalid) {
+          return
+        }
+      }
+      if(this.form.percentAllowModify) { // 若可編輯佔成
+        this.$v.form.percent.$touch()
+        if(this.$v.form.percent.$invalid) {
           return
         }
       }
