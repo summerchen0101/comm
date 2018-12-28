@@ -51,7 +51,7 @@
               佔成設定 
               <small v-if="member.percentAllowModify" class="text-danger">＊設定值下週才會生效</small>
             </slot>
-            <el-input v-if="member.percentAllowModify" v-model.number.trim="form.percent" @blur="$v.form.percent.$touch()">
+            <el-input v-if="member.percentAllowModify" v-model.trim="form.percent" @blur="$v.form.percent.$touch()">
               <template slot="append">{{member.currentWeekPercent}}</template>
             </el-input>
             <el-input v-else :value="member.currentWeekPercent" disabled></el-input>
