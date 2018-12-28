@@ -4,12 +4,14 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th width="40%">總計</th>
-            <th width="12%">總筆數</th>
-            <th width="12%">總有效金額</th>
-            <th width="12%">總最高給付</th>
-            <th width="12%">總實際給付</th>
-            <th width="12%">總差值</th>
+            <th width="30%">總計</th>
+            <th width="10%">總筆數</th>
+            <th width="10%">總有效金額</th>
+            <th width="10%">總最高給付</th>
+            <th width="10%">總實際給付</th>
+            <th width="10%">總差值</th>
+            <th width="10%">公司給付</th>
+            <th width="10%">代理給付</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +22,8 @@
             <td>{{$root.toCurrencyFloor(summary.surplus)}}</td>
             <td>{{$root.toCurrencyFloor(summary.brokerage)}}</td>
             <td :class="$root.handleResultColor(summary.deficit)">{{$root.toCurrencyFloor(summary.deficit)}}</td>
+            <td>{{$root.toCurrencyFloor(summary.brokerage_company)}}</td>
+            <td :class="$root.handleResultColor(summary.brokerage_agent)">{{$root.toCurrencyFloor(summary.brokerage_agent)}}</td>
           </tr>
         </tbody>
       </table>
@@ -28,12 +32,14 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th width="40%">遊戲</th>
-            <th width="12%">筆數</th>
-            <th width="12%">有效金額</th>
-            <th width="12%">最高給付</th>
-            <th width="12%">實際給付</th>
-            <th width="12%">差值</th>
+            <th width="30%">遊戲</th>
+            <th width="10%">筆數</th>
+            <th width="10%">有效金額</th>
+            <th width="10%">最高給付</th>
+            <th width="10%">實際給付</th>
+            <th width="10%">差值</th>
+            <th width="10%">公司給付</th>
+            <th width="10%">代理給付</th>
           </tr>
         </thead>
         <tbody>
@@ -44,9 +50,11 @@
             <td>{{$root.toCurrencyFloor(i.surplus)}}</td>
             <td>{{$root.toCurrencyFloor(i.brokerage)}}</td>
             <td :class="$root.handleResultColor(i.deficit)">{{$root.toCurrencyFloor(i.deficit)}}</td>
+            <td>{{$root.toCurrencyFloor(i.brokerage_company)}}</td>
+            <td :class="$root.handleResultColor(i.brokerage_agent)">{{$root.toCurrencyFloor(i.brokerage_agent)}}</td>
           </tr>
           <tr v-if="list.length === 0">
-            <td colspan="6" class="text-center">暫無資料</td>
+            <td colspan="7" class="text-center">暫無資料</td>
           </tr>
         </tbody>
       </table>
