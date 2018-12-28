@@ -21,7 +21,7 @@ export const VlineID = {
  */
 export const Vpercent = {
   test: (val) => /^[0-9][0-9]?$|^100$/.test(val),
-  msg: "超過範圍值或格式有誤，佔成僅可為0~100數字",
+  msg: "只限輸入0-100數字",
 }
 
 /**
