@@ -109,7 +109,7 @@ const mutations = {
 
       percentAllowModify: result.holding_lock === 'enable',
       currentWeekPercent: result.holding ? parseInt(result.holding) : 0,
-      percent: result.holding_preset ? parseInt(result.holding_preset) : undefined, // 下週生效的佔成
+      percent: result.holding_preset !== null ? parseInt(result.holding_preset) : undefined, // 下週生效的佔成
 
       memo: result.remark,
 
