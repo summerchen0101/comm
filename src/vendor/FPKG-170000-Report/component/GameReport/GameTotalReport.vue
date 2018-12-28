@@ -58,7 +58,7 @@
             <td :class="$root.handleResultColor(r.payoffAgent)">{{$root.toCurrencyFloor(r.payoffAgent)}}</td>
           </tr>
           <tr v-if="totalReport.length === 0">
-            <td colspan="6" class="text-center">暫無資料</td>
+            <td colspan="7" class="text-center">暫無資料</td>
           </tr>
         </tbody>
       </table>
