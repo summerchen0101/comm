@@ -92,14 +92,14 @@
               <el-col :span="8">
                 <el-form-item label="開始日期">
                   <el-select v-model="form.commisionStartAt" style="width: 100%" :disabled="!form.isLevelActive">
-                    <el-option v-for="opt,i in weekOpts" :label="`${opt.start}-${opt.end}`" :value="opt.id" :key="opt.id"></el-option>
+                    <el-option v-for="opt,i in startWeekOpts" :label="opt.label" :value="opt.value" :key="opt.value"></el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="結束日期">
                   <el-select v-model="form.commisionEndAt" style="width: 100%" :disabled="!form.isLevelActive">
-                    <el-option v-for="opt,i in weekOpts" :label="`${opt.start}-${opt.end}`" :value="opt.id" :key="opt.id"></el-option>
+                    <el-option v-for="opt,i in endWeekOpts" :label="opt.label" :value="opt.value" :key="opt.value"></el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -177,6 +177,7 @@ import {
   SWITCH_POINT_DIALOG,
   EDIT_MEMBER,
   CLEAR_MEMBER_POINT_MODIFY,
+  GET_COMMISSION_LEVEL_WEEKS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import commonTool from '@/vendor/FPKG-120000-Util/mixins/commonTool';
@@ -252,10 +253,13 @@ export default {
   },
   computed: {
     ...mapState({
+      levelOpts: state => state.Global.commissionLevelOpts,
       statusOpts: state => state.Global.memberStatusOpts,
+      startWeekOpts: state => state.Global.commissionLevelStartWeeksOpts,
+      endWeekOpts: state => state.Global.commissionLevelEndWeeksOpts,
       memberDepositLimitOpts: state => state.Global.memberDepositLimitOpts,
       member: state => state.Member.MemberManage.member,
-      pointModify: state => state.Member.MemberManage.pointModify
+      pointModify: state => state.Member.MemberManage.pointModify,
     }),
     breadcrumbPath() {
       return [
@@ -315,6 +319,7 @@ export default {
     this.$store.commit(CLEAR_MEMBER_POINT_MODIFY)
     this.$store.dispatch(GET_MEMBER_DEPOSIT_LIMIT_OPTIONS)
     this.$store.dispatch(GET_MEMBER_STATUS_OPTIONS)
+    this.$store.dispatch(GET_COMMISSION_LEVEL_WEEKS_OPTIONS)
     this.getMemberDetail()
   },
   beforeRouteLeave(to, from, next) {

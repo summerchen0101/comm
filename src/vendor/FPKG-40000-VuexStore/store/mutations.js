@@ -16,6 +16,7 @@ import {
   GOT_POINT_TRANSFER_OPTIONS,
   GOT_WITHDRAW_TYPE_OPTIONS,
   GOT_COMMISSION_WEEKS_OPTIONS,
+  GOT_COMMISSION_LEVEL_WEEKS_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 
 const mutations = {
@@ -63,6 +64,11 @@ const mutations = {
   },
   [GOT_COMMISSION_WEEKS_OPTIONS] (state, list) {
     state.commissionWeeksOpts = list
+  },
+  [GOT_COMMISSION_LEVEL_WEEKS_OPTIONS] (state, result) {
+    state.commissionLevelOpts = result.level.map(t => ({label: t.level, value: t.id}))
+    state.commissionLevelStartWeeksOpts = result.week.start.map(t => ({label: t.option, value: t.value}))
+    state.commissionLevelEndWeeksOpts = result.week.end.map(t => ({label: t.option, value: t.value}))
   },
 }
 

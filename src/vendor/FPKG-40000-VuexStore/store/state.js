@@ -15,6 +15,9 @@ const state = {
   pointTransferOpts: [],
   withdrawTypeOpts: [],
   commissionWeeksOpts: [],
+  commissionLevelOpts: [],
+  commissionLevelStartWeeksOpts: [],
+  commissionLevelEndWeeksOpts: [],
   gameTplOpts: {},
   lang: 'zh-TW'
 };
