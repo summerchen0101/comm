@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{info.account}}</td>
+            <td>{{info.account}}({{info.nick}})</td>
             <td>{{$root.toCurrency(info.count)}}</td>
             <td>{{$root.toCurrencyFloor(info.betAmount)}}</td>
             <td>{{$root.toCurrencyFloor(info.realAmount)}}</td>

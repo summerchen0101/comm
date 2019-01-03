@@ -23,6 +23,7 @@ const mutations = {
     let s = result.summary
     state.Member.info = {
       account: s.account,
+      nick: s.nickname,
       count: s.wager_count,
       betAmount: s.bet_amount,
       realAmount: s.effective_amount,
@@ -43,6 +44,7 @@ const mutations = {
   [GOT_MEMBER_GAME_REPORT_INFO](state, result) {
     state.Game.info = {
       account: result.account,
+      nick: result.nickname,
       count: result.wager_count,
       betAmount: result.bet_amount,
       realAmount: result.effective_amount,
