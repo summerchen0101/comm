@@ -125,17 +125,36 @@ const mutations = {
     }
   },
   [GOT_MEMBER_GAME_SETTING](state, result) {
-    state.gameSetting = result.map(g => ({
-      gameType: g.game_kind,
-      status: g.switch,
-      template: g.model,
-      maxWin: g.max_win,
-      minBet: g.min_bet,
-      result: g.payoff,
-      allowSetting: g.act == 'true',
-      hasMaxWin: typeof g.max_win === 'number',
-      hasMinBet: typeof g.min_bet === 'number'
-    }))
+    state.gameSetting = result.map(g => {
+      if(g.game_kind === 8) {
+        return {
+          gameType: g.game_kind,
+          name: g.name,
+          status: g.switch,
+          template_all: g.model.find(t => t.type === 'all'),
+          template_roulette: g.model.find(t => t.type === 'roulette'),
+          maxWin: g.max_win,
+          minBet: g.min_bet,
+          result: g.payoff,
+          allowSetting: g.act == 'true',
+          hasMaxWin: typeof g.max_win === 'number',
+          hasMinBet: typeof g.min_bet === 'number'
+        }
+      }else {
+        return {
+          gameType: g.game_kind,
+          name: g.name,
+          status: g.switch,
+          template: g.model,
+          maxWin: g.max_win,
+          minBet: g.min_bet,
+          result: g.payoff,
+          allowSetting: g.act == 'true',
+          hasMaxWin: typeof g.max_win === 'number',
+          hasMinBet: typeof g.min_bet === 'number'
+        }
+      }
+    })
   },
   [SET_MEMBER_POINT_MODIFY](state, _d) {
     state.pointModify[_d.type] = Object.assign({}, state.pointModify[_d.type], {
