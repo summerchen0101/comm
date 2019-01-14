@@ -56,15 +56,16 @@ let tw = null
 
 RouterSetting.beforeEach(async (to, from, next) => {
   if (tw === null) {
-    //if (process.env.VUE_APP_API_ENV !== 'production') {
-    //  tw = false
-    //} else {
+    if (process.env.VUE_APP_API_ENV !== 'production') {
+      tw = false
+    }
+    else {
       tw = true
-      const res = await geoplugin_countryCode()
-      if (res !== 'TW') {
+      const res = await axios.get('https://ipapi.co/json/')
+      if (res && res.data && res.data.country !== 'TW') {
         tw = false
       }
-    //}
+    }
   }
 
   const Store = RouterSetting.app.$store
