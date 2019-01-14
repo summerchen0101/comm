@@ -54,7 +54,15 @@ const mutations = {
     state.payTypeOpts = list
   },
   [GOT_GAME_TEMPLATE_OPTIONS](state, {gameType, options}) {
-    state.gameTplOpts[gameType] = options
+    if(gameType === 8) {
+      state.gameTplOpts[gameType] = {
+        all: options.find(t => t.type === 'all').item,
+        roulette: options.find(t => t.type === 'roulette').item,
+      }
+    }else {
+      state.gameTplOpts[gameType] = options
+    }
+    
   },
   [GOT_POINT_TRANSFER_OPTIONS](state, list) {
     state.pointTransferOpts = list.filter(opt => opt.id !== 0)

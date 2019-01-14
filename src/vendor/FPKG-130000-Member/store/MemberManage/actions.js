@@ -72,14 +72,26 @@ const actions = {
     }
   },
   async [EDIT_MEMBER_GAME_SETTING]({commit, dispatch}, _d) {
-    let res = await apiHub("put", `api/v1/member/${_d.id}/setting`, {setting: _d.setting.map(g => ({
-      game_kind: g.gameType,
-      switch: g.status,
-      model: g.template,
-      max_win: parseInt(g.maxWin),
-      min_bet: parseInt(g.minBet),
-      clear: g.clear,
-    }))})
+    let res = await apiHub("put", `api/v1/member/${_d.id}/setting`, {setting: _d.setting.map(g => {
+      if(g.gameType === 8) {
+        return {
+          game_kind: g.gameType,
+          switch: g.status,
+          model: [g.template_all, g.template_roulette],
+          max_win: parseInt(g.maxWin),
+          min_bet: parseInt(g.minBet),
+          clear: g.clear,
+        }
+      }
+      return {
+        game_kind: g.gameType,
+        switch: g.status,
+        model: g.template,
+        max_win: parseInt(g.maxWin),
+        min_bet: parseInt(g.minBet),
+        clear: g.clear,
+      }
+    })})
     if(res.code === 200001) {
       Router.push({name: "MemberManage"})
     }
