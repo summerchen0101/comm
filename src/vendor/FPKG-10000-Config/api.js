@@ -1,7 +1,12 @@
 import axios from 'axios'
 import Store from '@/store'
 import Router from '@/router'
-import { SWITCH_LOADING_COVER } from '@/vendor/FPKG-40000-VuexStore/constants'
+import { 
+  SWITCH_LOADING_COVER, 
+  CLEAR_USER_INFO, 
+  CLEAR_SESSION, 
+  CLEAR_MENU 
+} from '@/vendor/FPKG-40000-VuexStore/constants'
 
 // export const branchDomain = psl.parse(location.hostname).domain || location.hostname
 
@@ -21,7 +26,14 @@ export async function apiHub(method, url, data, params) {
       validateStatus: status => {
         if (status === 500) {
           alert(`API Error`);
-        } else if (status === 401) {
+        } 
+        else if (status === 503) {
+          Router.push({name: "Maintenance"})
+          Store.commit(CLEAR_USER_INFO)
+          Store.commit(CLEAR_SESSION)
+          Store.commit(CLEAR_MENU)
+        }
+        else if (status === 401) {
           Router.push({ name: "Login" });
         }
         // return (status >= 200 && status < 300) || status === 422
