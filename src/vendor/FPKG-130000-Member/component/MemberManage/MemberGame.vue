@@ -22,13 +22,7 @@
                 SA真人視訊範本設定-輪盤
                 <span class="text-danger"> ＊輪盤目前無法更改設定</span>
               </slot>
-              <!-- <el-select v-model="form[g.gameType].template_roulette.model" style="width: 100%" :disabled="!g.allowSetting">
-                <el-option v-for="opt in gameTplOpts[g.gameType].roulette" 
-                              :label="opt.name" 
-                              :value="opt.id" 
-                              :key="opt.id"></el-option>
-              </el-select> -->
-              <el-checkbox-group v-model="form[g.gameType].template_roulette.model" :disabled="!g.allowSetting">
+              <el-checkbox-group v-model="form[g.gameType].template_roulette.model" :disabled="!g.allowSetting || form[g.gameType].template_roulette.model_lock === 'disable'">
                 <el-checkbox v-for="opt in gameTplOpts[g.gameType].roulette" :label="opt.id" :key="opt.id">{{opt.name}}</el-checkbox>
               </el-checkbox-group>
             </el-form-item>
@@ -38,13 +32,7 @@
               <slot name="label">
                 SA真人視訊範本設定-全部（不含輪盤）
               </slot>
-              <!-- <el-select v-model="form[g.gameType].template_all.model" style="width: 100%" :disabled="!g.allowSetting">
-                <el-option v-for="opt in gameTplOpts[g.gameType].all" 
-                              :label="opt.name" 
-                              :value="opt.id" 
-                              :key="opt.id"></el-option>
-              </el-select> -->
-              <el-checkbox-group v-model="form[g.gameType].template_all.model" :disabled="!g.allowSetting">
+              <el-checkbox-group v-model="form[g.gameType].template_all.model" :disabled="!g.allowSetting || form[g.gameType].template_all.model_lock === 'disable'">
                 <el-checkbox v-for="opt in gameTplOpts[g.gameType].all" :label="opt.id" :key="opt.id">{{opt.name}}</el-checkbox>
               </el-checkbox-group>
               
