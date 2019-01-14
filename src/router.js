@@ -56,22 +56,15 @@ let tw = null
 
 RouterSetting.beforeEach(async (to, from, next) => {
   if (tw === null) {
-    if (process.env.VUE_APP_API_ENV !== 'production') {
-      tw = false
-    } else {
+    //if (process.env.VUE_APP_API_ENV !== 'production') {
+    //  tw = false
+    //} else {
       tw = true
-      let res
-      if (process.env.VUE_APP_API_PATH === 'https://api.jfa888.info') {
-        res = await axios.get(
-          'https://ipapi.co/json/?key=f3d6c7e2d7a0148d1b9f30e066183ecf5f2f9a06'
-        )
-      } else {
-        res = await axios.get('https://ipapi.co/json/')
-      }
-      if (res && res.data && res.data.country !== 'TW') {
+      const res = await geoplugin_countryCode()
+      if (res !== 'TW') {
         tw = false
       }
-    }
+    //}
   }
 
   const Store = RouterSetting.app.$store
@@ -85,11 +78,12 @@ RouterSetting.beforeEach(async (to, from, next) => {
   // 進入內頁時若未登入 Y-> 獲取使用者資訊
   if (to.name === 'NoService') {
     next()
-  }
-  else if (tw) {
-    next({name: "NoService"})
-  }
-  else if(Store.getters.IS_LOGIN !== true && PublicPages.indexOf(to.name) === -1) {
+  } else if (tw) {
+    next({ name: 'NoService' })
+  } else if (
+    Store.getters.IS_LOGIN !== true &&
+    PublicPages.indexOf(to.name) === -1
+  ) {
     await Store.dispatch(GET_USER_INFO)
     // 能取得登入資訊 Y-> 開啟畫面 N-> 無則倒回登入頁
     if (Store.getters.IS_LOGIN) {
