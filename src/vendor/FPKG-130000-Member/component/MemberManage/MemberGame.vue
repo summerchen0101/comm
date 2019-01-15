@@ -2,55 +2,94 @@
   <div id="MemberGame">
     <PageTitle title="修改遊戲設定"></PageTitle>
     <el-form v-if="form" label-position="top">
-      <el-row :gutter="30" v-for="g in gameSetting" :key="g.id" class="gameGroup">
-        <el-col :span="24">
-          <h4>{{toOption(gameTypeOpts, g.gameType)}}</h4>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="狀態">
-            <el-select v-model="form[g.gameType].status" style="width: 100%" :disabled="!g.allowSetting">
-              <el-option v-for="opt in statusOpts.filter(t => t.id !== 0)" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8" v-if="form[g.gameType].template">
-          <el-form-item>
-            <span>{{toOption(gameTypeOpts, g.gameType)}}範本設定</span>
-            <el-select v-model="form[g.gameType].template" style="width: 100%" :disabled="!g.allowSetting">
-              <el-option v-for="opt in gameTplOpts[g.gameType]" :label="opt.name" :value="opt.name" :key="opt.name"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8" v-if="form[g.gameType].hasMaxWin">
-          <el-row :gutter="10">
-            <el-col :span="20">
-              <el-form-item>
-                <span slot="label">最大贏額</span>
-                <span slot="label" class="text-danger"> ＊設置0為無限制</span>
-                <el-input v-model="form[g.gameType].maxWin" :disabled="!g.allowSetting">
-                  <template slot="append">{{$root.toCurrencyDecimal(form[g.gameType].result)}}</template>
-                </el-input>
-                <Validation name="最大贏額" :target="$v.form[g.gameType].maxWin" :patternMsg="VmaxWin.msg"></Validation>
-              </el-form-item>
-            </el-col>
-            <el-col :span="4" style="margin-top: 34px">
-              <el-button :type="form[g.gameType].clear ? 'danger' : 'info'" @click="onReset($event, g.gameType)" :disabled="!g.allowSetting">重置<i v-if="form[g.gameType].clear" class="el-icon-circle-check el-icon--right"></i></el-button>
-            </el-col>
-          </el-row>
-        </el-col>
-        <el-col :span="8" v-if="form[g.gameType].hasMinBet">
-          <el-row :gutter="10">
-            <el-col :span="20">
-              <el-form-item>
-                <span slot="label">最低下注額</span>
-                <span slot="label" class="text-danger"> ＊運彩最低下注額需≥100</span>
-                <el-input v-model="form[g.gameType].minBet" :disabled="!g.allowSetting"></el-input>
-                <Validation name="最低下注額" :target="$v.form[g.gameType].minBet" :patternMsg="VminBet.msg"></Validation>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-col>
-      </el-row>
+      <template v-for="g in gameSetting">
+        <!-- 真人 -->
+        <el-row v-if="g.gameType == 8" :gutter="30" :key="g.id" class="gameGroup">
+          <el-col :span="24">
+            <h4>{{g.name}}</h4>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="狀態">
+              <!-- 僅開放「啟用」、「停用」 -->
+              <el-select v-model="form[g.gameType].status" style="width: 100%" :disabled="!g.allowSetting">
+                <el-option v-for="opt in statusOpts.filter(t => [1, 2].indexOf(t.id) > -1)" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="16" v-if="gameTplOpts[g.gameType] && gameTplOpts[g.gameType].roulette">
+            <el-form-item>
+              <slot name="label">
+                SA真人視訊範本設定-輪盤
+                <span class="text-danger"> ＊輪盤目前無法更改設定</span>
+              </slot>
+              <el-checkbox-group v-model="form[g.gameType].template_roulette.model" :disabled="!g.allowSetting || form[g.gameType].template_roulette.model_lock === 'disable'">
+                <el-checkbox v-for="opt in gameTplOpts[g.gameType].roulette" :label="opt.id" :key="opt.id">{{opt.name}}</el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24" v-if="gameTplOpts[g.gameType] && gameTplOpts[g.gameType].all">
+            <el-form-item>
+              <slot name="label">
+                SA真人視訊範本設定-全部（不含輪盤）
+              </slot>
+              <el-checkbox-group v-model="form[g.gameType].template_all.model" :disabled="!g.allowSetting || form[g.gameType].template_all.model_lock === 'disable'">
+                <el-checkbox v-for="opt in gameTplOpts[g.gameType].all" :label="opt.id" :key="opt.id">{{opt.name}}</el-checkbox>
+              </el-checkbox-group>
+              
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row v-else :gutter="30" :key="g.id" class="gameGroup">
+          <el-col :span="24">
+            <h4>{{g.name}}</h4>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="狀態">
+              <el-select v-model="form[g.gameType].status" style="width: 100%" :disabled="!g.allowSetting">
+                <el-option v-for="opt in statusOpts.filter(t => t.id !== 0)" :label="opt.name" :value="opt.id" :key="opt.id"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8" v-if="form[g.gameType].template">
+            <el-form-item>
+              <span>{{g.name}}範本設定</span>
+              <el-select v-model="form[g.gameType].template" style="width: 100%" :disabled="!g.allowSetting">
+                <el-option v-for="opt in gameTplOpts[g.gameType]" :label="opt.name" :value="opt.name" :key="opt.name"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8" v-if="form[g.gameType].hasMaxWin">
+            <el-row :gutter="10">
+              <el-col :span="20">
+                <el-form-item>
+                  <span slot="label">最大贏額</span>
+                  <span slot="label" class="text-danger"> ＊設置0為無限制</span>
+                  <el-input v-model="form[g.gameType].maxWin" :disabled="!g.allowSetting">
+                    <template slot="append">{{$root.toCurrencyDecimal(form[g.gameType].result)}}</template>
+                  </el-input>
+                  <Validation name="最大贏額" :target="$v.form[g.gameType].maxWin" :patternMsg="VmaxWin.msg"></Validation>
+                </el-form-item>
+              </el-col>
+              <el-col :span="4" style="margin-top: 34px">
+                <el-button :type="form[g.gameType].clear ? 'danger' : 'info'" @click="onReset($event, g.gameType)" :disabled="!g.allowSetting">重置<i v-if="form[g.gameType].clear" class="el-icon-circle-check el-icon--right"></i></el-button>
+              </el-col>
+            </el-row>
+          </el-col>
+          <el-col :span="8" v-if="form[g.gameType].hasMinBet">
+            <el-row :gutter="10">
+              <el-col :span="20">
+                <el-form-item>
+                  <span slot="label">最低下注額</span>
+                  <span slot="label" class="text-danger"> ＊運彩最低下注額需≥100</span>
+                  <el-input v-model="form[g.gameType].minBet" :disabled="!g.allowSetting"></el-input>
+                  <Validation name="最低下注額" :target="$v.form[g.gameType].minBet" :patternMsg="VminBet.msg"></Validation>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </template>
+      
     </el-form>
     <SubmitBar>
       <el-button @click="$router.push({name: 'MemberManage'})">取消</el-button>
@@ -163,7 +202,6 @@ export default {
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
     await this.$store.dispatch(GET_MEMBER_GAME_STATUS_OPTIONS)
-    await this.$store.dispatch(GET_GAME_TYPE_OPTIONS)
     await this.$store.dispatch(GET_MEMBER_GAME_SETTING, this.$route.params.id)
     this.createGameForm()
     if(this.gameSetting.length > 0) {
