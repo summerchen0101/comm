@@ -58,10 +58,16 @@ RouterSetting.beforeEach(async (to, from, next) => {
   if (tw === null) {
     if (process.env.VUE_APP_API_ENV !== 'production') {
       tw = false
-    }
-    else {
+    } else {
       tw = true
-      const res = await axios.get('https://ipapi.co/json/')
+      let res
+      if (process.env.VUE_APP_API_PATH === 'https://api.jfa888.info') {
+        res = await axios.get(
+          'https://ipapi.co/json/?key=f3d6c7e2d7a0148d1b9f30e066183ecf5f2f9a06'
+        )
+      } else {
+        res = await axios.get('https://ipapi.co/json/')
+      }
       if (res && res.data && res.data.country !== 'TW') {
         tw = false
       }
