@@ -37,7 +37,7 @@
           </template>
           
         </el-submenu>
-        <el-menu-item :class="{'active': $route.name === m1.name}" v-else :index="`${i1+1}`" :key="m1.path" :route="{name: m1.name}">
+        <el-menu-item :class="{'active': $route.matched.findIndex(t => t.name === m1.name) > -1}" v-else :index="`${i1+1}`" :key="m1.path" :route="{name: m1.name}">
           <i class="el-icon-menu"></i>
           <span>{{m1.title}}</span>
           <!-- <router-link :to="{name: m1.name}">
@@ -86,7 +86,7 @@ export default {
   },
 
   mounted() {
-    // console.log()
+    console.log(this.$route)
     this.targetMenu = this.menu.find(m => m.name === this.parent) || null
   }
 }
