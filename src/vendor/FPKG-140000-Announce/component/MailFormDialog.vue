@@ -44,11 +44,11 @@ export default {
         ],
         title: [
           { required: true, message: '標題為必填', trigger: 'blur' },
-          { max: 10, message: '最多為10字內', trigger: 'blur' }
+          { max: 20, message: '最多為20字內', trigger: 'blur' }
         ],
         description: [
           { required: true, message: '內容為必填', trigger: 'blur' },
-          { max: 200, message: '最多為200字內', trigger: 'blur' }
+          { max: 500, message: '最多為500字內', trigger: 'blur' }
         ]
       }
     }
