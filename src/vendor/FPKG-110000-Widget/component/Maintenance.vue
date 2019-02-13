@@ -1,8 +1,7 @@
 <template>
-  <div id="Maintenance">
-    <h2>維護中請稍候...<font-awesome-icon icon="spinner" spin /><br></h2>
+  <div class="bg">
+    <img src="@/assets/Maintenance-bg.jpg">
   </div>
-  
 </template>
 
 <script>
@@ -21,12 +20,15 @@ export default {
 </script>
 
 <style lang="stylus">
-#Maintenance
-  display flex
-  justify-content center
-  align-items center
-  height: 100vh
-  h2 
-    color #333
-    letter-spacing 2px
+.bg
+  position fixed
+  top 0
+  left 0
+  bottom 0
+  right 0
+  z-index -999
+  img 
+    margin 0 auto
+    min-height 100%
+    width 100%
 </style>
