@@ -35,7 +35,7 @@
               <el-checkbox-group v-model="form[g.gameType].template_all.model" :disabled="!g.allowSetting || form[g.gameType].template_all.model_lock === 'disable'">
                 <el-checkbox v-for="opt in gameTplOpts[g.gameType].all" :label="opt.id" :key="opt.id">{{opt.name}}</el-checkbox>
               </el-checkbox-group>
-              
+              <Validation name="SA真人視訊範本設定-全部" :target="$v.form[g.gameType].template_all.model"></Validation>
             </el-form-item>
           </el-col>
         </el-row>
@@ -141,6 +141,13 @@ export default {
           pattern: VminBet.test
         }
       }
+      if(g.gameType == 8) {
+        form[g.gameType].template_all = {
+          model: {
+            required
+          }
+        }
+      }
     })
     return {
       form
@@ -185,6 +192,12 @@ export default {
     onSubmit() {
       this.$v.form.$touch()
       if(this.$v.form.$invalid) {
+        console.log(this.form[8].template_all.model)
+        if(this.form[8].template_all.model.length === 0) { // SA真人及捕魚機 
+          this.$alert("SA真人視訊範本設定-全部：<br>至少選擇一個，無法全部取消！", "提示", {
+            dangerouslyUseHTMLString: true
+          })
+        }
         return
       }
       this.isSaved = true

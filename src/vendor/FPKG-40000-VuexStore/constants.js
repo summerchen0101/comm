@@ -191,7 +191,7 @@ export const CHANGE_BANK_ACC_LIST_TYPE = "CHANGE_BANK_ACC_LIST_TYPE"
 
 
 /*
-  FPKG-140000-Announce: Marquee, Mail
+  FPKG-140000-Announce: Marquee
 */
 
 // actions
@@ -199,6 +199,17 @@ export const GET_MARQUEE_LIST = "GET_MARQUEE_LIST"
 export const DEL_MARQUEE = "DEL_MARQUEE"
 export const ADD_MARQUEE = "ADD_MARQUEE"
 export const EDIT_MARQUEE = "EDIT_MARQUEE"
+
+// mutations
+export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
+export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
+
+
+/*
+  FPKG-140000-Announce: Mail
+*/
+
+// actions
 export const GET_MAIL_LIST = "GET_MAIL_LIST"
 export const GET_MAIL = "GET_MAIL"
 export const ADD_MAIL = "ADD_MAIL"
@@ -207,10 +218,24 @@ export const SEND_MAIL = "SEND_MAIL"
 export const DELETE_MAIL = "DELETE_MAIL"
 
 // mutations
-export const SWITCH_MARQUEE_DIALOG = "SWITCH_MARQUEE_DIALOG"
-export const GOT_MARQUEE_LIST = "GOT_MARQUEE_LIST"
 export const GOT_MAIL_LIST = "GOT_MAIL_LIST"
 export const SET_MAIL_DIALOG_VISIBLE = "SET_MAIL_DIALOG_VISIBLE"
+
+
+/*
+  FPKG-140000-Announce: SiteAnnounce
+*/
+
+// actions
+export const GET_SITE_ANNOUNCE_LIST = "GET_SITE_ANNOUNCE_LIST"
+export const DEL_SITE_ANNOUNCE = "DEL_SITE_ANNOUNCE"
+export const ADD_SITE_ANNOUNCE = "ADD_SITE_ANNOUNCE"
+export const EDIT_SITE_ANNOUNCE = "EDIT_SITE_ANNOUNCE"
+
+// mutations
+export const SWITCH_SITE_ANNOUNCE_DIALOG = "SWITCH_SITE_ANNOUNCE_DIALOG"
+export const GOT_SITE_ANNOUNCE_LIST = "GOT_SITE_ANNOUNCE_LIST"
+
 
 /*
   FPKG-150000-Money: DepositAcc

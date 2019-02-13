@@ -56,8 +56,8 @@
             <td>{{$root.toCurrencyFloor(r.realAmount)}}</td>
             <td v-if="fix">{{$root.toCurrencyFloor(r.winAmount)}}</td>
             <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.result)}}</td>
-            <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.payoffCompany)}}</td>
-            <td :class="$root.handleResultColor(r.result)">{{$root.toCurrencyFloor(r.payoffAgent)}}</td>
+            <td :class="$root.handleResultColor(r.payoffCompany)">{{$root.toCurrencyFloor(r.payoffCompany)}}</td>
+            <td :class="$root.handleResultColor(r.payoffAgent)">{{$root.toCurrencyFloor(r.payoffAgent)}}</td>
           </tr>
         </tbody>
       </table>

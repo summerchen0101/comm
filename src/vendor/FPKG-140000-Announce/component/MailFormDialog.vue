@@ -9,10 +9,10 @@
         <el-input v-model.trim="form.target_account" :disabled="form.send_type!==2" type="textarea" placeholder="請用逗號區隔帳號 範例: phrv612,phrv229"></el-input>
       </el-form-item>
       <el-form-item label="標題" prop="title">
-        <el-input v-model.trim="form.title" placeholder="10字為限"></el-input>
+        <el-input v-model.trim="form.title" placeholder="20字為限"></el-input>
       </el-form-item>
       <el-form-item label="描述" prop="description">
-        <el-input v-model.trim="form.description" type="textarea" placeholder="200字為限"></el-input>
+        <el-input v-model.trim="form.description" type="textarea" placeholder="500字為限"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -44,11 +44,11 @@ export default {
         ],
         title: [
           { required: true, message: '標題為必填', trigger: 'blur' },
-          { max: 10, message: '最多為10字內', trigger: 'blur' }
+          { max: 20, message: '最多為20字內', trigger: 'blur' }
         ],
         description: [
           { required: true, message: '內容為必填', trigger: 'blur' },
-          { max: 200, message: '最多為200字內', trigger: 'blur' }
+          { max: 500, message: '最多為500字內', trigger: 'blur' }
         ]
       }
     }

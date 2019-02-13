@@ -51,6 +51,12 @@ export default [
         path: "/announce/mail",
         funcKey: 1202,
       },
+      {
+        name: "SiteAnnounce",
+        title: "平台公告管理",
+        path: "/announce/site-announce",
+        funcKey: 1203,
+      },
     ]
   },
   {

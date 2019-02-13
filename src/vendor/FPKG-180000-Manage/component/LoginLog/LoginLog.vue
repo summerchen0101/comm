@@ -121,24 +121,21 @@ export default {
     startAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(startAtDay(moment(new Date()).subtract(2, 'week')), val) || dateAfter(new Date(), val)
+          return dateAfter(new Date(), val)
         }
       }
     },
     endAtOption() {
       return {
         disabledDate: (val) => {
-          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val)
+          return dateBefore(this.searchForm.startAt, val) || dateAfter(new Date(), val) || dateAfter(startAtDay(moment(this.searchForm.startAt).add(2, 'month')), val)
         }
       }
     },
   },
   methods: {
     onStartAtChanged() {
-      // 若結束時間大於開始時間則清空結束時間
-      if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
-        this.searchForm.endAt = ""
-      }
+      this.searchForm.endAt = endAtDay(this.searchForm.startAt)
     },
     onSearchSubmit() {
       this.$store.dispatch(GET_LOGIN_LOG_LIST, this.searchForm)
