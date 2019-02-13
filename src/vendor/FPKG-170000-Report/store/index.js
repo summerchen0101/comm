@@ -10,6 +10,7 @@ import MemberReport from './MemberReport'
 import AgentReport from './AgentReport'
 import GameReport from './GameReport'
 import CommissionReport from './CommissionReport'
+import Winlose from './Winlose'
 
 const store = {
   modules: {
@@ -17,6 +18,7 @@ const store = {
     GameReport,
     CommissionReport,
     AgentReport,
+    Winlose,
   },
   state,
   getters,
