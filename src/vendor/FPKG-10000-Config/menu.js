@@ -144,6 +144,12 @@ export default [
         path: "/report/agent",
         funcKey: 1504,
       },
+      {
+        name: "Winlose",
+        title: "輸贏分析",
+        path: "/report/winlose",
+        funcKey: 1505,
+      },
     ]
   },
   {

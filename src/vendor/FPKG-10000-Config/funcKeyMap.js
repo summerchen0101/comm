@@ -21,6 +21,7 @@ export default [
   {funcKey: 1502, id:'game', title: '遊戲報表'},
   {funcKey: 1503, id:'commission', title: '佣金報表'},
   {funcKey: 1504, id:'agent', title: '代理報表'},
+  {funcKey: 1505, id:'winlose', title: '輸贏分析'},
   {funcKey: 16, id:'manage', title: '後台管理'},
   {funcKey: 1601, id:'users', title: '帳號管理'},
   {funcKey: 1602, id:'permission', title: '權限管理'},

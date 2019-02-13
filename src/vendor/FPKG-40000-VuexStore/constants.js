@@ -380,9 +380,20 @@ export const GOT_GAME_PLAY_REPORT_DETAIL = "GOT_GAME_PLAY_REPORT_DETAIL"
 
 // actions
 export const GET_COMMISSION_TOTAL_REPORT = "GET_COMMISSION_TOTAL_REPORT"
+export const CLEAR_WINLOSE_REPORT = "CLEAR_WINLOSE_REPORT"
 
 // mutations
 export const GOT_COMMISSION_TOTAL_REPORT = "GOT_COMMISSION_TOTAL_REPORT"
+
+/*
+  FPKG-170000-Report: Winlose
+*/
+
+// actions
+export const GET_WINLOSE_REPORT = "GET_WINLOSE_REPORT"
+
+// mutations
+export const GOT_WINLOSE_REPORT = "GOT_WINLOSE_REPORT"
 
 /*
   FPKG-180000-Manage: Users

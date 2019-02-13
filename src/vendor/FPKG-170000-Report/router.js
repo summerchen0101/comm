@@ -76,6 +76,20 @@ export const AgentReport = {
     // },
   ]
 }
+export const Winlose = {
+  path: '/report/winlose',
+  name: 'Winlose',
+  title: "輸贏分析",
+  props: { funcKey: 1505 },
+  component: () => import('./component/Winlose/Winlose.vue'),
+  children: [
+    {
+      path: '/report/winlose/search/:startAt/:endAt/:game_kind/:per_page/:sort/:page?',
+      name: 'WinloseInfo',
+      component: () => import('./component/Winlose/WinloseInfo.vue'),
+    },
+  ]
+}
 
 export const Report = {
   path: '/report',
@@ -89,6 +103,7 @@ export const Report = {
     AgentReport,
     GameReport,
     CommissionReport,
+    Winlose,
   ]
 }
 
