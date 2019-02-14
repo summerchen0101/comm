@@ -43,6 +43,9 @@ export function handleErrCode(code, url) {
         location.reload()
       })
     }
+    else if(code === 503001) {
+      console.log(msg)
+    }
     else {
       this.$alert(msg, '錯誤提示')
     }
