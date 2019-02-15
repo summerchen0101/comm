@@ -76,7 +76,7 @@ export default {
       ],
       sortOpts: [
         { id: 'payoff', name: '會員結果', },
-        { id: 'brokerage', name: '佣金所得', },
+        { id: 'brokerage', name: '佣金結果', },
         { id: 'feat', name: '有效金額', },
       ],
       searchFormRules: {
