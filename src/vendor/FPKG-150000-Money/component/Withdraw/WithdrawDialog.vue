@@ -143,7 +143,8 @@ export default {
     clearForm() {
       setTimeout(() => this.$refs.withdrawForm.clearValidate())
       this.form = Object.assign({}, initForm, {
-        fee: this.withdraw.bankInfo.fee
+        fee: this.withdraw.bankInfo.fee,
+        disallowWithdrawFee: this.withdraw.bankInfo.disallowWithdrawFee,
       })
     },
     onChangeStatus(action) {
