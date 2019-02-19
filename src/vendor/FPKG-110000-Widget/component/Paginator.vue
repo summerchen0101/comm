@@ -4,6 +4,7 @@
       v-if="count > 0"
       layout="prev, pager, next"
       @current-change="onPageChanged"
+      :current-page="currentPage"
       :page-size="perpage"
       :total="count">
     </el-pagination>
@@ -19,6 +20,10 @@ export default {
     },
     count: {
       default: 0,
+      type: Number
+    },
+    currentPage: {
+      default: 1,
       type: Number
     },
     onPageChanged: {

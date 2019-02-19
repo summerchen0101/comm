@@ -120,11 +120,11 @@ export default {
           }
         }
       )
-    }
+    },
   },
   async mounted() {
     this.$store.commit(SET_BREADCRUMB, this.breadcrumbPath)
-    await this.$store.dispatch(GET_GAME_TYPE_OPTIONS, {all: "show"})
+    await this.$store.dispatch(GET_GAME_TYPE_OPTIONS, { all: "show" })
     await this.$store.dispatch(GET_COMMISSION_WEEKS_OPTIONS)
     this.setSearchForm();
   },

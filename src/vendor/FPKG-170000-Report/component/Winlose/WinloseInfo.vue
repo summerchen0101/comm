@@ -28,6 +28,7 @@
     <Paginator
       :count="winlosePager.total"
       :on-page-changed="onPageChanged"
+      :current-page="winlosePager.currentPage"
       :perpage="winlosePager.perPage" />
   </div>
 </template>
