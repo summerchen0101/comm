@@ -124,7 +124,7 @@ export default {
       this.$hub.$emit("Announce:siteAnnounceFormUpdate", formData)
     },
     async onDelItem(id) {
-      this.$confirm('確定刪除後將無法復原', '你確定嗎？', {
+      this.$confirm('會員端公告會跟著一起被刪除', '你確定嗎？', {
         confirmButtonText: '確定',
         cancelButtonText: '取消',
         type: 'warning'
