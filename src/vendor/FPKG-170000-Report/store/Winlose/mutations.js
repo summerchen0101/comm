@@ -8,6 +8,7 @@ const mutations = {
     state.isSearched = false
     state.report = []
     state.winlosePager = {
+      currentPage: 1,
       total: 0,
       perPage: 25,
     }
