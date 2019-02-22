@@ -51,6 +51,12 @@ export default [
         path: "/announce/mail",
         funcKey: 1202,
       },
+      {
+        name: "SiteAnnounce",
+        title: "平台公告管理",
+        path: "/announce/site-announce",
+        funcKey: 1203,
+      },
     ]
   },
   {
@@ -137,6 +143,12 @@ export default [
         title: "代理報表",
         path: "/report/agent",
         funcKey: 1504,
+      },
+      {
+        name: "Winlose",
+        title: "輸贏分析",
+        path: "/report/winlose",
+        funcKey: 1505,
       },
     ]
   },

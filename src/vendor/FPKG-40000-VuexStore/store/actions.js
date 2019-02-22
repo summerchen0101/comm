@@ -97,8 +97,8 @@ const actions = {
       commit(GOT_MEMBER_DEPOSIT_LIMIT_OPTIONS, res.result)
     }
   },
-  async [GET_GAME_TYPE_OPTIONS]({commit}) {
-    let res = await apiHub('get', 'api/v1/dropdown/gamekind')
+  async [GET_GAME_TYPE_OPTIONS]({commit}, isAll) {
+    let res = await apiHub('get', 'api/v1/dropdown/gamekind', null, isAll)
     if(res.code === 200001) {
       commit(GOT_GAME_TYPE_OPTIONS, res.result)
     }

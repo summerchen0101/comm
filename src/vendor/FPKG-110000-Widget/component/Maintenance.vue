@@ -1,5 +1,5 @@
 <template>
-  <div class="bg">
+  <div id="Maintenance" class="bg">
     <img src="@/assets/Maintenance-bg.jpg">
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.bg
+#Maintenance.bg
   position fixed
   top 0
   left 0

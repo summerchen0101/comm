@@ -46,7 +46,7 @@
           <el-form-item label="未達流水點數">
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.disallowWithdrawPoint)" disabled></el-input>
           </el-form-item>
-          <el-form-item label="達流水可提領">
+          <el-form-item label="已達流水點數">
             <el-input :value="$root.toCurrency(withdraw.bankInfo && withdraw.bankInfo.allowWithdrawPoint)" disabled></el-input>
           </el-form-item>
           <el-form-item label="提款點數">
