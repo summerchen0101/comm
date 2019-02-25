@@ -53,7 +53,6 @@
           </tbody>
         </table>
       </el-form>
-
       <SubmitBar>
         <el-button @click="onCancel">取消</el-button>
         <el-button type="primary" @click="onSubmit">確定</el-button>
@@ -109,15 +108,18 @@ export default {
   },
   methods: {
     setForm() {
+      console.log(this.adultSetting)
       this.form = Object.assign({}, initForm, this.adultSetting)
       setTimeout(()=> {
         this.$refs.form.clearValidate()
       })
     },
     onSubmit() {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (valid) {
-          this.$store.dispatch(SET_ADULT_MANAGE, this.form)
+          await this.$store.dispatch(SET_ADULT_MANAGE, this.form)
+          await this.$store.dispatch(GET_ADULT_MANAGE)
+          this.setForm()
         }
       });
     },
