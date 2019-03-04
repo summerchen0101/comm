@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     setForm() {
-      console.log(this.adultSetting)
       this.form = Object.assign({}, initForm, this.adultSetting)
       setTimeout(()=> {
         this.$refs.form.clearValidate()

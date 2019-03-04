@@ -11,7 +11,7 @@ const mutations = {
       status: result.active,
       urlOnOpen: result.webcast_url,
       urlOnClose: result.redirect_url,
-      openAt: result.openAt || Router.app.$moment(new Date()).add(1, 'hours')
+      openAt: result.openAt || Router.app.$moment(new Date()).add(1, 'days')
     }
   }
 }
