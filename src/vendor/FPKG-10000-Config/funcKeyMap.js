@@ -30,5 +30,5 @@ export default [
   {funcKey: 1605, id:'login-log', title: '登入日誌'},
   {funcKey: 17, id:'platform', title: '平台管理'},
   {funcKey: 1701, id:'game', title: '遊戲管理'},
-  {funcKey: 1702, id:'ad', title: '廣告管理'},
+  {funcKey: 1702, id:'adult', title: '成人管理'},
 ]
