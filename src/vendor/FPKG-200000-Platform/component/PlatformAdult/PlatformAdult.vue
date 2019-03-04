@@ -96,7 +96,7 @@ export default {
           {validator: urlValidator, trigger: "blur"},
         ],
         urlOnClose: [
-          {required: this.form.status === 3, message: "網址為必填", trigger: "blur"},
+          // {required: this.form.status === 3, message: "網址為必填", trigger: "blur"},
           {validator: urlValidator, trigger: "blur"},
         ],
         openAt: [
