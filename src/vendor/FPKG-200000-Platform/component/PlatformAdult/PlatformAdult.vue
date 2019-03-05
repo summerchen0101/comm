@@ -19,7 +19,7 @@
                     <el-form-item
                       style="margin-bottom: 0; vertical-align: middle"
                       prop="urlOnOpen">
-                      <el-input v-model="form.urlOnOpen"></el-input>
+                      <el-input :disabled="form.status != 1" v-model="form.urlOnOpen"></el-input>
                     </el-form-item>
                   </span>
                 </el-radio>
@@ -44,7 +44,7 @@
                     <el-form-item
                       style="margin-bottom: 0; vertical-align: middle"
                       prop="urlOnClose">
-                      <el-input v-model="form.urlOnClose"></el-input>
+                      <el-input :disabled="form.status != 3" v-model="form.urlOnClose"></el-input>
                     </el-form-item>
                   </span>
                 </el-radio>
