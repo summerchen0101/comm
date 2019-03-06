@@ -165,10 +165,16 @@ export default [
         path: "/platform/game",
         funcKey: 1701,
       },
+      // {
+      //   name: "PlatformAd",
+      //   title: "廣告管理",
+      //   path: "/platform/ad",
+      //   funcKey: 1702,
+      // },
       {
-        name: "PlatformAd",
-        title: "廣告管理",
-        path: "/platform/ad",
+        name: "PlatformAdult",
+        title: "成人管理",
+        path: "/platform/adult",
         funcKey: 1702,
       },
     ]

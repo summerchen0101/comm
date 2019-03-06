@@ -7,12 +7,12 @@ import actions from './actions'
 import getters from './getters'
 
 import PlatformGame from './PlatformGame'
-import PlatformAd from './PlatformAd'
+import PlatformAdult from './PlatformAdult'
 
 const store = {
   modules: {
     PlatformGame,
-    PlatformAd,
+    PlatformAdult,
   },
   state,
   getters,

@@ -266,3 +266,18 @@ export function openTimeValidator(rules, value, cb) {
     cb()
   }
 }
+
+/**
+ * 網址驗證
+ */
+export const Vurl = {
+  test: (val) => /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/.test(val),
+  msg: "網址格式有誤",
+}
+export function urlValidator(rules, value, cb) {
+  if(value && !Vurl.test(value)) {
+    cb(Vurl.msg)
+  }else {
+    cb()
+  }
+}

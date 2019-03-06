@@ -6,13 +6,30 @@
                 :model="searchForm"
                 :rules="searchFormRules">
         <el-form-item label="結帳日期">
-          <el-select v-model="searchForm.startAt" @change="onWeekChanged">
+          <!-- <el-select v-model="searchForm.startAt" @change="onWeekChanged">
             <el-option v-for="i in weekOpts" :label="i.option" :value="i.value" :key="i.value"></el-option>
           </el-select>
           ~
           <el-select v-model="searchForm.endAt" @change="onWeekChanged">
             <el-option v-for="i in weekOpts" :label="i.option" :value="i.value" :key="i.value"></el-option>
-          </el-select>
+          </el-select> -->
+          <el-date-picker
+            v-model="searchForm.startAt"
+            format="yyyy-MM-dd"
+            :picker-options="startAtOption"
+            type="datetime"
+            @change="onDateAtChanged"
+            placeholder="開始時間">
+          </el-date-picker>
+          -
+          <el-date-picker
+            v-model="searchForm.endAt"
+            format="yyyy-MM-dd"
+            :picker-options="endAtOption"
+            type="datetime"
+            @change="onDateAtChanged"
+            placeholder="結束時間">
+          </el-date-picker>
         </el-form-item>
         <el-form-item label="遊戲" prop="game">
           <el-select v-model="searchForm.game">
@@ -49,6 +66,7 @@ import {
   GET_GAME_TYPE_OPTIONS,
 } from '@/vendor/FPKG-40000-VuexStore/constants'
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import moment, { toDate, toDateTime, startAtDay, endAtDay, dateAfter, dateBefore, getRangeLastDate } from '@/vendor/FPKG-120000-Util/time.js'
 
 export default {
   components: {
@@ -62,11 +80,11 @@ export default {
         { name: null, title: "輸贏分析" },
       ],
       searchForm: {
-        startAt: "",
-        endAt: "",
+        startAt: this.$route.params.startAt || startAtDay(new Date()),
+        endAt: this.$route.params.endAt || endAtDay(new Date()),
         game: 0,
         perPage: 25,
-        sort: "payoff",
+        sort: "payoff_win",
         page: 1,
       },
       perPageOpts: [
@@ -75,8 +93,8 @@ export default {
         { num: 100, },
       ],
       sortOpts: [
-        { id: 'payoff', name: '會員結果', },
-        { id: 'brokerage', name: '佣金結果', },
+        { id: 'payoff_win', name: '會員結果-贏', },
+        { id: 'payoff_lose', name: '會員結果-輸', },
         { id: 'feat', name: '有效金額', },
       ],
       searchFormRules: {
@@ -88,8 +106,36 @@ export default {
       gameTypeOpts: state => state.Global.gameTypeOpts,
       weekOpts: state => state.Global.commissionWeeksOpts,
     }),
+    startAtOption() {
+      return {
+        disabledDate: (val) => {
+          return dateAfter(new Date(), val)
+        }
+      }
+    },
+    endAtOption() {
+      return {
+        disabledDate: (val) => {
+          let lastDate = getRangeLastDate(this.searchForm.startAt)
+          return val.getTime() > lastDate.getTime() || dateAfter(new Date(), val)
+        }
+      }
+    },
   },
   methods: {
+    onDateAtChanged() {
+      if (!this.searchForm.startAt || !this.searchForm.endAt) return
+      // 若結束時間大於開始時間則改同為開始時間
+      if(dateAfter(this.searchForm.endAt, this.searchForm.startAt)) {
+        this.searchForm.endAt = this.searchForm.startAt = this.searchForm.startAt
+        return
+      }
+      // 判斷期間
+      let lastDate = getRangeLastDate(this.searchForm.startAt)
+      if (dateAfter(lastDate, this.searchForm.endAt)) {
+        this.searchForm.endAt = toDateTime(lastDate)
+      }
+    },
     onWeekChanged() {
       if (this.searchForm.startAt > this.searchForm.endAt ) {
         this.searchForm.endAt = this.searchForm.startAt
@@ -97,11 +143,11 @@ export default {
     },
     setSearchForm() {
       this.searchForm = Object.assign({}, this.searchForm, {
-        startAt: this.$route.params.startAt || this.weekOpts[this.weekOpts.length-1].value,
-        endAt: this.$route.params.endAt || this.weekOpts[this.weekOpts.length-1].value,
+        startAt: this.$route.params.startAt || startAtDay(new Date()),
+        endAt: this.$route.params.endAt || endAtDay(new Date()),
         game: this.$route.params.game || 0,
         per_page: this.$route.params.per_page || 25,
-        sort: this.$route.params.sort || "payoff",
+        sort: this.$route.params.sort || "payoff_win",
         page: this.$route.params.page || 1,
       })
     },

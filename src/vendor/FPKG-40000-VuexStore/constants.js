@@ -498,7 +498,7 @@ export const SWITCH_TODAY_LOADING_STATUS = "SWITCH_TODAY_LOADING_STATUS"
 
 
 /*
-  FPKG-200000-Platform
+  FPKG-200000-Platform: 遊戲管理
 */
 
 // actions
@@ -507,5 +507,17 @@ export const SET_GAME_MAINTENANCE_LIST = "SET_GAME_MAINTENANCE_LIST"
 
 // mutations
 export const GOT_GAME_MAINTENANCE_LIST = "GOT_GAME_MAINTENANCE_LIST"
+
+
+/*
+  FPKG-200000-Platform: 成人管理
+*/
+
+// actions
+export const GET_ADULT_MANAGE = "GET_ADULT_MANAGE"
+export const SET_ADULT_MANAGE = "SET_ADULT_MANAGE"
+
+// mutations
+export const GOT_ADULT_MANAGE = "GOT_ADULT_MANAGE"
 
 

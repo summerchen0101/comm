@@ -8,11 +8,11 @@ export const PlatformGame = {
   component: () => import('./component/PlatformGame/PlatformGame.vue'),
 }
 export const PlatformAd = {
-  path: '/platform/ad',
-  name: 'PlatformAd',
-  title: "廣告管理",
+  path: '/platform/adult',
+  name: 'PlatformAdult',
+  title: "成人管理",
   props: { funcKey: 1702 },
-  component: () => import('./component/PlatformAd/PlatformAd.vue'),
+  component: () => import('./component/PlatformAdult/PlatformAdult.vue'),
 }
 export const Platform = {
   path: '/platform',

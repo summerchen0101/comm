@@ -5,9 +5,8 @@
         <thead>
           <tr>
             <th>帳號</th>
-            <th width="15%">有效金額</th>
-            <th width="15%">會員結果</th>
-            <th width="15%">佣金結果</th>
+            <th width="20%">有效金額</th>
+            <th width="20%">會員結果</th>
           </tr>
         </thead>
         <tbody v-if="report.length > 0">
@@ -15,7 +14,6 @@
             <td>{{r.account}}({{r.nickname}})</td>
             <td>{{toCurrencyFloor(r.amount)}}</td>
             <td :class="handleResultColor(r.memberResult)">{{toCurrencyFloor(r.memberResult)}}</td>
-            <td>{{toCurrencyFloor(r.commission)}}</td>
           </tr>
         </tbody>
         <tbody v-else>
