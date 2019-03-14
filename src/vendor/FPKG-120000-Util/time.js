@@ -50,3 +50,12 @@ export const getRangeLastDate = (defaultAt, days = 60) => {
 }
 // console.log(`${moment().format('YYYY')}-${moment().startOf('year').diff(moment().startOf('year'), 'weeks')+1}`)
 
+
+export const compareWeek = (week1, week2) => {
+  let week1Arr = week1.split('-')
+  let week2Arr = week2.split('-')
+  if(week1Arr[0] == week2Arr[0]) {
+    return parseInt(week1Arr[1]) > parseInt(week2Arr[1])
+  }
+  return parseInt(week1Arr[0]) > parseInt(week2Arr[0])
+}

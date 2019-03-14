@@ -54,7 +54,7 @@
             <td :class="$root.handleResultColor(i.brokerage_agent)">{{$root.toCurrencyFloor(i.brokerage_agent)}}</td>
           </tr>
           <tr v-if="list.length === 0">
-            <td colspan="7" class="text-center">暫無資料</td>
+            <td colspan="8" class="text-center">暫無資料</td>
           </tr>
         </tbody>
       </table>

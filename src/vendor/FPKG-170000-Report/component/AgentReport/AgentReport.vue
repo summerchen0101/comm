@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     onWeekChanged() {
-      if (this.searchForm.startAt > this.searchForm.endAt ) {
+      if (this.$root.compareWeek(this.searchForm.startAt, this.searchForm.endAt)) {
         this.searchForm.endAt = this.searchForm.startAt
       }
     },
